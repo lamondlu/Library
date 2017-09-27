@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 
 namespace BookingLibrary.Domain.Core
 {
-    public class Class1
+    public class Entity
     {
+        
     }
 }
