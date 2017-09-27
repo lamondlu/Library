@@ -2,7 +2,7 @@ using System;
 
 namespace BookingLibrary.Domain.Core
 {
-    public class DomainEvent : IDomainEvent
+    public abstract class DomainEvent : IDomainEvent
     {
         private DateTime _occurredOn;
         private Entity _eventSource;

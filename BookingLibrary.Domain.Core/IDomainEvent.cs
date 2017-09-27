@@ -6,6 +6,6 @@ namespace BookingLibrary.Domain.Core
     {
         DateTime OccurredOn { get; }
 
-        Entity Entity { get; }
+        Entity EventSource { get; }
     }
 }
