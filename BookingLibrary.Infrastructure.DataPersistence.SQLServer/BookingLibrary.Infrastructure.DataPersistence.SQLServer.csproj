@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookingLibrary.Service.Identity.Domain\BookingLibrary.Service.Identity.Domain.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Service.Leasing.Domain\BookingLibrary.Service.Leasing.Domain.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Service.Repository.Domain\BookingLibrary.Service.Repository.Domain.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+</Project>
