@@ -5,13 +5,20 @@ namespace BookingLibrary.Service.Identity.Domain
 {
     public class User : Person
     {
-        public User(PersonName name) : base(name)
+        public User(PersonName name, UserPrincipal principal) : base(Guid.NewGuid(), name)
         {
+            this.UserPrincipal = principal;
         }
 
-        public User(Guid personId, PersonName name) : base(personId, name)
+        public User(Guid personId, PersonName name, UserPrincipal principal) : base(personId, name)
         {
-            
+            this.UserPrincipal = principal;
+        }
+
+        public UserPrincipal UserPrincipal
+        {
+            get;
+            internal set;
         }
     }
 }

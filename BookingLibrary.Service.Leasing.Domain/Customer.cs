@@ -21,5 +21,15 @@ namespace BookingLibrary.Service.Leasing.Domain
             get;
             internal set;
         }
+
+        public void RentBook(Book book)
+        {
+            
+        }
+
+        public void ReturnBook(Book book)
+        {
+
+        }
     }
 }
