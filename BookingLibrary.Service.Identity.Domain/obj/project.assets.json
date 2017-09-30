@@ -25,6 +25,16 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "BookingLibrary.Domain.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/BookingLibrary.Domain.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookingLibrary.Domain.Core.dll": {}
+        }
       }
     }
   },
@@ -169,10 +179,16 @@
         "netstandard.library.2.0.0.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "BookingLibrary.Domain.Core/1.0.0": {
+      "type": "project",
+      "path": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj",
+      "msbuildProject": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "BookingLibrary.Domain.Core >= 1.0.0",
       "NETStandard.Library >= 2.0.0"
     ]
   },
@@ -183,11 +199,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Identity.Domain\\BookingLibrary.Service.Identity.Domain.csproj",
+      "projectUniqueName": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Identity.Domain\\BookingLibrary.Service.Identity.Domain.csproj",
       "projectName": "BookingLibrary.Service.Identity.Domain",
-      "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Identity.Domain\\BookingLibrary.Service.Identity.Domain.csproj",
+      "projectPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Identity.Domain\\BookingLibrary.Service.Identity.Domain.csproj",
       "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Identity.Domain\\obj\\",
+      "outputPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Identity.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -203,7 +219,11 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Domain.Core\\BookingLibrary.Domain.Core.csproj": {
+              "projectPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Domain.Core\\BookingLibrary.Domain.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
