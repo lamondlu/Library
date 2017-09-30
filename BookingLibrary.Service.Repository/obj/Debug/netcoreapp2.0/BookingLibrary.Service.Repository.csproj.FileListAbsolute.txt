@@ -1,0 +1,8 @@
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.deps.json
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.csproj.CoreCompileInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.AssemblyInfoInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.AssemblyInfo.cs
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.pdb

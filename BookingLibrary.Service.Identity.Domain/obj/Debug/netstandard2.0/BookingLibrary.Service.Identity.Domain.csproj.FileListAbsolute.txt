@@ -1,0 +1,10 @@
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity.Domain\bin\Debug\netstandard2.0\BookingLibrary.Service.Identity.Domain.deps.json
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity.Domain\bin\Debug\netstandard2.0\BookingLibrary.Service.Identity.Domain.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity.Domain\bin\Debug\netstandard2.0\BookingLibrary.Service.Identity.Domain.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity.Domain\bin\Debug\netstandard2.0\BookingLibrary.Domain.Core.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity.Domain\bin\Debug\netstandard2.0\BookingLibrary.Domain.Core.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity.Domain\obj\Debug\netstandard2.0\BookingLibrary.Service.Identity.Domain.csproj.CoreCompileInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity.Domain\obj\Debug\netstandard2.0\BookingLibrary.Service.Identity.Domain.AssemblyInfoInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity.Domain\obj\Debug\netstandard2.0\BookingLibrary.Service.Identity.Domain.AssemblyInfo.cs
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity.Domain\obj\Debug\netstandard2.0\BookingLibrary.Service.Identity.Domain.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity.Domain\obj\Debug\netstandard2.0\BookingLibrary.Service.Identity.Domain.pdb

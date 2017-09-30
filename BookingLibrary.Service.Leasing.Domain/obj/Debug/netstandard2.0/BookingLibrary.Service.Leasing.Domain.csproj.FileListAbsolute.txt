@@ -1,0 +1,10 @@
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing.Domain\bin\Debug\netstandard2.0\BookingLibrary.Service.Leasing.Domain.deps.json
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing.Domain\bin\Debug\netstandard2.0\BookingLibrary.Service.Leasing.Domain.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing.Domain\bin\Debug\netstandard2.0\BookingLibrary.Service.Leasing.Domain.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing.Domain\bin\Debug\netstandard2.0\BookingLibrary.Domain.Core.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing.Domain\bin\Debug\netstandard2.0\BookingLibrary.Domain.Core.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing.Domain\obj\Debug\netstandard2.0\BookingLibrary.Service.Leasing.Domain.csproj.CoreCompileInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing.Domain\obj\Debug\netstandard2.0\BookingLibrary.Service.Leasing.Domain.AssemblyInfoInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing.Domain\obj\Debug\netstandard2.0\BookingLibrary.Service.Leasing.Domain.AssemblyInfo.cs
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing.Domain\obj\Debug\netstandard2.0\BookingLibrary.Service.Leasing.Domain.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing.Domain\obj\Debug\netstandard2.0\BookingLibrary.Service.Leasing.Domain.pdb

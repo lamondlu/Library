@@ -1,0 +1,8 @@
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Leasing.deps.json
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Leasing.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Leasing.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Leasing.csproj.CoreCompileInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Leasing.AssemblyInfoInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Leasing.AssemblyInfo.cs
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Leasing.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Leasing\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Leasing.pdb

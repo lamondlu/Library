@@ -1,0 +1,8 @@
+C:\AspNetCore\BookLibrary\BookingLibrary.Domain.Core\obj\Debug\netstandard2.0\BookingLibrary.Domain.Core.csproj.CoreCompileInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Domain.Core\obj\Debug\netstandard2.0\BookingLibrary.Domain.Core.AssemblyInfoInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Domain.Core\obj\Debug\netstandard2.0\BookingLibrary.Domain.Core.AssemblyInfo.cs
+C:\AspNetCore\BookLibrary\BookingLibrary.Domain.Core\bin\Debug\netstandard2.0\BookingLibrary.Domain.Core.deps.json
+C:\AspNetCore\BookLibrary\BookingLibrary.Domain.Core\bin\Debug\netstandard2.0\BookingLibrary.Domain.Core.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Domain.Core\bin\Debug\netstandard2.0\BookingLibrary.Domain.Core.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Domain.Core\obj\Debug\netstandard2.0\BookingLibrary.Domain.Core.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Domain.Core\obj\Debug\netstandard2.0\BookingLibrary.Domain.Core.pdb

@@ -1,8 +1,15 @@
 ﻿using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookingLibrary.Service.Identity
 {
-    public class Class1
+    [Route("api/identity")]
+    public class IdentityController : Controller
     {
+        [HttpGet]
+        public string HelloWorld()
+        {
+            return "Hello World";
+        }
     }
 }
