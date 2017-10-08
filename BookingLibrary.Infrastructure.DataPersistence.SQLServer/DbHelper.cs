@@ -1,18 +1,11 @@
 using System;
-using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
-using System.Xml;
 
 namespace BookingLibrary.Infrastructure.DataPersistence.SQLServer
 {
-    /// <summary>
-    /// The SqlHelper class is intended to encapsulate high performance, 
-    /// scalable best practices for common uses of SqlClient.
-    /// </summary>
-    public sealed class SqlHelper
+    public class SqlHelper
     {
-
         /// <summary>
         /// Execute a SqlCommand (that returns no resultset) against the database specified in the connection string 
         /// using the provided parameters.
@@ -170,6 +163,8 @@ namespace BookingLibrary.Infrastructure.DataPersistence.SQLServer
             cmd.Parameters.Clear();
             return val;
         }
+
+
 
         /// <summary>
         /// Prepare a command for execution
