@@ -74,7 +74,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.SQLServer
                             new SqlParameter { SqlDbType = SqlDbType.NVarChar, ParameterName = "@lastName", Value = user.Name.MiddleName }
                             );
 
-                            var sqlAddUser = "insert into User(PersonId, Role, UserName, Password) values(@personId, @role, @userName, @password)";
+                        var sqlAddUser = "insert into User(PersonId, Role, UserName, Password) values(@personId, @role, @userName, @password)";
                         SqlHelper.ExecuteNonQuery(tran,
                             CommandType.Text,
                             sqlAddUser,

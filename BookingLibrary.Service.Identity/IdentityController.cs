@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookingLibrary.Service.Identity
 {
-    [Route("api/[controller]")]
+    [Route("api/identities")]
     public class IdentityController : Controller
     {
         [HttpGet]

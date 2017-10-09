@@ -6,3 +6,7 @@ C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity\obj\Debug\netcoreapp2.
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Identity.AssemblyInfo.cs
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Identity.dll
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Identity.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Identity.Domain.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Identity.Domain.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Identity\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.pdb

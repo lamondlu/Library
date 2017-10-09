@@ -149,6 +149,9 @@
         }
       },
       "BookingLibrary.Service.Repository.Domain/1.0.0": {
+        "dependencies": {
+          "BookingLibrary.Domain.Core": "1.0.0"
+        },
         "runtime": {
           "BookingLibrary.Service.Repository.Domain.dll": {}
         }

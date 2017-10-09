@@ -4746,6 +4746,32 @@
         "runtime": {
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
+      },
+      "BookingLibrary.Domain.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Microsoft.CSharp": "4.4.0"
+        },
+        "compile": {
+          "bin/placeholder/BookingLibrary.Domain.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookingLibrary.Domain.Core.dll": {}
+        }
+      },
+      "BookingLibrary.Service.Identity.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "BookingLibrary.Domain.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BookingLibrary.Service.Identity.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookingLibrary.Service.Identity.Domain.dll": {}
+        }
       }
     }
   },
@@ -12524,10 +12550,21 @@
         "windowsazure.storage.8.1.4.nupkg.sha512",
         "windowsazure.storage.nuspec"
       ]
+    },
+    "BookingLibrary.Domain.Core/1.0.0": {
+      "type": "project",
+      "path": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj",
+      "msbuildProject": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj"
+    },
+    "BookingLibrary.Service.Identity.Domain/1.0.0": {
+      "type": "project",
+      "path": "../BookingLibrary.Service.Identity.Domain/BookingLibrary.Service.Identity.Domain.csproj",
+      "msbuildProject": "../BookingLibrary.Service.Identity.Domain/BookingLibrary.Service.Identity.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "BookingLibrary.Service.Identity.Domain >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
@@ -12559,7 +12596,11 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Identity.Domain\\BookingLibrary.Service.Identity.Domain.csproj": {
+              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Identity.Domain\\BookingLibrary.Service.Identity.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

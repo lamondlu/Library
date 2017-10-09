@@ -22,19 +22,8 @@ namespace BookingLibrary.Domain.Core.DataAccessor
         public T GetById<T>(Guid id) where T : AggregateRoot, new()
         {
             IEnumerable<DomainEvent> events;
-            var memento = _eventStorage.GetMemento(id);
-            if (memento != null)
-            {
-                events = _eventStorage.GetEvents(id).Where(e => e.Version >= memento.Version);
-            }
-            else
-            {
-                events = _eventStorage.GetEvents(id);
-            }
+            events = _eventStorage.GetEvents(id);
             var obj = new T();
-            if (memento != null)
-                ((IOriginator)obj).SetEventModel(memento);
-
             obj.LoadsFromHistory(events);
             return obj;
         }

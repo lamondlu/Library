@@ -6,3 +6,5 @@ C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Domain\obj\Debug\net
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Domain\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Domain.AssemblyInfo.cs
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Domain\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Domain.dll
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Domain\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Domain.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Domain\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Domain\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.pdb
