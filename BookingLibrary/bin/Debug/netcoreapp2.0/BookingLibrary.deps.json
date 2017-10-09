@@ -10,6 +10,8 @@
         "dependencies": {
           "Autofac": "4.2.1",
           "Autofac.Extensions.DependencyInjection": "4.1.0",
+          "BookingLibrary.Service.Identity.Domain": "1.0.0",
+          "BookingLibrary.Service.Repository.Domain": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.0"
         },
         "runtime": {
@@ -3214,6 +3216,30 @@
         "runtime": {
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
+      },
+      "BookingLibrary.Domain.Core/1.0.0": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.4.0"
+        },
+        "runtime": {
+          "BookingLibrary.Domain.Core.dll": {}
+        }
+      },
+      "BookingLibrary.Service.Identity.Domain/1.0.0": {
+        "dependencies": {
+          "BookingLibrary.Domain.Core": "1.0.0"
+        },
+        "runtime": {
+          "BookingLibrary.Service.Identity.Domain.dll": {}
+        }
+      },
+      "BookingLibrary.Service.Repository.Domain/1.0.0": {
+        "dependencies": {
+          "BookingLibrary.Domain.Core": "1.0.0"
+        },
+        "runtime": {
+          "BookingLibrary.Service.Repository.Domain.dll": {}
+        }
       }
     }
   },
@@ -5238,6 +5264,21 @@
       "sha512": "sha512-W6ZZ0/o7+3Qb77mRAQyLjPudHG3OMeeQ4p9yY13PUdJArmRCx2cLMm5F4tpIjJXxzHC0ew0oK7DMDGILMdfCnw==",
       "path": "windowsazure.storage/8.1.4",
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
+    },
+    "BookingLibrary.Domain.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BookingLibrary.Service.Identity.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BookingLibrary.Service.Repository.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

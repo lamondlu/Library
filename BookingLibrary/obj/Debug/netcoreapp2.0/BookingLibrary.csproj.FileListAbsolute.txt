@@ -8,3 +8,9 @@ C:\AspNetCore\BookLibrary\BookingLibrary\obj\Debug\netcoreapp2.0\BookingLibrary.
 C:\AspNetCore\BookLibrary\BookingLibrary\obj\Debug\netcoreapp2.0\BookingLibrary.AssemblyInfo.cs
 C:\AspNetCore\BookLibrary\BookingLibrary\obj\Debug\netcoreapp2.0\BookingLibrary.dll
 C:\AspNetCore\BookLibrary\BookingLibrary\obj\Debug\netcoreapp2.0\BookingLibrary.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.dll
+C:\AspNetCore\BookLibrary\BookingLibrary\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Identity.Domain.dll
+C:\AspNetCore\BookLibrary\BookingLibrary\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Domain.dll
+C:\AspNetCore\BookLibrary\BookingLibrary\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Identity.Domain.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Domain.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.pdb

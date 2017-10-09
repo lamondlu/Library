@@ -10,3 +10,5 @@ C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Domain.dll
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Domain.pdb
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.runtimeconfig.json
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.runtimeconfig.dev.json

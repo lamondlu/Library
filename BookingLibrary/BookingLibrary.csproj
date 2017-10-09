@@ -8,4 +8,8 @@
     <PackageReference Include="Autofac" Version="4.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookingLibrary.Service.Identity.Domain\BookingLibrary.Service.Identity.Domain.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Service.Repository.Domain\BookingLibrary.Service.Repository.Domain.csproj" />
+  </ItemGroup>
 </Project>
