@@ -1,17 +1,19 @@
-﻿using System;
-using System.Text;
+using System;
 using BookingLibrary.Domain.Core.Messaging;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
+using System.Text;
+
 
 namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
 {
-    public class RabbitMQCommandPublisher : ICommandPublisher
+    public class RabbitMQEventPublisher : IEventPublisher
     {
+
         private readonly IConnection connection;
         private readonly IModel channel;
 
-        public RabbitMQCommandPublisher(string uri)
+        public RabbitMQEventPublisher(string uri)
         {
             var factory = new ConnectionFactory() { Uri = new Uri(uri) };
             this.connection = factory.CreateConnection();
@@ -31,8 +33,7 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
 
             var properties = channel.CreateBasicProperties();
             properties.Persistent = true;
-
-            channel.BasicPublish(exchange: "", routingKey: "commandQueue", basicProperties: properties, body: bytes);
+            channel.BasicPublish(exchange: "", routingKey: "eventQueue", basicProperties: properties, body: bytes);
         }
     }
 }
