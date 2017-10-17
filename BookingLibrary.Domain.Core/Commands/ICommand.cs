@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingLibrary.Domain.Core.Errors;
 
-namespace BookingLibrary.Domain.Core
+namespace BookingLibrary.Domain.Core.Commands
 {
     public interface ICommand
     {
+        string CommandKey { get; }
+
         void ExecuteSuccess();
 
         void ExecuteSuccess(Guid id);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using BookingLibrary.Domain.Core.Messaging;
+using BookingLibrary.Domain.Core.Commands;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 
@@ -24,15 +25,14 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
             this.connection.Dispose();
         }
 
-        public void Publish<ICommand>(ICommand command)
+        public void Publish<T>(T command) where T : ICommand
         {
             var json = JsonConvert.SerializeObject(command, Formatting.Indented, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
             var bytes = Encoding.UTF8.GetBytes(json);
 
             var properties = channel.CreateBasicProperties();
             properties.Persistent = true;
-
-            channel.BasicPublish(exchange: "", routingKey: "commandQueue", basicProperties: properties, body: bytes);
+            channel.BasicPublish(exchange: "", routingKey: command.CommandKey, basicProperties: properties, body: bytes);
         }
     }
 }

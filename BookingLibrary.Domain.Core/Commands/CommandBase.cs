@@ -9,11 +9,22 @@ namespace BookingLibrary.Domain.Core.Commands
 {
     public class CommandBase<T> : ICommand where T : CommandExecuteResult, new()
     {
+        private string _commandKey;
+
+        public string CommandKey
+        {
+            get
+            {
+                return _commandKey;
+            }
+        }
+
         public T ExecuteResult { get; protected set; }
 
-        public CommandBase()
+        public CommandBase(string key)
         {
             this.ExecuteResult = new T();
+            _commandKey = key;
         }
 
         public void ExecuteSuccess()

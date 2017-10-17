@@ -1,0 +1,10 @@
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj.CoreCompileInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.AssemblyInfoInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.AssemblyInfo.cs
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.deps.json
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.pdb

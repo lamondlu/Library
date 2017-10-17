@@ -5023,11 +5023,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.Messaging.RabbitMQ\\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj",
+      "projectUniqueName": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.Messaging.RabbitMQ\\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj",
       "projectName": "BookingLibrary.Infrastructure.Messaging.RabbitMQ",
-      "projectPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.Messaging.RabbitMQ\\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj",
+      "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.Messaging.RabbitMQ\\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj",
       "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.Messaging.RabbitMQ\\obj\\",
+      "outputPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.Messaging.RabbitMQ\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5044,8 +5044,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Domain.Core\\BookingLibrary.Domain.Core.csproj": {
-              "projectPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Domain.Core\\BookingLibrary.Domain.Core.csproj"
+            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Domain.Core\\BookingLibrary.Domain.Core.csproj": {
+              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Domain.Core\\BookingLibrary.Domain.Core.csproj"
             }
           }
         }
