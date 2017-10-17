@@ -9,6 +9,8 @@ namespace BookingLibrary.Service.Repository.Domain.Events
 
         public string BookName { get; set; }
 
+        public string Description { get; set; }
+
         public DateTime DateIssued { get; set; }
     }
 }

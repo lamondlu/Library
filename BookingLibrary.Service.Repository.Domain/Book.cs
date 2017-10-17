@@ -16,20 +16,23 @@ namespace BookingLibrary.Service.Repository.Domain
 
         }
 
-        public Book(Guid bookId, string isbn, string bookName, DateTime dateIssued)
+        public Book(Guid bookId, string isbn, string bookName, string description, DateTime dateIssued)
         {
             ApplyChange(new BookAddedEvent
             {
                 ISBN = isbn,
                 BookName = bookName,
                 DateIssued = dateIssued,
-                AggregateId = bookId
+                AggregateId = bookId,
+                Description = description
             });
         }
 
         public string ISBN { get; internal set; }
 
         public string BookName { get; internal set; }
+
+        public string Description{get; internal set;}
 
         public DateTime DateIssued { get; internal set; }
 
