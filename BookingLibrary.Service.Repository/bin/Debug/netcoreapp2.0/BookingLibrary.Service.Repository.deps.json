@@ -10,6 +10,7 @@
         "dependencies": {
           "Autofac": "4.6.1",
           "Autofac.Extensions.DependencyInjection": "4.2.0",
+          "BookingLibrary.Service.Repository.Application": "1.0.0",
           "BookingLibrary.Service.Repository.Domain": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.0"
         },
@@ -3224,6 +3225,15 @@
           "BookingLibrary.Domain.Core.dll": {}
         }
       },
+      "BookingLibrary.Service.Repository.Application/1.0.0": {
+        "dependencies": {
+          "BookingLibrary.Domain.Core": "1.0.0",
+          "BookingLibrary.Service.Repository.Domain": "1.0.0"
+        },
+        "runtime": {
+          "BookingLibrary.Service.Repository.Application.dll": {}
+        }
+      },
       "BookingLibrary.Service.Repository.Domain/1.0.0": {
         "dependencies": {
           "BookingLibrary.Domain.Core": "1.0.0"
@@ -5257,6 +5267,11 @@
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
     },
     "BookingLibrary.Domain.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BookingLibrary.Service.Repository.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

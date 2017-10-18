@@ -10,5 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookingLibrary.Service.Repository.Domain\BookingLibrary.Service.Repository.Domain.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Service.Repository.Application\BookingLibrary.Service.Repository.Application.csproj" />
   </ItemGroup>
 </Project>

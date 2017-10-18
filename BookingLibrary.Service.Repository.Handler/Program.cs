@@ -6,7 +6,8 @@ namespace BookingLibrary.Service.Repository.Handler
     {
         static void Main(string[] args)
         {
-            
+            RepositoryHandlerRegister register = new RepositoryHandlerRegister();
+            register.RegisterAndStart();
         }
     }
 }

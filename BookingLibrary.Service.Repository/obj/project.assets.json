@@ -4787,6 +4787,20 @@
           "bin/placeholder/BookingLibrary.Domain.Core.dll": {}
         }
       },
+      "BookingLibrary.Service.Repository.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "BookingLibrary.Domain.Core": "1.0.0",
+          "BookingLibrary.Service.Repository.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BookingLibrary.Service.Repository.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookingLibrary.Service.Repository.Application.dll": {}
+        }
+      },
       "BookingLibrary.Service.Repository.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -12607,6 +12621,11 @@
       "path": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj",
       "msbuildProject": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj"
     },
+    "BookingLibrary.Service.Repository.Application/1.0.0": {
+      "type": "project",
+      "path": "../BookingLibrary.Service.Repository.Application/BookingLibrary.Service.Repository.Application.csproj",
+      "msbuildProject": "../BookingLibrary.Service.Repository.Application/BookingLibrary.Service.Repository.Application.csproj"
+    },
     "BookingLibrary.Service.Repository.Domain/1.0.0": {
       "type": "project",
       "path": "../BookingLibrary.Service.Repository.Domain/BookingLibrary.Service.Repository.Domain.csproj",
@@ -12617,6 +12636,7 @@
     ".NETCoreApp,Version=v2.0": [
       "Autofac >= 4.6.1",
       "Autofac.Extensions.DependencyInjection >= 4.2.0",
+      "BookingLibrary.Service.Repository.Application >= 1.0.0",
       "BookingLibrary.Service.Repository.Domain >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0"
@@ -12652,6 +12672,9 @@
           "projectReferences": {
             "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Domain\\BookingLibrary.Service.Repository.Domain.csproj": {
               "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Domain\\BookingLibrary.Service.Repository.Domain.csproj"
+            },
+            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Application\\BookingLibrary.Service.Repository.Application.csproj": {
+              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Application\\BookingLibrary.Service.Repository.Application.csproj"
             }
           }
         }
