@@ -30,6 +30,12 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
             var json = JsonConvert.SerializeObject(command, Formatting.Indented, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
             var bytes = Encoding.UTF8.GetBytes(json);
 
+            this.channel.QueueDeclare(queue: command.CommandKey,
+                        durable: true,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: null);
+
             var properties = channel.CreateBasicProperties();
             properties.Persistent = true;
             channel.BasicPublish(exchange: "", routingKey: command.CommandKey, basicProperties: properties, body: bytes);

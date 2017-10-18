@@ -2,6 +2,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookingLibrary.Service.Repository.Application\BookingLibrary.Service.Repository.Application.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Domain.Core\BookingLibrary.Domain.Core.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Infrastructure.Messaging.RabbitMQ\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
