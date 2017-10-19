@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+    <ItemGroup>
+    <ProjectReference Include="..\BookingLibrary.Domain.Core\BookingLibrary.Domain.Core.csproj" />
+  </ItemGroup>
+ <ItemGroup>
+    <PackageReference Include="System.Data.SQLClient" Version="4.4.0" />
+  </ItemGroup>
+</Project>

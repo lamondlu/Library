@@ -3,6 +3,9 @@ using System.Reflection;
 using System.Linq;
 using BookingLibrary.Domain.Core.Commands;
 using BookingLibrary.Infrastructure.InjectionFramework;
+using BookingLibrary.Domain.Core.DataAccessor;
+using BookingLibrary.Infrastructure.EventStorage.SQLServer;
+using BookingLibrary.Domain.Core;
 
 namespace BookingLibrary.Service.Repository.Handler
 {
@@ -10,7 +13,9 @@ namespace BookingLibrary.Service.Repository.Handler
     {
         static void Main(string[] args)
         {
-
+            InjectContainer.RegisterType<IDomainRepository, DomainRepository>();
+            InjectContainer.RegisterType<IEventStorage, SQLServerEventStorage>();
+            RegisterHandlers();
 
             RepositoryHandlerRegister register = new RepositoryHandlerRegister();
             register.RegisterAndStart();
