@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookingLibrary.Service.Repository.Domain\BookingLibrary.Service.Repository.Domain.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Infrastructure.InjectionFramework\BookingLibrary.Infrastructure.InjectionFramework.csproj" />
+  </ItemGroup>
+   <ItemGroup>
+    <PackageReference Include="System.Data.SQLClient" Version="4.4.0" />
+  </ItemGroup>
+</Project>

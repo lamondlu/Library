@@ -4,16 +4,28 @@ using BookingLibrary.Service.Repository.Domain.Events;
 
 namespace BookingLibrary.Service.Repository.Domain
 {
-    public class Book : AggregateRoot, 
-    IHandler<BookAddedEvent>, 
-    IHandler<BookRemovedEvent>, 
-    IHandler<BookISBNChangedEvent>, 
-    IHandler<BookNameChangedEvent>, 
-    IHandler<BookIssuedDateChangedEvent>
+    public class Book : AggregateRoot,
+    IHandler<BookAddedEvent>,
+    IHandler<BookRemovedEvent>,
+    IHandler<BookISBNChangedEvent>,
+    IHandler<BookNameChangedEvent>,
+    IHandler<BookIssuedDateChangedEvent>,
+    IHandler<BookInStoredEvent>,
+    IHandler<BookOutStoredEvent>
     {
         public Book()
         {
 
+        }
+
+        public Book(Guid bookId, string isbn, string bookName, string description, DateTime dateIssued, BookStatus bookStatus)
+        {
+            Id = bookId;
+            ISBN = isbn;
+            BookName = bookName;
+            Description = description;
+            DateIssued = dateIssued;
+            BookStatus = bookStatus;
         }
 
         public Book(Guid bookId, string isbn, string bookName, string description, DateTime dateIssued)
@@ -24,7 +36,8 @@ namespace BookingLibrary.Service.Repository.Domain
                 BookName = bookName,
                 DateIssued = dateIssued,
                 AggregateId = bookId,
-                Description = description
+                Description = description,
+                BookStatus = BookStatus.InStore
             });
         }
 
@@ -32,9 +45,11 @@ namespace BookingLibrary.Service.Repository.Domain
 
         public string BookName { get; internal set; }
 
-        public string Description{get; internal set;}
+        public string Description { get; internal set; }
 
         public DateTime DateIssued { get; internal set; }
+
+        public BookStatus BookStatus { get; internal set; }
 
         public void ChangeBookName(string bookName)
         {
@@ -42,6 +57,31 @@ namespace BookingLibrary.Service.Repository.Domain
             {
                 BookId = Id,
                 NewBookName = bookName
+            });
+        }
+
+        public void ChangeDescription(string description)
+        {
+            ApplyChange(new BookDescriptionChangedEvent
+            {
+                AggregateId = Id,
+                Description = description
+            });
+        }
+
+        public void InStore()
+        {
+            ApplyChange(new BookInStoredEvent
+            {
+                AggregateId = this.Id
+            });
+        }
+
+        public void OutStore()
+        {
+            ApplyChange(new BookOutStoredEvent
+            {
+                AggregateId = this.Id
             });
         }
 
@@ -69,6 +109,7 @@ namespace BookingLibrary.Service.Repository.Domain
             this.DateIssued = evt.DateIssued;
             this.Id = evt.AggregateId;
             this.ISBN = evt.ISBN;
+            this.BookStatus = evt.BookStatus;
         }
 
         public void Handle(BookRemovedEvent evt)
@@ -94,6 +135,16 @@ namespace BookingLibrary.Service.Repository.Domain
         public void Remove()
         {
             ApplyChange(new BookRemovedEvent());
+        }
+
+        public void Handle(BookInStoredEvent evt)
+        {
+            this.BookStatus = BookStatus.InStore;
+        }
+
+        public void Handle(BookOutStoredEvent evt)
+        {
+            this.BookStatus = BookStatus.OutStore;
         }
     }
 }
