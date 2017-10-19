@@ -7,6 +7,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Reflection;
 using System.Linq;
+using BookingLibrary.Infrastructure.InjectionFramework;
 
 namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
 {
@@ -34,22 +35,14 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
 
             var consumer = new EventingBasicConsumer(channel);
 
-            Func<Type, bool> isCommandHandler = i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<>) && i.GenericTypeArguments.Any(x => x == typeof(T));
-
-            var handlerType = typeof(T).Assembly.GetExportedTypes().Where(t => t.GetInterfaces().Any(isCommandHandler)).FirstOrDefault();
+            
 
 
-            ICommandHandler<T> instance = null;
-            if (handlerType != null)
-            {
-                instance = (ICommandHandler<T>)Activator.CreateInstance(handlerType, new object[1] { null });
-            }
-            else
+            ICommandHandler<T> instance = InjectContainer.GetInstance<ICommandHandler<T>>();
+            if (instance == null)
             {
                 throw new Exception($"The command handler for {typeof(T).FullName} is not prepared.");
             }
-
-
 
             consumer.Received += (model, ea) =>
             {

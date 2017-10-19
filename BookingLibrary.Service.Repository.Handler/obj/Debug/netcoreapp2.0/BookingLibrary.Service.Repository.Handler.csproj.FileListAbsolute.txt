@@ -16,3 +16,5 @@ C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Handler\obj\Debug\ne
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Handler\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Handler.AssemblyInfo.cs
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Handler\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Handler.dll
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Handler\obj\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Handler.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Handler\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository.Handler\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.pdb

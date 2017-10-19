@@ -1,0 +1,8 @@
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.InjectionFramework\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.deps.json
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.InjectionFramework\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.InjectionFramework\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.InjectionFramework\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.csproj.CoreCompileInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.InjectionFramework\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.AssemblyInfoInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.InjectionFramework\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.AssemblyInfo.cs
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.InjectionFramework\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.InjectionFramework\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.pdb

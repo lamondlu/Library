@@ -1392,6 +1392,17 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
+      "Unity/5.0.0-RC3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/Unity.Abstractions.dll": {},
+          "lib/netstandard1.0/Unity.Container.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Unity.Abstractions.dll": {},
+          "lib/netstandard1.0/Unity.Container.dll": {}
+        }
+      },
       "BookingLibrary.Domain.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -1405,11 +1416,25 @@
           "bin/placeholder/BookingLibrary.Domain.Core.dll": {}
         }
       },
+      "BookingLibrary.Infrastructure.InjectionFramework/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Unity": "5.0.0-rc3"
+        },
+        "compile": {
+          "bin/placeholder/BookingLibrary.Infrastructure.InjectionFramework.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookingLibrary.Infrastructure.InjectionFramework.dll": {}
+        }
+      },
       "BookingLibrary.Infrastructure.Messaging.RabbitMQ/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
           "BookingLibrary.Domain.Core": "1.0.0",
+          "BookingLibrary.Infrastructure.InjectionFramework": "1.0.0",
           "Newtonsoft.Json": "10.0.3",
           "RabbitMQ.Client": "5.0.1"
         },
@@ -5044,10 +5069,42 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
+    "Unity/5.0.0-RC3": {
+      "sha512": "V3wCBDqKxlnY0gE9il2yLtpVPHxZiob+PQHk8ZeDznBwdODGu/VcW0m7NXwhBQ6e+KM7RLiO1jCFpbIanlyYRQ==",
+      "type": "package",
+      "path": "unity/5.0.0-rc3",
+      "files": [
+        "lib/net40/Unity.Abstractions.dll",
+        "lib/net40/Unity.Abstractions.pdb",
+        "lib/net40/Unity.Container.dll",
+        "lib/net40/Unity.Container.pdb",
+        "lib/net45/Unity.Abstractions.dll",
+        "lib/net45/Unity.Abstractions.pdb",
+        "lib/net45/Unity.Container.dll",
+        "lib/net45/Unity.Container.pdb",
+        "lib/net47/Unity.Abstractions.dll",
+        "lib/net47/Unity.Abstractions.pdb",
+        "lib/net47/Unity.Container.dll",
+        "lib/net47/Unity.Container.pdb",
+        "lib/netstandard1.0/Unity.Abstractions.deps.json",
+        "lib/netstandard1.0/Unity.Abstractions.dll",
+        "lib/netstandard1.0/Unity.Abstractions.pdb",
+        "lib/netstandard1.0/Unity.Container.deps.json",
+        "lib/netstandard1.0/Unity.Container.dll",
+        "lib/netstandard1.0/Unity.Container.pdb",
+        "unity.5.0.0-rc3.nupkg.sha512",
+        "unity.nuspec"
+      ]
+    },
     "BookingLibrary.Domain.Core/1.0.0": {
       "type": "project",
       "path": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj",
       "msbuildProject": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj"
+    },
+    "BookingLibrary.Infrastructure.InjectionFramework/1.0.0": {
+      "type": "project",
+      "path": "../BookingLibrary.Infrastructure.InjectionFramework/BookingLibrary.Infrastructure.InjectionFramework.csproj",
+      "msbuildProject": "../BookingLibrary.Infrastructure.InjectionFramework/BookingLibrary.Infrastructure.InjectionFramework.csproj"
     },
     "BookingLibrary.Infrastructure.Messaging.RabbitMQ/1.0.0": {
       "type": "project",
@@ -5068,6 +5125,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "BookingLibrary.Domain.Core >= 1.0.0",
+      "BookingLibrary.Infrastructure.InjectionFramework >= 1.0.0",
       "BookingLibrary.Infrastructure.Messaging.RabbitMQ >= 1.0.0",
       "BookingLibrary.Service.Repository.Application >= 1.0.0",
       "Microsoft.NETCore.App >= 2.0.0"
@@ -5109,6 +5167,9 @@
             },
             "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.Messaging.RabbitMQ\\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj": {
               "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.Messaging.RabbitMQ\\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj"
+            },
+            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj": {
+              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj"
             }
           }
         }

@@ -8,3 +8,5 @@ C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\bin\D
 C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.pdb
 C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.dll
 C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.Messaging.RabbitMQ\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.pdb

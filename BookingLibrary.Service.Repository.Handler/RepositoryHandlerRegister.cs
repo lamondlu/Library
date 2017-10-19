@@ -25,7 +25,7 @@ namespace BookingLibrary.Service.Repository.Handler
             {
                 var cmd = Activator.CreateInstance(command);
                 Console.WriteLine($"Find command {command.FullName}.");
-                registerMethod.MakeGenericMethod(command).Invoke(register, new object[1] {cmd });
+                registerMethod.MakeGenericMethod(command).Invoke(register, new object[1] { cmd });
             }
         }
     }
