@@ -2,33 +2,6 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
-      "Autofac/4.6.1": {
-        "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.0",
-          "System.ComponentModel": "4.0.1"
-        },
-        "compile": {
-          "lib/netstandard1.1/Autofac.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.1/Autofac.dll": {}
-        }
-      },
-      "Autofac.Extensions.DependencyInjection/4.2.0": {
-        "type": "package",
-        "dependencies": {
-          "Autofac": "4.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
-          "NETStandard.Library": "1.6.0"
-        },
-        "compile": {
-          "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.dll": {}
-        }
-      },
       "Libuv/1.10.0": {
         "type": "package",
         "dependencies": {
@@ -2712,34 +2685,14 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Newtonsoft.Json/10.0.1": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
-          "System.Collections": "4.3.0",
+          "NETStandard.Library": "1.6.1",
           "System.ComponentModel.TypeConverter": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.ObjectModel": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Runtime.Numerics": "4.3.0",
           "System.Runtime.Serialization.Formatters": "4.3.0",
           "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Text.Encoding": "4.3.0",
-          "System.Text.Encoding.Extensions": "4.3.0",
-          "System.Text.RegularExpressions": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Tasks": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0",
-          "System.Xml.XDocument": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
         },
         "compile": {
@@ -2760,6 +2713,35 @@
         },
         "runtime": {
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
+        }
+      },
+      "RabbitMQ.Client/5.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.Collections.Concurrent": "4.3.0",
+          "System.Console": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Net.NameResolution": "4.3.0",
+          "System.Net.Security": "4.3.0",
+          "System.Net.Sockets": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Thread": "4.3.0",
+          "System.Threading.Timer": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.5/RabbitMQ.Client.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/RabbitMQ.Client.dll": {}
         }
       },
       "Remotion.Linq/2.1.1": {
@@ -4759,6 +4741,17 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Unity/5.0.0-RC3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/Unity.Abstractions.dll": {},
+          "lib/netstandard1.0/Unity.Container.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Unity.Abstractions.dll": {},
+          "lib/netstandard1.0/Unity.Container.dll": {}
+        }
+      },
       "WindowsAzure.Storage/8.1.4": {
         "type": "package",
         "dependencies": {
@@ -4785,6 +4778,35 @@
         },
         "runtime": {
           "bin/placeholder/BookingLibrary.Domain.Core.dll": {}
+        }
+      },
+      "BookingLibrary.Infrastructure.InjectionFramework/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Unity": "5.0.0-rc3"
+        },
+        "compile": {
+          "bin/placeholder/BookingLibrary.Infrastructure.InjectionFramework.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookingLibrary.Infrastructure.InjectionFramework.dll": {}
+        }
+      },
+      "BookingLibrary.Infrastructure.Messaging.RabbitMQ/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "BookingLibrary.Domain.Core": "1.0.0",
+          "BookingLibrary.Infrastructure.InjectionFramework": "1.0.0",
+          "Newtonsoft.Json": "10.0.3",
+          "RabbitMQ.Client": "5.0.1"
+        },
+        "compile": {
+          "bin/placeholder/BookingLibrary.Infrastructure.Messaging.RabbitMQ.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookingLibrary.Infrastructure.Messaging.RabbitMQ.dll": {}
         }
       },
       "BookingLibrary.Service.Repository.Application/1.0.0": {
@@ -4817,30 +4839,6 @@
     }
   },
   "libraries": {
-    "Autofac/4.6.1": {
-      "sha512": "/feXiAKiSe9XLK+fdnz0p1iDg6JCkOhjqMkw9ewGy0f6IzXgmPLDRa4FUg6nIGRm2sTO677w/76uJ5OJU6EiyA==",
-      "type": "package",
-      "path": "autofac/4.6.1",
-      "files": [
-        "Autofac.4.6.1.nupkg.sha512",
-        "Autofac.nuspec",
-        "lib/net45/Autofac.dll",
-        "lib/net45/Autofac.xml",
-        "lib/netstandard1.1/Autofac.dll",
-        "lib/netstandard1.1/Autofac.xml"
-      ]
-    },
-    "Autofac.Extensions.DependencyInjection/4.2.0": {
-      "sha512": "cqBmgg9y7ahGbt7CPdvZFL6bA0PEwFyhIofUoUxEteZc+d0yNnE6ZvIWxHEM2F2HPJlC9SRnHWiZQq8r53moAw==",
-      "type": "package",
-      "path": "autofac.extensions.dependencyinjection/4.2.0",
-      "files": [
-        "autofac.extensions.dependencyinjection.4.2.0.nupkg.sha512",
-        "autofac.extensions.dependencyinjection.nuspec",
-        "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.dll",
-        "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.xml"
-      ]
-    },
     "Libuv/1.10.0": {
       "sha512": "GsCf4q+eyaI49rCPlgYxdxa1SQCysXFFdSJWdstrwxytg4+VPYLYrXD4AT2rjHVJ+UF7SSWX9CapWEYaU4ejVQ==",
       "type": "package",
@@ -7611,11 +7609,14 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/10.0.1": {
-      "sha512": "ebWzW9j2nwxQeBo59As2TYn7nYr9BHicqqCwHOD1Vdo+50HBtLPuqdiCYJcLdTRknpYis/DSEOQz5KmZxwrIAg==",
+    "Newtonsoft.Json/10.0.3": {
+      "sha512": "wBM7i7i3U2WX0ecor4zdVGvgrwFUjuigBoHKiL+nH39fCOpCPjBY3RDqJM32edvdyTAVdjzlccHsg41+/+zpSA==",
       "type": "package",
-      "path": "newtonsoft.json/10.0.1",
+      "path": "newtonsoft.json/10.0.3",
       "files": [
+        "LICENSE.md",
+        "Newtonsoft.Json.10.0.3.nupkg.sha512",
+        "Newtonsoft.Json.nuspec",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -7628,10 +7629,10 @@
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.xml",
-        "newtonsoft.json.10.0.1.nupkg.sha512",
-        "newtonsoft.json.nuspec",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "tools/install.ps1"
       ]
     },
@@ -7646,6 +7647,19 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "RabbitMQ.Client/5.0.1": {
+      "sha512": "89eFEAr5mV5GG2H3d4WFZEuhKmCR+EUjcphZ4+QLEkHPdo7B9kRH6X5WS0c6bHAY/B48uR0GuubnMTp5jGGmrA==",
+      "type": "package",
+      "path": "rabbitmq.client/5.0.1",
+      "files": [
+        "lib/net451/RabbitMQ.Client.dll",
+        "lib/net451/RabbitMQ.Client.xml",
+        "lib/netstandard1.5/RabbitMQ.Client.dll",
+        "lib/netstandard1.5/RabbitMQ.Client.xml",
+        "rabbitmq.client.5.0.1.nupkg.sha512",
+        "rabbitmq.client.nuspec"
       ]
     },
     "Remotion.Linq/2.1.1": {
@@ -12594,6 +12608,33 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "Unity/5.0.0-RC3": {
+      "sha512": "V3wCBDqKxlnY0gE9il2yLtpVPHxZiob+PQHk8ZeDznBwdODGu/VcW0m7NXwhBQ6e+KM7RLiO1jCFpbIanlyYRQ==",
+      "type": "package",
+      "path": "unity/5.0.0-rc3",
+      "files": [
+        "lib/net40/Unity.Abstractions.dll",
+        "lib/net40/Unity.Abstractions.pdb",
+        "lib/net40/Unity.Container.dll",
+        "lib/net40/Unity.Container.pdb",
+        "lib/net45/Unity.Abstractions.dll",
+        "lib/net45/Unity.Abstractions.pdb",
+        "lib/net45/Unity.Container.dll",
+        "lib/net45/Unity.Container.pdb",
+        "lib/net47/Unity.Abstractions.dll",
+        "lib/net47/Unity.Abstractions.pdb",
+        "lib/net47/Unity.Container.dll",
+        "lib/net47/Unity.Container.pdb",
+        "lib/netstandard1.0/Unity.Abstractions.deps.json",
+        "lib/netstandard1.0/Unity.Abstractions.dll",
+        "lib/netstandard1.0/Unity.Abstractions.pdb",
+        "lib/netstandard1.0/Unity.Container.deps.json",
+        "lib/netstandard1.0/Unity.Container.dll",
+        "lib/netstandard1.0/Unity.Container.pdb",
+        "unity.5.0.0-rc3.nupkg.sha512",
+        "unity.nuspec"
+      ]
+    },
     "WindowsAzure.Storage/8.1.4": {
       "sha512": "W6ZZ0/o7+3Qb77mRAQyLjPudHG3OMeeQ4p9yY13PUdJArmRCx2cLMm5F4tpIjJXxzHC0ew0oK7DMDGILMdfCnw==",
       "type": "package",
@@ -12621,6 +12662,16 @@
       "path": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj",
       "msbuildProject": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj"
     },
+    "BookingLibrary.Infrastructure.InjectionFramework/1.0.0": {
+      "type": "project",
+      "path": "../BookingLibrary.Infrastructure.InjectionFramework/BookingLibrary.Infrastructure.InjectionFramework.csproj",
+      "msbuildProject": "../BookingLibrary.Infrastructure.InjectionFramework/BookingLibrary.Infrastructure.InjectionFramework.csproj"
+    },
+    "BookingLibrary.Infrastructure.Messaging.RabbitMQ/1.0.0": {
+      "type": "project",
+      "path": "../BookingLibrary.Infrastructure.Messaging.RabbitMQ/BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj",
+      "msbuildProject": "../BookingLibrary.Infrastructure.Messaging.RabbitMQ/BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj"
+    },
     "BookingLibrary.Service.Repository.Application/1.0.0": {
       "type": "project",
       "path": "../BookingLibrary.Service.Repository.Application/BookingLibrary.Service.Repository.Application.csproj",
@@ -12634,8 +12685,9 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "Autofac >= 4.6.1",
-      "Autofac.Extensions.DependencyInjection >= 4.2.0",
+      "BookingLibrary.Domain.Core >= 1.0.0",
+      "BookingLibrary.Infrastructure.InjectionFramework >= 1.0.0",
+      "BookingLibrary.Infrastructure.Messaging.RabbitMQ >= 1.0.0",
       "BookingLibrary.Service.Repository.Application >= 1.0.0",
       "BookingLibrary.Service.Repository.Domain >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.0",
@@ -12670,11 +12722,20 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
+            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj": {
+              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj"
+            },
             "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Domain\\BookingLibrary.Service.Repository.Domain.csproj": {
               "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Domain\\BookingLibrary.Service.Repository.Domain.csproj"
             },
+            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Domain.Core\\BookingLibrary.Domain.Core.csproj": {
+              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Domain.Core\\BookingLibrary.Domain.Core.csproj"
+            },
             "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Application\\BookingLibrary.Service.Repository.Application.csproj": {
               "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Application\\BookingLibrary.Service.Repository.Application.csproj"
+            },
+            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.Messaging.RabbitMQ\\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj": {
+              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.Messaging.RabbitMQ\\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj"
             }
           }
         }
@@ -12692,14 +12753,6 @@
             "target": "Package",
             "version": "2.0.0",
             "autoReferenced": true
-          },
-          "Autofac": {
-            "target": "Package",
-            "version": "4.6.1"
-          },
-          "Autofac.Extensions.DependencyInjection": {
-            "target": "Package",
-            "version": "4.2.0"
           },
           "Microsoft.AspNetCore.All": {
             "target": "Package",

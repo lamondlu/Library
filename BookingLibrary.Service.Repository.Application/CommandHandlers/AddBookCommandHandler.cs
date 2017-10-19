@@ -18,7 +18,7 @@ namespace BookingLibrary.Service.Repository.Application.CommandHandlers
         public void Execute(AddBookCommand command)
         {
             var book = new Book(command.BookId, command.BookName, command.ISBN, command.Description, command.DateIssued);
-            _domainRepository.Save(book, 1);
+            //_domainRepository.Save(book, 1);
         }
 
         public void Dispose()

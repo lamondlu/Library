@@ -11,18 +11,7 @@ namespace BookingLibrary.Infrastructure.EventStorage.SQLServer
         {
             throw new NotImplementedException();
         }
-
-        public BaseEventStorageModel GetMemento(Guid aggregateId)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Save(AggregateRoot aggregate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SaveMemento(BaseEventStorageModel memento)
         {
             throw new NotImplementedException();
         }

@@ -35,9 +35,6 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
 
             var consumer = new EventingBasicConsumer(channel);
 
-            
-
-
             ICommandHandler<T> instance = InjectContainer.GetInstance<ICommandHandler<T>>();
             if (instance == null)
             {
@@ -48,12 +45,15 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
             {
                 var body = ea.Body;
                 var message = Encoding.UTF8.GetString(body);
-                Console.WriteLine("[x] Received {0}", message);
 
-                var cmd = (T)JsonConvert.DeserializeObject(message);
+                var cmd = JsonConvert.DeserializeObject<T>(message);
+                Console.WriteLine("[x] Receive New Task: {0}", cmd.CommandKey);
+                Console.WriteLine("[x] Task Parameters: {0}", message);
 
                 //执行命令操作
                 instance.Execute(cmd);
+
+                Console.WriteLine("[x] Task Completed");
 
                 channel.BasicAck(ea.DeliveryTag, false);
             };

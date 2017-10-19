@@ -13,9 +13,5 @@ namespace BookingLibrary.Domain.Core
         IEnumerable<DomainEvent> GetEvents(Guid aggregateId);
 
         void Save(AggregateRoot aggregate);
-
-        BaseEventStorageModel GetMemento(Guid aggregateId);
-
-        void SaveMemento(BaseEventStorageModel memento);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BookingLibrary.Domain.Core.Messaging;
+using BookingLibrary.Infrastructure.InjectionFramework;
 using BookingLibrary.Service.Repository.Application.Commands;
 using BookingLibrary.Service.Repository.Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -12,15 +13,9 @@ namespace BookingLibrary.Service.Repository
     {
         private ICommandPublisher _commandPublisher = null;
 
-        public BookRepositoryController(ICommandPublisher commandPublisher)
+        public BookRepositoryController()
         {
-            _commandPublisher = commandPublisher;
-        }
-
-        [HttpPost]
-        public StatusCodeResult CreateBookingRepository(BookViewModel model)
-        {
-            return Ok();
+            _commandPublisher = InjectContainer.GetInstance<ICommandPublisher>();
         }
 
         [HttpGet("")]
@@ -50,7 +45,7 @@ namespace BookingLibrary.Service.Repository
         }
 
         [HttpPost("")]
-        public void AddBook(DTOs.BookDTO dto)
+        public void AddBookRepository(DTOs.BookDTO dto)
         {
             _commandPublisher.Publish(new AddBookCommand
             {

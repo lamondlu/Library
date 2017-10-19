@@ -4,12 +4,14 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.6.1" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BookingLibrary.Infrastructure.InjectionFramework\BookingLibrary.Infrastructure.InjectionFramework.csproj" />
     <ProjectReference Include="..\BookingLibrary.Service.Repository.Domain\BookingLibrary.Service.Repository.Domain.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Domain.Core\BookingLibrary.Domain.Core.csproj" />
     <ProjectReference Include="..\BookingLibrary.Service.Repository.Application\BookingLibrary.Service.Repository.Application.csproj" />
+<ProjectReference Include="..\BookingLibrary.Infrastructure.Messaging.RabbitMQ\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj" />
+    
   </ItemGroup>
 </Project>
