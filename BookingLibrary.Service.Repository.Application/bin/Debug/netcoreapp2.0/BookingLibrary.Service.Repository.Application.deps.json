@@ -1,0 +1,61 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.0",
+    "signature": "87322a5c3e281ce7a208233a5106375ddebfbb0a"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.0": {
+      "BookingLibrary.Service.Repository.Application/1.0.0": {
+        "dependencies": {
+          "BookingLibrary.Domain.Core": "1.0.0",
+          "BookingLibrary.Service.Repository.Domain": "1.0.0"
+        },
+        "runtime": {
+          "BookingLibrary.Service.Repository.Application.dll": {}
+        }
+      },
+      "Microsoft.CSharp/4.4.0": {},
+      "BookingLibrary.Domain.Core/1.0.0": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.4.0"
+        },
+        "runtime": {
+          "BookingLibrary.Domain.Core.dll": {}
+        }
+      },
+      "BookingLibrary.Service.Repository.Domain/1.0.0": {
+        "dependencies": {
+          "BookingLibrary.Domain.Core": "1.0.0"
+        },
+        "runtime": {
+          "BookingLibrary.Service.Repository.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BookingLibrary.Service.Repository.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.CSharp/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vvVR/B08YVghQ4jHEloxqw2ZWzEGE1AOA5E0DioUM3ujbXz6FD3AfB/0Jl2ohJPd0nXYGwmPe1En6HTsSriq1A==",
+      "path": "microsoft.csharp/4.4.0",
+      "hashPath": "microsoft.csharp.4.4.0.nupkg.sha512"
+    },
+    "BookingLibrary.Domain.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BookingLibrary.Service.Repository.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

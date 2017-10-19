@@ -8,3 +8,5 @@ C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.EventStorage.SQLServer\b
 C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.EventStorage.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.pdb
 C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.EventStorage.SQLServer\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.EventStorage.SQLServer.dll
 C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.EventStorage.SQLServer\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.EventStorage.SQLServer.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.EventStorage.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.EventStorage.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.pdb

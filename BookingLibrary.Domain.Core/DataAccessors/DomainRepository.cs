@@ -24,7 +24,12 @@ namespace BookingLibrary.Domain.Core.DataAccessor
             IEnumerable<DomainEvent> events;
             events = _eventStorage.GetEvents(id);
             var obj = new T();
-            obj.LoadsFromHistory(events);
+
+            if (events.Count() > 0)
+            {
+                obj.LoadsFromHistory(events);
+            }
+
             return obj;
         }
 

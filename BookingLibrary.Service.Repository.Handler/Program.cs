@@ -6,6 +6,8 @@ using BookingLibrary.Infrastructure.InjectionFramework;
 using BookingLibrary.Domain.Core.DataAccessor;
 using BookingLibrary.Infrastructure.EventStorage.SQLServer;
 using BookingLibrary.Domain.Core;
+using BookingLibrary.Domain.Core.Messaging;
+using BookingLibrary.Infrastructure.Messaging.RabbitMQ;
 
 namespace BookingLibrary.Service.Repository.Handler
 {
@@ -15,6 +17,8 @@ namespace BookingLibrary.Service.Repository.Handler
         {
             InjectContainer.RegisterType<IDomainRepository, DomainRepository>();
             InjectContainer.RegisterType<IEventStorage, SQLServerEventStorage>();
+            InjectContainer.RegisterInstance<IEventPublisher>(new RabbitMQEventPublisher("amqp://localhost:5672"));
+            InjectContainer.RegisterType<IEventDBConnectionStringProvider, AppSettingEventDBConnectionStringProvider>();
             RegisterHandlers();
 
             RepositoryHandlerRegister register = new RepositoryHandlerRegister();

@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using BookingLibrary.Infrastructure.InjectionFramework;
 using BookingLibrary.Infrastructure.Messaging.RabbitMQ;
 using BookingLibrary.Domain.Core.Messaging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BookingLibrary.Service.Repository
 {
