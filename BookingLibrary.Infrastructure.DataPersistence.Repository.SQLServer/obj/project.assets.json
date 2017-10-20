@@ -1266,11 +1266,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj",
+      "projectUniqueName": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj",
       "projectName": "BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer",
-      "projectPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj",
+      "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj",
       "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\\obj\\",
+      "outputPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -1287,11 +1287,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Domain\\BookingLibrary.Service.Repository.Domain.csproj": {
-              "projectPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Domain\\BookingLibrary.Service.Repository.Domain.csproj"
+            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Domain\\BookingLibrary.Service.Repository.Domain.csproj": {
+              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Domain\\BookingLibrary.Service.Repository.Domain.csproj"
             },
-            "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj": {
-              "projectPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj"
+            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj": {
+              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj"
             }
           }
         }

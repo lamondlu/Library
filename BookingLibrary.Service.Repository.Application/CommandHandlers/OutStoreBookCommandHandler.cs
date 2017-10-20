@@ -6,7 +6,7 @@ using BookingLibrary.Service.Repository.Domain;
 
 namespace BookingLibrary.Service.Repository.Application.CommandHandlers
 {
-    public class OutStoreBookCommandHandler : ICommandHandler<InStoreBookCommand>
+    public class OutStoreBookCommandHandler : ICommandHandler<OutStoreBookCommand>
     {
         private IDomainRepository _domainRepository = null;
 
@@ -15,7 +15,7 @@ namespace BookingLibrary.Service.Repository.Application.CommandHandlers
             _domainRepository = domainRepository;
         }
 
-        public void Execute(InStoreBookCommand command)
+        public void Execute(OutStoreBookCommand command)
         {
             var book = _domainRepository.GetById<Book>(command.BookId);
 

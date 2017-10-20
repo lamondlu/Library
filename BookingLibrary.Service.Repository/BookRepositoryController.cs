@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BookingLibrary.Domain.Core.Messaging;
 using BookingLibrary.Infrastructure.InjectionFramework;
 using BookingLibrary.Service.Repository.Application.Commands;
+using BookingLibrary.Service.Repository.Domain.DataAccessors;
 using BookingLibrary.Service.Repository.Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,24 +13,18 @@ namespace BookingLibrary.Service.Repository
     public class BookRepositoryController : Controller
     {
         private ICommandPublisher _commandPublisher = null;
+        private IRepositoryReportDataAccessor _reportDatabase = null;
 
         public BookRepositoryController()
         {
             _commandPublisher = InjectContainer.GetInstance<ICommandPublisher>();
+            _reportDatabase = InjectContainer.GetInstance<IRepositoryReportDataAccessor>();
         }
 
         [HttpGet("")]
         public List<BookViewModel> GetAllBooks()
         {
-            return new List<BookViewModel>{
-                new BookViewModel
-                {
-                    BookId = Guid.NewGuid(),
-                    BookName = "Lamond Lu",
-                    DateIssued = DateTime.Now,
-                    ISBN = "S001"
-                }
-            };
+            return _reportDatabase.GetBookRepositories();
         }
 
         [HttpGet("{id}")]
@@ -42,6 +37,19 @@ namespace BookingLibrary.Service.Repository
                 DateIssued = DateTime.Now,
                 ISBN = "S001"
             };
+        }
+
+        [HttpPut("")]
+        public void UpdateBookRepository(DTOs.BookDTO dto)
+        {
+            _commandPublisher.Publish(new UpdateBookCommand
+            {
+                BookId = dto.BookId,
+                BookName = dto.BookName,
+                ISBN = dto.ISBN,
+                DateIssued = dto.IssueDate,
+                Description = dto.Description
+            });
         }
 
         [HttpPost("")]

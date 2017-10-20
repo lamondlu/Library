@@ -13,7 +13,8 @@
           "BookingLibrary.Infrastructure.Messaging.RabbitMQ": "1.0.0",
           "BookingLibrary.Service.Repository.Application": "1.0.0",
           "BookingLibrary.Service.Repository.Domain": "1.0.0",
-          "Microsoft.AspNetCore.All": "2.0.0"
+          "Microsoft.AspNetCore.All": "2.0.0",
+          "Microsoft.Extensions.Configuration.Json": "2.0.0"
         },
         "runtime": {
           "BookingLibrary.Service.Repository.dll": {}

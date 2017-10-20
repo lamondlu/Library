@@ -5,6 +5,8 @@ namespace BookingLibrary.Service.Repository.DTOs
 {
     public class BookDTO
     {
+        public Guid BookId { get; set; }
+
         [Required]
         public string BookName { get; set; }
 

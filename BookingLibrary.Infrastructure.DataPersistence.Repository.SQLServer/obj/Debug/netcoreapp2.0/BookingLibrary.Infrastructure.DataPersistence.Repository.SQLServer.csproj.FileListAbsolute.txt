@@ -1,0 +1,14 @@
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj.CoreCompileInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.AssemblyInfoInputs.cache
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.AssemblyInfo.cs
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.deps.json
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Domain.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Domain.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.pdb
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.dll
+C:\AspNetCore\BookLibrary\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\obj\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.pdb

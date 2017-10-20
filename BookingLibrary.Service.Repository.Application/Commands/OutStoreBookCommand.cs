@@ -3,11 +3,11 @@ using BookingLibrary.Domain.Core.Commands;
 
 namespace BookingLibrary.Service.Repository.Application.Commands
 {
-    public class OuttoreBookCommand : CommonCommand
+    public class OutStoreBookCommand : CommonCommand
     {
         private static string OutStoreBookCommandKey = "Command_OutStoreBook";
 
-        public OuttoreBookCommand() : base(OutStoreBookCommandKey)
+        public OutStoreBookCommand() : base(OutStoreBookCommandKey)
         {
 
         }

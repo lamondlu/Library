@@ -12691,6 +12691,7 @@
       "BookingLibrary.Service.Repository.Application >= 1.0.0",
       "BookingLibrary.Service.Repository.Domain >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.0",
+      "Microsoft.Extensions.Configuration.Json >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
   },
@@ -12755,6 +12756,10 @@
             "autoReferenced": true
           },
           "Microsoft.AspNetCore.All": {
+            "target": "Package",
+            "version": "2.0.0"
+          },
+          "Microsoft.Extensions.Configuration.Json": {
             "target": "Package",
             "version": "2.0.0"
           }

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using BookingLibrary.Service.Repository.Domain.DTOs;
 using System.Data.SqlClient;
 using System.Data;
+using BookingLibrary.Service.Repository.Domain.ViewModels;
+using BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.Extensions;
 
 namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
 {
@@ -31,6 +33,16 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 new SqlParameter{ ParameterName ="@description", SqlDbType = SqlDbType.NVarChar, Value = dto.Description },
                 new SqlParameter{ ParameterName ="@bookStatus", SqlDbType = SqlDbType.Int, Value = dto.BookStatus }
             }.ToArray());
+        }
+
+        public List<BookViewModel> GetBookRepositories()
+        {
+            var result = new List<BookViewModel>();
+
+            var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
+            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM BookRepository");
+
+            return dataTable.ConvertTo();
         }
     }
 }

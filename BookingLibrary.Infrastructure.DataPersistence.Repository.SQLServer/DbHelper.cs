@@ -67,15 +67,13 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                     trans.Commit();
                     return result;
                 }
-                catch (Exception ex)
+                catch
                 {
                     trans.Rollback();
                     return 0;
                 }
             }
         }
-        #endregion
-
          
         public int ExecuteScalar(string safeSql)
         {
@@ -151,7 +149,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 {
                     da.Fill(ds);
                 }
-                catch (Exception ex)
+                catch
                 {
 
                 }
@@ -195,7 +193,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 {
                     da.Fill(ds, tabName);
                 }
-                catch (Exception ex)
+                catch
                 {
 
                 }

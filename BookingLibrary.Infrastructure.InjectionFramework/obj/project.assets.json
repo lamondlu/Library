@@ -709,11 +709,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj",
+      "projectUniqueName": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj",
       "projectName": "BookingLibrary.Infrastructure.InjectionFramework",
-      "projectPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj",
+      "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\BookingLibrary.Infrastructure.InjectionFramework.csproj",
       "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "c:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\obj\\",
+      "outputPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.InjectionFramework\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
