@@ -11,7 +11,5 @@ namespace BookingLibrary.Domain.Core
         void Handle(TEvent evt);
 
         Task HandleAsync(TEvent evt);
-
-        void Rollback(TEvent evt, AggregateRoot previousVersion);
     }
 }

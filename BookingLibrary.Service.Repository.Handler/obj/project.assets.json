@@ -1637,6 +1637,21 @@
           "bin/placeholder/BookingLibrary.Domain.Core.dll": {}
         }
       },
+      "BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "BookingLibrary.Infrastructure.InjectionFramework": "1.0.0",
+          "BookingLibrary.Service.Repository.Domain": "1.0.0",
+          "System.Data.SQLClient": "4.4.0"
+        },
+        "compile": {
+          "bin/placeholder/BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.dll": {}
+        }
+      },
       "BookingLibrary.Infrastructure.EventStorage.SQLServer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -5701,6 +5716,11 @@
       "path": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj",
       "msbuildProject": "../BookingLibrary.Domain.Core/BookingLibrary.Domain.Core.csproj"
     },
+    "BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer/1.0.0": {
+      "type": "project",
+      "path": "../BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer/BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj",
+      "msbuildProject": "../BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer/BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj"
+    },
     "BookingLibrary.Infrastructure.EventStorage.SQLServer/1.0.0": {
       "type": "project",
       "path": "../BookingLibrary.Infrastructure.EventStorage.SQLServer/BookingLibrary.Infrastructure.EventStorage.SQLServer.csproj",
@@ -5730,6 +5750,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "BookingLibrary.Domain.Core >= 1.0.0",
+      "BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer >= 1.0.0",
       "BookingLibrary.Infrastructure.EventStorage.SQLServer >= 1.0.0",
       "BookingLibrary.Infrastructure.InjectionFramework >= 1.0.0",
       "BookingLibrary.Infrastructure.Messaging.RabbitMQ >= 1.0.0",
@@ -5781,6 +5802,9 @@
             },
             "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.EventStorage.SQLServer\\BookingLibrary.Infrastructure.EventStorage.SQLServer.csproj": {
               "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.EventStorage.SQLServer\\BookingLibrary.Infrastructure.EventStorage.SQLServer.csproj"
+            },
+            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj": {
+              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj"
             }
           }
         }

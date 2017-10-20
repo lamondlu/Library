@@ -23,6 +23,14 @@ namespace BookingLibrary.Service.Repository.Handler
             Console.WriteLine($"Handler starting...");
             Console.WriteLine($"Event DB Connection String: {connectionString}");
 
+            RegisterAndStartCommandHandlers();
+            RegisterAndStartEventHandlers();
+
+            Console.WriteLine($"Handler started.");
+        }
+
+        public void RegisterAndStartCommandHandlers()
+        {
             var register = new RabbitMQCommandSubscriber("amqp://localhost:5672");
             var registerMethod = register.GetType().GetMethod("Subscribe");
             var assembly = Assembly.Load("BookingLibrary.Service.Repository.Application");
@@ -34,8 +42,21 @@ namespace BookingLibrary.Service.Repository.Handler
                 Console.WriteLine($"Find command {command.FullName}.");
                 registerMethod.MakeGenericMethod(command).Invoke(register, new object[1] { cmd });
             }
+        }
 
-            Console.WriteLine($"Handler started.");
+        public void RegisterAndStartEventHandlers()
+        {
+            var register = new RabbitMQEventSubscriber("amqp://localhost:5672");
+            var registerMethod = register.GetType().GetMethod("Subscribe");
+            var assembly = Assembly.Load("BookingLibrary.Service.Repository.Domain");
+
+            var allEvents = assembly.GetExportedTypes().Where(p =>  p.GetInterface("IDomainEvent") != null);
+            foreach (var @event in allEvents)
+            {
+                var cmd = Activator.CreateInstance(@event);
+                Console.WriteLine($"Find event {@event.FullName}.");
+                registerMethod.MakeGenericMethod(@event).Invoke(register, new object[1] { cmd });
+            }
         }
     }
 }

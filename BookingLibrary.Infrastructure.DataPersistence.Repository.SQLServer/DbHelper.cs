@@ -13,14 +13,45 @@ using BookingLibrary.Infrastructure.InjectionFramework;
 namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
 {
     public class DbHelper
-    { 
+    {
         private string connectionString = string.Empty;
 
         public DbHelper(string connectionString)
         {
             this.connectionString = connectionString;
         }
-        
+
+        public void ExecuteNoQuery(Dictionary<string, List<SqlParameter>> queries)
+        {
+            using (SqlConnection Connection = new SqlConnection(connectionString))
+            {
+                Connection.Open();
+                SqlTransaction trans = Connection.BeginTransaction();
+
+                try
+                {
+                    foreach (var query in queries)
+                    {
+                        SqlCommand cmd = new SqlCommand(query.Key, Connection);
+                        cmd.Transaction = trans;
+                        cmd.Parameters.AddRange(query.Value.ToArray());
+                        if (Connection.State != ConnectionState.Open)
+                        {
+                            Connection.Open();
+                        }
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    trans.Commit();
+                }
+                catch
+                {
+                    trans.Rollback();
+                }
+            }
+        }
+
         public int ExecuteNonQuery(string safeSql)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -47,7 +78,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 }
             }
         }
-       
+
         public int ExecuteNonQuery(string sql, SqlParameter[] values)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -74,7 +105,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 }
             }
         }
-         
+
         public int ExecuteScalar(string safeSql)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -87,7 +118,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             }
         }
 
-        
+
         public int ExecuteScalar(string sql, SqlParameter[] values)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -100,7 +131,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 return result;
             }
         }
-        
+
         public SqlDataReader ExecuteReader(string safeSql, SqlConnection Connection)
         {
             if (Connection.State != ConnectionState.Open)
@@ -110,7 +141,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             return reader;
         }
 
-        
+
         public SqlDataReader ExecuteReader(string sql, SqlParameter[] values, SqlConnection Connection)
         {
             if (Connection.State != ConnectionState.Open)
@@ -120,7 +151,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             SqlDataReader reader = cmd.ExecuteReader();
             return reader;
         }
-        
+
         public DataTable ExecuteDataTable(CommandType type, string safeSql, params SqlParameter[] values)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -135,7 +166,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 return ds.Tables[0];
             }
         }
-        
+
         public DataTable ExecuteDataTable(string safeSql)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -157,7 +188,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             }
         }
 
-        
+
         public DataTable ExecuteDataTable(string sql, params SqlParameter[] values)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -173,9 +204,9 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 return ds.Tables[0];
             }
         }
-       
 
-        
+
+
         public DataSet GetDataSet(string safeSql, string tabName, params SqlParameter[] values)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -200,7 +231,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 return ds;
             }
         }
-       
+
     }
 
 }

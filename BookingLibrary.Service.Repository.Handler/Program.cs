@@ -9,6 +9,7 @@ using BookingLibrary.Domain.Core;
 using BookingLibrary.Domain.Core.Messaging;
 using BookingLibrary.Infrastructure.Messaging.RabbitMQ;
 using BookingLibrary.Service.Repository.Domain.DataAccessors;
+using BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer;
 
 namespace BookingLibrary.Service.Repository.Handler
 {
@@ -22,6 +23,7 @@ namespace BookingLibrary.Service.Repository.Handler
             InjectContainer.RegisterType<IEventDBConnectionStringProvider, AppSettingEventDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRepositoryReadDBConnectionStringProvider, AppsettingRepositoryReadDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRepositoryWriteDBConnectionStringProvider, AppsettingRepositoryWriteDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IRepositoryReportDataAccessor, RepositoryReportDataAccessor>();
             RegisterCommandHandlers();
             RegisterEventHandlers();
 
@@ -50,15 +52,15 @@ namespace BookingLibrary.Service.Repository.Handler
 
         private static void RegisterEventHandlers()
         {
-            Func<Type, bool> isCommandHandler = i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEventHandler<>);
+            Func<Type, bool> isEventHandler = i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEventHandler<>);
 
-            var commandHandlers = Assembly.Load("BookingLibrary.Service.Repository.Application").GetExportedTypes()
-                .Where(t => t.GetInterfaces().Any(isCommandHandler))
+            var commandHandlers = Assembly.Load("BookingLibrary.Service.Repository.Domain").GetExportedTypes()
+                .Where(t => t.GetInterfaces().Any(isEventHandler))
                 .ToList();
 
             var registerSource = commandHandlers.Select(h =>
             {
-                return new { FromType = h.GetInterfaces().First(isCommandHandler), ToType = h };
+                return new { FromType = h.GetInterfaces().First(isEventHandler), ToType = h };
             }).ToList();
 
             foreach (var r in registerSource)
