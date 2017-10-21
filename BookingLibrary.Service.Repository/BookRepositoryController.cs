@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using BookingLibrary.Domain.Core.Messaging;
 using BookingLibrary.Infrastructure.InjectionFramework;
-using BookingLibrary.Service.Repository.Application.Commands;
+using BookingLibrary.Service.Repository.Domain.Commands;
 using BookingLibrary.Service.Repository.Domain.DataAccessors;
 using BookingLibrary.Service.Repository.Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;

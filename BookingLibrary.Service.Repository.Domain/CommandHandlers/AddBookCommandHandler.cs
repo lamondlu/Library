@@ -1,10 +1,10 @@
 using System;
 using BookingLibrary.Domain.Core.Commands;
-using BookingLibrary.Service.Repository.Application.Commands;
+using BookingLibrary.Service.Repository.Domain.Commands;
 using BookingLibrary.Domain.Core.DataAccessor;
 using BookingLibrary.Service.Repository.Domain;
 
-namespace BookingLibrary.Service.Repository.Application.CommandHandlers
+namespace BookingLibrary.Service.Repository.Domain.CommandHandlers
 {
     public class AddBookCommandHandler : ICommandHandler<AddBookCommand>
     {

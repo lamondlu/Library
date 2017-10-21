@@ -33,7 +33,7 @@ namespace BookingLibrary.Service.Repository.Handler
         {
             var register = new RabbitMQCommandSubscriber("amqp://localhost:5672");
             var registerMethod = register.GetType().GetMethod("Subscribe");
-            var assembly = Assembly.Load("BookingLibrary.Service.Repository.Application");
+            var assembly = Assembly.Load("BookingLibrary.Service.Repository.Domain");
 
             var allCommands = assembly.GetExportedTypes().Where(p => p.GetInterface("ICommand") != null);
             foreach (var command in allCommands)

@@ -35,7 +35,7 @@ namespace BookingLibrary.Service.Repository.Handler
         {
             Func<Type, bool> isCommandHandler = i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<>);
 
-            var commandHandlers = Assembly.Load("BookingLibrary.Service.Repository.Application").GetExportedTypes()
+            var commandHandlers = Assembly.Load("BookingLibrary.Service.Repository.Domain").GetExportedTypes()
                 .Where(t => t.GetInterfaces().Any(isCommandHandler))
                 .ToList();
 

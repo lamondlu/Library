@@ -4,8 +4,9 @@ WORKDIR /app
 # 拷贝.csproj到工作目录/app，然后执行dotnet restore恢复所有安装的NuGet包。
 COPY BookingLibrary.Service.Repository ./BookingLibrary.Service.Repository/
 COPY BookingLibrary.Service.Repository.Domain ./BookingLibrary.Service.Repository.Domain/
-COPY BookingLibrary.Service.Repository.Application ./BookingLibrary.Service.Repository.Application/
+COPY BookingLibrary.Infrastructure.InjectionFramework ./BookingLibrary.Infrastructure.InjectionFramework/
 COPY BookingLibrary.Domain.Core ./BookingLibrary.Domain.Core/
+COPY BookingLibrary.Infrastructure.Messaging.RabbitMQ ./BookingLibrary.Infrastructure.Messaging.RabbitMQ/
 
 
 WORKDIR /app/BookingLibrary.Service.Repository

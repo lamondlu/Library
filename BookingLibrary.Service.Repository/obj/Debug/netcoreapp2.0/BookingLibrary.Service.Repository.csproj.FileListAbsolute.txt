@@ -12,8 +12,6 @@ C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Domain.Core.pdb
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.runtimeconfig.json
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.runtimeconfig.dev.json
-C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Application.dll
-C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Service.Repository.Application.pdb
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.dll
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.Messaging.RabbitMQ.dll
 C:\AspNetCore\BookLibrary\BookingLibrary.Service.Repository\bin\Debug\netcoreapp2.0\BookingLibrary.Infrastructure.InjectionFramework.pdb

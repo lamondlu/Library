@@ -1,25 +1,25 @@
 using System;
 using BookingLibrary.Domain.Core.Commands;
-using BookingLibrary.Service.Repository.Application.Commands;
+using BookingLibrary.Service.Repository.Domain.Commands;
 using BookingLibrary.Domain.Core.DataAccessor;
 using BookingLibrary.Service.Repository.Domain;
 
-namespace BookingLibrary.Service.Repository.Application.CommandHandlers
+namespace BookingLibrary.Service.Repository.Domain.CommandHandlers
 {
-    public class InStoreBookCommandHandler : ICommandHandler<InStoreBookCommand>
+    public class OutStoreBookCommandHandler : ICommandHandler<OutStoreBookCommand>
     {
         private IDomainRepository _domainRepository = null;
 
-        public InStoreBookCommandHandler(IDomainRepository domainRepository)
+        public OutStoreBookCommandHandler(IDomainRepository domainRepository)
         {
             _domainRepository = domainRepository;
         }
 
-        public void Execute(InStoreBookCommand command)
+        public void Execute(OutStoreBookCommand command)
         {
             var book = _domainRepository.GetById<Book>(command.BookId);
 
-            book.InStore();
+            book.OutStore();
             _domainRepository.Save(book, book.Version);
         }
 

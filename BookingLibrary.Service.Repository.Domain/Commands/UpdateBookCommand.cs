@@ -1,7 +1,7 @@
 using System;
 using BookingLibrary.Domain.Core.Commands;
 
-namespace BookingLibrary.Service.Repository.Application.Commands
+namespace BookingLibrary.Service.Repository.Domain.Commands
 {
     public class UpdateBookCommand : CommonCommand
     {

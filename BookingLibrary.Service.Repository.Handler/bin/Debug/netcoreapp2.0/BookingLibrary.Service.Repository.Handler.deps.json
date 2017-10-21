@@ -13,7 +13,6 @@
           "BookingLibrary.Infrastructure.EventStorage.SQLServer": "1.0.0",
           "BookingLibrary.Infrastructure.InjectionFramework": "1.0.0",
           "BookingLibrary.Infrastructure.Messaging.RabbitMQ": "1.0.0",
-          "BookingLibrary.Service.Repository.Application": "1.0.0",
           "Microsoft.Extensions.Configuration": "2.0.0",
           "Microsoft.Extensions.Configuration.Json": "2.0.0"
         },
@@ -1023,15 +1022,6 @@
           "BookingLibrary.Infrastructure.Messaging.RabbitMQ.dll": {}
         }
       },
-      "BookingLibrary.Service.Repository.Application/1.0.0": {
-        "dependencies": {
-          "BookingLibrary.Domain.Core": "1.0.0",
-          "BookingLibrary.Service.Repository.Domain": "1.0.0"
-        },
-        "runtime": {
-          "BookingLibrary.Service.Repository.Application.dll": {}
-        }
-      },
       "BookingLibrary.Service.Repository.Domain/1.0.0": {
         "dependencies": {
           "BookingLibrary.Domain.Core": "1.0.0"
@@ -1720,11 +1710,6 @@
       "sha512": ""
     },
     "BookingLibrary.Infrastructure.Messaging.RabbitMQ/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "BookingLibrary.Service.Repository.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

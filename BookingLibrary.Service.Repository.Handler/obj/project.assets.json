@@ -1697,20 +1697,6 @@
           "bin/placeholder/BookingLibrary.Infrastructure.Messaging.RabbitMQ.dll": {}
         }
       },
-      "BookingLibrary.Service.Repository.Application/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.0",
-        "dependencies": {
-          "BookingLibrary.Domain.Core": "1.0.0",
-          "BookingLibrary.Service.Repository.Domain": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/BookingLibrary.Service.Repository.Application.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BookingLibrary.Service.Repository.Application.dll": {}
-        }
-      },
       "BookingLibrary.Service.Repository.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -5736,11 +5722,6 @@
       "path": "../BookingLibrary.Infrastructure.Messaging.RabbitMQ/BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj",
       "msbuildProject": "../BookingLibrary.Infrastructure.Messaging.RabbitMQ/BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj"
     },
-    "BookingLibrary.Service.Repository.Application/1.0.0": {
-      "type": "project",
-      "path": "../BookingLibrary.Service.Repository.Application/BookingLibrary.Service.Repository.Application.csproj",
-      "msbuildProject": "../BookingLibrary.Service.Repository.Application/BookingLibrary.Service.Repository.Application.csproj"
-    },
     "BookingLibrary.Service.Repository.Domain/1.0.0": {
       "type": "project",
       "path": "../BookingLibrary.Service.Repository.Domain/BookingLibrary.Service.Repository.Domain.csproj",
@@ -5754,7 +5735,6 @@
       "BookingLibrary.Infrastructure.EventStorage.SQLServer >= 1.0.0",
       "BookingLibrary.Infrastructure.InjectionFramework >= 1.0.0",
       "BookingLibrary.Infrastructure.Messaging.RabbitMQ >= 1.0.0",
-      "BookingLibrary.Service.Repository.Application >= 1.0.0",
       "Microsoft.Extensions.Configuration >= 2.0.0",
       "Microsoft.Extensions.Configuration.Json >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0"
@@ -5788,9 +5768,6 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Application\\BookingLibrary.Service.Repository.Application.csproj": {
-              "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Service.Repository.Application\\BookingLibrary.Service.Repository.Application.csproj"
-            },
             "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Domain.Core\\BookingLibrary.Domain.Core.csproj": {
               "projectPath": "C:\\AspNetCore\\BookLibrary\\BookingLibrary.Domain.Core\\BookingLibrary.Domain.Core.csproj"
             },
