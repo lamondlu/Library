@@ -45,9 +45,10 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
 
                     trans.Commit();
                 }
-                catch
+                catch(Exception ex)
                 {
                     trans.Rollback();
+                    throw ex;
                 }
             }
         }

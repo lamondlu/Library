@@ -13,6 +13,16 @@ namespace BookingLibrary.Service.Repository.Domain.DataAccessors
 
         List<BookViewModel> GetBookRepositories();
 
+        void UpdateBookName(Guid bookId, string bookName);
+
+        void UpdateBookDescription(Guid bookId,string description);
+
+        void UpdateBookISBN(Guid bookId, string isbn);
+
+        void UpdateBookIssuedDate(Guid bookId, DateTime issuedDate);
+
+        void UpdateBookStatus(Guid bookId, BookStatus status);
+
         void Commit();
 
         Task CommitAsync();
