@@ -9,7 +9,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.Ext
 {
     public static class ConvertExtension
     {
-        public static BookViewModel ConvertTo(this DataRow dr)
+        public static BookViewModel ConvertToBookViewModel(this DataRow dr) 
         {
             if (dr == null)
             {
@@ -30,9 +30,35 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.Ext
             }
         }
 
-        public static List<BookViewModel> ConvertTo(this DataTable dt)
+        public static BookDetailedModel ConvertToBookDetailedModel(this DataRow dr)
         {
-            return dt.Rows.Cast<DataRow>().Select(ConvertTo).ToList();
+            if (dr == null)
+            {
+                return null;
+            }
+            else
+            {
+                var model = new BookDetailedModel();
+
+                model.BookId = Guid.Parse(dr["BookId"].ToString());
+                model.BookName = dr["BookName"].ToString();
+                model.BookStatus = (BookStatus)Enum.Parse(typeof(BookStatus), dr["BookStatus"].ToString());
+                model.DateIssued = Convert.ToDateTime(dr["DateIssued"]);
+                model.ISBN = dr["ISBN"].ToString();
+                model.Description = dr["Description"].ToString();
+
+                return model;
+            }
+        }
+
+        public static List<BookViewModel> ConvertToBookViewModel(this DataTable dt)
+        {
+            return dt.Rows.Cast<DataRow>().Select(ConvertToBookViewModel).ToList();
+        }
+
+        public static List<BookDetailedModel> ConvertToBookDetailedModel(this DataTable dt)
+        {
+            return dt.Rows.Cast<DataRow>().Select(ConvertToBookDetailedModel).ToList();
         }
     }
 }

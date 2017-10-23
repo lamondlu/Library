@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using BookingLibrary.Domain.Core.Messaging;
 using BookingLibrary.Infrastructure.InjectionFramework;
+using BookingLibrary.Service.Repository.Domain;
 using BookingLibrary.Service.Repository.Domain.Commands;
 using BookingLibrary.Service.Repository.Domain.DataAccessors;
 using BookingLibrary.Service.Repository.Domain.ViewModels;
+using BookingLibrary.Service.Repository.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookingLibrary.Service.Repository
@@ -28,15 +30,9 @@ namespace BookingLibrary.Service.Repository
         }
 
         [HttpGet("{id}")]
-        public BookViewModel GetBookRepository(Guid id)
+        public BookDetailedModel GetBookRepository(Guid id)
         {
-            return new BookViewModel
-            {
-                BookId = Guid.NewGuid(),
-                BookName = "Lamond Lu",
-                DateIssued = DateTime.Now,
-                ISBN = "S001"
-            };
+            return _reportDatabase.GetBookById(id);
         }
 
         [HttpPut("")]
@@ -53,7 +49,7 @@ namespace BookingLibrary.Service.Repository
         }
 
         [HttpPost("")]
-        public void AddBookRepository(DTOs.BookDTO dto)
+        public void AddBookRepository(BookDTO dto)
         {
             _commandPublisher.Publish(new AddBookCommand
             {
@@ -63,6 +59,25 @@ namespace BookingLibrary.Service.Repository
                 DateIssued = dto.IssueDate,
                 Description = dto.Description
             });
+        }
+
+        [HttpPost("{bookId}/status")]
+        public void InStoredBook(Guid bookId, ChangeBookStatusDTO dto)
+        {
+            if (dto.Status == BookStatus.InStore)
+            {
+                _commandPublisher.Publish(new InStoreBookCommand
+                {
+                    BookId = bookId
+                });
+            }
+            else
+            {
+                _commandPublisher.Publish(new OutStoreBookCommand
+                {
+                    BookId = bookId
+                });
+            }
         }
     }
 }

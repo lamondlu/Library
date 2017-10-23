@@ -9,6 +9,7 @@ using BookingLibrary.Service.Repository.Domain.ViewModels;
 using BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.Extensions;
 using System.Threading.Tasks;
 using BookingLibrary.Service.Repository.Domain;
+using System.Linq;
 
 namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
 {
@@ -85,7 +86,17 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
             var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM Book");
 
-            return dataTable.ConvertTo();
+            return dataTable.ConvertToBookViewModel();
+        }
+
+        public BookDetailedModel GetBookById(Guid bookId)
+        {
+            var result = new List<BookViewModel>();
+
+            var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
+            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM Book WHERE BookId=@bookId", new SqlParameter{ ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId});
+
+            return dataTable.ConvertToBookDetailedModel().FirstOrDefault();
         }
 
         public bool ExistISBN(string isbn, Guid? bookId = null)
@@ -107,7 +118,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 sql = "SELECT COUNT(ISBN) FROM Book WHERE ISBN=@isbn";
 
                 return dbHelper.ExecuteScalar(sql, new List<SqlParameter>{
-                   new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.NVarChar, Value = bookId}
+                   new SqlParameter{ ParameterName ="@isbn", SqlDbType = SqlDbType.NVarChar, Value = isbn}
                 }.ToArray()) >= 1;
             }
         }

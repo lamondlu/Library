@@ -13,6 +13,8 @@ namespace BookingLibrary.Service.Repository.Domain.DataAccessors
 
         List<BookViewModel> GetBookRepositories();
 
+        BookDetailedModel GetBookById(Guid bookId);
+
         bool ExistISBN(string isbn, Guid? bookId = null);
 
         void UpdateBookName(Guid bookId, string bookName);
