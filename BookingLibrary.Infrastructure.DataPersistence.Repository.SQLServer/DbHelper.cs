@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingLibrary.Domain.Core;
-using BookingLibrary.Domain.Core.EventStorage;
 using BookingLibrary.Domain.Core.DataAccessor;
 using BookingLibrary.Infrastructure.InjectionFramework;
 

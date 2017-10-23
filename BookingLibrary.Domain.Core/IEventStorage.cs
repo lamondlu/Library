@@ -1,5 +1,4 @@
 using BookingLibrary.Domain.Core;
-using BookingLibrary.Domain.Core.EventStorage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,6 @@ namespace BookingLibrary.Domain.Core
     {
         IEnumerable<DomainEvent> GetEvents(Guid aggregateId);
 
-        void Save(AggregateRoot aggregate);
+        void Save(AggregateRoot aggregate, Guid commandUniqueId);
     }
 }

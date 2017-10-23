@@ -7,6 +7,6 @@ namespace BookingLibrary.Domain.Core.DataAccessor
     {
         T GetById<T>(Guid id) where T : AggregateRoot, new();
 
-        void Save<T>(T aggregateRoot, int expectedVersion) where T : AggregateRoot, new();
+        void Save<T>(T aggregateRoot, int expectedVersion, Guid commandUniqueId) where T : AggregateRoot, new();
     }
 }

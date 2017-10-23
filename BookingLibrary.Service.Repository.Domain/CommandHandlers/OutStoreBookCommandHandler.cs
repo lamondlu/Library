@@ -20,7 +20,7 @@ namespace BookingLibrary.Service.Repository.Domain.CommandHandlers
             var book = _domainRepository.GetById<Book>(command.BookId);
 
             book.OutStore();
-            _domainRepository.Save(book, book.Version);
+            _domainRepository.Save(book, book.Version, command.CommandUniqueId);
         }
 
         public void Dispose()

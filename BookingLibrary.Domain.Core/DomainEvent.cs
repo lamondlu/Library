@@ -7,7 +7,6 @@ namespace BookingLibrary.Domain.Core
         private string _eventKey = string.Empty;
 
         private DateTime _occurredOn;
-        private Entity _eventSource;
 
         public DomainEvent(string eventKey)
         {
@@ -35,12 +34,10 @@ namespace BookingLibrary.Domain.Core
             set;
         }
 
-        public Entity EventSource
+        public Guid CommandUniqueId
         {
-            get
-            {
-                return _eventSource;
-            }
+            get;
+            set;
         }
 
         public DateTime OccurredOn

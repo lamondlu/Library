@@ -8,6 +8,6 @@ namespace BookingLibrary.Domain.Core
 
         DateTime OccurredOn { get; }
 
-        Entity EventSource { get; }
+        Guid CommandUniqueId { get; set;}
     }
 }

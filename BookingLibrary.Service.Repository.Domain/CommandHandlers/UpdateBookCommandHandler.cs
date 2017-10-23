@@ -39,7 +39,7 @@ namespace BookingLibrary.Service.Repository.Domain.CommandHandlers
                 book.ChangeIssuedDate(command.DateIssued);
             }
 
-            _domainRepository.Save(book, book.Version);
+            _domainRepository.Save(book, book.Version, command.CommandUniqueId);
         }
 
         public void Dispose()

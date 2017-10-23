@@ -7,6 +7,7 @@ COPY BookingLibrary.Service.Repository.Domain ./BookingLibrary.Service.Repositor
 COPY BookingLibrary.Infrastructure.InjectionFramework ./BookingLibrary.Infrastructure.InjectionFramework/
 COPY BookingLibrary.Domain.Core ./BookingLibrary.Domain.Core/
 COPY BookingLibrary.Infrastructure.Messaging.RabbitMQ ./BookingLibrary.Infrastructure.Messaging.RabbitMQ/
+COPY BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer ./BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
 
 
 WORKDIR /app/BookingLibrary.Service.Repository

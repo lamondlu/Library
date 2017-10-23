@@ -29,7 +29,7 @@ namespace BookingLibrary.Service.Repository.Domain.CommandHandlers
             else
             {
                 var book = new Book(command.BookId, command.BookName, command.ISBN, command.Description, command.DateIssued);
-                _domainRepository.Save(book, -1);
+                _domainRepository.Save(book, -1, command.CommandUniqueId);
             }
         }
 

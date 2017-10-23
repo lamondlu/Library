@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using BookingLibrary.Domain.Core;
-using BookingLibrary.Domain.Core.EventStorage;
 using System.Data.SqlClient;
 using System.Data;
 using Newtonsoft.Json;
@@ -47,7 +46,7 @@ namespace BookingLibrary.Infrastructure.EventStorage.SQLServer
 
             return result;
         }
-        public void Save(AggregateRoot aggregate)
+        public void Save(AggregateRoot aggregate, Guid commandUniqueId)
         {
             using (var connection = new SqlConnection(InjectContainer.GetInstance<IEventDBConnectionStringProvider>().ConnectionString))
             {
@@ -68,6 +67,7 @@ namespace BookingLibrary.Infrastructure.EventStorage.SQLServer
 
                             version++;
                             @event.Version = version;
+                            @event.CommandUniqueId = commandUniqueId;
 
                             var sql = "insert into Events(AggregateRootId, Version, [EventName], [Content], OccurredOn,AssemblyName) values(@id, @version,@eventName,@content,@occurredOn,@assemblyName)";
                             var command = connection.CreateCommand();
@@ -89,6 +89,7 @@ namespace BookingLibrary.Infrastructure.EventStorage.SQLServer
 
                         foreach (var @event in uncommittedChanges)
                         {
+                            
                             var desEvent = Converter.ChangeTo(@event, @event.GetType());
                             _eventPublisher.Publish(desEvent);
                         }

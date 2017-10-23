@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingLibrary.Domain.Core;
-using BookingLibrary.Domain.Core.EventStorage;
 using BookingLibrary.Domain.Core.DataAccessor;
 using BookingLibrary.Infrastructure.InjectionFramework;
 
@@ -77,7 +76,7 @@ namespace BookingLibrary.Infrastructure.EventStorage.SQLServer
                     trans.Commit();
                     return result;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     trans.Rollback();
                     return 0;
@@ -199,7 +198,7 @@ namespace BookingLibrary.Infrastructure.EventStorage.SQLServer
                 {
                     da.Fill(ds);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -255,7 +254,7 @@ namespace BookingLibrary.Infrastructure.EventStorage.SQLServer
                 {
                     da.Fill(ds, tabName);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }

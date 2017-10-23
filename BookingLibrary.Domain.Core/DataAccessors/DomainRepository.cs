@@ -1,5 +1,4 @@
 using BookingLibrary.Domain.Core;
-using BookingLibrary.Domain.Core.EventStorage;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -33,7 +32,7 @@ namespace BookingLibrary.Domain.Core.DataAccessor
             return obj;
         }
 
-        public void Save<T>(T aggregateRoot, int expectedVersion) where T : AggregateRoot, new()
+        public void Save<T>(T aggregateRoot, int expectedVersion, Guid commandUniqueId) where T : AggregateRoot, new()
         {
             if (aggregateRoot.GetUncommittedChanges().Any())
             {
@@ -50,7 +49,7 @@ namespace BookingLibrary.Domain.Core.DataAccessor
                         }
                     }
 
-                    _eventStorage.Save(aggregateRoot);
+                    _eventStorage.Save(aggregateRoot, commandUniqueId);
                 }
             }
         }
