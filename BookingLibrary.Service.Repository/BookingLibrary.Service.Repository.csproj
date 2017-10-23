@@ -12,5 +12,6 @@
     <ProjectReference Include="..\BookingLibrary.Service.Repository.Domain\BookingLibrary.Service.Repository.Domain.csproj" />
     <ProjectReference Include="..\BookingLibrary.Domain.Core\BookingLibrary.Domain.Core.csproj" />
     <ProjectReference Include="..\BookingLibrary.Infrastructure.Messaging.RabbitMQ\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj" />
   </ItemGroup>
 </Project>

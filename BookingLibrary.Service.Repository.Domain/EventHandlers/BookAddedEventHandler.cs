@@ -20,6 +20,7 @@ namespace BookingLibrary.Service.Repository.Domain.EventHandlers
         {
             _reportDataAccessor.AddBookRepository(new AddBookDTO
             {
+                BookId = evt.AggregateId,
                 BookName = evt.BookName,
                 BookStatus = Convert.ToInt32(evt.BookStatus),
                 Description = evt.Description,
@@ -34,6 +35,7 @@ namespace BookingLibrary.Service.Repository.Domain.EventHandlers
         {
             _reportDataAccessor.AddBookRepository(new AddBookDTO
             {
+                BookId = evt.AggregateId,
                 BookName = evt.BookName,
                 BookStatus = Convert.ToInt32(evt.BookStatus),
                 Description = evt.Description,

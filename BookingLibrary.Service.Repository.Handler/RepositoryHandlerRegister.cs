@@ -31,13 +31,14 @@ namespace BookingLibrary.Service.Repository.Handler
 
         public void RegisterAndStartCommandHandlers()
         {
-            var register = new RabbitMQCommandSubscriber("amqp://localhost:5672");
-            var registerMethod = register.GetType().GetMethod("Subscribe");
             var assembly = Assembly.Load("BookingLibrary.Service.Repository.Domain");
 
             var allCommands = assembly.GetExportedTypes().Where(p => p.GetInterface("ICommand") != null);
             foreach (var command in allCommands)
             {
+                var register = new RabbitMQCommandSubscriber("amqp://localhost:5672");
+            var registerMethod = register.GetType().GetMethod("Subscribe");
+
                 var cmd = Activator.CreateInstance(command);
                 Console.WriteLine($"Find command {command.FullName}.");
                 registerMethod.MakeGenericMethod(command).Invoke(register, new object[1] { cmd });
@@ -46,13 +47,15 @@ namespace BookingLibrary.Service.Repository.Handler
 
         public void RegisterAndStartEventHandlers()
         {
-            var register = new RabbitMQEventSubscriber("amqp://localhost:5672");
-            var registerMethod = register.GetType().GetMethod("Subscribe");
+
             var assembly = Assembly.Load("BookingLibrary.Service.Repository.Domain");
 
-            var allEvents = assembly.GetExportedTypes().Where(p =>  p.GetInterface("IDomainEvent") != null);
+            var allEvents = assembly.GetExportedTypes().Where(p => p.GetInterface("IDomainEvent") != null);
             foreach (var @event in allEvents)
             {
+                var register = new RabbitMQEventSubscriber("amqp://localhost:5672");
+                var registerMethod = register.GetType().GetMethod("Subscribe");
+
                 var cmd = Activator.CreateInstance(@event);
                 Console.WriteLine($"Find event {@event.FullName}.");
                 registerMethod.MakeGenericMethod(@event).Invoke(register, new object[1] { cmd });

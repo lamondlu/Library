@@ -33,7 +33,7 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
 
             var properties = channel.CreateBasicProperties();
             properties.Persistent = true;
-            channel.BasicPublish(exchange: "", routingKey: domainEvent.GetType().Name, basicProperties: properties, body: bytes);
+            channel.BasicPublish(exchange: "", routingKey: domainEvent.EventKey, basicProperties: properties, body: bytes);
         }
     }
 }

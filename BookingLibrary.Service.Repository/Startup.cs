@@ -5,6 +5,7 @@ using BookingLibrary.Infrastructure.Messaging.RabbitMQ;
 using BookingLibrary.Domain.Core.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using BookingLibrary.Service.Repository.Domain.DataAccessors;
+using BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer;
 
 namespace BookingLibrary.Service.Repository
 {
@@ -32,6 +33,8 @@ namespace BookingLibrary.Service.Repository
         {
             InjectContainer.RegisterInstance<ICommandPublisher>(new RabbitMQCommandPublisher("amqp://localhost:5672"));
             InjectContainer.RegisterType<IRepositoryReadDBConnectionStringProvider, AppsettingRepositoryReadDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IRepositoryWriteDBConnectionStringProvider, AppsettingRepositoryWriteDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IRepositoryReportDataAccessor, RepositoryReportDataAccessor>();
         }
     }
 }
