@@ -4,6 +4,9 @@ using BookingLibrary.Infrastructure.InjectionFramework;
 using BookingLibrary.Infrastructure.Messaging.RabbitMQ;
 using BookingLibrary.Domain.Core.Messaging;
 using Microsoft.Extensions.DependencyInjection;
+using BookingLibrary.Service.Identity.Domain;
+using BookingLibrary.Service.Identity.Domain.DataAccessors;
+using BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer;
 
 namespace BookingLibrary.Service.Identity
 {
@@ -29,7 +32,10 @@ namespace BookingLibrary.Service.Identity
 
         private void InjectService()
         {
-            
+            InjectContainer.RegisterType<IPasswordHasher, PlainTextPasswordHasher>();
+            InjectContainer.RegisterType<IIdentityReadDBConnectionStringProvider, AppsettingRepositoryReadDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IIdentityWriteDBConnectionStringProvider, AppsettingRepositoryWriteDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IIdentityReportDataAccessor, IdentityReportDataAccessor>();
         }
     }
 }
