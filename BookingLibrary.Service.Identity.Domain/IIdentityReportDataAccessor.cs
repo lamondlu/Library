@@ -8,5 +8,7 @@ namespace BookingLibrary.Service.Identity.Domain
         void AddUser(User user);
 
         void AddAdministrator(Administrator administrator);
+
+        void GetUserIdByEmail(string email);
     }
 }

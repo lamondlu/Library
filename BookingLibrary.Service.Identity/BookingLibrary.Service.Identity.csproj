@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
@@ -7,5 +8,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookingLibrary.Service.Identity.Domain\BookingLibrary.Service.Identity.Domain.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Domain.Core\BookingLibrary.Domain.Core.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Infrastructure.Messaging.RabbitMQ\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Infrastructure.InjectionFramework\BookingLibrary.Infrastructure.InjectionFramework.csproj" />
   </ItemGroup>
 </Project>

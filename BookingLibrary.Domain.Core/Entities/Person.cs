@@ -6,23 +6,19 @@ using System.Threading.Tasks;
 
 namespace BookingLibrary.Domain.Core
 {
-    public class Person : Entity
+    public class Person : AggregateRoot
     {
+        public Person()
+        {
+
+        }
+
         public Person(Guid personId, PersonName name)
         {
-            this.PersonId = personId;
+            this.Id = personId;
             this.Name = name;
         }
 
-        public Person(PersonName name) : this(Guid.NewGuid(), name)
-        {
-
-        }
-
-        public Guid PersonId { get; private set; }
-
         public PersonName Name { get; set; }
-
-
     }
 }
