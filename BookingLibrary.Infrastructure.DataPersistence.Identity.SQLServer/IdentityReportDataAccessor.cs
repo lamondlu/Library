@@ -23,11 +23,11 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
 
         public IdentityViewModel GetIdentity(string userName, string hashedPassword)
         {
-            var sql = "SELECT TOP 1 * FROM dbo.User WHERE UserName = @userName and Password = @password";
+            var sql = "SELECT TOP 1 * FROM dbo.[User] WHERE UserName = @userName and Password = @password";
 
             var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
 
-            var dt = dbHelper.ExecuteDataTable(sql,
+            var dt = dbHelper.ExecuteDataTable(sql, new List<SqlParameter>{
                 new SqlParameter
                 {
                     ParameterName = "@userName",
@@ -38,7 +38,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
                     ParameterName = "@password",
                     SqlDbType = SqlDbType.NVarChar,
                     Value = hashedPassword
-                });
+                }}.ToArray());
 
             if (dt.Rows.Count == 1)
             {

@@ -5,6 +5,7 @@ using BookingLibrary.Service.Identity.DTOs;
 using BookingLibrary.Domain.Core;
 using Microsoft.AspNetCore.Mvc;
 using BookingLibrary.Service.Identity.Domain;
+using BookingLibrary.Infrastructure.InjectionFramework;
 
 namespace BookingLibrary.Service.Identity
 {
@@ -14,12 +15,13 @@ namespace BookingLibrary.Service.Identity
         private IIdentityReportDataAccessor _dataAccessor = null;
         private IPasswordHasher _passwordHasher = null;
 
-        public IdentityController(IIdentityReportDataAccessor dataAccessor, IPasswordHasher passwordHasher)
+        public IdentityController()
         {
-            _dataAccessor = dataAccessor;
-            _passwordHasher = passwordHasher;
+            _dataAccessor = InjectContainer.GetInstance<IIdentityReportDataAccessor>();
+            _passwordHasher = InjectContainer.GetInstance<IPasswordHasher>();
         }
 
+        [Route("")]
         [HttpPost]
         public IdentityViewModel GetIdentity(IdentityDTO dto)
         {

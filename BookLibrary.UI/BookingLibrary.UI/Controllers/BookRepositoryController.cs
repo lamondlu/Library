@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace BookingLibrary.UI.Controllers
 {
-    public class BookRepositoyController : Controller
+    public class BookRepositoryController : Controller
     {
         // GET: BookRepositoy
         public ActionResult List()
