@@ -55,7 +55,7 @@ namespace BookingLibrary.UI.Controllers
             if (validationResult.UserId != Guid.Empty)
             {
                 FormsAuthentication.SetAuthCookie(validationResult.UserId.ToString(), false);
-                return RedirectToAction("List", "BookingRepository");
+                return RedirectToAction("List", "BookRepository");
             }
 
             return View();

@@ -1,8 +1,39 @@
-﻿
+﻿@model List<BookViewModel>
 @{
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Book Repository</h2>
+<div style="margin-bottom:10px">
+    <button class="btn btn-success" type="button">+ Add</button>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Book Name</th>
+            <th>ISBN</th>
+            <th>Status</th>
+            <th>Issued Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ var index = 1;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@index</td>
+                <td>@item.BookName</td>
+                <td>@item.ISBN</td>
+                <td>@(item.BookStatus == 1?"IN":"OUT")</td>
+                <td>@item.DateIssued.ToString("yyyy-MM-dd")</td>
+                <td><button type="button" class="btn btn-primary">Edit</button>&nbsp;<button type="button" class="btn btn-danger">Delete</button></td>
+            </tr>
+            index++;
+        }
+    </tbody>
+</table>
 
