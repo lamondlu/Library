@@ -1,6 +1,8 @@
-﻿using BookingLibrary.UI.Utilities;
+﻿using BookingLibrary.UI.DTOs;
+using BookingLibrary.UI.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Linq;
 using System.Web;
@@ -13,11 +15,32 @@ namespace BookingLibrary.UI.Controllers
     {
         private string _repositoryApiBaseUrl => ConfigurationManager.AppSettings["repositoryApiUrl"];
 
-        // GET: BookRepositoy
+        [HttpGet]
         public ActionResult List()
         {
             var data = ApiRequest.Get<List<BookViewModel>>($"{_repositoryApiBaseUrl}/api/BookRepository");
             return View(data);
+        }
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Add(BookRepositoryDTO dto)
+        {
+            var data = new NameValueCollection();
+
+            data.Add("BookName", dto.BookName);
+            data.Add("ISBN", dto.ISBN);
+            data.Add("IssueDate", dto.IssueDate.ToString("yyyy-MM-dd"));
+            data.Add("Description", dto.Description);
+
+            var result = ApiRequest.Post<Guid>($"{_repositoryApiBaseUrl}/api/BookRepository", data);
+
+            return RedirectToAction("List");
         }
     }
 }
