@@ -127,6 +127,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
         {
             var dbHelper = new DbHelper(_writeDBConnectionStringProvider.ConnectionString);
             dbHelper.ExecuteNoQuery(_commands);
+            _commands.Clear();
         }
 
         public Task CommitAsync()

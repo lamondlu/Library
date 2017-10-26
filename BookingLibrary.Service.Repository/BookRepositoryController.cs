@@ -49,16 +49,20 @@ namespace BookingLibrary.Service.Repository
         }
 
         [HttpPost("")]
-        public void AddBookRepository(BookDTO dto)
+        public Guid AddBookRepository(BookDTO dto)
         {
-            _commandPublisher.Publish(new AddBookCommand
+            var command = new AddBookCommand
             {
                 BookId = Guid.NewGuid(),
                 BookName = dto.BookName,
                 ISBN = dto.ISBN,
                 DateIssued = dto.IssueDate,
                 Description = dto.Description
-            });
+            };
+
+            _commandPublisher.Publish(command);
+
+            return command.CommandUniqueId;
         }
 
         [HttpPost("{bookId}/status")]

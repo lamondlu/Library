@@ -44,10 +44,10 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
 
                     trans.Commit();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     trans.Rollback();
-                    throw ex;
+                    Console.WriteLine(ex.ToString());
                 }
             }
         }
@@ -71,9 +71,10 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
                     trans.Commit();
                     return result;
                 }
-                catch
+                catch (Exception ex)
                 {
                     trans.Rollback();
+                    Console.WriteLine(ex.ToString());
                     return 0;
                 }
             }
@@ -98,9 +99,10 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
                     trans.Commit();
                     return result;
                 }
-                catch
+                catch (Exception ex)
                 {
                     trans.Rollback();
+                    Console.WriteLine(ex.ToString());
                     return 0;
                 }
             }
@@ -180,9 +182,9 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
                 {
                     da.Fill(ds);
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    Console.WriteLine(ex.ToString());
                 }
                 return ds.Tables[0];
             }
@@ -224,9 +226,9 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
                 {
                     da.Fill(ds, tabName);
                 }
-                catch
+                catch(Exception ex)
                 {
-
+                    Console.WriteLine(ex.ToString());
                 }
                 return ds;
             }
