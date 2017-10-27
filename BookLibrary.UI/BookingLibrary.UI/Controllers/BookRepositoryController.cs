@@ -28,8 +28,16 @@ namespace BookingLibrary.UI.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Edit(Guid id)
+        {
+            var data = ApiRequest.Get<EditBookRepositoryDTO>($"{_repositoryApiBaseUrl}/api/BookRepository/{id}");
+   
+            return View(data);
+        }
+
         [HttpPost]
-        public ActionResult Add(BookRepositoryDTO dto)
+        public ActionResult Add(AddBookRepositoryDTO dto)
         {
             var data = new NameValueCollection();
 

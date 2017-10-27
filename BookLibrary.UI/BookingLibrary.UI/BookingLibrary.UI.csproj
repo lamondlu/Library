@@ -194,10 +194,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="BookViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookRepositoryController.cs" />
-    <Compile Include="DTOs\BookRepositoryDTO.cs" />
+    <Compile Include="DTOs\AddBookRepositoryDTO.cs" />
+    <Compile Include="DTOs\EditBookRepositoryDTO.cs" />
     <Compile Include="DTOs\IdentityDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,6 +208,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\ApiRequest.cs" />
+    <Compile Include="ViewModels\BookViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -260,6 +261,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\BookRepository\List.cshtml" />
     <Content Include="Views\BookRepository\Add.cshtml" />
+    <Content Include="Views\BookRepository\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

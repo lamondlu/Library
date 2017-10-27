@@ -6,7 +6,7 @@ using System.Web;
 
 namespace BookingLibrary.UI.DTOs
 {
-    public class BookRepositoryDTO
+    public class EditBookRepositoryDTO
     {
         public Guid BookId { get; set; }
 
@@ -16,8 +16,10 @@ namespace BookingLibrary.UI.DTOs
         [Required]
         public string ISBN { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
-        public DateTime IssueDate { get; set; }
+        public DateTime DateIssued { get; set; }
 
         public string Description { get; set; }
     }
