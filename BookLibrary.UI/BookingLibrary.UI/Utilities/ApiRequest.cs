@@ -69,7 +69,7 @@ namespace BookingLibrary.UI.Utilities
             return result;
         }
 
-        public static void Put(string url, NameValueCollection data)
+        public static T Put<T>(string url, NameValueCollection data)
         {
             if (url.StartsWith("https"))
             {
@@ -78,6 +78,18 @@ namespace BookingLibrary.UI.Utilities
 
             HttpContent httpContent = new FormUrlEncodedContent(Correct(data));
             HttpResponseMessage response = _httpClient.PutAsync(url, httpContent).Result;
+
+            T result = default(T);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Task<string> t = response.Content.ReadAsStringAsync();
+                string s = t.Result;
+
+                result = JsonConvert.DeserializeObject<T>(s);
+            }
+
+            return result;
         }
 
         public static void Delete(string url, object data)

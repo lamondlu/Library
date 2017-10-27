@@ -16,8 +16,6 @@ namespace BookingLibrary.UI.DTOs
         [Required]
         public string ISBN { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
         public DateTime DateIssued { get; set; }
 

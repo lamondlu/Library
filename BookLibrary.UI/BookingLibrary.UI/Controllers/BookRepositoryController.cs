@@ -32,7 +32,23 @@ namespace BookingLibrary.UI.Controllers
         public ActionResult Edit(Guid id)
         {
             var data = ApiRequest.Get<EditBookRepositoryDTO>($"{_repositoryApiBaseUrl}/api/BookRepository/{id}");
-   
+
+            return View(data);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Guid id,EditBookRepositoryDTO dto)
+        {
+            var data = new NameValueCollection();
+
+            data.Add("BookId", dto.BookId.ToString());
+            data.Add("BookName", dto.BookName);
+            data.Add("ISBN", dto.ISBN);
+            data.Add("IssueDate", dto.DateIssued.ToString("yyyy-MM-dd"));
+            data.Add("Description", dto.Description);
+
+            var command = ApiRequest.Put<Guid>($"{_repositoryApiBaseUrl}/api/BookRepository/{dto.BookId}", data);
+
             return View(data);
         }
 
