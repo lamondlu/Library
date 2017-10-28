@@ -37,7 +37,7 @@ namespace BookingLibrary.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Guid id,EditBookRepositoryDTO dto)
+        public ActionResult Edit(Guid id, EditBookRepositoryDTO dto)
         {
             var data = new NameValueCollection();
 
@@ -47,9 +47,16 @@ namespace BookingLibrary.UI.Controllers
             data.Add("IssueDate", dto.DateIssued.ToString("yyyy-MM-dd"));
             data.Add("Description", dto.Description);
 
-            var command = ApiRequest.Put<Guid>($"{_repositoryApiBaseUrl}/api/BookRepository/{dto.BookId}", data);
+            var commandId = ApiRequest.Put<Guid>($"{_repositoryApiBaseUrl}/api/BookRepository/{dto.BookId}", data);
 
-            return View(data);
+            if (commandId != Guid.Empty)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return View(dto);
+            }
         }
 
         [HttpPost]
@@ -62,9 +69,16 @@ namespace BookingLibrary.UI.Controllers
             data.Add("IssueDate", dto.IssueDate.ToString("yyyy-MM-dd"));
             data.Add("Description", dto.Description);
 
-            var result = ApiRequest.Post<Guid>($"{_repositoryApiBaseUrl}/api/BookRepository", data);
+            var commandId = ApiRequest.Post<Guid>($"{_repositoryApiBaseUrl}/api/BookRepository", data);
 
-            return RedirectToAction("List");
+            if (commandId != Guid.Empty)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return View(dto);
+            }
         }
     }
 }

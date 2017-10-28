@@ -13,7 +13,5 @@ namespace BookingLibrary.Service.Repository.Domain.Events
         }
 
         public string NewBookISBN { get; set; }
-
-        public Guid BookId { get; set; }
     }
 }

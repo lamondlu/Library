@@ -11,7 +11,8 @@ namespace BookingLibrary.Service.Repository.Domain
     IHandler<BookNameChangedEvent>,
     IHandler<BookIssuedDateChangedEvent>,
     IHandler<BookInStoredEvent>,
-    IHandler<BookOutStoredEvent>
+    IHandler<BookOutStoredEvent>,
+    IHandler<BookDescriptionChangedEvent>
     {
         public Book()
         {
@@ -89,7 +90,7 @@ namespace BookingLibrary.Service.Repository.Domain
         {
             ApplyChange(new BookISBNChangedEvent
             {
-                BookId = Id,
+                AggregateId = Id,
                 NewBookISBN = isbn
             });
         }
@@ -98,7 +99,7 @@ namespace BookingLibrary.Service.Repository.Domain
         {
             ApplyChange(new BookIssuedDateChangedEvent
             {
-                BookId = Id,
+                AggregateId = Id,
                 NewBookIssuedDate = issuedDate
             });
         }
@@ -110,6 +111,7 @@ namespace BookingLibrary.Service.Repository.Domain
             this.Id = evt.AggregateId;
             this.ISBN = evt.ISBN;
             this.BookStatus = evt.BookStatus;
+            this.Description = evt.Description;
         }
 
         public void Handle(BookRemovedEvent evt)
@@ -145,6 +147,10 @@ namespace BookingLibrary.Service.Repository.Domain
         public void Handle(BookOutStoredEvent evt)
         {
             this.BookStatus = BookStatus.OutStore;
+        }
+
+        public void Handle(BookDescriptionChangedEvent evt){
+            this.Description = evt.Description;
         }
     }
 }

@@ -35,17 +35,20 @@ namespace BookingLibrary.Service.Repository
             return _reportDatabase.GetBookById(id);
         }
 
-        [HttpPut("")]
-        public void UpdateBookRepository(DTOs.BookDTO dto)
+        [HttpPut("{id}")]
+        public Guid UpdateBookRepository(Guid id,DTOs.BookDTO dto)
         {
-            _commandPublisher.Publish(new UpdateBookCommand
+            var command = new UpdateBookCommand
             {
                 BookId = dto.BookId,
                 BookName = dto.BookName,
                 ISBN = dto.ISBN,
                 DateIssued = dto.IssueDate,
                 Description = dto.Description
-            });
+            };
+
+            _commandPublisher.Publish(command);
+            return command.CommandUniqueId;
         }
 
         [HttpPost("")]
