@@ -27,6 +27,8 @@ namespace BookingLibrary.Service.Repository.Domain.DataAccessors
 
         void UpdateBookStatus(Guid bookId, BookStatus status);
 
+        void DeleteBookRepository(Guid bookRepositoryId);
+
         void Commit();
 
         Task CommitAsync();
