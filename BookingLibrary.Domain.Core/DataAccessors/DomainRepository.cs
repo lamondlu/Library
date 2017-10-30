@@ -5,17 +5,21 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingLibrary.Domain.Core.Messaging;
 
 namespace BookingLibrary.Domain.Core.DataAccessor
 {
     public class DomainRepository : IDomainRepository
     {
         private IEventStorage _eventStorage = null;
+
+        private ICommandTracker _tracker = null;
         private static object _lockStorage = new object();
 
-        public DomainRepository(IEventStorage eventStorage)
+        public DomainRepository(IEventStorage eventStorage, ICommandTracker tracker)
         {
             _eventStorage = eventStorage;
+            _tracker = tracker;
         }
 
         public T GetById<T>(Guid id) where T : AggregateRoot, new()
@@ -38,6 +42,8 @@ namespace BookingLibrary.Domain.Core.DataAccessor
             {
                 lock (_lockStorage)
                 {
+                    var allEvents = aggregateRoot.GetUncommittedChanges().Select(p=>p.EventKey).ToList();
+
                     var item = new T();
 
                     if (expectedVersion != -1)
@@ -50,6 +56,8 @@ namespace BookingLibrary.Domain.Core.DataAccessor
                     }
 
                     _eventStorage.Save(aggregateRoot, commandUniqueId);
+
+                    _tracker.Track(commandUniqueId, allEvents);
                 }
             }
         }

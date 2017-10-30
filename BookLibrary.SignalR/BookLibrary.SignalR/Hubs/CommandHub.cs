@@ -9,11 +9,11 @@ namespace BookLibrary.SignalR.Hubs
 {
     public class CommandHub : Hub
     {
-        private static List<CommandResult> _results = null;
+        private static Dictionary<Guid, CommandResult> _results = null;
 
         static CommandHub()
         {
-            _results = new List<CommandResult>();
+            _results = new Dictionary<Guid, CommandResult>();
         }
 
         public CommandHub()
@@ -21,25 +21,33 @@ namespace BookLibrary.SignalR.Hubs
 
         }
 
-        public void MonitorCommand(MonitorObject obj)
+        public void JoinGroup(Guid commandUnqiueId)
+        {
+            this.Groups.Add(this.Context.ConnectionId, commandUnqiueId.ToString());
+        }
+
+        public void QuitGroup(Guid commandUnqiueId)
+        {
+            this.Groups.Remove(this.Context.ConnectionId, commandUnqiueId.ToString());
+        }
+
+        public void MonitorCommand(MonitoredCommand obj)
         {
             var result = new CommandResult();
-            result.ConnectionId = this.Context.ConnectionId;
             result.EventResults = obj.EventNames.Select(p => new EventResult { EventName = p, IsFinished = false, IsError = false }).ToList();
 
-            _results.Add(result);
+            CommandHub._results.Add(obj.CommandUniqueId, result);
         }
 
         public void CommandStatusChange(CommandStatusChangeObject obj)
         {
-            var matchedCommandItem = _results.FirstOrDefault(p => p.CommandUniqueId == obj.CommandUniqueId);
+            var matchedCommandItem = _results[obj.CommandUniqueId];
 
             if (matchedCommandItem != null)
             {
                 if (obj.IsError)
                 {
                     Clients.Client(matchedCommandItem.ConnectionId).failure();
-                    _results.Remove(matchedCommandItem);
                 }
                 else if (obj.IsFinished)
                 {
@@ -50,9 +58,18 @@ namespace BookLibrary.SignalR.Hubs
                     if (matchedCommandItem.IsFinished)
                     {
                         Clients.Client(matchedCommandItem.ConnectionId).success();
-                        _results.Remove(matchedCommandItem);
                     }
                 }
+            }
+        }
+
+        public void RemoveCommand(Guid commandUniqueId)
+        {
+            var matchedCommandItem = _results[commandUniqueId];
+
+            if (matchedCommandItem != null)
+            {
+                _results.Remove(commandUniqueId);
             }
         }
     }

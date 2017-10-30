@@ -84,7 +84,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             var result = new List<BookViewModel>();
 
             var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
-            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM Book");
+            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM BookRepository");
 
             return dataTable.ConvertToBookViewModel();
         }
@@ -94,7 +94,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             var result = new List<BookViewModel>();
 
             var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
-            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM Book WHERE BookId=@bookId", new SqlParameter { ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId });
+            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM BookRepository WHERE BookId=@bookId", new SqlParameter { ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId });
 
             return dataTable.ConvertToBookDetailedModel().FirstOrDefault();
         }
@@ -106,7 +106,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
 
             if (bookId.HasValue)
             {
-                sql = "SELECT COUNT(ISBN) FROM Book WHERE ISBN=@isbn and BookId<>@bookId";
+                sql = "SELECT COUNT(ISBN) FROM BookRepository WHERE ISBN=@isbn and BookId<>@bookId";
 
                 return dbHelper.ExecuteScalar(sql, new List<SqlParameter>{
                    new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId.Value},
@@ -115,7 +115,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             }
             else
             {
-                sql = "SELECT COUNT(ISBN) FROM Book WHERE ISBN=@isbn";
+                sql = "SELECT COUNT(ISBN) FROM BookRepository WHERE ISBN=@isbn";
 
                 return dbHelper.ExecuteScalar(sql, new List<SqlParameter>{
                    new SqlParameter{ ParameterName ="@isbn", SqlDbType = SqlDbType.NVarChar, Value = isbn}

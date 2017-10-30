@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BookLibrary.SignalR.Models
 {
-    public class MonitorObject
+    public class MonitoredCommand
     {
         public Guid CommandUniqueId { get; set; }
 

@@ -15,11 +15,14 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
         private readonly IConnection connection;
         private readonly IModel channel;
 
-        public RabbitMQEventSubscriber(string uri)
+        private readonly ICommandTracker tracker;
+
+        public RabbitMQEventSubscriber(string uri, ICommandTracker tracker)
         {
             var factory = new ConnectionFactory() { Uri = new Uri(uri) };
             this.connection = factory.CreateConnection();
             this.channel = connection.CreateModel();
+            this.tracker = tracker;
         }
 
         public void Dispose()
@@ -30,11 +33,11 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
 
         public void Subscribe<T>(T domainEvent) where T : DomainEvent
         {
-             this.channel.QueueDeclare(queue: domainEvent.EventKey,
-                        durable: true,
-                        exclusive: false,
-                        autoDelete: false,
-                        arguments: null);
+            this.channel.QueueDeclare(queue: domainEvent.EventKey,
+                       durable: true,
+                       exclusive: false,
+                       autoDelete: false,
+                       arguments: null);
 
             channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
 
@@ -55,10 +58,19 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
                 Console.WriteLine("[x] Receive New Event: {0}", domainEvent.EventKey);
                 Console.WriteLine("[x] Event Parameters: {0}", message);
 
-                //执行命令操作
-                instance.Handle(cmd);
+                try
+                {
+                    //执行命令操作
+                    instance.Handle(cmd);
+                    tracker.Finish(cmd.CommandUniqueId, cmd.EventKey);
+                }
+                catch
+                {
+                    tracker.Error(cmd.CommandUniqueId, cmd.EventKey);
+                }
 
                 Console.WriteLine("[x] Event Handler Completed");
+
 
                 channel.BasicAck(ea.DeliveryTag, false);
             };

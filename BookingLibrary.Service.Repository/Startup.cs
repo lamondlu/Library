@@ -6,6 +6,7 @@ using BookingLibrary.Domain.Core.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using BookingLibrary.Service.Repository.Domain.DataAccessors;
 using BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer;
+using BookingLibrary.Infrastructure.Messaging.SignalR;
 
 namespace BookingLibrary.Service.Repository
 {
@@ -35,6 +36,7 @@ namespace BookingLibrary.Service.Repository
             InjectContainer.RegisterType<IRepositoryReadDBConnectionStringProvider, AppsettingRepositoryReadDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRepositoryWriteDBConnectionStringProvider, AppsettingRepositoryWriteDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRepositoryReportDataAccessor, RepositoryReportDataAccessor>();
+            InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
         }
     }
 }
