@@ -69,16 +69,9 @@ namespace BookingLibrary.UI.Controllers
             data.Add("IssueDate", dto.IssueDate.ToString("yyyy-MM-dd"));
             data.Add("Description", dto.Description);
 
-            var commandId = ApiRequest.Post<Guid>($"{_repositoryApiBaseUrl}/api/BookRepository", data);
+            var commandUnqiueId = ApiRequest.Post<Guid>($"{_repositoryApiBaseUrl}/api/BookRepository", data);
 
-            if (commandId != Guid.Empty)
-            {
-                return RedirectToAction("List");
-            }
-            else
-            {
-                return View(dto);
-            }
+            return Json(new { commandUnqiueId = commandUnqiueId });
         }
     }
 }

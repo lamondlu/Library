@@ -34,17 +34,65 @@
             </div>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-default" value="保存" />
+            <input type="button" class="btn btn-default" value="保存" id="btnSave" />
             <input type="button" class="btn btn-default" value="返回" onclick="window.location='@Url.Action("List", "BookRepository")'" />
         </div>
 
     }
 </section>
 
+@section header{
+
+
+}
+
 @section scripts{
     <script type="text/javascript">
+
+
         $(function () {
+            $.connection.hub.url = "http://localhost:6044/signalr";
+            var command = $.connection.commandHub;
+
+            command.client.success = function () {
+                hideMask();
+                alert('Create successfully.');
+                commandHub.server.quitGroup(data.commandUnqiueId);
+                commandHub.server.removeCommand(data.commandUnqiueId);
+                window.location = '@Url.Action("List", "BookRepository")';
+            };
+
+            command.client.failure = function () {
+                alert('Create failure.');
+            };
+
+            $.connection.hub.start().done(function () {
+                console.log("Connected.");
+            });
+
+
             $("#IssueDate").datepicker({ dateFormat: "yy-mm-dd" });
+
+            $('#btnSave').click(function () {
+                showMask();
+
+                $.ajax({
+                    url: '',
+                    data: { BookName: $('#BookName').val(), ISBN: $('#ISBN').val(), IssueDate: $('#IssueDate').val(), Description: $('#Description').val() },
+                    type: 'POST',
+                    success: function (data) {
+
+                        if (data && data.commandUnqiueId) {
+                            command.server.joinGroup(data.commandUnqiueId);
+                        }
+
+                        //hideMask();
+                    },
+                    error: function () {
+                        hideMask();
+                    }
+                });
+            });
         });
     </script>
 }
