@@ -76,6 +76,17 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
             HttpResponseMessage response = _httpClient.PostAsync(url, httpContent).Result;
         }
 
+        public static void Put(string url, NameValueCollection data)
+        {
+            if (url.StartsWith("https"))
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            }
+
+            HttpContent httpContent = new FormUrlEncodedContent(Correct(data));
+            HttpResponseMessage response = _httpClient.PutAsync(url, httpContent).Result;
+        }
+
         public static T Put<T>(string url, NameValueCollection data)
         {
             if (url.StartsWith("https"))

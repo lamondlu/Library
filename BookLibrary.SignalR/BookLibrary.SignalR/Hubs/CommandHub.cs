@@ -47,7 +47,7 @@ namespace BookLibrary.SignalR.Hubs
             {
                 if (obj.IsError)
                 {
-                    Clients.Client(matchedCommandItem.ConnectionId).failure();
+                    Clients.Group(obj.CommandUniqueId.ToString()).failure();
                 }
                 else if (obj.IsFinished)
                 {
@@ -57,7 +57,7 @@ namespace BookLibrary.SignalR.Hubs
 
                     if (matchedCommandItem.IsFinished)
                     {
-                        Clients.Client(matchedCommandItem.ConnectionId).success();
+                        Clients.Group(obj.CommandUniqueId.ToString()).success();
                     }
                 }
             }

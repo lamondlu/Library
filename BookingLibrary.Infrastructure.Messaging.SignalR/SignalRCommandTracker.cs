@@ -15,7 +15,7 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
         public void Track(Guid commandUniqueId, List<string> eventNames)
         {
             var data = new NameValueCollection();
-            data.Add("CommandUnqiueId", commandUniqueId.ToString());
+            data.Add("CommandUniqueId", commandUniqueId.ToString());
             data.Add("EventNames", string.Join(",", eventNames));
 
             ApiRequest.Post("http://localhost:6044/api/monitored_commands", data);
@@ -26,7 +26,7 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
             var data = new NameValueCollection();
             data.Add("Status", "0");
 
-            ApiRequest.Post($"http://localhost:6044/api/monitored_commands/{commandUniqueId}/events/{eventName}", data);
+            ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}/events/{eventName}", data);
         }
 
         public void Error(Guid commandUniqueId, string eventName)
@@ -34,7 +34,7 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
             var data = new NameValueCollection();
             data.Add("Status", "1");
 
-            ApiRequest.Post($"http://localhost:6044/api/monitored_commands/{commandUniqueId}/events/{eventName}", data);
+            ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}/events/{eventName}", data);
         }
     }
 }
