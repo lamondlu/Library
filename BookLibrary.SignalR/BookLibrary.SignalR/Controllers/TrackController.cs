@@ -36,13 +36,5 @@ namespace BookLibrary.SignalR.Controllers
                 IsError = (dto.Status == EventStatusEnum.Error)
             });
         }
-
-        [HttpGet]
-        [Route("~/api/test")]
-        public void Test()
-        {
-            CommandHub hub = new Hubs.CommandHub();
-            hub.Test();
-        }
     }
 }

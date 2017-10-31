@@ -27,6 +27,9 @@ namespace BookingLibrary.Domain.Core.Commands
             {
                 return _commandUniqueId;
             }
+            set{
+                _commandUniqueId = value;
+            }
         }
 
         public CommandBase(string key)

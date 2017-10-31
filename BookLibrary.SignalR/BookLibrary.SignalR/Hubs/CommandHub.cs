@@ -49,7 +49,7 @@ namespace BookLibrary.SignalR.Hubs
             {
                 if (obj.IsError)
                 {
-                    _hub.Clients.All.failure();
+                    _hub.Clients.All.failure(obj.CommandUniqueId);
                 }
                 else if (obj.IsFinished)
                 {
@@ -59,7 +59,7 @@ namespace BookLibrary.SignalR.Hubs
 
                     if (matchedCommandItem.IsFinished)
                     {
-                        _hub.Clients.All.success();
+                        _hub.Clients.All.success(obj.CommandUniqueId);
                     }
                 }
             }
@@ -73,11 +73,6 @@ namespace BookLibrary.SignalR.Hubs
             {
                 _results.Remove(commandUniqueId);
             }
-        }
-
-        public void Test()
-        {
-            _hub.Clients.All.test();
         }
     }
 }

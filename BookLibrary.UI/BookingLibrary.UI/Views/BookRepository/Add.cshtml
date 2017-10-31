@@ -48,23 +48,27 @@
 
 @section scripts{
     <script type="text/javascript">
-
+        var currentCommandUnqiueId = null;
 
         $(function () {
             $.connection.hub.url = "http://localhost:6044/signalr";
             $.connection.hub.logging = true;
             var command = $.connection.commandHub;
 
-            command.client.success = function () {
-                hideMask();
-                alert('Create successfully.');
-                commandHub.server.quitGroup(data.commandUnqiueId);
-                commandHub.server.removeCommand(data.commandUnqiueId);
-                window.location = '@Url.Action("List", "BookRepository")';
+            command.client.success = function (commandUniqueId) {
+
+                if (commandUniqueId == currentCommandUnqiueId) {
+                    hideMask();
+                    alert('Create successfully.');
+                    command.server.removeCommand(currentCommandUnqiueId);
+                    window.location = '@Url.Action("List", "BookRepository")';
+                }
             };
 
-            command.client.failure = function () {
-                alert('Create failure.');
+            command.client.failure = function (commandUniqueId) {
+                if (commandUniqueId == currentCommandUnqiueId) {
+                    alert('Create failure.');
+                }
             };
 
             command.client.test = function () {
@@ -87,9 +91,9 @@
                     type: 'POST',
                     success: function (data) {
 
-                        //if (data && data.commandUnqiueId) {
-                        //    command.server.joinGroup(data.commandUnqiueId);
-                        //}
+                        if (data && data.commandUnqiueId) {
+                           currentCommandUnqiueId = data.commandUnqiueId;
+                        }
 
                         //hideMask();
                     },
