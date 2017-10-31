@@ -10,6 +10,7 @@ namespace BookLibrary.SignalR.Hubs
     public class CommandHub : Hub
     {
         private static Dictionary<Guid, CommandResult> _results = null;
+        private IHubContext _hub = GlobalHost.ConnectionManager.GetHubContext<CommandHub>();
 
         static CommandHub()
         {
@@ -34,6 +35,7 @@ namespace BookLibrary.SignalR.Hubs
         public void MonitorCommand(MonitoredCommand obj)
         {
             var result = new CommandResult();
+            result.CommandUniqueId = obj.CommandUniqueId;
             result.EventResults = obj.EventNames.Select(p => new EventResult { EventName = p, IsFinished = false, IsError = false }).ToList();
 
             CommandHub._results.Add(obj.CommandUniqueId, result);
@@ -47,7 +49,7 @@ namespace BookLibrary.SignalR.Hubs
             {
                 if (obj.IsError)
                 {
-                    Clients.Group(obj.CommandUniqueId.ToString()).failure();
+                    _hub.Clients.All.failure();
                 }
                 else if (obj.IsFinished)
                 {
@@ -57,7 +59,7 @@ namespace BookLibrary.SignalR.Hubs
 
                     if (matchedCommandItem.IsFinished)
                     {
-                        Clients.Group(obj.CommandUniqueId.ToString()).success();
+                        _hub.Clients.All.success();
                     }
                 }
             }
@@ -71,6 +73,11 @@ namespace BookLibrary.SignalR.Hubs
             {
                 _results.Remove(commandUniqueId);
             }
+        }
+
+        public void Test()
+        {
+            _hub.Clients.All.test();
         }
     }
 }

@@ -13,6 +13,9 @@ namespace BookLibrary.SignalR.Controllers
     [RoutePrefix("api/monitored_commands")]
     public class MonitoredCommandController : ApiController
     {
+        public MonitoredCommandController()
+        {
+        }
 
         [HttpPost, Route("")]
         public void Commands(MonitoredCommand model)
@@ -32,6 +35,14 @@ namespace BookLibrary.SignalR.Controllers
                 IsFinished = (dto.Status == EventStatusEnum.Finished),
                 IsError = (dto.Status == EventStatusEnum.Error)
             });
+        }
+
+        [HttpGet]
+        [Route("~/api/test")]
+        public void Test()
+        {
+            CommandHub hub = new Hubs.CommandHub();
+            hub.Test();
         }
     }
 }

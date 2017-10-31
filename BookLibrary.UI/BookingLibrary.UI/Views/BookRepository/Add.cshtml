@@ -52,6 +52,7 @@
 
         $(function () {
             $.connection.hub.url = "http://localhost:6044/signalr";
+            $.connection.hub.logging = true;
             var command = $.connection.commandHub;
 
             command.client.success = function () {
@@ -64,6 +65,10 @@
 
             command.client.failure = function () {
                 alert('Create failure.');
+            };
+
+            command.client.test = function () {
+                alert("Called from server successfully.");
             };
 
             $.connection.hub.start().done(function () {
@@ -82,9 +87,9 @@
                     type: 'POST',
                     success: function (data) {
 
-                        if (data && data.commandUnqiueId) {
-                            command.server.joinGroup(data.commandUnqiueId);
-                        }
+                        //if (data && data.commandUnqiueId) {
+                        //    command.server.joinGroup(data.commandUnqiueId);
+                        //}
 
                         //hideMask();
                     },
