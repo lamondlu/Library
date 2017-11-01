@@ -9,16 +9,16 @@ using BookingLibrary.Domain.Core.DataAccessor;
 using BookingLibrary.Domain.Core.Messaging;
 using BookingLibrary.Infrastructure.Messaging.SignalR;
 
-namespace BookingLibrary.Service.Repository.Handler
+namespace BookingLibrary.Service.Handler
 {
-    public class RepositoryHandlerRegister
+    public class HandlerRegister
     {
-        public RepositoryHandlerRegister()
+        public HandlerRegister()
         {
 
         }
 
-        public void RegisterAndStart()
+        public void RegisterAndStart(string libraryName)
         {
             var connectionString = InjectContainer.GetInstance<IEventDBConnectionStringProvider>().ConnectionString;
             InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
@@ -26,15 +26,15 @@ namespace BookingLibrary.Service.Repository.Handler
             Console.WriteLine($"Handler starting...");
             Console.WriteLine($"Event DB Connection String: {connectionString}");
 
-            RegisterAndStartCommandHandlers();
-            RegisterAndStartEventHandlers();
+            RegisterAndStartCommandHandlers(libraryName);
+            RegisterAndStartEventHandlers(libraryName);
 
             Console.WriteLine($"Handler started.");
         }
 
-        public void RegisterAndStartCommandHandlers()
+        public void RegisterAndStartCommandHandlers(string libraryName)
         {
-            var assembly = Assembly.Load("BookingLibrary.Service.Repository.Domain");
+            var assembly = Assembly.Load(libraryName);
 
             var allCommands = assembly.GetExportedTypes().Where(p => p.GetInterface("ICommand") != null);
             foreach (var command in allCommands)
@@ -48,10 +48,10 @@ namespace BookingLibrary.Service.Repository.Handler
             }
         }
 
-        public void RegisterAndStartEventHandlers()
+        public void RegisterAndStartEventHandlers(string libraryName)
         {
 
-            var assembly = Assembly.Load("BookingLibrary.Service.Repository.Domain");
+            var assembly = Assembly.Load(libraryName);
 
             var allEvents = assembly.GetExportedTypes().Where(p => p.GetInterface("IDomainEvent") != null);
             foreach (var @event in allEvents)

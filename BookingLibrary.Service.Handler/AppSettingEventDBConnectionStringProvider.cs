@@ -4,7 +4,7 @@ using BookingLibrary.Domain.Core.DataAccessor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 
-namespace BookingLibrary.Service.Repository.Handler
+namespace BookingLibrary.Service.Handler
 {
     public class AppSettingEventDBConnectionStringProvider : IEventDBConnectionStringProvider
     {

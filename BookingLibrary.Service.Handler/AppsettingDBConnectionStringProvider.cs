@@ -3,7 +3,7 @@ using System.IO;
 using BookingLibrary.Service.Repository.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;
 
-namespace BookingLibrary.Service.Repository.Handler
+namespace BookingLibrary.Service.Handler
 {
     public class AppsettingRepositoryReadDBConnectionStringProvider : IRepositoryReadDBConnectionStringProvider
     {

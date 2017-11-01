@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Infrastructure.Messaging.RabbitMQ", "BookingLibrary.Infrastructure.Messaging.RabbitMQ\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj", "{9D06E7EE-6262-4EC6-B5CF-22798FF9BB31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Service.Repository.Handler", "BookingLibrary.Service.Repository.Handler\BookingLibrary.Service.Repository.Handler.csproj", "{F928B96E-F918-4774-83B8-A44ACFBCE9F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Service.Handler", "BookingLibrary.Service.Handler\BookingLibrary.Service.Handler.csproj", "{F928B96E-F918-4774-83B8-A44ACFBCE9F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
