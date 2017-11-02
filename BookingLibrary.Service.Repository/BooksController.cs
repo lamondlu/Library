@@ -68,6 +68,16 @@ namespace BookingLibrary.Service.Repository
             return command.CommandUniqueId;
         }
 
+        [HttpPost("{bookId}/repositories")]
+        public Guid ImportBookRepository(Guid bookId, ImportBookRepositoryDTO dto)
+        {
+            _commandPublisher.Publish(new ImportBookRepositoryCommand
+            {
+                BookRepositoryIds = dto.BookRepositoryIds,
+                BookId = bookId
+            });
+        }
+
         [HttpPut("{bookId}/repositories/{repositoryId}/status")]
         public void ChangeBookRepositoryStatus(Guid bookId, Guid repositoryId, ChangeBookStatusDTO dto)
         {

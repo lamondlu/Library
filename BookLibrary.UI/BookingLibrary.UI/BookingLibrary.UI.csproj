@@ -196,9 +196,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\BookRepositoryController.cs" />
     <Compile Include="DTOs\AddBookDTO.cs" />
     <Compile Include="DTOs\EditBookDTO.cs" />
     <Compile Include="DTOs\IdentityDTO.cs" />
+    <Compile Include="DTOs\ImportBookRepositoryDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,6 +272,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Views\BookRepository\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

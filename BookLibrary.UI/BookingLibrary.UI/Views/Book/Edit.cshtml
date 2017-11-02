@@ -1,46 +1,72 @@
-﻿@model BookingLibrary.UI.DTOs.EditBookRepositoryDTO
+﻿@model BookingLibrary.UI.DTOs.EditBookDTO
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit Book Repository</h2>
+<h2>Edit Book</h2>
 
 <section>
     @using (Html.BeginForm("Edit", "Book", null, FormMethod.Post, new { @class = "form-horizontal" }))
     {
-        @Html.HiddenFor(p => p.BookId)
-        <div class="form-group">
-            <label for="tenantName" class="col-md-2 control-label">Book Name</label>
-            <div class="col-md-10">
-                @Html.TextBoxFor(p => p.BookName, new { @class = "form-control" })
+        <fieldset>
+            <legend>Book Information</legend>
+            @Html.HiddenFor(p => p.BookId)
+            <div class="form-group">
+                <label for="tenantName" class="col-md-2 control-label">Book Name</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(p => p.BookName, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="email" class="col-md-2 control-label">ISBN</label>
-            <div class="col-md-10">
-                @Html.TextBoxFor(p => p.ISBN, new { @class = "form-control" })
+            <div class="form-group">
+                <label for="email" class="col-md-2 control-label">ISBN</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(p => p.ISBN, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="email" class="col-md-2 control-label">Date Issued</label>
-            <div class="col-md-10">
-                @Html.TextBoxFor(p => p.DateIssued, "{0:yyyy-MM-dd}", new { @class = "form-control", @readonly="readonly" })
+            <div class="form-group">
+                <label for="email" class="col-md-2 control-label">Date Issued</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(p => p.DateIssued, "{0:yyyy-MM-dd}", new { @class = "form-control", @readonly = "readonly" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="email" class="col-md-2 control-label">Description</label>
-            <div class="col-md-10">
-                @Html.TextAreaFor(p => p.Description, new { @style = "max-width: 100%", @class = "form-control" })
+            <div class="form-group">
+                <label for="email" class="col-md-2 control-label">Description</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(p => p.Description, new { @style = "max-width: 100%", @class = "form-control" })
+                </div>
             </div>
-        </div>
+        </fieldset>
+        <fieldset>
+            <legend>Book Repositories</legend>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Unique Id</th>
+                        <th>Status</th>
+                        <th>Last Note</th>
+                        <th>Opeation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4">
+                            No record.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
         <div class="form-group">
             <input type="submit" class="btn btn-default" value="保存" />
             <input type="button" class="btn btn-default" value="返回" onclick="window.location='@Url.Action("List", "Book")'" />
         </div>
-
     }
+
+    
 </section>
+
+
 
 @section scripts{
     <script type="text/javascript">
