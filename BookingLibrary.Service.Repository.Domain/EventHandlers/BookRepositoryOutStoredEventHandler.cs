@@ -7,24 +7,24 @@ using BookingLibrary.Service.Repository.Domain.Events;
 
 namespace BookingLibrary.Service.Repository.Domain.EventHandlers
 {
-    public class BookOutStoredEventHandler : IEventHandler<BookOutStoredEvent>
+    public class BookRepositoryOutStoredEventHandler : IEventHandler<BookRepositoryOutStoredEvent>
     {
         private IRepositoryReportDataAccessor _reportDataAccessor = null;
 
-        public BookOutStoredEventHandler(IRepositoryReportDataAccessor reportDataAccessor)
+        public BookRepositoryOutStoredEventHandler(IRepositoryReportDataAccessor reportDataAccessor)
         {
             _reportDataAccessor = reportDataAccessor;
         }
 
-        public void Handle(BookOutStoredEvent evt)
+        public void Handle(BookRepositoryOutStoredEvent evt)
         {
-            _reportDataAccessor.UpdateBookStatus(evt.AggregateId, BookStatus.OutStore);
+            _reportDataAccessor.UpdateBookRepositoryStatus(evt.AggregateId, BookRepositoryStatus.OutStore, evt.Notes);
             _reportDataAccessor.Commit();
         }
 
-        public Task HandleAsync(BookOutStoredEvent evt)
+        public Task HandleAsync(BookRepositoryOutStoredEvent evt)
         {
-            _reportDataAccessor.UpdateBookStatus(evt.AggregateId, BookStatus.OutStore);
+            _reportDataAccessor.UpdateBookRepositoryStatus(evt.AggregateId, BookRepositoryStatus.OutStore, evt.Notes);
             return _reportDataAccessor.CommitAsync();
         }
     }

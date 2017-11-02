@@ -27,21 +27,20 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             _commands = new Dictionary<string, List<SqlParameter>>();
         }
 
-        public void AddBookRepository(AddBookDTO dto)
+        public void AddBook(AddBookDTO dto)
         {
-            _commands.Add("INSERT INTO BookRepository(BookId,BookName,ISBN,DateIssued,Description,Status) values(@bookId, @bookName, @isbn, @dateIssued, @description,@bookStatus)", new List<SqlParameter>{
+            _commands.Add("INSERT INTO Book(BookId,BookName,ISBN,DateIssued,Description) values(@bookId, @bookName, @isbn, @dateIssued, @description)", new List<SqlParameter>{
                 new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = dto.BookId },
                 new SqlParameter{ ParameterName ="@bookName", SqlDbType = SqlDbType.NVarChar, Value = dto.BookName },
                 new SqlParameter{ ParameterName ="@isbn", SqlDbType = SqlDbType.NVarChar, Value = dto.ISBN },
                 new SqlParameter{ ParameterName ="@dateIssued", SqlDbType = SqlDbType.DateTime2, Value = dto.DateIssued },
-                new SqlParameter{ ParameterName ="@description", SqlDbType = SqlDbType.NVarChar, Value = dto.Description },
-                new SqlParameter{ ParameterName ="@bookStatus", SqlDbType = SqlDbType.Int, Value = dto.BookStatus }
+                new SqlParameter{ ParameterName ="@description", SqlDbType = SqlDbType.NVarChar, Value = dto.Description }
             });
         }
 
         public void UpdateBookName(Guid bookId, string bookName)
         {
-            _commands.Add("UPDATE BookRepository SET BookName=@bookName WHERE BookId = @bookId", new List<SqlParameter>{
+            _commands.Add("UPDATE Book SET BookName=@bookName WHERE BookId = @bookId", new List<SqlParameter>{
                 new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId },
                 new SqlParameter{ ParameterName ="@bookName", SqlDbType = SqlDbType.NVarChar, Value = bookName }
             });
@@ -49,7 +48,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
 
         public void UpdateBookDescription(Guid bookId, string description)
         {
-            _commands.Add("UPDATE BookRepository SET Description=@description WHERE BookId = @bookId", new List<SqlParameter>{
+            _commands.Add("UPDATE Book SET Description=@description WHERE BookId = @bookId", new List<SqlParameter>{
                 new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId },
                 new SqlParameter{ ParameterName ="@description", SqlDbType = SqlDbType.NVarChar, Value = description }
             });
@@ -57,7 +56,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
 
         public void UpdateBookISBN(Guid bookId, string isbn)
         {
-            _commands.Add("UPDATE BookRepository SET ISBN=@isbn WHERE BookId = @bookId", new List<SqlParameter>{
+            _commands.Add("UPDATE Book SET ISBN=@isbn WHERE BookId = @bookId", new List<SqlParameter>{
                 new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId },
                 new SqlParameter{ ParameterName ="@isbn", SqlDbType = SqlDbType.NVarChar, Value = isbn }
             });
@@ -65,26 +64,43 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
 
         public void UpdateBookIssuedDate(Guid bookId, DateTime issuedDate)
         {
-            _commands.Add("UPDATE BookRepository SET DateIssued=@issuedDate WHERE BookId = @bookId", new List<SqlParameter>{
+            _commands.Add("UPDATE Book SET DateIssued=@issuedDate WHERE BookId = @bookId", new List<SqlParameter>{
                 new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId },
                 new SqlParameter{ ParameterName ="@issuedDate", SqlDbType = SqlDbType.DateTime2, Value = issuedDate }
             });
         }
 
-        public void UpdateBookStatus(Guid bookId, BookStatus status)
+        public void UpdateBookRepositoryStatus(Guid bookRepositoryId, BookRepositoryStatus status, string notes)
         {
-            _commands.Add("UPDATE BookRepository SET Status=@status WHERE BookId = @bookId", new List<SqlParameter>{
-                new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId },
+            _commands.Add("UPDATE BookRepository SET Status=@status WHERE BookRepositoryId = @bookRepositoryId", new List<SqlParameter>{
+                new SqlParameter{ ParameterName ="@bookRepositoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookRepositoryId },
                 new SqlParameter{ ParameterName ="@status", SqlDbType = SqlDbType.Int, Value = Convert.ToInt32(status) }
+            });
+
+            if (!string.IsNullOrWhiteSpace(notes))
+            {
+                _commands.Add("INSERT INTO History(HistoryId, BookRepositoryId, Note, CreatedOn) values(@historyId, @bookRepositoryId, @note, @createdOn)", new List<SqlParameter>{
+                new SqlParameter{ ParameterName ="@bookRepositoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookRepositoryId },
+                new SqlParameter{ ParameterName ="@historyId", SqlDbType = SqlDbType.UniqueIdentifier, Value = Guid.NewGuid() },
+                new SqlParameter{ ParameterName ="@createdOn", SqlDbType = SqlDbType.DateTime2, Value = DateTime.Now },
+                new SqlParameter{ ParameterName ="@note", SqlDbType = SqlDbType.NVarChar, Value = notes },
+            });
+            }
+        }
+
+        public void RemoveBookRepository(Guid bookRepositoryId)
+        {
+            _commands.Add("UPDATE BookRepository SET IsDeleted=1 WHERE BookRepositoryId = @bookRepositoryId", new List<SqlParameter>{
+                new SqlParameter{ ParameterName ="@bookRepositoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookRepositoryId }
             });
         }
 
-        public List<BookViewModel> GetBookRepositories()
+        public List<BookViewModel> GetBooks()
         {
             var result = new List<BookViewModel>();
 
             var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
-            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM BookRepository");
+            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM Book");
 
             return dataTable.ConvertToBookViewModel();
         }
@@ -94,7 +110,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             var result = new List<BookViewModel>();
 
             var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
-            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM BookRepository WHERE BookId=@bookId", new SqlParameter { ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId });
+            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM Book WHERE BookId=@bookId", new SqlParameter { ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId });
 
             return dataTable.ConvertToBookDetailedModel().FirstOrDefault();
         }
@@ -106,7 +122,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
 
             if (bookId.HasValue)
             {
-                sql = "SELECT COUNT(ISBN) FROM BookRepository WHERE ISBN=@isbn and BookId<>@bookId";
+                sql = "SELECT COUNT(ISBN) FROM Book WHERE ISBN=@isbn and BookId<>@bookId";
 
                 return dbHelper.ExecuteScalar(sql, new List<SqlParameter>{
                    new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId.Value},
@@ -115,7 +131,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             }
             else
             {
-                sql = "SELECT COUNT(ISBN) FROM BookRepository WHERE ISBN=@isbn";
+                sql = "SELECT COUNT(ISBN) FROM Book WHERE ISBN=@isbn";
 
                 return dbHelper.ExecuteScalar(sql, new List<SqlParameter>{
                    new SqlParameter{ ParameterName ="@isbn", SqlDbType = SqlDbType.NVarChar, Value = isbn}
@@ -123,10 +139,10 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             }
         }
 
-        public void DeleteBookRepository(Guid bookRepositoryId)
+        public void DeleteBook(Guid bookId)
         {
-            _commands.Add("Delete BookRepository WHERE BookId = @bookId", new List<SqlParameter>{
-                new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookRepositoryId }
+            _commands.Add("Delete Book WHERE BookId = @bookId", new List<SqlParameter>{
+                new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId }
             });
         }
 
@@ -143,6 +159,11 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             {
                 Commit();
             });
+        }
+
+        public void ImportBookRepositoies(Guid bookId, List<Guid> bookRepositoryIds)
+        {
+
         }
     }
 }

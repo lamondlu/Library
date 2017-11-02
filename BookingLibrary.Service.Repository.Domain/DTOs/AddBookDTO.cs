@@ -13,7 +13,5 @@ namespace BookingLibrary.Service.Repository.Domain.DTOs
         public DateTime DateIssued { get; set; }
 
         public string Description { get; set; }
-
-        public int BookStatus { get; set; }
     }
 }

@@ -15,8 +15,6 @@ namespace BookingLibrary.UI
 
         public string Description { get; set; }
 
-        public int BookStatus { get; set; }
-
         public DateTime DateIssued { get; set; }
     }
 }

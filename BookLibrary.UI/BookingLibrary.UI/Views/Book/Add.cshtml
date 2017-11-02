@@ -1,4 +1,4 @@
-﻿@model BookingLibrary.UI.DTOs.AddBookRepositoryDTO
+﻿@model BookingLibrary.UI.DTOs.AddBookDTO
 @{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,7 +7,7 @@
 <h2>Add Book Repository</h2>
 
 <section>
-    @using (Html.BeginForm("Add", "BookRepository", null, FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("Add", "Book", null, FormMethod.Post, new { @class = "form-horizontal" }))
     {
         <div class="form-group">
             <label for="tenantName" class="col-md-2 control-label">Book Name</label>
@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
             <input type="button" class="btn btn-default" value="保存" id="btnSave" />
-            <input type="button" class="btn btn-default" value="返回" onclick="window.location='@Url.Action("List", "BookRepository")'" />
+            <input type="button" class="btn btn-default" value="返回" onclick="window.location='@Url.Action("List", "Book")'" />
         </div>
 
     }
@@ -61,7 +61,7 @@
                     hideMask();
                     alert('Create successfully.');
                     command.server.removeCommand(currentCommandUnqiueId);
-                    window.location = '@Url.Action("List", "BookRepository")';
+                    window.location = '@Url.Action("List", "Book")';
                 }
             };
 

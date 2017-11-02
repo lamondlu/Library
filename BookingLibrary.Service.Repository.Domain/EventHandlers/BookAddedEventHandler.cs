@@ -18,11 +18,10 @@ namespace BookingLibrary.Service.Repository.Domain.EventHandlers
 
         public void Handle(BookAddedEvent evt)
         {
-            _reportDataAccessor.AddBookRepository(new AddBookDTO
+            _reportDataAccessor.AddBook(new AddBookDTO
             {
                 BookId = evt.AggregateId,
                 BookName = evt.BookName,
-                BookStatus = Convert.ToInt32(evt.BookStatus),
                 Description = evt.Description,
                 ISBN = evt.ISBN,
                 DateIssued = evt.DateIssued
@@ -33,11 +32,10 @@ namespace BookingLibrary.Service.Repository.Domain.EventHandlers
 
         public Task HandleAsync(BookAddedEvent evt)
         {
-            _reportDataAccessor.AddBookRepository(new AddBookDTO
+            _reportDataAccessor.AddBook(new AddBookDTO
             {
                 BookId = evt.AggregateId,
                 BookName = evt.BookName,
-                BookStatus = Convert.ToInt32(evt.BookStatus),
                 Description = evt.Description,
                 ISBN = evt.ISBN,
                 DateIssued = evt.DateIssued

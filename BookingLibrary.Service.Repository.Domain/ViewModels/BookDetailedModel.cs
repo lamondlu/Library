@@ -12,8 +12,6 @@ namespace BookingLibrary.Service.Repository.Domain.ViewModels
 
         public string Description { get; set; }
 
-        public BookStatus BookStatus { get; set; }
-
         public DateTime DateIssued { get; set; }
     }
 }

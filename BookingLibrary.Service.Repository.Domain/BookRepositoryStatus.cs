@@ -2,7 +2,7 @@ using System;
 
 namespace BookingLibrary.Service.Repository.Domain
 {
-    public enum BookStatus
+    public enum BookRepositoryStatus
     {
         InStore = 1,
         OutStore = 2

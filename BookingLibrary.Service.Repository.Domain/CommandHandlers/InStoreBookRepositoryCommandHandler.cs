@@ -6,20 +6,20 @@ using BookingLibrary.Service.Repository.Domain;
 
 namespace BookingLibrary.Service.Repository.Domain.CommandHandlers
 {
-    public class OutStoreBookCommandHandler : ICommandHandler<OutStoreBookCommand>
+    public class InStoreBookRepositoryCommandHandler : ICommandHandler<InStoreBookRepositoryCommand>
     {
         private IDomainRepository _domainRepository = null;
 
-        public OutStoreBookCommandHandler(IDomainRepository domainRepository)
+        public InStoreBookRepositoryCommandHandler(IDomainRepository domainRepository)
         {
             _domainRepository = domainRepository;
         }
 
-        public void Execute(OutStoreBookCommand command)
+        public void Execute(InStoreBookRepositoryCommand command)
         {
             var book = _domainRepository.GetById<Book>(command.BookId);
 
-            book.OutStore();
+            book.InStoreBookRepository(command.BookRepositoryId, command.Notes);
             _domainRepository.Save(book, book.Version, command.CommandUniqueId);
         }
 

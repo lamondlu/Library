@@ -6,7 +6,7 @@ using System.Web;
 
 namespace BookingLibrary.UI.DTOs
 {
-    public class AddBookRepositoryDTO
+    public class AddBookDTO
     {
         public Guid BookId { get; set; }
 

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using BookingLibrary.Domain.Core;
 using BookingLibrary.Service.Repository.Domain.Events;
+using System.Linq;
 
 namespace BookingLibrary.Service.Repository.Domain
 {
@@ -10,23 +12,14 @@ namespace BookingLibrary.Service.Repository.Domain
     IHandler<BookISBNChangedEvent>,
     IHandler<BookNameChangedEvent>,
     IHandler<BookIssuedDateChangedEvent>,
-    IHandler<BookInStoredEvent>,
-    IHandler<BookOutStoredEvent>,
-    IHandler<BookDescriptionChangedEvent>
+    IHandler<BookDescriptionChangedEvent>,
+    IHandler<BookRepositoryInStoredEvent>,
+    IHandler<BookRepositoryOutStoredEvent>,
+    IHandler<BookRepositoryImportedEvent>
     {
         public Book()
         {
 
-        }
-
-        public Book(Guid bookId, string isbn, string bookName, string description, DateTime dateIssued, BookStatus bookStatus)
-        {
-            Id = bookId;
-            ISBN = isbn;
-            BookName = bookName;
-            Description = description;
-            DateIssued = dateIssued;
-            BookStatus = bookStatus;
         }
 
         public Book(Guid bookId, string isbn, string bookName, string description, DateTime dateIssued)
@@ -37,8 +30,7 @@ namespace BookingLibrary.Service.Repository.Domain
                 BookName = bookName,
                 DateIssued = dateIssued,
                 AggregateId = bookId,
-                Description = description,
-                BookStatus = BookStatus.InStore
+                Description = description
             });
         }
 
@@ -50,7 +42,7 @@ namespace BookingLibrary.Service.Repository.Domain
 
         public DateTime DateIssued { get; internal set; }
 
-        public BookStatus BookStatus { get; internal set; }
+        public List<BookRepository> BookRepositories { get; set; }
 
         public void ChangeBookName(string bookName)
         {
@@ -67,22 +59,6 @@ namespace BookingLibrary.Service.Repository.Domain
             {
                 AggregateId = Id,
                 Description = description
-            });
-        }
-
-        public void InStore()
-        {
-            ApplyChange(new BookInStoredEvent
-            {
-                AggregateId = this.Id
-            });
-        }
-
-        public void OutStore()
-        {
-            ApplyChange(new BookOutStoredEvent
-            {
-                AggregateId = this.Id
             });
         }
 
@@ -104,14 +80,69 @@ namespace BookingLibrary.Service.Repository.Domain
             });
         }
 
+        public void OutStoreBookRepository(Guid bookRepositoryId, string notes)
+        {
+            var bookRepository = this.BookRepositories.FirstOrDefault(p => p.Id == bookRepositoryId);
+
+            if (bookRepository == null)
+            {
+                throw new Exception("The book repository is not existed.");
+            }
+            else if (bookRepository.Status == BookRepositoryStatus.InStore)
+            {
+                throw new Exception("The book is still out store.");
+            }
+            else
+            {
+                ApplyChange(new BookRepositoryOutStoredEvent
+                {
+                    Notes = notes,
+                    BookRepositoryId = bookRepository.Id,
+                    AggregateId = this.Id
+                });
+            }
+        }
+
+        public void InStoreBookRepository(Guid bookRepositoryId, string notes)
+        {
+            var bookRepository = this.BookRepositories.FirstOrDefault(p => p.Id == bookRepositoryId);
+
+            if (bookRepository == null)
+            {
+                throw new Exception("The book repository is not existed.");
+            }
+            else if (bookRepository.Status == BookRepositoryStatus.InStore)
+            {
+                throw new Exception("The book is still in store.");
+            }
+            else
+            {
+                ApplyChange(new BookRepositoryInStoredEvent
+                {
+                    Notes = notes,
+                    BookRepositoryId = bookRepository.Id,
+                    AggregateId = this.Id
+                });
+            }
+        }
+
+        public void Import(List<Guid> repositoryIds)
+        {
+            ApplyChange(new BookRepositoryImportedEvent
+            {
+                AggregateId = Id,
+                BookRepositoryIds = repositoryIds
+            });
+        }
+
         public void Handle(BookAddedEvent evt)
         {
             this.BookName = evt.BookName;
             this.DateIssued = evt.DateIssued;
             this.Id = evt.AggregateId;
             this.ISBN = evt.ISBN;
-            this.BookStatus = evt.BookStatus;
             this.Description = evt.Description;
+            this.BookRepositories = new List<BookRepository>();
         }
 
         public void Handle(BookRemovedEvent evt)
@@ -139,18 +170,32 @@ namespace BookingLibrary.Service.Repository.Domain
             ApplyChange(new BookRemovedEvent());
         }
 
-        public void Handle(BookInStoredEvent evt)
+        public void Handle(BookDescriptionChangedEvent evt)
         {
-            this.BookStatus = BookStatus.InStore;
-        }
-
-        public void Handle(BookOutStoredEvent evt)
-        {
-            this.BookStatus = BookStatus.OutStore;
-        }
-
-        public void Handle(BookDescriptionChangedEvent evt){
             this.Description = evt.Description;
+        }
+
+        public void Handle(BookRepositoryOutStoredEvent evt)
+        {
+            var repository = this.BookRepositories.First(p => p.Id == evt.BookRepositoryId);
+            repository.OutStore();
+        }
+
+        public void Handle(BookRepositoryInStoredEvent evt)
+        {
+            var repository = this.BookRepositories.First(p => p.Id == evt.BookRepositoryId);
+            repository.InStore();
+        }
+
+        public void Handle(BookRepositoryImportedEvent evt)
+        {
+            foreach (var id in evt.BookRepositoryIds)
+            {
+                var bookRepository = new BookRepository(id);
+
+                bookRepository.InStore();
+                this.BookRepositories.Add(bookRepository);
+            }
         }
     }
 }

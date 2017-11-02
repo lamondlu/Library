@@ -7,24 +7,24 @@ using BookingLibrary.Service.Repository.Domain.Events;
 
 namespace BookingLibrary.Service.Repository.Domain.EventHandlers
 {
-    public class BookInStoredEventHandler : IEventHandler<BookInStoredEvent>
+    public class BookRepositoryInStoredEventHandler : IEventHandler<BookRepositoryInStoredEvent>
     {
         private IRepositoryReportDataAccessor _reportDataAccessor = null;
 
-        public BookInStoredEventHandler(IRepositoryReportDataAccessor reportDataAccessor)
+        public BookRepositoryInStoredEventHandler(IRepositoryReportDataAccessor reportDataAccessor)
         {
             _reportDataAccessor = reportDataAccessor;
         }
 
-        public void Handle(BookInStoredEvent evt)
+        public void Handle(BookRepositoryInStoredEvent evt)
         {
-            _reportDataAccessor.UpdateBookStatus(evt.AggregateId, BookStatus.InStore);
+            _reportDataAccessor.UpdateBookRepositoryStatus(evt.AggregateId, BookRepositoryStatus.InStore, evt.Notes);
             _reportDataAccessor.Commit();
         }
 
-        public Task HandleAsync(BookInStoredEvent evt)
+        public Task HandleAsync(BookRepositoryInStoredEvent evt)
         {
-            _reportDataAccessor.UpdateBookStatus(evt.AggregateId, BookStatus.InStore);
+            _reportDataAccessor.UpdateBookRepositoryStatus(evt.AggregateId, BookRepositoryStatus.InStore, evt.Notes);
             return _reportDataAccessor.CommitAsync();
         }
     }

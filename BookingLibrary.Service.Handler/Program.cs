@@ -33,22 +33,7 @@ namespace BookingLibrary.Service.Handler
             InjectContainer.RegisterType<IRepositoryReportDataAccessor, RepositoryReportDataAccessor>();
 
 
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
-
-            var configuration = builder.Build();
-
-            var s_handlers = configuration.GetSection("handlers").GetChildren();
-            var handlers = new List<HandlerConfigurationDTO>();
-
-            foreach (IConfigurationSection s_handler in s_handlers)
-            {
-                handlers.Add(new HandlerConfigurationDTO{
-                   Name = s_handler["name"],
-                   LibraryName = s_handler["libraryName"]
-                });
-            }
+            var handlers = BuildHandlerConfigurations();
 
             HandlerRegister register = new HandlerRegister();
             foreach (var handler in handlers)
@@ -60,6 +45,29 @@ namespace BookingLibrary.Service.Handler
 
                 Console.WriteLine($"Started handler '{handler.Name}'");
             }
+        }
+
+        private static List<HandlerConfigurationDTO> BuildHandlerConfigurations()
+        {
+            var builder = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json");
+
+            var configuration = builder.Build();
+
+            var s_handlers = configuration.GetSection("handlers").GetChildren();
+            var handlers = new List<HandlerConfigurationDTO>();
+
+            foreach (IConfigurationSection s_handler in s_handlers)
+            {
+                handlers.Add(new HandlerConfigurationDTO
+                {
+                    Name = s_handler["name"],
+                    LibraryName = s_handler["libraryName"]
+                });
+            }
+
+            return handlers;
         }
 
         private static void RegisterCommandHandlers(string libraryName)

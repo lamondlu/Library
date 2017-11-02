@@ -11,14 +11,14 @@ using System.Web.Mvc;
 namespace BookingLibrary.UI.Controllers
 {
     [Authorize]
-    public class BookRepositoryController : Controller
+    public class BookController : Controller
     {
         private string _repositoryApiBaseUrl => ConfigurationManager.AppSettings["repositoryApiUrl"];
 
         [HttpGet]
         public ActionResult List()
         {
-            var data = ApiRequest.Get<List<BookViewModel>>($"{_repositoryApiBaseUrl}/api/BookRepository");
+            var data = ApiRequest.Get<List<BookViewModel>>($"{_repositoryApiBaseUrl}/api/Books");
             return View(data);
         }
 
@@ -31,13 +31,13 @@ namespace BookingLibrary.UI.Controllers
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
-            var data = ApiRequest.Get<EditBookRepositoryDTO>($"{_repositoryApiBaseUrl}/api/BookRepository/{id}");
+            var data = ApiRequest.Get<EditBookDTO>($"{_repositoryApiBaseUrl}/api/Books/{id}");
 
             return View(data);
         }
 
         [HttpPost]
-        public ActionResult Edit(Guid id, EditBookRepositoryDTO dto)
+        public ActionResult Edit(Guid id, EditBookDTO dto)
         {
             var data = new NameValueCollection();
 
@@ -47,7 +47,7 @@ namespace BookingLibrary.UI.Controllers
             data.Add("IssueDate", dto.DateIssued.ToString("yyyy-MM-dd"));
             data.Add("Description", dto.Description);
 
-            var commandId = ApiRequest.Put<Guid>($"{_repositoryApiBaseUrl}/api/BookRepository/{dto.BookId}", data);
+            var commandId = ApiRequest.Put<Guid>($"{_repositoryApiBaseUrl}/api/Books/{dto.BookId}", data);
 
             if (commandId != Guid.Empty)
             {
@@ -60,7 +60,7 @@ namespace BookingLibrary.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(AddBookRepositoryDTO dto)
+        public ActionResult Add(AddBookDTO dto)
         {
             var data = new NameValueCollection();
 
@@ -69,7 +69,7 @@ namespace BookingLibrary.UI.Controllers
             data.Add("IssueDate", dto.IssueDate.ToString("yyyy-MM-dd"));
             data.Add("Description", dto.Description);
 
-            var commandUnqiueId = ApiRequest.Post<Guid>($"{_repositoryApiBaseUrl}/api/BookRepository", data);
+            var commandUnqiueId = ApiRequest.Post<Guid>($"{_repositoryApiBaseUrl}/api/Books", data);
 
             return Json(new { commandUnqiueId = commandUnqiueId });
         }

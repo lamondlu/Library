@@ -6,6 +6,8 @@ namespace BookingLibrary.Service.Repository.DTOs
 {
     public class ChangeBookStatusDTO
     {
-        public BookStatus Status { get; set; }
+        public BookRepositoryStatus Status { get; set; }
+
+        public string Notes { get; set; }
     }
 }

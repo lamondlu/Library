@@ -43,7 +43,8 @@
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated)
                     {
-                    <li>@Html.ActionLink("Book Repository", "List", "BookRepository")</li>
+                    <li>@Html.ActionLink("Book", "List", "Book")</li>
+                    <li>@Html.ActionLink("BookRepository", "List", "BookRepository")</li>
                     <li>@Html.ActionLink("Lease", "List", "Lease")</li>
                     <li>@Html.ActionLink("User Management", "List", "User")</li>
                     }

@@ -9,9 +9,9 @@ namespace BookingLibrary.Service.Repository.Domain.DataAccessors
 {
     public interface IRepositoryReportDataAccessor
     {
-        void AddBookRepository(AddBookDTO dto);
+        void AddBook(AddBookDTO dto);
 
-        List<BookViewModel> GetBookRepositories();
+        List<BookViewModel> GetBooks();
 
         BookDetailedModel GetBookById(Guid bookId);
 
@@ -25,9 +25,13 @@ namespace BookingLibrary.Service.Repository.Domain.DataAccessors
 
         void UpdateBookIssuedDate(Guid bookId, DateTime issuedDate);
 
-        void UpdateBookStatus(Guid bookId, BookStatus status);
+        void UpdateBookRepositoryStatus(Guid bookRepositoryId, BookRepositoryStatus status, string notes);
 
-        void DeleteBookRepository(Guid bookRepositoryId);
+        void ImportBookRepositoies(Guid bookId, List<Guid> bookRepositoryIds);
+
+        void RemoveBookRepository(Guid bookRepositoryId);
+
+        void DeleteBook(Guid bookId);
 
         void Commit();
 

@@ -21,7 +21,6 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.Ext
 
                 model.BookId = Guid.Parse(dr["BookId"].ToString());
                 model.BookName = dr["BookName"].ToString();
-                model.BookStatus = (BookStatus)Enum.Parse(typeof(BookStatus), dr["Status"].ToString());
                 model.DateIssued = Convert.ToDateTime(dr["DateIssued"]);
                 model.ISBN = dr["ISBN"].ToString();
                 model.Description = dr["Description"].ToString();
@@ -42,7 +41,6 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.Ext
 
                 model.BookId = Guid.Parse(dr["BookId"].ToString());
                 model.BookName = dr["BookName"].ToString();
-                model.BookStatus = (BookStatus)Enum.Parse(typeof(BookStatus), dr["Status"].ToString());
                 model.DateIssued = Convert.ToDateTime(dr["DateIssued"]);
                 model.ISBN = dr["ISBN"].ToString();
                 model.Description = dr["Description"].ToString();

@@ -195,9 +195,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BookRepositoryController.cs" />
-    <Compile Include="DTOs\AddBookRepositoryDTO.cs" />
-    <Compile Include="DTOs\EditBookRepositoryDTO.cs" />
+    <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="DTOs\AddBookDTO.cs" />
+    <Compile Include="DTOs\EditBookDTO.cs" />
     <Compile Include="DTOs\IdentityDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -263,9 +263,9 @@
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\BookRepository\List.cshtml" />
-    <Content Include="Views\BookRepository\Add.cshtml" />
-    <Content Include="Views\BookRepository\Edit.cshtml" />
+    <Content Include="Views\Book\List.cshtml" />
+    <Content Include="Views\Book\Add.cshtml" />
+    <Content Include="Views\Book\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

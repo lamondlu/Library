@@ -6,7 +6,7 @@
 
 <h2>Book Repository</h2>
 <div style="margin-bottom:10px">
-    <button class="btn btn-success" type="button" onclick="window.location = '@Url.Action("Add","BookRepository")';">+ Add</button>
+    <button class="btn btn-success" type="button" onclick="window.location = '@Url.Action("Add","Book")';">+ Add</button>
 </div>
 
 <table class="table table-bordered">
@@ -15,7 +15,6 @@
             <th></th>
             <th>Book Name</th>
             <th>ISBN</th>
-            <th>Status</th>
             <th>Issued Date</th>
             <th></th>
         </tr>
@@ -30,9 +29,8 @@
                     <td>@index</td>
                     <td>@item.BookName</td>
                     <td>@item.ISBN</td>
-                    <td>@(item.BookStatus == 1 ? "IN" : "OUT")</td>
                     <td>@item.DateIssued.ToString("yyyy-MM-dd")</td>
-                    <td><button type="button" class="btn btn-primary" onclick="window.location='@Url.Action("Edit","BookRepository", new { id=item.BookId})'">Edit</button>&nbsp;<button type="button" class="btn btn-danger">Delete</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="window.location='@Url.Action("Edit","Book", new { id=item.BookId})'">Edit</button>&nbsp;<button type="button" class="btn btn-danger">Delete</button>&nbsp;<button type="button" class="btn btn-primary" onclick="bulkImported(@item.BookId)">Bulk Imported</button></td>
                 </tr>
                 index++;
             }

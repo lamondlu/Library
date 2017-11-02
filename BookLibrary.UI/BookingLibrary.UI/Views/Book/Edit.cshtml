@@ -7,7 +7,7 @@
 <h2>Edit Book Repository</h2>
 
 <section>
-    @using (Html.BeginForm("Edit", "BookRepository", null, FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("Edit", "Book", null, FormMethod.Post, new { @class = "form-horizontal" }))
     {
         @Html.HiddenFor(p => p.BookId)
         <div class="form-group">
@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-default" value="保存" />
-            <input type="button" class="btn btn-default" value="返回" onclick="window.location='@Url.Action("List", "BookRepository")'" />
+            <input type="button" class="btn btn-default" value="返回" onclick="window.location='@Url.Action("List", "Book")'" />
         </div>
 
     }

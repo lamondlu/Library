@@ -12,12 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace BookingLibrary.Service.Repository
 {
     [Route("api/[controller]")]
-    public class BookRepositoryController : Controller
+    public class BooksController : Controller
     {
         private ICommandPublisher _commandPublisher = null;
         private IRepositoryReportDataAccessor _reportDatabase = null;
 
-        public BookRepositoryController()
+        public BooksController()
         {
             _commandPublisher = InjectContainer.GetInstance<ICommandPublisher>();
             _reportDatabase = InjectContainer.GetInstance<IRepositoryReportDataAccessor>();
@@ -26,17 +26,17 @@ namespace BookingLibrary.Service.Repository
         [HttpGet("")]
         public List<BookViewModel> GetAllBooks()
         {
-            return _reportDatabase.GetBookRepositories();
+            return _reportDatabase.GetBooks();
         }
 
         [HttpGet("{id}")]
-        public BookDetailedModel GetBookRepository(Guid id)
+        public BookDetailedModel GetBook(Guid id)
         {
             return _reportDatabase.GetBookById(id);
         }
 
         [HttpPut("{id}")]
-        public Guid UpdateBookRepository(Guid id,DTOs.BookDTO dto)
+        public Guid UpdateBook(Guid id, DTOs.BookDTO dto)
         {
             var command = new UpdateBookCommand
             {
@@ -52,7 +52,7 @@ namespace BookingLibrary.Service.Repository
         }
 
         [HttpPost("")]
-        public Guid AddBookRepository(BookDTO dto)
+        public Guid AddBook(BookDTO dto)
         {
             var command = new AddBookCommand
             {
@@ -68,21 +68,25 @@ namespace BookingLibrary.Service.Repository
             return command.CommandUniqueId;
         }
 
-        [HttpPost("{bookId}/status")]
-        public void InStoredBook(Guid bookId, ChangeBookStatusDTO dto)
+        [HttpPut("{bookId}/repositories/{repositoryId}/status")]
+        public void ChangeBookRepositoryStatus(Guid bookId, Guid repositoryId, ChangeBookStatusDTO dto)
         {
-            if (dto.Status == BookStatus.InStore)
+            if (dto.Status == BookRepositoryStatus.InStore)
             {
-                _commandPublisher.Publish(new InStoreBookCommand
+                _commandPublisher.Publish(new InStoreBookRepositoryCommand
                 {
-                    BookId = bookId
+                    BookId = bookId,
+                    BookRepositoryId = repositoryId,
+                    Notes = dto.Notes
                 });
             }
             else
             {
-                _commandPublisher.Publish(new OutStoreBookCommand
+                _commandPublisher.Publish(new OutStoreBookRepositoryCommand
                 {
-                    BookId = bookId
+                    BookId = bookId,
+                    BookRepositoryId = repositoryId,
+                    Notes = dto.Notes
                 });
             }
         }

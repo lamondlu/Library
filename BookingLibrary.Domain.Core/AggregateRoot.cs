@@ -8,7 +8,6 @@ namespace BookingLibrary.Domain.Core
     {
         private readonly List<DomainEvent> _changes;
 
-        public Guid Id { get; protected set; }
         public int Version { get; set; }
         public int EventVersion { get; protected set; }
 
