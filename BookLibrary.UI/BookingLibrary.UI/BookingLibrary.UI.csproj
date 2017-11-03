@@ -198,6 +198,7 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\BookRepositoryController.cs" />
     <Compile Include="DTOs\AddBookDTO.cs" />
+    <Compile Include="DTOs\BulkImportDTO.cs" />
     <Compile Include="DTOs\EditBookDTO.cs" />
     <Compile Include="DTOs\IdentityDTO.cs" />
     <Compile Include="DTOs\ImportBookRepositoryDTO.cs" />
@@ -209,7 +210,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Utilities\ApiRequest.cs" />
+    <Compile Include="Utilities\ApiRequestWithStringContent.cs" />
+    <Compile Include="Utilities\ApiRequestWithFormUrlEncodedContent.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -50,7 +50,7 @@ namespace BookingLibrary.UI.Controllers
             datas.Add("UserName", model.UserName);
             datas.Add("Password", model.Password);
 
-            var validationResult = ApiRequest.Post<IdentityDTO>(url, datas);
+            var validationResult = ApiRequestWithFormUrlEncodedContent.Post<IdentityDTO>(url, datas);
 
             if (validationResult.UserId != Guid.Empty)
             {

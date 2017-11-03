@@ -69,13 +69,17 @@ namespace BookingLibrary.Service.Repository
         }
 
         [HttpPost("{bookId}/repositories")]
-        public Guid ImportBookRepository(Guid bookId, ImportBookRepositoryDTO dto)
+        public Guid ImportBookRepository(Guid bookId, [FromBody]ImportBookRepositoryDTO dto)
         {
-            _commandPublisher.Publish(new ImportBookRepositoryCommand
+            var command = new ImportBookRepositoryCommand
             {
                 BookRepositoryIds = dto.BookRepositoryIds,
                 BookId = bookId
-            });
+            };
+
+            _commandPublisher.Publish(command);
+
+            return command.CommandUniqueId;
         }
 
         [HttpPut("{bookId}/repositories/{repositoryId}/status")]

@@ -18,7 +18,7 @@ namespace BookingLibrary.UI.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            var data = ApiRequest.Get<List<BookViewModel>>($"{_repositoryApiBaseUrl}/api/Books");
+            var data = ApiRequestWithFormUrlEncodedContent.Get<List<BookViewModel>>($"{_repositoryApiBaseUrl}/api/Books");
             return View(data);
         }
 
@@ -31,7 +31,7 @@ namespace BookingLibrary.UI.Controllers
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
-            var data = ApiRequest.Get<EditBookDTO>($"{_repositoryApiBaseUrl}/api/Books/{id}");
+            var data = ApiRequestWithFormUrlEncodedContent.Get<EditBookDTO>($"{_repositoryApiBaseUrl}/api/Books/{id}");
 
             return View(data);
         }
@@ -47,7 +47,7 @@ namespace BookingLibrary.UI.Controllers
             data.Add("IssueDate", dto.DateIssued.ToString("yyyy-MM-dd"));
             data.Add("Description", dto.Description);
 
-            var commandId = ApiRequest.Put<Guid>($"{_repositoryApiBaseUrl}/api/Books/{dto.BookId}", data);
+            var commandId = ApiRequestWithFormUrlEncodedContent.Put<Guid>($"{_repositoryApiBaseUrl}/api/Books/{dto.BookId}", data);
 
             if (commandId != Guid.Empty)
             {
@@ -69,7 +69,7 @@ namespace BookingLibrary.UI.Controllers
             data.Add("IssueDate", dto.IssueDate.ToString("yyyy-MM-dd"));
             data.Add("Description", dto.Description);
 
-            var commandUnqiueId = ApiRequest.Post<Guid>($"{_repositoryApiBaseUrl}/api/Books", data);
+            var commandUnqiueId = ApiRequestWithFormUrlEncodedContent.Post<Guid>($"{_repositoryApiBaseUrl}/api/Books", data);
 
             return Json(new { commandUnqiueId = commandUnqiueId });
         }

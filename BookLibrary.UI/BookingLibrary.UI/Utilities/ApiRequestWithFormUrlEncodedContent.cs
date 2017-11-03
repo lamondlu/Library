@@ -12,11 +12,11 @@ using System.Web;
 
 namespace BookingLibrary.UI.Utilities
 {
-    public class ApiRequest
+    public class ApiRequestWithFormUrlEncodedContent
     {
         private static readonly HttpClient _httpClient;
 
-        static ApiRequest()
+        static ApiRequestWithFormUrlEncodedContent()
         {
             _httpClient = new HttpClient();
             _httpClient.Timeout = new TimeSpan(0, 0, 10);

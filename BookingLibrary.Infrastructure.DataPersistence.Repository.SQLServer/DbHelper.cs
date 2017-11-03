@@ -20,7 +20,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             this.connectionString = connectionString;
         }
 
-        public void ExecuteNoQuery(Dictionary<string, List<SqlParameter>> queries)
+        public void ExecuteNoQuery(List<Command> queries)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
             {
@@ -31,9 +31,9 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
                 {
                     foreach (var query in queries)
                     {
-                        SqlCommand cmd = new SqlCommand(query.Key, Connection);
+                        SqlCommand cmd = new SqlCommand(query.SQL, Connection);
                         cmd.Transaction = trans;
-                        cmd.Parameters.AddRange(query.Value.ToArray());
+                        cmd.Parameters.AddRange(query.Parameters.ToArray());
                         if (Connection.State != ConnectionState.Open)
                         {
                             Connection.Open();

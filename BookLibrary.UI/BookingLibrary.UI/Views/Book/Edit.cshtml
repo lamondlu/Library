@@ -49,11 +49,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (Model.BookRepositories.Count > 0)
+                    {
+                        foreach (var item in Model.BookRepositories)
+                        {
+                            <tr>
+                                <td>@item.BookRepositoryId</td>
+                                <td>@(item.Status == 1?"IN":"OUT")</td>
+                                <td>@item.LastNote</td>
+                                <td></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
                     <tr>
                         <td colspan="4">
                             No record.
                         </td>
                     </tr>
+                    }
                 </tbody>
             </table>
         </fieldset>

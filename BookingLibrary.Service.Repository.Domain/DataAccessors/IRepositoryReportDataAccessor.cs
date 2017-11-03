@@ -27,7 +27,7 @@ namespace BookingLibrary.Service.Repository.Domain.DataAccessors
 
         void UpdateBookRepositoryStatus(Guid bookRepositoryId, BookRepositoryStatus status, string notes);
 
-        void ImportBookRepositoies(Guid bookId, List<Guid> bookRepositoryIds);
+        void ImportBookRepositoies(Guid bookId, List<BookRepository> bookRepositories);
 
         void RemoveBookRepository(Guid bookRepositoryId);
 

@@ -20,6 +20,10 @@ namespace BookingLibrary.Service.Repository.Domain
 
         public void Execute(ImportBookRepositoryCommand command)
         {
+            if(command.BookRepositoryIds == null || command.BookRepositoryIds.Count == 0){
+                return;
+            }
+
             var book = _domainRepository.GetById<Book>(command.BookId);
             book.Import(command.BookRepositoryIds);
             _domainRepository.Save(book, book.Version, command.CommandUniqueId);

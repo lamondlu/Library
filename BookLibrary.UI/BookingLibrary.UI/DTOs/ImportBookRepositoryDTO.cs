@@ -9,9 +9,9 @@ namespace BookingLibrary.UI.DTOs
     {
         public ImportBookRepositoryDTO()
         {
-            BookRepositories = new List<Guid>();
+            BookRepositoryIds = new List<Guid>();
         }
 
-        public List<Guid> BookRepositories { get; set; }
+        public List<Guid> BookRepositoryIds { get; set; }
     }
 }

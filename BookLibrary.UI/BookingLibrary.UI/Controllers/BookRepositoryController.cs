@@ -1,4 +1,5 @@
-﻿using BookingLibrary.UI.Utilities;
+﻿using BookingLibrary.UI.DTOs;
+using BookingLibrary.UI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -20,21 +21,24 @@ namespace BookingLibrary.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult _AjaxBulkImported(Guid bookId)
+        public ActionResult _AjaxBulkImported(BulkImportDTO dto)
         {
             List<Guid> newBookRepositories = new List<Guid>();
 
             //hard code 10 repsitory id
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < dto.Number; i++)
             {
                 newBookRepositories.Add(Guid.NewGuid());
             }
 
             var data = new NameValueCollection();
             data.Add("BookRepositoryIds", string.Join(",", newBookRepositories.Select(p => p.ToString())));
-            var commandKey = ApiRequest.Post<Guid>($"{_repositoryApiBaseUrl}/api/Books/{bookId}/Repositories", data);
+            var commandKey = ApiRequestWithStringContent.Post<Guid>($"{_repositoryApiBaseUrl}/api/Books/{dto.BookId}/Repositories", new ImportBookRepositoryDTO
+            {
+                BookRepositoryIds = newBookRepositories
+            });
 
-            return View(commandKey);
+            return Content(commandKey.ToString());
         }
     }
 }
