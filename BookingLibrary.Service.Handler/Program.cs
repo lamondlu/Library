@@ -9,7 +9,10 @@ using BookingLibrary.Domain.Core;
 using BookingLibrary.Domain.Core.Messaging;
 using BookingLibrary.Infrastructure.Messaging.RabbitMQ;
 using BookingLibrary.Service.Repository.Domain.DataAccessors;
+using BookingLibrary.Service.Leasing.Domain.DataAccessors;
+using BookingLibrary.Service.Leasing.Domain;
 using BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer;
+using BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using Newtonsoft.Json;
@@ -31,6 +34,10 @@ namespace BookingLibrary.Service.Handler
             InjectContainer.RegisterType<IRepositoryReadDBConnectionStringProvider, AppsettingRepositoryReadDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRepositoryWriteDBConnectionStringProvider, AppsettingRepositoryWriteDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRepositoryReportDataAccessor, RepositoryReportDataAccessor>();
+
+            InjectContainer.RegisterType<ILeasingReadDBConnectionStringProvider, AppsettingLeasingReadDBConnectionStringProvider>();
+            InjectContainer.RegisterType<ILeasingWriteDBConnectionStringProvider, AppsettingLeasingWriteDBConnectionStringProvider>();
+            InjectContainer.RegisterType<ILeasingReportDataAccessor, LeasingReportDataAccessor>();
 
 
             var handlers = BuildHandlerConfigurations();

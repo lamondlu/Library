@@ -7,7 +7,7 @@ using BookingLibrary.Domain.Core;
 using BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer;
 using BookingLibrary.Service.Leasing.Domain.DataAccessors;
 
-namespace BookingLibrary.Infrastrcture.DataPersistence.Leasing.SQLServer
+namespace BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer
 {
     public class LeasingReportDataAccessor : ILeasingReportDataAccessor
     {
