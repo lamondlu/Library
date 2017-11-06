@@ -14,6 +14,12 @@ namespace BookingLibrary.Service.Leasing.Domain.Events
 
         public Guid BookId { get; set; }
 
-        public Guid CustomerId { get; set; }
+        public string BookName { get; set; }
+
+        public string ISBN { get; set; }
+
+        public PersonName Name { get; set; }
+
+        public DateTime RentDate { get; set; }
     }
 }

@@ -1,14 +1,22 @@
 ﻿using System;
+using BookingLibrary.Domain.Core;
 
 namespace BookingLibrary.Service.Leasing.Domain
 {
-    public class Book
+    public class Book : Entity
     {
         public Book()
         {
-            
+
         }
 
-        public Guid BookId { get; internal set; }
+        public Book(Guid bookId)
+        {
+            this.Id = bookId;
+        }
+
+        public string BookName { get; set; }
+
+        public string ISBN { get; set; }
     }
 }
