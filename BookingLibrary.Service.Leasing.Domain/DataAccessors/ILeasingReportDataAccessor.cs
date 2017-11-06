@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BookingLibrary.Domain.Core;
 
-namespace BookingLibrary.Service.Repository.Domain.DataAccessors
+namespace BookingLibrary.Service.Leasing.Domain.DataAccessors
 {
     public interface ILeasingReportDataAccessor
     {

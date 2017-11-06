@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using BookingLibrary.Domain.Core;
 using BookingLibrary.Service.Leasing.Domain.Events;
-using BookingLibrary.Service.Repository.Domain.DataAccessors;
+using BookingLibrary.Service.Leasing.Domain.DataAccessors;
 
 namespace BookingLibrary.Service.Leasing.Domain
 {

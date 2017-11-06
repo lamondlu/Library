@@ -1,7 +1,7 @@
 using System;
 using BookingLibrary.Domain.Core.Commands;
 using BookingLibrary.Domain.Core.DataAccessor;
-using BookingLibrary.Service.Repository.Domain.DataAccessors;
+using BookingLibrary.Service.Leasing.Domain.DataAccessors;
 
 namespace BookingLibrary.Service.Leasing.Domain
 {

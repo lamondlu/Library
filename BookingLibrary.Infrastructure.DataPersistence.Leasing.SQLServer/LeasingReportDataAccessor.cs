@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using BookingLibrary.Domain.Core;
 using BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer;
 using BookingLibrary.Service.Leasing.Domain.DataAccessors;
-using BookingLibrary.Service.Repository.Domain.DataAccessors;
 
 namespace BookingLibrary.Infrastrcture.DataPersistence.Leasing.SQLServer
 {
@@ -19,12 +18,17 @@ namespace BookingLibrary.Infrastrcture.DataPersistence.Leasing.SQLServer
 
         public void Commit()
         {
-            throw new NotImplementedException();
+            var dbHelper = new DbHelper(_writeDBConnectionStringProvider.ConnectionString);
+            dbHelper.ExecuteNoQuery(_commands);
+            _commands.Clear();
         }
 
         public Task CommitAsync()
         {
-            throw new NotImplementedException();
+            return Task.Factory.StartNew(() =>
+            {
+                Commit();
+            });
         }
 
         public bool IsNewCustomer(Guid customerId)
@@ -42,12 +46,26 @@ namespace BookingLibrary.Infrastrcture.DataPersistence.Leasing.SQLServer
 
         public void RentBook(Guid bookId, string bookName, string isbn, Guid customerId, PersonName name, DateTime rentDate)
         {
-            
+            _commands.Add(new Command("INSERT INTO LeasingRecord([Id],[CustomerId],[BookId],[BookName],[ISBN],[ContactFirstName],[ContactLastName],[ContactMiddleName],[RentDate],[ReturnDate]) VALUES(@id, @customerId, @bookId, @bookName, @isbn, @contactFirstName, @contactLastName, @contactMiddleName, @rentDate)", new List<SqlParameter>
+            {
+                new SqlParameter{ ParameterName = "@id", SqlDbType = SqlDbType.UniqueIdentifier, Value = Guid.NewGuid()},
+                new SqlParameter{ ParameterName = "@customerId", SqlDbType = SqlDbType.UniqueIdentifier, Value = customerId},
+                new SqlParameter{ ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId},
+                new SqlParameter{ ParameterName = "@bookName", SqlDbType = SqlDbType.NVarChar, Value = bookName},
+                new SqlParameter{ ParameterName = "@isbn", SqlDbType = SqlDbType.NVarChar, Value = isbn},
+                new SqlParameter{ ParameterName = "@contactFirstName", SqlDbType = SqlDbType.NVarChar, Value = name.FirstName},
+                new SqlParameter{ ParameterName = "@contactLastName", SqlDbType = SqlDbType.NVarChar, Value = name.LastName},
+                new SqlParameter{ ParameterName = "@contactMiddleName", SqlDbType = SqlDbType.NVarChar, Value = name.MiddleName},
+                new SqlParameter{ ParameterName = "@rentDate", SqlDbType = SqlDbType.DateTime2, Value = rentDate}
+            }));
         }
 
         public void ReturnBook(Guid bookId, DateTime returnDate)
         {
-            throw new NotImplementedException();
+            _commands.Add(new Command("UPDATE LeasingRecord SET ReturnDate = @returnDate WHERE BookId = @bookId and ReturnDate IS NULL", new List<SqlParameter>{
+                new SqlParameter{ ParameterName = "@returnDate", SqlDbType = SqlDbType.DateTime2, Value = returnDate},
+                new SqlParameter{ ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId}
+            }));
         }
     }
 }
