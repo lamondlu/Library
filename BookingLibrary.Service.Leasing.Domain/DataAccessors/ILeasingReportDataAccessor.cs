@@ -9,7 +9,9 @@ namespace BookingLibrary.Service.Repository.Domain.DataAccessors
     {
         bool IsNewCustomer(Guid customerId);
 
-        void AddRentedBookRecord(Guid bookId, string bookName, string isbn, Guid customerId, PersonName name, DateTime rentDate);
+        void RentBook(Guid bookId, string bookName, string isbn, Guid customerId, PersonName name, DateTime rentDate);
+
+        void ReturnBook(Guid bookId, DateTime returnDate);
 
         void Commit();
 

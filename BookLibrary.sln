@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer", "BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer.csproj", "{213C8A5A-2DB7-41DC-990E-51C67B5A335D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer", "BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer.csproj", "{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -240,5 +242,17 @@ Global
 		{213C8A5A-2DB7-41DC-990E-51C67B5A335D}.Release|x64.Build.0 = Release|x64
 		{213C8A5A-2DB7-41DC-990E-51C67B5A335D}.Release|x86.ActiveCfg = Release|x86
 		{213C8A5A-2DB7-41DC-990E-51C67B5A335D}.Release|x86.Build.0 = Release|x86
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Debug|x64.ActiveCfg = Debug|x64
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Debug|x64.Build.0 = Debug|x64
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Debug|x86.ActiveCfg = Debug|x86
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Debug|x86.Build.0 = Debug|x86
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Release|x64.ActiveCfg = Release|x64
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Release|x64.Build.0 = Release|x64
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Release|x86.ActiveCfg = Release|x86
+		{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

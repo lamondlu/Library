@@ -6,22 +6,22 @@ using BookingLibrary.Service.Repository.Domain.DataAccessors;
 
 namespace BookingLibrary.Service.Leasing.Domain
 {
-    public class BookRentedEventHandler : IEventHandler<BookRentedEvent>
+    public class BookReturnedEventHandler : IEventHandler<BookReturnedEvent>
     {
         private ILeasingReportDataAccessor _reportDataAccessor = null;
 
-        public BookRentedEventHandler(ILeasingReportDataAccessor reportDataAccessor)
+        public BookReturnedEventHandler(ILeasingReportDataAccessor reportDataAccessor)
         {
             _reportDataAccessor = reportDataAccessor;
         }
 
-        public void Handle(BookRentedEvent evt)
+        public void Handle(BookReturnedEvent evt)
         {
-            _reportDataAccessor.RentBook(evt.BookId, evt.BookName, evt.ISBN, evt.AggregateId, evt.Name, evt.RentDate);
+            _reportDataAccessor.ReturnBook(evt.BookId, evt.ReturnDate);
             _reportDataAccessor.Commit();
         }
 
-        public Task HandleAsync(BookRentedEvent evt)
+        public Task HandleAsync(BookReturnedEvent evt)
         {
             return Task.Factory.StartNew(() =>
             {
