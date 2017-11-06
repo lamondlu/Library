@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using BookingLibrary.Domain.Core;
 using BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer;
 using BookingLibrary.Service.Leasing.Domain.DataAccessors;
+using BookingLibrary.Service.Leasing.Domain.ViewModels;
+using BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer.Extensions;
 
 namespace BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer
 {
@@ -15,6 +17,13 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer
         private ILeasingWriteDBConnectionStringProvider _writeDBConnectionStringProvider = null;
 
         private List<Command> _commands = null;
+
+        public LeasingReportDataAccessor(ILeasingReadDBConnectionStringProvider readDBConnectionStringProvider, ILeasingWriteDBConnectionStringProvider writeDBConnectionStringProvider)
+        {
+            _readDBConnectionStringProvider = readDBConnectionStringProvider;
+            _writeDBConnectionStringProvider = writeDBConnectionStringProvider;
+            _commands = new List<Command>();
+        }
 
         public void Commit()
         {
@@ -29,6 +38,15 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer
             {
                 Commit();
             });
+        }
+
+        public List<UnreturnedBookViewModel> GetUnreturnBooks()
+        {
+            var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
+
+            var sql = "SELECT * FROM LeasingRecord WHERE ReturnDate IS NULL";
+
+            return dbHelper.ExecuteDataTable(sql).ConvertToUnreturnedBookViewModel();
         }
 
         public bool IsNewCustomer(Guid customerId)
