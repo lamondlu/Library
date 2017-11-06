@@ -55,15 +55,17 @@ namespace BookingLibrary.Service.Leasing.Domain
             {
                 ISBN = book.ISBN,
                 BookName = book.BookName,
-                BookId = book.Id
+                BookId = book.Id,
+                RentDate = DateTime.Now
             });
         }
 
-        public void ReturnBook(Book book)
+        public void ReturnBook(Guid bookId)
         {
             ApplyChange(new BookReturnedEvent
             {
-                BookId = book.Id
+                BookId = bookId,
+                ReturnDate = DateTime.Now
             });
         }
     }

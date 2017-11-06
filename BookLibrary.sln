@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Domain.Core"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary", "BookingLibrary\BookingLibrary.csproj", "{91702F26-7191-464F-822B-7FA61293114C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Infrastructure.DataPersistence.SQLServer", "BookingLibrary.Infrastructure.DataPersistence.SQLServer\BookingLibrary.Infrastructure.DataPersistence.SQLServer.csproj", "{4C9CD704-C6DE-42B2-AE04-C4F578B16474}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Infrastructure.Messaging.RabbitMQ", "BookingLibrary.Infrastructure.Messaging.RabbitMQ\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj", "{9D06E7EE-6262-4EC6-B5CF-22798FF9BB31}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLibrary.Service.Handler", "BookingLibrary.Service.Handler\BookingLibrary.Service.Handler.csproj", "{F928B96E-F918-4774-83B8-A44ACFBCE9F2}"

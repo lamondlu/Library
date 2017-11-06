@@ -40,6 +40,8 @@ namespace BookingLibrary.Service.Leasing.Domain
                 ISBN = command.ISBN,
                 Id = command.BookId
             });
+
+            _domainRepository.Save(customer, customer.Version, command.CommandUniqueId);
         }
     }
 }
