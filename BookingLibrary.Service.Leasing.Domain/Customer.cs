@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using BookingLibrary.Domain.Core;
 using BookingLibrary.Service.Leasing.Domain.Events;
+using System.Linq;
 
 namespace BookingLibrary.Service.Leasing.Domain
 {
@@ -51,6 +52,11 @@ namespace BookingLibrary.Service.Leasing.Domain
 
         public void RentBook(Book book)
         {
+            if (this.Books.Count > 3)
+            {
+                throw new Exception("One customer can only rent 3 books at most.");
+            }
+
             ApplyChange(new BookRentedEvent
             {
                 ISBN = book.ISBN,

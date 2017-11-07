@@ -51,5 +51,17 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
 
             return null;
         }
+
+        public List<CustomerListViewModel> GetCustomerList()
+        {
+            var sql = "SELECT * FROM dbo.[User] AS u INNER JOIN dbo.[Person] p on u.PersonId = p.PersonId WHERE u.Role = 'Customer'";
+
+            
+        }
+
+        public CustomerListViewModel GetCustomerSingleListViewModel()
+        {
+
+        }
     }
 }
