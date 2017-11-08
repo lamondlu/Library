@@ -6,7 +6,7 @@
 
 <h2>Unreturned Books</h2>
 <div style="margin-bottom:10px">
-    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#rentBookModal">+ Rent</button>
+    <button class="btn btn-success" type="button" onclick="openRent()">+ Rent</button>
 </div>
 
 <table class="table table-bordered">
@@ -53,20 +53,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Rent Book</h4>
+                <h4 class="modal-title" id="rentBook">Rent Book</h4>
             </div>
             <div class="modal-body">
                 <form role="form">
                     <div class="form-group">
                         <label for="customerId">Customer</label>
                         <select class="form-control" id="customerId">
-                            <option>-SELECT-</option>
+                            <option value="">-SELECT-</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="bookId">Book</label>
                         <select class="form-control" id="bookId">
-                            <option>-SELECT-</option>
+                            <option value="">-SELECT-</option>
                         </select>
                     </div>
                 </form>
@@ -83,7 +83,22 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#rentBookModal').modal();
+            //$('#rentBookModal').modal();
         });
+
+        function openRent() {
+            $.ajax({
+                url: '/Customer/_AjaxGetAllCustomers',
+                success: function (data) {
+                    $('#customerId option[value!=""]').remove();
+
+                    for (var i = 0; i < data.length; i++) {
+                        $('#customerId').append("<option value='" + data[i].CustomerId + "'>" + data[i].CombinedName + "</option>");
+                    }
+                }
+            });
+
+            $('#rentBookModal').modal('show');
+        }
     </script>
 }

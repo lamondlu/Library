@@ -6,6 +6,7 @@ using BookingLibrary.Domain.Core;
 using Microsoft.AspNetCore.Mvc;
 using BookingLibrary.Service.Identity.Domain;
 using BookingLibrary.Infrastructure.InjectionFramework;
+using System.Collections.Generic;
 
 namespace BookingLibrary.Service.Identity
 {
@@ -31,6 +32,12 @@ namespace BookingLibrary.Service.Identity
             }
 
             return _dataAccessor.GetIdentity(dto.UserName, dto.Password);
+        }
+
+        [HttpGet("~/api/customers")]
+        public List<CustomerListViewModel> GetCustomer()
+        {
+            return _dataAccessor.GetCustomerList();
         }
     }
 }

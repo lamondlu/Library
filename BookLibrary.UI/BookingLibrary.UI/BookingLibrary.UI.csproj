@@ -197,6 +197,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\BookRepositoryController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\LeaseController.cs" />
     <Compile Include="DTOs\AddBookDTO.cs" />
     <Compile Include="DTOs\BulkImportDTO.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Utilities\ApiRequestWithStringContent.cs" />
     <Compile Include="Utilities\ApiRequestWithFormUrlEncodedContent.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\UnreturnedBookViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +279,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
