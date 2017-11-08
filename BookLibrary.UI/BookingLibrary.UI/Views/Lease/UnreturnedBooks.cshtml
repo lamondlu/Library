@@ -1,0 +1,50 @@
+﻿@model List<UnreturnedBookViewModel>
+@{
+    ViewBag.Title = "UnreturnedBooks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Unreturned Books</h2>
+<div style="margin-bottom:10px">
+    <button class="btn btn-success" type="button">+ Rent</button>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Book Id</th>
+            <th>Book Name</th>
+            <th>ISBN</th>
+            <th>Return Date</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            var index = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName @item.MiddleName @item.LastName</td>
+                    <td>@item.BookId</td>
+                    <td>@item.BookName</td>
+                    <td>@item.ISBN</td>
+                    <td>@item.RentDate.ToString("yyyy-MM-dd")</td>
+                    <td><button type="button" class="btn btn-primary">Return Book</button></td>
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">
+                    No Record.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

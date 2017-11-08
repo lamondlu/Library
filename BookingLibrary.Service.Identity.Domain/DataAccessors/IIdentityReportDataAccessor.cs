@@ -10,6 +10,6 @@ namespace BookingLibrary.Service.Identity.Domain.DataAccessors
 
         List<CustomerListViewModel> GetCustomerList();
 
-        CustomerListViewModel GetCustomerSingleListViewModel();
+        CustomerListViewModel GetCustomerSingleListViewModel(Guid personId);
     }
 }

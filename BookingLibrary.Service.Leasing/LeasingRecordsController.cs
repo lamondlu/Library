@@ -6,6 +6,8 @@ using BookingLibrary.Service.Leasing.Domain.DataAccessors;
 using BookingLibrary.Service.Leasing.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using BookingLibrary.Service.Leasing.Domain.Commands;
+using BookingLibrary.Service.Leasing.Domain.ViewModels;
+using System.Collections.Generic;
 
 namespace BookingLibrary.Service.Leasing
 {
@@ -49,6 +51,12 @@ namespace BookingLibrary.Service.Leasing
             _commandPublisher.Publish(command);
 
             return command.CommandUniqueId;
+        }
+
+        [HttpGet("~/api/unreturned_books")]
+        public List<UnreturnedBookViewModel> GetAllUnreturnBooks()
+        {
+            return _reportDatabase.GetUnreturnBooks();
         }
     }
 }

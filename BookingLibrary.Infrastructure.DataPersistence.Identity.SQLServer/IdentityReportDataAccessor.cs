@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.SqlClient;
 using BookingLibrary.Service.Identity.Domain.DataAccessors;
 using BookingLibrary.Service.Identity.Domain.ViewModels;
+using BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer.Extensions;
+using System.Linq;
 
 namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
 {
@@ -54,14 +56,18 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
 
         public List<CustomerListViewModel> GetCustomerList()
         {
+            var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
             var sql = "SELECT * FROM dbo.[User] AS u INNER JOIN dbo.[Person] p on u.PersonId = p.PersonId WHERE u.Role = 'Customer'";
 
-            
+            return dbHelper.ExecuteDataTable(sql).ConvertToCustomerListView();
         }
 
-        public CustomerListViewModel GetCustomerSingleListViewModel()
+        public CustomerListViewModel GetCustomerSingleListViewModel(Guid personId)
         {
+            var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString); 
+             var sql = "SELECT * FROM dbo.[User] AS u INNER JOIN dbo.[Person] p on u.PersonId = p.PersonId WHERE u.Role = 'Customer' and u.PersonId=@personId";
 
+             return dbHelper.ExecuteDataTable(sql, new SqlParameter{ ParameterName = "@personId", SqlDbType = SqlDbType.UniqueIdentifier, Value = personId}).ConvertToCustomerListView().FirstOrDefault();
         }
     }
 }

@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using BookingLibrary.Service.Leasing.Domain.DataAccessors;
 using BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer;
 using BookingLibrary.Infrastructure.Messaging.SignalR;
-using BookingLibrary.Infrastrcture.DataPersistence.Leasing.SQLServer;
 
 namespace BookingLibrary.Service.Leasing
 {
