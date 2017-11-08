@@ -4,6 +4,9 @@ NET Core 2.0 + DDD + CQRS + ES + RabbitMQ练习项目
 ## 系统架构图
 ![系统架构图](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Architecture/20171107104353.png)
 
+## 事件驱动架构
+![事件驱动架构图](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Architecture/20171108152513.png)
+
 ## 服务说明
 系统中提供会员服务，书籍库存服务，书籍租赁服务
 
