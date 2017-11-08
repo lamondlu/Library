@@ -95,6 +95,25 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer
             }));
         }
 
+        public List<AvailableBookLookupModel> GetAvailableBooks()
+        {
+            var result = new List<AvailableBookLookupModel>();
+
+            var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
+            var dataTable = dbHelper.ExecuteDataTable("SELECT b.BookId, b.BookName FROM Book b INNER JOIN BookRepository br ON b.BookId = br.BookId WHERE br.Status = 1 GROUP BY b.BookId, b.BookName HAVING COUNT(br.BookRepositoryId) > 0");
+
+            foreach (var item in dataTable.Rows.Cast<DataRow>())
+            {
+                result.Add(new AvailableBookLookupModel
+                {
+                    BookId = Guid.Parse(item["BookId"].ToString()),
+                    Name = item["BookName"].ToString()
+                });
+            }
+
+            return result;
+        }
+
         public List<BookViewModel> GetBooks()
         {
             var result = new List<BookViewModel>();

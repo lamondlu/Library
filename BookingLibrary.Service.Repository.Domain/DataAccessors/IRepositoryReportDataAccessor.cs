@@ -9,6 +9,8 @@ namespace BookingLibrary.Service.Repository.Domain.DataAccessors
 {
     public interface IRepositoryReportDataAccessor
     {
+        List<AvailableBookLookupModel> GetAvailableBooks();
+
         void AddBook(AddBookDTO dto);
 
         List<BookViewModel> GetBooks();
