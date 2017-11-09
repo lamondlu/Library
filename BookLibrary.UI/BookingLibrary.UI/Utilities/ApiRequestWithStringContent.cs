@@ -103,5 +103,27 @@ namespace BookingLibrary.UI.Utilities
             HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
         }
+
+        public static T Delete<T>(string url)
+        {
+            if (url.StartsWith("https"))
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            }
+            
+            HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
+
+            T result = default(T);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Task<string> t = response.Content.ReadAsStringAsync();
+                string s = t.Result;
+
+                result = JsonConvert.DeserializeObject<T>(s);
+            }
+
+            return result;
+        }
     }
 }

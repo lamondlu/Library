@@ -40,16 +40,16 @@ namespace BookingLibrary.Service.Leasing
             return command.CommandUniqueId;
         }
 
-        [HttpPut("")]
-        public Guid Return(int customerId, [FromBody]ReturnBookDTO dto)
+        [HttpDelete("{bookId}")]
+        public Guid Return(Guid customerId, Guid bookId)
         {
             var command = new ReturnBookCommand
             {
-                BookId = dto.BookId
+                BookId = bookId,
+                CustomerId = customerId
             };
 
             _commandPublisher.Publish(command);
-
             return command.CommandUniqueId;
         }
 

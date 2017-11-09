@@ -56,5 +56,13 @@ namespace BookingLibrary.UI.Controllers
                 return Json(new { result = false, errorMessage = "Book has been rented, please try again." });
             }
         }
+
+        [HttpPost]
+        public ActionResult _AjaxReturnBook(Guid customerId, Guid bookId)
+        {
+            var commandId = ApiRequestWithStringContent.Delete<Guid>($"{_leaseApiBaseUrl}/api/customers/{customerId}/books/{bookId}");
+
+            return Json(new { result = true, commandId = commandId });
+        }
     }
 }

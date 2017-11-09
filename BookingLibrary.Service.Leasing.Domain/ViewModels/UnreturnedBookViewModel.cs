@@ -6,6 +6,8 @@ namespace BookingLibrary.Service.Leasing.Domain.ViewModels
     {
         public Guid BookId { get; set; }
 
+        public Guid CustomerId { get; set; }
+
         public string BookName { get; set; }
 
         public string ISBN { get; set; }

@@ -32,7 +32,7 @@
                     <td>@item.BookName</td>
                     <td>@item.ISBN</td>
                     <td>@item.RentDate.ToString("yyyy-MM-dd")</td>
-                    <td><button type="button" class="btn btn-primary">Return Book</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="returnBook('@item.CustomerId','@item.BookId')">Return Book</button></td>
                 </tr>
                 index++;
             }
@@ -97,9 +97,14 @@
 
             command.client.success = function (commandUniqueId) {
 
+                hideMask();
                 if (commandUniqueId == currentCommandUnqiueId && commandType == 'Rent Book') {
-                    hideMask();
                     alert('Rent successfully.');
+                    command.server.removeCommand(currentCommandUnqiueId);
+                    window.location.reload();
+                }
+                else if (commandUniqueId == currentCommandUnqiueId && commandType == 'Return Book'){
+                    alert('Return successfully.');
                     command.server.removeCommand(currentCommandUnqiueId);
                     window.location.reload();
                 }
@@ -115,6 +120,22 @@
                 console.log("Connected.");
             });
         });
+
+        function returnBook(customerId, bookId) {
+            $.ajax({
+                url: '/Lease/_AjaxReturnBook?customerId=' + customerId + "&bookId=" + bookId,
+                type: 'POST',
+                success: function (data) {
+                    if (data.result) {
+                        commandUniqueId = data.commandId;
+                        commandType = "Return Book";
+                    }
+                    else {
+                        alert(data.errorMessage);
+                    }
+                }
+            });
+        }
 
         function rentBook() {
             $.ajax({

@@ -18,6 +18,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer.Extens
             return new UnreturnedBookViewModel
             {
                 BookId = Guid.Parse(dr["BookId"].ToString()),
+                CustomerId = Guid.Parse(dr["CustomerId"].ToString()),
                 BookName = dr["BookName"].ToString(),
                 ISBN = dr["ISBN"].ToString(),
                 FirstName = dr["ContactFirstName"].ToString(),
