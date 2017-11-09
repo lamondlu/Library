@@ -9,6 +9,6 @@ namespace BookingLibrary.Domain.Core.Messaging
 
         void Finish(Guid commandUniqueId, string eventName);
 
-        void Error(Guid commandUniqueId, string eventName);
+        void Error(Guid commandUniqueId, string eventName,string errorCode, string errorMessage);
     }
 }

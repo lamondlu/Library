@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Collections.Specialized;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace BookingLibrary.Infrastructure.Messaging.SignalR
 {
@@ -42,14 +43,14 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
             return result;
         }
 
-        public static T Post<T>(string url, NameValueCollection data)
+        public static T Post<T>(string url, Object data)
         {
             if (url.StartsWith("https"))
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
             }
 
-            HttpContent httpContent = new FormUrlEncodedContent(Correct(data));
+            HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             HttpResponseMessage response = _httpClient.PostAsync(url, httpContent).Result;
 
             T result = default(T);
@@ -65,36 +66,36 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
             return result;
         }
 
-        public static void Post(string url, NameValueCollection data)
+        public static void Post(string url, Object data)
         {
             if (url.StartsWith("https"))
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
             }
 
-            HttpContent httpContent = new FormUrlEncodedContent(Correct(data));
+            HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             HttpResponseMessage response = _httpClient.PostAsync(url, httpContent).Result;
         }
 
-        public static void Put(string url, NameValueCollection data)
+        public static void Put(string url, Object data)
         {
             if (url.StartsWith("https"))
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
             }
 
-            HttpContent httpContent = new FormUrlEncodedContent(Correct(data));
+            HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             HttpResponseMessage response = _httpClient.PutAsync(url, httpContent).Result;
         }
 
-        public static T Put<T>(string url, NameValueCollection data)
+        public static T Put<T>(string url, Object data)
         {
             if (url.StartsWith("https"))
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
             }
 
-            HttpContent httpContent = new FormUrlEncodedContent(Correct(data));
+            HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             HttpResponseMessage response = _httpClient.PutAsync(url, httpContent).Result;
 
             T result = default(T);
@@ -120,12 +121,6 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
             HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data));
             HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
         }
-        
-        private static IEnumerable<KeyValuePair<string, string>> Correct(NameValueCollection formData)
-        {
-            return formData.Keys.Cast<string>().Select(key => new KeyValuePair<string, string>(key, formData[key])).ToList();
-        }
-
 
     }
 }

@@ -24,6 +24,18 @@ namespace BookLibrary.SignalR.Controllers
             hub.MonitorCommand(model);
         }
 
+        [HttpPut, Route("{commandUniqueId}")]
+        public void UpdateCommandStatus(Guid commandUniqueId, EventStatusDTO dto)
+        {
+            CommandHub hub = new Hubs.CommandHub();
+            hub.CommandStatusChangeDirectly(commandUniqueId, 
+                (dto.Status == EventStatusEnum.Finished), 
+                (dto.Status == EventStatusEnum.Error),
+                dto.ErrorCode,
+                dto.ErrorMessage
+            );
+        }
+
         [HttpPut, Route("{commandUniqueId}/events/{eventName}")]
         public void UpdateStatus(Guid commandUniqueId, string eventName, EventStatusDTO dto)
         {
@@ -32,6 +44,8 @@ namespace BookLibrary.SignalR.Controllers
             {
                 CommandUniqueId = commandUniqueId,
                 EventName = eventName,
+                ErrorCode = dto.ErrorCode,
+                ErrorMessage = dto.ErrorMessage,
                 IsFinished = (dto.Status == EventStatusEnum.Finished),
                 IsError = (dto.Status == EventStatusEnum.Error)
             });

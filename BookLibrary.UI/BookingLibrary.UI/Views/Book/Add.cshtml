@@ -65,14 +65,11 @@
                 }
             };
 
-            command.client.failure = function (commandUniqueId) {
+            command.client.failure = function (commandUniqueId, errorCode, errorMessage) {
                 if (commandUniqueId == currentCommandUnqiueId) {
-                    alert('Create failure.');
+                    alert(errorMessage);
+                    hideMask();
                 }
-            };
-
-            command.client.test = function () {
-                alert("Called from server successfully.");
             };
 
             $.connection.hub.start().done(function () {

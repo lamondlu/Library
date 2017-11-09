@@ -64,9 +64,9 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
                     instance.Handle(cmd);
                     tracker.Finish(cmd.CommandUniqueId, cmd.EventKey);
                 }
-                catch
+                catch(Exception ex)
                 {
-                    tracker.Error(cmd.CommandUniqueId, cmd.EventKey);
+                    tracker.Error(cmd.CommandUniqueId, cmd.EventKey, "100001", ex.Message);
                 }
 
                 Console.WriteLine("[x] Event Handler Completed");

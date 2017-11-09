@@ -11,6 +11,10 @@ namespace BookLibrary.SignalR.Models
 
         public string EventName { get; set; }
 
+        public string ErrorCode { get; set; }
+
+        public string ErrorMessage { get; set; }
+
         public bool IsFinished { get; set; }
 
         public bool IsError { get; set; }

@@ -4,6 +4,7 @@ using BookingLibrary.Service.Repository.Domain.Commands;
 using BookingLibrary.Domain.Core.DataAccessor;
 using BookingLibrary.Service.Repository.Domain;
 using BookingLibrary.Service.Repository.Domain.DataAccessors;
+using BookingLibrary.Domain.Core.Messaging;
 
 namespace BookingLibrary.Service.Repository.Domain.CommandHandlers
 {
@@ -11,11 +12,13 @@ namespace BookingLibrary.Service.Repository.Domain.CommandHandlers
     {
         private IDomainRepository _domainRepository = null;
         private IRepositoryReportDataAccessor _dataAccessor = null;
+        private ICommandTracker _tracker = null;
 
-        public AddBookCommandHandler(IDomainRepository domainRepository, IRepositoryReportDataAccessor dataAccesor)
+        public AddBookCommandHandler(IDomainRepository domainRepository, IRepositoryReportDataAccessor dataAccesor, ICommandTracker tracker)
         {
             _domainRepository = domainRepository;
             _dataAccessor = dataAccesor;
+            _tracker = tracker;
         }
 
         public void Execute(AddBookCommand command)
@@ -25,6 +28,8 @@ namespace BookingLibrary.Service.Repository.Domain.CommandHandlers
             if (hasDuplicatedISBN)
             {
                 //Record down the error and use signalR to transfer the error.
+
+                _tracker.Error(command.CommandUniqueId, string.Empty, "100001", "The book has existed in the system.");
             }
             else
             {

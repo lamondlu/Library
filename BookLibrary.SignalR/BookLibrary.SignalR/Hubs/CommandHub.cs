@@ -41,6 +41,19 @@ namespace BookLibrary.SignalR.Hubs
             CommandHub._results.Add(obj.CommandUniqueId, result);
         }
 
+        public void CommandStatusChangeDirectly(Guid commandUniqueId, bool isFinished, bool isError, string errorCode, string errorMessage)
+        {
+            if (isError)
+            {
+                _hub.Clients.All.failure(commandUniqueId, errorCode, errorMessage);
+            }
+            else if (isFinished)
+            {
+                _hub.Clients.All.success(commandUniqueId);
+
+            }
+        }
+
         public void CommandStatusChange(CommandStatusChangeObject obj)
         {
             var matchedCommandItem = _results[obj.CommandUniqueId];
@@ -49,7 +62,7 @@ namespace BookLibrary.SignalR.Hubs
             {
                 if (obj.IsError)
                 {
-                    _hub.Clients.All.failure(obj.CommandUniqueId);
+                    _hub.Clients.All.failure(obj.CommandUniqueId, obj.ErrorCode, obj.ErrorMessage);
                 }
                 else if (obj.IsFinished)
                 {
