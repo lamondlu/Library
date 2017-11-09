@@ -1,6 +1,6 @@
 USE [BookLibraryUserDB]
 GO
-/****** Object:  Table [dbo].[Person]    Script Date: 10/31/2017 5:22:01 PM ******/
+/****** Object:  Table [dbo].[Person]    Script Date: 11/9/2017 8:52:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -17,7 +17,7 @@ CREATE TABLE [dbo].[Person](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[User]    Script Date: 10/31/2017 5:22:01 PM ******/
+/****** Object:  Table [dbo].[User]    Script Date: 11/9/2017 8:52:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -33,6 +33,14 @@ CREATE TABLE [dbo].[User](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+INSERT [dbo].[Person] ([PersonId], [FirstName], [LastName], [MiddleName]) VALUES (N'38073623-168c-4d64-9a64-bf434d5923ec', N'Lamond', N'Lu', NULL)
+GO
+INSERT [dbo].[Person] ([PersonId], [FirstName], [LastName], [MiddleName]) VALUES (N'0ceb1441-0d71-47ff-b065-d9c25acdd10e', N'Lily', N'Jiang', NULL)
+GO
+INSERT [dbo].[User] ([PersonId], [Role], [UserName], [Password]) VALUES (N'38073623-168c-4d64-9a64-bf434d5923ec', N'Admin', N'admin', N'a@12345')
+GO
+INSERT [dbo].[User] ([PersonId], [Role], [UserName], [Password]) VALUES (N'0ceb1441-0d71-47ff-b065-d9c25acdd10e', N'Customer', N'guest', N'a@12345')
 GO
 ALTER TABLE [dbo].[User]  WITH CHECK ADD  CONSTRAINT [FK_User_Person] FOREIGN KEY([PersonId])
 REFERENCES [dbo].[Person] ([PersonId])
