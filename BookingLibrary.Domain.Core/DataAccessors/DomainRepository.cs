@@ -42,7 +42,7 @@ namespace BookingLibrary.Domain.Core.DataAccessor
             {
                 lock (_lockStorage)
                 {
-                    var allEvents = aggregateRoot.GetUncommittedChanges().Select(p=>p.EventKey).ToList();
+                    var allEvents = aggregateRoot.GetUncommittedChanges().OrderBy(p=>p.Version).Select(p=>p.EventKey).ToList();
 
                     var item = new T();
 

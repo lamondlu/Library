@@ -62,7 +62,9 @@ namespace BookingLibrary.Service.Leasing.Domain
                 ISBN = book.ISBN,
                 BookName = book.BookName,
                 BookId = book.Id,
-                RentDate = DateTime.Now
+                RentDate = DateTime.Now,
+                AggregateId = this.Id,
+                Name = this.Name
             });
         }
 

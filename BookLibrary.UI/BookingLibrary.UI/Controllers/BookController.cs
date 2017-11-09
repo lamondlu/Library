@@ -1,5 +1,6 @@
 ﻿using BookingLibrary.UI.DTOs;
 using BookingLibrary.UI.Utilities;
+using BookingLibrary.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -73,5 +74,14 @@ namespace BookingLibrary.UI.Controllers
 
             return Json(new { commandUnqiueId = commandUnqiueId });
         }
+
+        [HttpGet]
+        public ActionResult _AjaxGetAvailableBooks()
+        {
+            var data = ApiRequestWithFormUrlEncodedContent.Get<List<AvailableBookModel>>($"{_repositoryApiBaseUrl}/api/available_books");
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+       
     }
 }

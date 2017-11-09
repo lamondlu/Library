@@ -68,6 +68,12 @@ namespace BookingLibrary.Service.Repository
             return command.CommandUniqueId;
         }
 
+        [HttpGet("~/api/available_books")]
+        public List<AvailableBookLookupModel> GetAllAvailableBooks()
+        {
+            return _reportDatabase.GetAvailableBooks();
+        }
+
         [HttpPost("{bookId}/repositories")]
         public Guid ImportBookRepository(Guid bookId, [FromBody]ImportBookRepositoryDTO dto)
         {
@@ -78,7 +84,6 @@ namespace BookingLibrary.Service.Repository
             };
 
             _commandPublisher.Publish(command);
-
             return command.CommandUniqueId;
         }
 

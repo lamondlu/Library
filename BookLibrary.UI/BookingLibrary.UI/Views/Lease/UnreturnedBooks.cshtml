@@ -74,7 +74,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Rent</button>
+                <button type="button" class="btn btn-primary" onclick="rentBook()">Rent</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -82,9 +82,56 @@
 
 @section scripts{
     <script type="text/javascript">
+        var commandUniqueId = '';
+        var commandType = '';
+
         $(document).ready(function () {
             //$('#rentBookModal').modal();
         });
+
+
+        $(function () {
+            $.connection.hub.url = "http://localhost:6044/signalr";
+            $.connection.hub.logging = true;
+            var command = $.connection.commandHub;
+
+            command.client.success = function (commandUniqueId) {
+
+                if (commandUniqueId == currentCommandUnqiueId && commandType == 'Rent Book') {
+                    hideMask();
+                    alert('Rent successfully.');
+                    command.server.removeCommand(currentCommandUnqiueId);
+                    window.location.reload();
+                }
+            };
+
+            command.client.failure = function (commandUniqueId) {
+                if (commandUniqueId == currentCommandUnqiueId && commandType == 'Rent Book') {
+                    alert('Rent failure.');
+                }
+            };
+
+            $.connection.hub.start().done(function () {
+                console.log("Connected.");
+            });
+        });
+
+        function rentBook() {
+            $.ajax({
+                url: '/Lease/_AjaxRentBook',
+                data: { bookId: $('#bookId').val(), customerId: $('#customerId').val() },
+                type: 'POST',
+                success: function (data) {
+                    if (data.result) {
+                        commandUniqueId = data.commandId;
+                        commandType = "Rent Book";
+                    }
+                    else {
+                        alert(data.errorMessage);
+                    }
+                }
+            });
+        }
 
         function openRent() {
             $.ajax({
@@ -94,6 +141,17 @@
 
                     for (var i = 0; i < data.length; i++) {
                         $('#customerId').append("<option value='" + data[i].CustomerId + "'>" + data[i].CombinedName + "</option>");
+                    }
+                }
+            });
+
+            $.ajax({
+                url: '/Book/_AjaxGetAvailableBooks',
+                success: function (data) {
+                    $('#bookId option[value!=""]').remove();
+
+                    for (var i = 0; i < data.length; i++) {
+                        $('#bookId').append("<option value='" + data[i].BookId + "'>" + data[i].Name + "</option>");
                     }
                 }
             });

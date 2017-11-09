@@ -204,6 +204,7 @@
     <Compile Include="DTOs\EditBookDTO.cs" />
     <Compile Include="DTOs\IdentityDTO.cs" />
     <Compile Include="DTOs\ImportBookRepositoryDTO.cs" />
+    <Compile Include="DTOs\RentBookDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,6 +215,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\ApiRequestWithStringContent.cs" />
     <Compile Include="Utilities\ApiRequestWithFormUrlEncodedContent.cs" />
+    <Compile Include="ViewModels\AvailableBookModel.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\UnreturnedBookViewModel.cs" />
