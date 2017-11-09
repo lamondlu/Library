@@ -73,7 +73,8 @@ namespace BookingLibrary.Service.Leasing.Domain
             ApplyChange(new BookReturnedEvent
             {
                 BookId = bookId,
-                ReturnDate = DateTime.Now
+                ReturnDate = DateTime.Now,
+                AggregateId = this.Id
             });
         }
     }

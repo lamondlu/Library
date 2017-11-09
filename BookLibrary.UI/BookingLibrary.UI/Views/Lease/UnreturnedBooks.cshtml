@@ -82,7 +82,7 @@
 
 @section scripts{
     <script type="text/javascript">
-        var commandUniqueId = '';
+        var currentCommandUnqiueId = '';
         var commandType = '';
 
         $(document).ready(function () {
@@ -127,7 +127,7 @@
                 type: 'POST',
                 success: function (data) {
                     if (data.result) {
-                        commandUniqueId = data.commandId;
+                        currentCommandUnqiueId = data.commandId;
                         commandType = "Return Book";
                     }
                     else {
@@ -144,7 +144,7 @@
                 type: 'POST',
                 success: function (data) {
                     if (data.result) {
-                        commandUniqueId = data.commandId;
+                        currentCommandUnqiueId = data.commandId;
                         commandType = "Rent Book";
                     }
                     else {
