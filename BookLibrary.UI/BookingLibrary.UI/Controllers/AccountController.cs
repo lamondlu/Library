@@ -15,6 +15,7 @@ using System.Configuration;
 using System.Net;
 using System.Web.Security;
 using System.Collections.Specialized;
+using BookingLibrary.UI.SessionStorages;
 
 namespace BookingLibrary.UI.Controllers
 {
@@ -23,9 +24,11 @@ namespace BookingLibrary.UI.Controllers
     {
         private string _identityApiBaseUrl => ConfigurationManager.AppSettings["identityApiUrl"];
 
+        protected ISessionStorage _sessionStorage = null;
+
         public AccountController()
         {
-
+            _sessionStorage = new RedisSessionStorage("192.168.1.105", 6379);
         }
 
         //
@@ -54,6 +57,7 @@ namespace BookingLibrary.UI.Controllers
 
             if (validationResult.UserId != Guid.Empty)
             {
+                _sessionStorage.Set<Guid>("currentUserKey", validationResult.UserId);
                 FormsAuthentication.SetAuthCookie(validationResult.UserId.ToString(), false);
                 return RedirectToAction("List", "Book");
             }

@@ -13,7 +13,7 @@ namespace BookingLibrary.UI.Controllers
 {
     public class LeaseController : BaseController
     {
-        public LeaseController(ISessionStorage sessionStorage) : base(sessionStorage)
+        public LeaseController() 
         {
 
         }

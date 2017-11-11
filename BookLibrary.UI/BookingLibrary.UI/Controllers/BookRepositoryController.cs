@@ -14,7 +14,7 @@ namespace BookingLibrary.UI.Controllers
     [Authorize]
     public class BookRepositoryController : BaseController
     {
-        public BookRepositoryController(ISessionStorage sessionStorage) : base(sessionStorage)
+        public BookRepositoryController() 
         {
 
         }

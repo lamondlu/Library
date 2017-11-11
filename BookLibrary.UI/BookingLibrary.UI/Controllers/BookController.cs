@@ -14,7 +14,7 @@ namespace BookingLibrary.UI.Controllers
 {
     public class BookController : BaseController
     {
-        public BookController(ISessionStorage sessionStorage) : base(sessionStorage)
+        public BookController() 
         {
 
         }

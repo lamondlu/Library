@@ -19,9 +19,9 @@ namespace BookingLibrary.UI.Controllers
 
         protected ISessionStorage _sessionStorage = null;
 
-        public BaseController(ISessionStorage sessionStorage)
+        public BaseController()
         {
-            _sessionStorage = sessionStorage;
+            _sessionStorage = new RedisSessionStorage("192.168.1.105", 6379);
         }
     }
 }
