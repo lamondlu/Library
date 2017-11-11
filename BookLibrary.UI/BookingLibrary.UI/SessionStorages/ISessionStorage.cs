@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookingLibrary.UI.SessionStorages
 {
-    public interface ISessionStorage
+    public interface ISessionStorage : IDisposable
     {
         T Get<T>(string key);
 

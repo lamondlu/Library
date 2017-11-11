@@ -16,5 +16,10 @@ namespace BookingLibrary.UI.SessionStorages
         {
             HttpContext.Current.Session[key] = value;
         }
+
+        public void Dispose()
+        {
+            
+        }
     }
 }

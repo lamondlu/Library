@@ -15,6 +15,11 @@ namespace BookingLibrary.UI.SessionStorages
             _redisClient = new RedisClient(url, port);
         }
 
+        public void Dispose()
+        {
+            _redisClient = null;
+        }
+
         public T Get<T>(string key)
         {
             return _redisClient.Get<T>(key);

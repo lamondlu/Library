@@ -1,4 +1,5 @@
 ﻿using BookingLibrary.UI.DTOs;
+using BookingLibrary.UI.SessionStorages;
 using BookingLibrary.UI.Utilities;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,9 @@ using System.Web.Mvc;
 namespace BookingLibrary.UI.Controllers
 {
     [Authorize]
-    public class BookRepositoryController : Controller
+    public class BookRepositoryController : BaseController
     {
-        private string _repositoryApiBaseUrl => ConfigurationManager.AppSettings["repositoryApiUrl"];
-
-        public BookRepositoryController()
+        public BookRepositoryController(ISessionStorage sessionStorage) : base(sessionStorage)
         {
 
         }

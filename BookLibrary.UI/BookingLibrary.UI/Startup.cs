@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using BookingLibrary.UI.SessionStorages;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(BookingLibrary.UI.Startup))]
@@ -8,6 +9,11 @@ namespace BookingLibrary.UI
     {
         public void Configuration(IAppBuilder app)
         {
+            app.CreatePerOwinContext<ISessionStorage>(() =>
+            {
+                return new RedisSessionStorage("127.0.0.1", 6379);
+            });
+
             ConfigureAuth(app);
         }
     }

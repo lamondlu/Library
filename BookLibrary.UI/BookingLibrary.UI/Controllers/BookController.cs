@@ -1,4 +1,5 @@
 ﻿using BookingLibrary.UI.DTOs;
+using BookingLibrary.UI.SessionStorages;
 using BookingLibrary.UI.Utilities;
 using BookingLibrary.UI.ViewModels;
 using System;
@@ -11,10 +12,12 @@ using System.Web.Mvc;
 
 namespace BookingLibrary.UI.Controllers
 {
-    [Authorize]
-    public class BookController : Controller
+    public class BookController : BaseController
     {
-        private string _repositoryApiBaseUrl => ConfigurationManager.AppSettings["repositoryApiUrl"];
+        public BookController(ISessionStorage sessionStorage) : base(sessionStorage)
+        {
+
+        }
 
         [HttpGet]
         public ActionResult List()
@@ -82,6 +85,6 @@ namespace BookingLibrary.UI.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-       
+
     }
 }

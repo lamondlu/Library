@@ -1,4 +1,5 @@
 ﻿using BookingLibrary.UI.DTOs;
+using BookingLibrary.UI.SessionStorages;
 using BookingLibrary.UI.Utilities;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,9 @@ using System.Web.Mvc;
 
 namespace BookingLibrary.UI.Controllers
 {
-    public class LeaseController : Controller
+    public class LeaseController : BaseController
     {
-        private string _leaseApiBaseUrl => ConfigurationManager.AppSettings["leaseApiUrl"];
-        private string _repositoryApiBaseUrl => ConfigurationManager.AppSettings["repositoryApiUrl"];
-
-        public LeaseController()
+        public LeaseController(ISessionStorage sessionStorage) : base(sessionStorage)
         {
 
         }

@@ -1,4 +1,5 @@
-﻿using BookingLibrary.UI.Utilities;
+﻿using BookingLibrary.UI.SessionStorages;
+using BookingLibrary.UI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,11 +9,9 @@ using System.Web.Mvc;
 
 namespace BookingLibrary.UI.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomerController : BaseController
     {
-        private string _identityApiBaseUrl => ConfigurationManager.AppSettings["identityApiUrl"];
-
-        public CustomerController()
+        public CustomerController(ISessionStorage sessionStorage) : base(sessionStorage)
         {
 
         }
