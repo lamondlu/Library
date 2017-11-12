@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -219,6 +220,7 @@
     <Compile Include="DTOs\AddBookDTO.cs" />
     <Compile Include="DTOs\BulkImportDTO.cs" />
     <Compile Include="DTOs\EditBookDTO.cs" />
+    <Compile Include="DTOs\IdentityDetailsDTO.cs" />
     <Compile Include="DTOs\IdentityDTO.cs" />
     <Compile Include="DTOs\ImportBookRepositoryDTO.cs" />
     <Compile Include="DTOs\RentBookDTO.cs" />

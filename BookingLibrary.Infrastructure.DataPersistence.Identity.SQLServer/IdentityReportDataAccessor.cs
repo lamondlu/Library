@@ -6,6 +6,7 @@ using BookingLibrary.Service.Identity.Domain.DataAccessors;
 using BookingLibrary.Service.Identity.Domain.ViewModels;
 using BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer.Extensions;
 using System.Linq;
+using BookingLibrary.Service.Identity.Domain;
 
 namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
 {
@@ -64,10 +65,39 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer
 
         public CustomerListViewModel GetCustomerSingleListViewModel(Guid personId)
         {
-            var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString); 
-             var sql = "SELECT * FROM dbo.[User] AS u INNER JOIN dbo.[Person] p on u.PersonId = p.PersonId WHERE u.Role = 'Customer' and u.PersonId=@personId";
+            var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
+            var sql = "SELECT * FROM dbo.[User] AS u INNER JOIN dbo.[Person] p on u.PersonId = p.PersonId WHERE u.Role = 'Customer' and u.PersonId=@personId";
 
-             return dbHelper.ExecuteDataTable(sql, new SqlParameter{ ParameterName = "@personId", SqlDbType = SqlDbType.UniqueIdentifier, Value = personId}).ConvertToCustomerListView().FirstOrDefault();
+            return dbHelper.ExecuteDataTable(sql, new SqlParameter { ParameterName = "@personId", SqlDbType = SqlDbType.UniqueIdentifier, Value = personId }).ConvertToCustomerListView().FirstOrDefault();
         }
+
+        public IdentityDetailsViewModel GetAccountDetails(Guid accountId)
+        {
+            var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
+            var sql = "SELECT TOP 1 p.* FROM dbo.[User] AS u INNER JOIN dbo.[Person] p on u.PersonId = p.PersonId WHERE u.PersonId=@personId";
+
+
+            var dt = dbHelper.ExecuteDataTable(sql, new List<SqlParameter>{
+                new SqlParameter
+                {
+                    ParameterName = "@personId",
+                    SqlDbType = SqlDbType.UniqueIdentifier,
+                    Value = accountId
+                }}.ToArray());
+
+            if (dt.Rows.Count == 1)
+            {
+                return new IdentityDetailsViewModel
+                {
+                    AccountId = Guid.Parse(dt.Rows[0]["PersonId"].ToString()),
+                    FirstName = dt.Rows[0]["FirstName"]?.ToString(),
+                    LastName = dt.Rows[0]["LastName"]?.ToString(),
+                    MiddleName = dt.Rows[0]["MiddleName"]?.ToString()
+                };
+            }
+
+            return null;
+        }
+
     }
 }

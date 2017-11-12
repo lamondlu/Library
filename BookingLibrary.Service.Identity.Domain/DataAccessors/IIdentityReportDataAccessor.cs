@@ -11,5 +11,7 @@ namespace BookingLibrary.Service.Identity.Domain.DataAccessors
         List<CustomerListViewModel> GetCustomerList();
 
         CustomerListViewModel GetCustomerSingleListViewModel(Guid personId);
+
+        IdentityDetailsViewModel GetAccountDetails(Guid accountId);
     }
 }

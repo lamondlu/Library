@@ -35,9 +35,21 @@ namespace BookingLibrary.Service.Identity
         }
 
         [HttpGet("~/api/customers")]
-        public List<CustomerListViewModel> GetCustomer()
+        public List<CustomerListViewModel> GetCustomers()
         {
             return _dataAccessor.GetCustomerList();
+        }
+
+        [HttpGet("~/api/customers/{customerId}")]
+        public CustomerListViewModel GetCustomerDetails(Guid customerId)
+        {
+            return _dataAccessor.GetCustomerSingleListViewModel(customerId);
+        }
+
+        [HttpGet("~/api/accounts/{accountId}")]
+        public IdentityDetailsViewModel GetAccount(Guid accountId)
+        {
+            return _dataAccessor.GetAccountDetails(accountId);
         }
     }
 }
