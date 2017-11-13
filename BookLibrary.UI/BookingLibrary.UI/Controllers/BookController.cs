@@ -22,7 +22,7 @@ namespace BookingLibrary.UI.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            var data = ApiRequestWithFormUrlEncodedContent.Get<List<BookViewModel>>($"{_repositoryApiBaseUrl}/api/Books");
+            var data = ApiRequestWithFormUrlEncodedContent.Get<List<BookViewModel>>($"{_inventoryApiBaseUrl}/api/Books");
             return View(data);
         }
 
@@ -35,7 +35,7 @@ namespace BookingLibrary.UI.Controllers
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
-            var data = ApiRequestWithFormUrlEncodedContent.Get<EditBookDTO>($"{_repositoryApiBaseUrl}/api/Books/{id}");
+            var data = ApiRequestWithFormUrlEncodedContent.Get<EditBookDTO>($"{_inventoryApiBaseUrl}/api/Books/{id}");
 
             return View(data);
         }
@@ -51,7 +51,7 @@ namespace BookingLibrary.UI.Controllers
             data.Add("IssueDate", dto.DateIssued.ToString("yyyy-MM-dd"));
             data.Add("Description", dto.Description);
 
-            var commandId = ApiRequestWithFormUrlEncodedContent.Put<Guid>($"{_repositoryApiBaseUrl}/api/Books/{dto.BookId}", data);
+            var commandId = ApiRequestWithFormUrlEncodedContent.Put<Guid>($"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}", data);
 
             if (commandId != Guid.Empty)
             {
@@ -73,7 +73,7 @@ namespace BookingLibrary.UI.Controllers
             data.Add("IssueDate", dto.IssueDate.ToString("yyyy-MM-dd"));
             data.Add("Description", dto.Description);
 
-            var commandUnqiueId = ApiRequestWithFormUrlEncodedContent.Post<Guid>($"{_repositoryApiBaseUrl}/api/Books", data);
+            var commandUnqiueId = ApiRequestWithFormUrlEncodedContent.Post<Guid>($"{_inventoryApiBaseUrl}/api/Books", data);
 
             return Json(new { commandUnqiueId = commandUnqiueId });
         }
@@ -81,7 +81,7 @@ namespace BookingLibrary.UI.Controllers
         [HttpGet]
         public ActionResult _AjaxGetAvailableBooks()
         {
-            var data = ApiRequestWithFormUrlEncodedContent.Get<List<AvailableBookModel>>($"{_repositoryApiBaseUrl}/api/available_books");
+            var data = ApiRequestWithFormUrlEncodedContent.Get<List<AvailableBookModel>>($"{_inventoryApiBaseUrl}/api/available_books");
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 

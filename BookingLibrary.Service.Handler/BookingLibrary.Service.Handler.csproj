@@ -5,8 +5,8 @@
     <ProjectReference Include="..\BookingLibrary.Infrastructure.Messaging.SignalR\BookingLibrary.Infrastructure.Messaging.SignalR.csproj" />
     <ProjectReference Include="..\BookingLibrary.Infrastructure.InjectionFramework\BookingLibrary.Infrastructure.InjectionFramework.csproj" />
     <ProjectReference Include="..\BookingLibrary.Infrastructure.EventStorage.SQLServer\BookingLibrary.Infrastructure.EventStorage.SQLServer.csproj" />
-    <ProjectReference Include="..\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj" />
-    <ProjectReference Include="..\BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Infrastructure.DataPersistence.Inventory.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Inventory.SQLServer.csproj" />
+    <ProjectReference Include="..\BookingLibrary.Infrastructure.DataPersistence.Rental.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Rental.SQLServer.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />

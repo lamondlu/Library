@@ -6,13 +6,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Iden
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Identity.Domain", "BookingLibrary.Service.Identity.Domain\BookingLibrary.Service.Identity.Domain.csproj", "{EC6E7932-2DA4-4004-9E5D-F3447CC5AD6D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Leasing.Domain", "BookingLibrary.Service.Leasing.Domain\BookingLibrary.Service.Leasing.Domain.csproj", "{EAF65905-3519-4472-8403-2EE036BDC7E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Rental.Domain", "BookingLibrary.Service.Rental.Domain\BookingLibrary.Service.Rental.Domain.csproj", "{EAF65905-3519-4472-8403-2EE036BDC7E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Leasing", "BookingLibrary.Service.Leasing\BookingLibrary.Service.Leasing.csproj", "{DBADF044-3FB3-4041-877C-C32F7AE2991A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Rental", "BookingLibrary.Service.Rental\BookingLibrary.Service.Rental.csproj", "{DBADF044-3FB3-4041-877C-C32F7AE2991A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Repository", "BookingLibrary.Service.Repository\BookingLibrary.Service.Repository.csproj", "{7B4F1DCA-1F05-461F-B65C-4A08D3061816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Inventory", "BookingLibrary.Service.Inventory\BookingLibrary.Service.Inventory.csproj", "{7B4F1DCA-1F05-461F-B65C-4A08D3061816}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Repository.Domain", "BookingLibrary.Service.Repository.Domain\BookingLibrary.Service.Repository.Domain.csproj", "{37B0A2C3-2422-44CA-9F50-EEB40CD1584E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Inventory.Domain", "BookingLibrary.Service.Inventory.Domain\BookingLibrary.Service.Inventory.Domain.csproj", "{37B0A2C3-2422-44CA-9F50-EEB40CD1584E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Domain.Core", "BookingLibrary.Domain.Core\BookingLibrary.Domain.Core.csproj", "{66B8D417-7058-4456-805A-628D27C3C388}"
 EndProject
@@ -28,11 +28,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Infrastructure.EventStorage.SQLServer", "BookingLibrary.Infrastructure.EventStorage.SQLServer\BookingLibrary.Infrastructure.EventStorage.SQLServer.csproj", "{87D87226-1092-4016-B1E6-BFCFAE4485E7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer", "BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer.csproj", "{55AC5629-51A0-4955-9346-8A8046AA7705}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Infrastructure.DataPersistence.Inventory.SQLServer", "BookingLibrary.Infrastructure.DataPersistence.Inventory.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Inventory.SQLServer.csproj", "{55AC5629-51A0-4955-9346-8A8046AA7705}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer", "BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Identity.SQLServer.csproj", "{213C8A5A-2DB7-41DC-990E-51C67B5A335D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer", "BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer.csproj", "{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Infrastructure.DataPersistence.Rental.SQLServer", "BookingLibrary.Infrastructure.DataPersistence.Rental.SQLServer\BookingLibrary.Infrastructure.DataPersistence.Rental.SQLServer.csproj", "{EC47738B-F4F0-4334-AAB8-0900B9A9A93C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

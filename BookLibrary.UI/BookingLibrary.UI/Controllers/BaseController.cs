@@ -13,11 +13,11 @@ namespace BookingLibrary.UI.Controllers
     [Authorize]
     public class BaseController : Controller
     {
-        protected string _repositoryApiBaseUrl => ConfigurationManager.AppSettings["repositoryApiUrl"];
+        protected string _inventoryApiBaseUrl => ConfigurationManager.AppSettings["inventoryApiUrl"];
 
         protected string _identityApiBaseUrl => ConfigurationManager.AppSettings["identityApiUrl"];
 
-        protected string _leaseApiBaseUrl => ConfigurationManager.AppSettings["leaseApiUrl"];
+        protected string _rentalApiBaseUrl => ConfigurationManager.AppSettings["rentalApiUrl"];
 
         protected ISessionStorage _sessionStorage = null;
 

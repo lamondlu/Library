@@ -214,15 +214,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
-    <Compile Include="Controllers\BookRepositoryController.cs" />
+    <Compile Include="Controllers\BookInventoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\LeaseController.cs" />
+    <Compile Include="Controllers\RentalController.cs" />
     <Compile Include="DTOs\AddBookDTO.cs" />
     <Compile Include="DTOs\BulkImportDTO.cs" />
     <Compile Include="DTOs\EditBookDTO.cs" />
     <Compile Include="DTOs\IdentityDetailsDTO.cs" />
     <Compile Include="DTOs\IdentityDTO.cs" />
-    <Compile Include="DTOs\ImportBookRepositoryDTO.cs" />
+    <Compile Include="DTOs\ImportBookInventoryDTO.cs" />
     <Compile Include="DTOs\RentBookDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -298,7 +298,7 @@
     <Content Include="Views\Book\List.cshtml" />
     <Content Include="Views\Book\Add.cshtml" />
     <Content Include="Views\Book\Edit.cshtml" />
-    <Content Include="Views\Lease\UnreturnedBooks.cshtml" />
+    <Content Include="Views\Rental\UnreturnedBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

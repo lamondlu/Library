@@ -1,16 +1,16 @@
 using System;
 using System.IO;
-using BookingLibrary.Service.Repository.Domain.DataAccessors;
-using BookingLibrary.Service.Leasing.Domain.DataAccessors;
+using BookingLibrary.Service.Inventory.Domain.DataAccessors;
+using BookingLibrary.Service.Rental.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;
 
 namespace BookingLibrary.Service.Handler
 {
-    public class AppsettingRepositoryReadDBConnectionStringProvider : IRepositoryReadDBConnectionStringProvider
+    public class AppsettingInventoryReadDBConnectionStringProvider : IInventoryReadDBConnectionStringProvider
     {
         private IConfigurationRoot _configuration = null;
 
-        public AppsettingRepositoryReadDBConnectionStringProvider()
+        public AppsettingInventoryReadDBConnectionStringProvider()
         {
             var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -23,16 +23,16 @@ namespace BookingLibrary.Service.Handler
         {
             get
             {
-                return _configuration["repositoryReadDBConnectionString"];
+                return _configuration["InventoryReadDBConnectionString"];
             }
         }
     }
 
-    public class AppsettingRepositoryWriteDBConnectionStringProvider : IRepositoryWriteDBConnectionStringProvider
+    public class AppsettingInventoryWriteDBConnectionStringProvider : IInventoryWriteDBConnectionStringProvider
     {
         private IConfigurationRoot _configuration = null;
 
-        public AppsettingRepositoryWriteDBConnectionStringProvider()
+        public AppsettingInventoryWriteDBConnectionStringProvider()
         {
             var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -45,16 +45,16 @@ namespace BookingLibrary.Service.Handler
         {
             get
             {
-                return _configuration["repositoryWriteDBConnectionString"];
+                return _configuration["InventoryWriteDBConnectionString"];
             }
         }
     }
 
-    public class AppsettingLeasingReadDBConnectionStringProvider : ILeasingReadDBConnectionStringProvider
+    public class AppsettingRentalReadDBConnectionStringProvider : IRentalReadDBConnectionStringProvider
     {
         private IConfigurationRoot _configuration = null;
 
-        public AppsettingLeasingReadDBConnectionStringProvider()
+        public AppsettingRentalReadDBConnectionStringProvider()
         {
             var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -72,11 +72,11 @@ namespace BookingLibrary.Service.Handler
         }
     }
 
-    public class AppsettingLeasingWriteDBConnectionStringProvider : ILeasingWriteDBConnectionStringProvider
+    public class AppsettingRentalWriteDBConnectionStringProvider : IRentalWriteDBConnectionStringProvider
     {
         private IConfigurationRoot _configuration = null;
 
-        public AppsettingLeasingWriteDBConnectionStringProvider()
+        public AppsettingRentalWriteDBConnectionStringProvider()
         {
             var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
