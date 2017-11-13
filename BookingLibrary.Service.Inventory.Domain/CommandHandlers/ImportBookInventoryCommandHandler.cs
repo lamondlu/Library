@@ -15,7 +15,7 @@ namespace BookingLibrary.Service.Inventory.Domain
 
         public void Dispose()
         {
-            domainRepository = null;
+            _domainRepository = null;
         }
 
         public void Execute(ImportBookInventoryCommand command)

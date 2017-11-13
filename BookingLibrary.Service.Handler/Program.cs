@@ -1,22 +1,20 @@
-﻿using System;
-using System.Reflection;
-using System.Linq;
+﻿using BookingLibrary.Domain.Core;
 using BookingLibrary.Domain.Core.Commands;
-using BookingLibrary.Infrastructure.InjectionFramework;
 using BookingLibrary.Domain.Core.DataAccessor;
-using BookingLibrary.Infrastructure.EventStorage.SQLServer;
-using BookingLibrary.Domain.Core;
 using BookingLibrary.Domain.Core.Messaging;
+using BookingLibrary.Infrastructure.DataPersistence.Inventory.SQLServer;
+using BookingLibrary.Infrastructure.DataPersistence.Rental.SQLServer;
+using BookingLibrary.Infrastructure.EventStorage.SQLServer;
+using BookingLibrary.Infrastructure.InjectionFramework;
 using BookingLibrary.Infrastructure.Messaging.RabbitMQ;
-using BookingLibrary.Service.Repository.Domain.DataAccessors;
-using BookingLibrary.Service.Leasing.Domain.DataAccessors;
-using BookingLibrary.Service.Leasing.Domain;
-using BookingLibrary.Infrastructure.DataPersistence.Repository.SQLServer;
-using BookingLibrary.Infrastructure.DataPersistence.Leasing.SQLServer;
+using BookingLibrary.Service.Inventory.Domain.DataAccessors;
+using BookingLibrary.Service.Rental.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;
-using System.IO;
-using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace BookingLibrary.Service.Handler
 {
@@ -31,13 +29,13 @@ namespace BookingLibrary.Service.Handler
             InjectContainer.RegisterType<IEventDBConnectionStringProvider, AppSettingEventDBConnectionStringProvider>();
 
             //这一部分需要重构到配置文件中
-            InjectContainer.RegisterType<IRepositoryReadDBConnectionStringProvider, AppsettingRepositoryReadDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IRepositoryWriteDBConnectionStringProvider, AppsettingRepositoryWriteDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IRepositoryReportDataAccessor, RepositoryReportDataAccessor>();
+            InjectContainer.RegisterType<IInventoryReadDBConnectionStringProvider, AppsettingInventoryReadDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IInventoryWriteDBConnectionStringProvider, AppsettingInventoryWriteDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IInventoryReportDataAccessor, InventoryReportDataAccessor>();
 
-            InjectContainer.RegisterType<ILeasingReadDBConnectionStringProvider, AppsettingLeasingReadDBConnectionStringProvider>();
-            InjectContainer.RegisterType<ILeasingWriteDBConnectionStringProvider, AppsettingLeasingWriteDBConnectionStringProvider>();
-            InjectContainer.RegisterType<ILeasingReportDataAccessor, LeasingReportDataAccessor>();
+            InjectContainer.RegisterType<IRentalReadDBConnectionStringProvider, AppsettingRentalReadDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IRentalWriteDBConnectionStringProvider, AppsettingRentalWriteDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IRentalReportDataAccessor, RentalReportDataAccessor>();
 
 
             var handlers = BuildHandlerConfigurations();

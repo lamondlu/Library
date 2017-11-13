@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Identity", "BookingLibrary.Service.Identity\BookingLibrary.Service.Identity.csproj", "{6DDC9F90-F729-48E1-B282-AF2CE3C5CD82}"
 EndProject
@@ -15,8 +15,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Service.Inventory.Domain", "BookingLibrary.Service.Inventory.Domain\BookingLibrary.Service.Inventory.Domain.csproj", "{37B0A2C3-2422-44CA-9F50-EEB40CD1584E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Domain.Core", "BookingLibrary.Domain.Core\BookingLibrary.Domain.Core.csproj", "{66B8D417-7058-4456-805A-628D27C3C388}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary", "BookingLibrary\BookingLibrary.csproj", "{91702F26-7191-464F-822B-7FA61293114C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingLibrary.Infrastructure.Messaging.RabbitMQ", "BookingLibrary.Infrastructure.Messaging.RabbitMQ\BookingLibrary.Infrastructure.Messaging.RabbitMQ.csproj", "{9D06E7EE-6262-4EC6-B5CF-22798FF9BB31}"
 EndProject
@@ -128,18 +126,6 @@ Global
 		{66B8D417-7058-4456-805A-628D27C3C388}.Release|x64.Build.0 = Release|Any CPU
 		{66B8D417-7058-4456-805A-628D27C3C388}.Release|x86.ActiveCfg = Release|Any CPU
 		{66B8D417-7058-4456-805A-628D27C3C388}.Release|x86.Build.0 = Release|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Debug|x64.Build.0 = Debug|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Debug|x86.Build.0 = Debug|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Release|x64.ActiveCfg = Release|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Release|x64.Build.0 = Release|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Release|x86.ActiveCfg = Release|Any CPU
-		{91702F26-7191-464F-822B-7FA61293114C}.Release|x86.Build.0 = Release|Any CPU
 		{9D06E7EE-6262-4EC6-B5CF-22798FF9BB31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D06E7EE-6262-4EC6-B5CF-22798FF9BB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D06E7EE-6262-4EC6-B5CF-22798FF9BB31}.Debug|x64.ActiveCfg = Debug|Any CPU
