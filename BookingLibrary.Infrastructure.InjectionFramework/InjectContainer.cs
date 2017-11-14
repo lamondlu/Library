@@ -52,7 +52,7 @@ namespace BookingLibrary.Infrastructure.InjectionFramework
             }
             catch (Exception ex)
             {
-                Console.Write(ex.ToString());
+                //Console.Write(ex.ToString());
                 return default(T);
             }
         }

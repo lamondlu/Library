@@ -118,7 +118,7 @@
 
         function returnBook(customerId, bookId) {
             $.ajax({
-                url: '/Lease/_AjaxReturnBook?customerId=' + customerId + "&bookId=" + bookId,
+                url: '/Rental/_AjaxReturnBook?customerId=' + customerId + "&bookId=" + bookId,
                 type: 'POST',
                 success: function (data) {
                     if (data.result) {
@@ -134,7 +134,7 @@
 
         function rentBook() {
             $.ajax({
-                url: '/Lease/_AjaxRentBook',
+                url: '/Rental/_AjaxRentBook',
                 data: { bookId: $('#bookId').val(), customerId: $('#customerId').val() },
                 type: 'POST',
                 success: function (data) {

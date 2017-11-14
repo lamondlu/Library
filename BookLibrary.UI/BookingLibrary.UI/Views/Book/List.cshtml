@@ -80,7 +80,7 @@
             showMask();
 
             $.ajax({
-                url: '@Url.Action("_AjaxBulkImported", "BookRepository")',
+                url: '@Url.Action("_AjaxBulkImported", "BookInventory")',
                 data: {bookId:bookId, number:10},
                 type: 'POST',
                 success: function (data) {

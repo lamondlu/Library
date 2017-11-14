@@ -22,7 +22,7 @@ namespace BookingLibrary.Service.Rental
         {
             get
             {
-                return _configuration["leaseReadDBConnectionString"];
+                return _configuration["rentalReadDBConnectionString"];
             }
         }
     }
@@ -44,7 +44,7 @@ namespace BookingLibrary.Service.Rental
         {
             get
             {
-                return _configuration["leaseWriteDBConnectionString"];
+                return _configuration["rentalWriteDBConnectionString"];
             }
         }
     }

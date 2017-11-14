@@ -29,13 +29,13 @@ namespace BookingLibrary.UI.Controllers
         {
             var bookInfo = ApiRequestWithFormUrlEncodedContent.Get<EditBookDTO>($"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}");
 
-            var bookRepositoryId = bookInfo.BookRepositories.Where(p => p.Status == 1).FirstOrDefault()?.BookRepositoryId;
+            var bookInventoryId = bookInfo.BookInventories.Where(p => p.Status == 1).FirstOrDefault()?.BookInventoryId;
 
-            if (bookRepositoryId.HasValue)
+            if (bookInventoryId.HasValue)
             {
                 var commandId = ApiRequestWithStringContent.Post<Guid>($"{_rentalApiBaseUrl}/api/customers/{dto.CustomerId}/books", new
                 {
-                    BookId = bookRepositoryId,
+                    BookId = bookInventoryId,
                     BookName = bookInfo.BookName,
                     ISBN = bookInfo.ISBN,
                     CustomerId = dto.CustomerId,

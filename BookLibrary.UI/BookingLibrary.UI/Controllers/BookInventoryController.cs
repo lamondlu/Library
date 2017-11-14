@@ -32,7 +32,7 @@ namespace BookingLibrary.UI.Controllers
 
             var data = new NameValueCollection();
             data.Add("BookRepositoryIds", string.Join(",", newBookInventories.Select(p => p.ToString())));
-            var commandKey = ApiRequestWithStringContent.Post<Guid>($"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}/Repositories", new ImportBookInventoryDTO
+            var commandKey = ApiRequestWithStringContent.Post<Guid>($"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}/Inventories", new ImportBookInventoryDTO
             {
                 BookInventoryIds = newBookInventories
             });

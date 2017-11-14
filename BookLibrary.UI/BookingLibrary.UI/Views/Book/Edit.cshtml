@@ -49,12 +49,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (Model.BookRepositories.Count > 0)
+                    @if (Model.BookInventories.Count > 0)
                     {
-                        foreach (var item in Model.BookRepositories)
+                        foreach (var item in Model.BookInventories)
                         {
                             <tr>
-                                <td>@item.BookRepositoryId</td>
+                                <td>@item.BookInventoryId</td>
                                 <td>@(item.Status == 1?"IN":"OUT")</td>
                                 <td>@item.LastNote</td>
                                 <td><input type="button" class="btn btn-success" value="View Histories"/> </td>

@@ -21,12 +21,12 @@ namespace BookingLibrary.UI.DTOs
 
         public string Description { get; set; }
 
-        public List<BookRepositoryDTO> BookRepositories { get; set; }
+        public List<BookInventoryDTO> BookInventories { get; set; }
     }
 
-    public class BookRepositoryDTO
+    public class BookInventoryDTO
     {
-        public Guid BookRepositoryId { get; set; }
+        public Guid BookInventoryId { get; set; }
 
         public string LastNote { get; set; }
 

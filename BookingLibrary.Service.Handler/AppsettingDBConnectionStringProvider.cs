@@ -23,7 +23,7 @@ namespace BookingLibrary.Service.Handler
         {
             get
             {
-                return _configuration["InventoryReadDBConnectionString"];
+                return _configuration["inventoryReadDBConnectionString"];
             }
         }
     }
@@ -45,7 +45,7 @@ namespace BookingLibrary.Service.Handler
         {
             get
             {
-                return _configuration["InventoryWriteDBConnectionString"];
+                return _configuration["inventoryWriteDBConnectionString"];
             }
         }
     }
@@ -67,7 +67,7 @@ namespace BookingLibrary.Service.Handler
         {
             get
             {
-                return _configuration["leaseReadDBConnectionString"];
+                return _configuration["rentalReadDBConnectionString"];
             }
         }
     }
@@ -89,7 +89,7 @@ namespace BookingLibrary.Service.Handler
         {
             get
             {
-                return _configuration["leaseWriteDBConnectionString"];
+                return _configuration["rentalWriteDBConnectionString"];
             }
         }
     }

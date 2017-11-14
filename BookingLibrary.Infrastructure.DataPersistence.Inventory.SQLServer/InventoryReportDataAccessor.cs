@@ -140,9 +140,9 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Inventory.SQLServer
                     SELECT *, (SELECT TOP 1 h.Note From History h Where h.BookInventoryId = br.BookInventoryId) as LastNote FROM BookInventory br WHERE br.BookId = @bookId
                     ", new SqlParameter { ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId });
 
-                var repositories = InventoryDatas.ConvertToBookInventoryViewModel();
+                var inventories = InventoryDatas.ConvertToBookInventoryViewModel();
 
-                result.BookRepositories = repositories;
+                result.BookInventories = inventories;
             }
 
             return result;
@@ -203,9 +203,8 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Inventory.SQLServer
                 new SqlParameter{ ParameterName ="@isRemoved", SqlDbType = SqlDbType.Bit, Value = false }
                 }));
 
-            _commands.Add(new Command("INSERT INTO History(HistoryId, BookInventoryId, BookId, Note, CreatedOn) values(@historyId, @bookInventoryId, @bookId, @note, @createdOn)", new List<SqlParameter>{
+            _commands.Add(new Command("INSERT INTO History(HistoryId, BookInventoryId, Note, CreatedOn) values(@historyId, @bookInventoryId, @note, @createdOn)", new List<SqlParameter>{
                 new SqlParameter{ ParameterName ="@bookInventoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookInventoryId },
-                new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId },
                 new SqlParameter{ ParameterName ="@historyId", SqlDbType = SqlDbType.UniqueIdentifier, Value = Guid.NewGuid() },
                 new SqlParameter{ ParameterName ="@createdOn", SqlDbType = SqlDbType.DateTime2, Value = DateTime.Now },
                 new SqlParameter{ ParameterName ="@note", SqlDbType = SqlDbType.NVarChar, Value = notes }

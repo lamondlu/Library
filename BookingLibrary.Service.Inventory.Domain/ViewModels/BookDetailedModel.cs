@@ -7,7 +7,7 @@ namespace BookingLibrary.Service.Inventory.Domain.ViewModels
     {
         public BookDetailedModel()
         {
-            BookRepositories = new List<BookInventoryViewModel>();
+            BookInventories = new List<BookInventoryViewModel>();
         }
 
         public Guid BookId { get; set; }
@@ -20,7 +20,7 @@ namespace BookingLibrary.Service.Inventory.Domain.ViewModels
 
         public DateTime DateIssued { get; set; }
 
-        public List<BookInventoryViewModel> BookRepositories { get; set; }
+        public List<BookInventoryViewModel> BookInventories { get; set; }
     }
 
     public class BookInventoryViewModel
