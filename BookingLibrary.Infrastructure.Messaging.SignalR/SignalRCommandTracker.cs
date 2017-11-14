@@ -26,6 +26,16 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
             ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}/events/{eventName}", new { Status = "0" });
         }
 
+        public void DirectFinish(Guid commandUniqueId)
+        {
+            ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}", new { Status = "0" });
+        }
+
+        public void DirectError(Guid commandUniqueId, string errorCode, string errorMessage)
+        {
+            ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}", new { Status = "0", ErrorCode = errorCode, errorMessage= errorMessage });
+        }
+
         public void Error(Guid commandUniqueId, string eventName, string errorCode, string errorMessage)
         {
             var data = new NameValueCollection();

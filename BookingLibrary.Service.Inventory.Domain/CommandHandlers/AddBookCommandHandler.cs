@@ -29,7 +29,7 @@ namespace BookingLibrary.Service.Inventory.Domain.CommandHandlers
             {
                 //Record down the error and use signalR to transfer the error.
 
-                _tracker.Error(command.CommandUniqueId, string.Empty, "100001", "The book has existed in the system.");
+                _tracker.Error(command.CommandUniqueId, string.Empty, "ADDBOOK_EXISTED", "The book has existed in the system.");
             }
             else
             {
