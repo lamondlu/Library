@@ -12,8 +12,6 @@ namespace BookingLibrary.Service.Inventory.Domain.Commands
 
         }
 
-        public Guid BookId { get; set; }
-
         public Guid BookInventoryId { get; set; }
 
         public string Notes { get; set; }

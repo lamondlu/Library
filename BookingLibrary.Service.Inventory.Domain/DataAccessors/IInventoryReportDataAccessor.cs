@@ -29,7 +29,7 @@ namespace BookingLibrary.Service.Inventory.Domain.DataAccessors
 
         void UpdateBookInventoryStatus(Guid bookInventoryId, BookInventoryStatus status, string notes);
 
-        void ImportBookRepositoies(Guid bookId, List<BookInventory> bookRepositories);
+        void AddBookInventory(Guid bookId, Guid bookInventoryId, BookInventoryStatus status, string notes);
 
         void RemoveBookInventory(Guid bookInventoryId);
 

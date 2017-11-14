@@ -94,7 +94,6 @@ namespace BookingLibrary.Service.Inventory
             {
                 _commandPublisher.Publish(new InStoreBookInventoryCommand
                 {
-                    BookId = bookId,
                     BookInventoryId = InventoryId,
                     Notes = dto.Notes
                 });
@@ -103,7 +102,6 @@ namespace BookingLibrary.Service.Inventory
             {
                 _commandPublisher.Publish(new OutStoreBookInventoryCommand
                 {
-                    BookId = bookId,
                     BookInventoryId = InventoryId,
                     Notes = dto.Notes
                 });

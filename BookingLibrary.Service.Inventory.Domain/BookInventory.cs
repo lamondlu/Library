@@ -4,23 +4,73 @@ using BookingLibrary.Service.Inventory.Domain.Events;
 
 namespace BookingLibrary.Service.Inventory.Domain
 {
-    public class BookInventory : Entity
+    public class BookInventory : AggregateRoot,
+        IHandler<BookInventoryInStoredEvent>,
+        IHandler<BookInventoryOutStoredEvent>,
+        IHandler<BookInventoryCreatedEvent>
     {
-        public BookInventory(Guid id) : base()
+        public BookInventory()
         {
-            this.Id = id;
+
         }
 
-        public BookInventoryStatus Status { get; private set; }
+        public BookInventory(Guid bookInventoryId, Guid bookId, string notes)
+        {
+            ApplyChange(new BookInventoryCreatedEvent
+            {
+                AggregateId = bookInventoryId,
+                BookId = bookId,
+                Notes = notes
+            });
+        }
 
-        public void InStore()
+        public Guid BookId { get; internal set; }
+
+        public BookInventoryStatus Status { get; internal set; }
+
+        public void Handle(BookInventoryInStoredEvent evt)
         {
             this.Status = BookInventoryStatus.InStore;
         }
 
-        public void OutStore()
+        public void Handle(BookInventoryOutStoredEvent evt)
         {
             this.Status = BookInventoryStatus.OutStore;
+        }
+
+        public void Handle(BookInventoryCreatedEvent evt)
+        {
+            this.BookId = evt.BookId;
+            this.Id = evt.AggregateId;
+            this.Status = BookInventoryStatus.InStore;
+        }
+
+        public void InStore(string notes)
+        {
+            if (this.Status == BookInventoryStatus.InStore)
+            {
+                throw new Exception("The book is still in store.");
+            }
+
+            ApplyChange(new BookInventoryInStoredEvent
+            {
+                Notes = notes,
+                AggregateId = this.Id
+            });
+        }
+
+        public void OutStore(string notes)
+        {
+            if (this.Status == BookInventoryStatus.OutStore)
+            {
+                throw new Exception("The book is still out store.");
+            }
+
+            ApplyChange(new BookInventoryOutStoredEvent
+            {
+                Notes = notes,
+                AggregateId = this.Id
+            });
         }
     }
 }

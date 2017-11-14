@@ -24,9 +24,11 @@ namespace BookingLibrary.Service.Inventory.Domain
                 return;
             }
 
-            var book = _domainRepository.GetById<Book>(command.BookId);
-            book.Import(command.BookInventoryIds);
-            _domainRepository.Save(book, book.Version, command.CommandUniqueId);
+            foreach(var id in command.BookInventoryIds)
+            {
+                var bookInventory = new BookInventory(id, command.BookId, "Bulk Imported");
+                _domainRepository.Save(bookInventory, -1, command.CommandUniqueId);
+            }
         }
     }
 }

@@ -17,10 +17,10 @@ namespace BookingLibrary.Service.Inventory.Domain.CommandHandlers
 
         public void Execute(OutStoreBookInventoryCommand command)
         {
-            var book = _domainRepository.GetById<Book>(command.BookId);
+            var bookInventory = _domainRepository.GetById<BookInventory>(command.BookInventoryId);
 
-            book.OutStoreBookInventory(command.BookInventoryId, command.Notes);
-            _domainRepository.Save(book, book.Version, command.CommandUniqueId);
+            bookInventory.OutStore(command.Notes);
+            _domainRepository.Save(bookInventory, bookInventory.Version, command.CommandUniqueId);
         }
 
         public void Dispose()

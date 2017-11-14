@@ -12,10 +12,7 @@ namespace BookingLibrary.Service.Inventory.Domain
     IHandler<BookISBNChangedEvent>,
     IHandler<BookNameChangedEvent>,
     IHandler<BookIssuedDateChangedEvent>,
-    IHandler<BookDescriptionChangedEvent>,
-    IHandler<BookInventoryInStoredEvent>,
-    IHandler<BookInventoryOutStoredEvent>,
-    IHandler<BookInventoryImportedEvent>
+    IHandler<BookDescriptionChangedEvent>
     {
         public Book()
         {
@@ -41,8 +38,6 @@ namespace BookingLibrary.Service.Inventory.Domain
         public string Description { get; internal set; }
 
         public DateTime DateIssued { get; internal set; }
-
-        public List<BookInventory> BookRepositories { get; set; }
 
         public void ChangeBookName(string bookName)
         {
@@ -80,61 +75,6 @@ namespace BookingLibrary.Service.Inventory.Domain
             });
         }
 
-        public void OutStoreBookInventory(Guid bookInventoryId, string notes)
-        {
-            var bookInventory = this.BookRepositories.FirstOrDefault(p => p.Id == bookInventoryId);
-
-            if (bookInventory == null)
-            {
-                throw new Exception("The book Inventory is not existed.");
-            }
-            else if (bookInventory.Status == BookInventoryStatus.InStore)
-            {
-                throw new Exception("The book is still out store.");
-            }
-            else
-            {
-                ApplyChange(new BookInventoryOutStoredEvent
-                {
-                    Notes = notes,
-                    BookInventoryId = bookInventory.Id,
-                    AggregateId = this.Id
-                });
-            }
-        }
-
-        public void InStoreBookInventory(Guid bookInventoryId, string notes)
-        {
-            var bookInventory = this.BookRepositories.FirstOrDefault(p => p.Id == bookInventoryId);
-
-            if (bookInventory == null)
-            {
-                throw new Exception("The book Inventory is not existed.");
-            }
-            else if (bookInventory.Status == BookInventoryStatus.InStore)
-            {
-                throw new Exception("The book is still in store.");
-            }
-            else
-            {
-                ApplyChange(new BookInventoryInStoredEvent
-                {
-                    Notes = notes,
-                    BookInventoryId = bookInventory.Id,
-                    AggregateId = this.Id
-                });
-            }
-        }
-
-        public void Import(List<Guid> InventoryIds)
-        {
-            ApplyChange(new BookInventoryImportedEvent
-            {
-                AggregateId = Id,
-                BookInventoryIds = InventoryIds
-            });
-        }
-
         public void Handle(BookAddedEvent evt)
         {
             this.BookName = evt.BookName;
@@ -142,7 +82,6 @@ namespace BookingLibrary.Service.Inventory.Domain
             this.Id = evt.AggregateId;
             this.ISBN = evt.ISBN;
             this.Description = evt.Description;
-            this.BookRepositories = new List<BookInventory>();
         }
 
         public void Handle(BookRemovedEvent evt)
@@ -173,29 +112,6 @@ namespace BookingLibrary.Service.Inventory.Domain
         public void Handle(BookDescriptionChangedEvent evt)
         {
             this.Description = evt.Description;
-        }
-
-        public void Handle(BookInventoryOutStoredEvent evt)
-        {
-            var Inventory = this.BookRepositories.First(p => p.Id == evt.BookInventoryId);
-            Inventory.OutStore();
-        }
-
-        public void Handle(BookInventoryInStoredEvent evt)
-        {
-            var Inventory = this.BookRepositories.First(p => p.Id == evt.BookInventoryId);
-            Inventory.InStore();
-        }
-
-        public void Handle(BookInventoryImportedEvent evt)
-        {
-            foreach (var id in evt.BookInventoryIds)
-            {
-                var bookInventory = new BookInventory(id);
-
-                bookInventory.InStore();
-                this.BookRepositories.Add(bookInventory);
-            }
         }
     }
 }

@@ -194,25 +194,22 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Inventory.SQLServer
             });
         }
 
-        public void ImportBookRepositoies(Guid bookId, List<BookInventory> bookRepositories)
+        public void AddBookInventory(Guid bookId, Guid bookInventoryId, BookInventoryStatus status, string notes)
         {
-            foreach (var bookInventory in bookRepositories)
-            {
-                _commands.Add(new Command("INSERT INTO BookInventory(BookInventoryId, BookId, Status, IsRemoved) VALUES(@bookInventoryId, @bookId, @status, @isRemoved)", new List<SqlParameter>{
-                new SqlParameter{ ParameterName ="@bookInventoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookInventory.Id },
+            _commands.Add(new Command("INSERT INTO BookInventory(BookInventoryId, BookId, Status, IsRemoved) VALUES(@bookInventoryId, @bookId, @status, @isRemoved)", new List<SqlParameter>{
+                new SqlParameter{ ParameterName ="@bookInventoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookInventoryId },
                 new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId },
-                new SqlParameter{ ParameterName ="@status", SqlDbType = SqlDbType.Int, Value = Convert.ToInt32(bookInventory.Status) },
+                new SqlParameter{ ParameterName ="@status", SqlDbType = SqlDbType.Int, Value = Convert.ToInt32(status) },
                 new SqlParameter{ ParameterName ="@isRemoved", SqlDbType = SqlDbType.Bit, Value = false }
                 }));
 
-                _commands.Add(new Command("INSERT INTO History(HistoryId, BookInventoryId, BookId, Note, CreatedOn) values(@historyId, @bookInventoryId, @bookId, @note, @createdOn)", new List<SqlParameter>{
-                new SqlParameter{ ParameterName ="@bookInventoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookInventory.Id },
+            _commands.Add(new Command("INSERT INTO History(HistoryId, BookInventoryId, BookId, Note, CreatedOn) values(@historyId, @bookInventoryId, @bookId, @note, @createdOn)", new List<SqlParameter>{
+                new SqlParameter{ ParameterName ="@bookInventoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookInventoryId },
                 new SqlParameter{ ParameterName ="@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId },
                 new SqlParameter{ ParameterName ="@historyId", SqlDbType = SqlDbType.UniqueIdentifier, Value = Guid.NewGuid() },
                 new SqlParameter{ ParameterName ="@createdOn", SqlDbType = SqlDbType.DateTime2, Value = DateTime.Now },
-                new SqlParameter{ ParameterName ="@note", SqlDbType = SqlDbType.NVarChar, Value = "Bulk Imported." }
+                new SqlParameter{ ParameterName ="@note", SqlDbType = SqlDbType.NVarChar, Value = notes }
                 }));
-            }
         }
     }
 }
