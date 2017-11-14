@@ -56,12 +56,16 @@ namespace BookingLibrary.Service.Handler
             var allEvents = assembly.GetExportedTypes().Where(p => p.GetInterface("IDomainEvent") != null);
             foreach (var @event in allEvents)
             {
+            
                 var register = new RabbitMQEventSubscriber("amqp://localhost:5672", InjectContainer.GetInstance<ICommandTracker>());
+
+                if(register!=null){
                 var registerMethod = register.GetType().GetMethod("Subscribe");
 
                 var cmd = Activator.CreateInstance(@event);
                 Console.WriteLine($"Find event {@event.FullName}.");
                 registerMethod.MakeGenericMethod(@event).Invoke(register, new object[1] { cmd });
+                }
             }
         }
     }

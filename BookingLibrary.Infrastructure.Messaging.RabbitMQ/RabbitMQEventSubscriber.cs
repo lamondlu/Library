@@ -46,7 +46,7 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
             IEventHandler<T> instance = InjectContainer.GetInstance<IEventHandler<T>>();
             if (instance == null)
             {
-                throw new Exception($"The event handler for {typeof(T).FullName} is not prepared.");
+                return;
             }
 
             consumer.Received += (model, ea) =>
