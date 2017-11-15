@@ -7,7 +7,8 @@ namespace BookingLibrary.Service.Inventory.Domain
     public class BookInventory : AggregateRoot,
         IHandler<BookInventoryInStoredEvent>,
         IHandler<BookInventoryOutStoredEvent>,
-        IHandler<BookInventoryCreatedEvent>
+        IHandler<BookInventoryCreatedEvent>,
+        IHandler<RentedBookOutStoredEvent>
     {
         public BookInventory()
         {
@@ -45,6 +46,11 @@ namespace BookingLibrary.Service.Inventory.Domain
             this.Status = BookInventoryStatus.InStore;
         }
 
+        public void Handle(RentedBookOutStoredEvent evt)
+        {
+            this.Status = BookInventoryStatus.OutStore;
+        }
+
         public void InStore(string notes)
         {
             if (this.Status == BookInventoryStatus.InStore)
@@ -67,6 +73,20 @@ namespace BookingLibrary.Service.Inventory.Domain
             }
 
             ApplyChange(new BookInventoryOutStoredEvent
+            {
+                Notes = notes,
+                AggregateId = this.Id
+            });
+        }
+
+        public void RentedBookOutStore(string notes)
+        {
+            if (this.Status == BookInventoryStatus.OutStore)
+            {
+                throw new Exception("The book is still out store.");
+            }
+
+            ApplyChange(new RentedBookOutStoredEvent
             {
                 Notes = notes,
                 AggregateId = this.Id

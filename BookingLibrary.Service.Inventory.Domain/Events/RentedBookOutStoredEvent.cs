@@ -15,5 +15,7 @@ namespace BookingLibrary.Service.Inventory.Domain.Events
         }
 
         public string Notes { get; set; }
+
+        public Guid CustomerId { get; set; }
     }
 }

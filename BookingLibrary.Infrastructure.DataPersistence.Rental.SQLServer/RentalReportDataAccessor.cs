@@ -62,7 +62,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Rental.SQLServer
             }}.ToArray())) == 0;
         }
 
-        public void RentBook(Guid bookId, string bookName, string isbn, Guid customerId, PersonName name, DateTime rentDate)
+        public void CreateRentBookRequest(Guid bookId, string bookName, string isbn, Guid customerId, PersonName name, DateTime rentDate)
         {
             _commands.Add(new Command("INSERT INTO RentalRecord([Id],[CustomerId],[BookId],[BookName],[ISBN],[ContactFirstName],[ContactLastName],[ContactMiddleName],[RentDate]) VALUES(@id, @customerId, @bookId, @bookName, @isbn, @contactFirstName, @contactLastName, @contactMiddleName, @rentDate)", new List<SqlParameter>
             {
@@ -75,6 +75,13 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Rental.SQLServer
                 new SqlParameter{ ParameterName = "@contactLastName", SqlDbType = SqlDbType.NVarChar, Value = name.LastName??string.Empty},
                 new SqlParameter{ ParameterName = "@contactMiddleName", SqlDbType = SqlDbType.NVarChar, Value = name.MiddleName??string.Empty},
                 new SqlParameter{ ParameterName = "@rentDate", SqlDbType = SqlDbType.DateTime2, Value = rentDate}
+            }));
+        }
+
+        public void RentBook(Guid bookId)
+        {
+            _commands.Add(new Command("UPDATE RentalRecord SET IsDelete = 0 WHERE BookId = @bookId and ReturnDate IS NULL", new List<SqlParameter>{
+                new SqlParameter{ ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId}
             }));
         }
 

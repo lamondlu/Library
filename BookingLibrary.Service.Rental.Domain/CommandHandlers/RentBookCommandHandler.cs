@@ -34,7 +34,7 @@ namespace BookingLibrary.Service.Rental.Domain
                 customer = _domainRepository.GetById<Customer>(command.CustomerId);
             }
 
-            customer.RentBook(new Book
+            customer.RentBookRequest(new Book
             {
                 BookName = command.BookName,
                 ISBN = command.ISBN,

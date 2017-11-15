@@ -3,16 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BookingLibrary.Service.Rental.Domain.Events
+namespace BookingLibrary.Service.Inventory.Domain.Events
 {
     public class RentBookRequestAcceptedEvent : DomainEvent
     {
-        public readonly static string Event_RentBookRequestAcceptedEvent = "Event_RentBookRequestAcceptedEvent";
+        private static string Event_RentBookRequestAccepted = "Event_RentBookRequestAccepted";
 
-        public RentBookRequestAcceptedEvent() : base(Event_RentBookRequestAcceptedEvent)
+        public RentBookRequestAcceptedEvent() : base(Event_RentBookRequestAccepted)
         {
 
         }
+
+        public Guid BookInventoryId { get; set; }
 
         public string Notes { get; set; }
 

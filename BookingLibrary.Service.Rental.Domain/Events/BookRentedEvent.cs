@@ -12,14 +12,6 @@ namespace BookingLibrary.Service.Rental.Domain.Events
 
         }
 
-        public Guid BookId { get; set; }
-
-        public string BookName { get; set; }
-
-        public string ISBN { get; set; }
-
-        public PersonName Name { get; set; }
-
-        public DateTime RentDate { get; set; }
+        public Guid BookInventoryId { get; set; }
     }
 }
