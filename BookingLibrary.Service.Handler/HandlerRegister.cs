@@ -21,7 +21,7 @@ namespace BookingLibrary.Service.Handler
         public void RegisterAndStart(string libraryName)
         {
             var connectionString = InjectContainer.GetInstance<IEventDBConnectionStringProvider>().ConnectionString;
-            InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
+           
 
             Console.WriteLine($"Handler starting...");
             Console.WriteLine($"Event DB Connection String: {connectionString}");

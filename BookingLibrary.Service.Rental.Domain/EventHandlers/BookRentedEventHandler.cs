@@ -17,6 +17,7 @@ namespace BookingLibrary.Service.Rental.Domain.EventHandlers
         public BookRentedEventHandler(IRentalReportDataAccessor dataAccessor, ICommandTracker commandTracker)
         {
             _dataAccessor = dataAccessor;
+            _commandTracker = commandTracker;
         }
 
         public void Handle(BookRentedEvent evt)

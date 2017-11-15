@@ -7,6 +7,7 @@ using BookingLibrary.Infrastructure.DataPersistence.Rental.SQLServer;
 using BookingLibrary.Infrastructure.EventStorage.SQLServer;
 using BookingLibrary.Infrastructure.InjectionFramework;
 using BookingLibrary.Infrastructure.Messaging.RabbitMQ;
+using BookingLibrary.Infrastructure.Messaging.SignalR;
 using BookingLibrary.Service.Inventory.Domain.DataAccessors;
 using BookingLibrary.Service.Rental.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +37,7 @@ namespace BookingLibrary.Service.Handler
             InjectContainer.RegisterType<IRentalReadDBConnectionStringProvider, AppsettingRentalReadDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRentalWriteDBConnectionStringProvider, AppsettingRentalWriteDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRentalReportDataAccessor, RentalReportDataAccessor>();
+            InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
 
 
             var handlers = BuildHandlerConfigurations();

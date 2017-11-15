@@ -13,9 +13,10 @@ namespace BookingLibrary.Service.Inventory.Domain.EventHandlers
         private IInventoryReportDataAccessor _reportDataAccessor = null;
         private ICommandTracker _commandTracker = null;
 
-        public BookAddedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker _commandTracker)
+        public BookAddedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker)
         {
             _reportDataAccessor = reportDataAccessor;
+            _commandTracker = commandTracker;
         }
 
         public void Handle(BookAddedEvent evt)
