@@ -80,7 +80,7 @@ namespace BookingLibrary.Infrastructure.DataPersistence.Rental.SQLServer
 
         public void RentBook(Guid bookId)
         {
-            _commands.Add(new Command("UPDATE RentalRecord SET IsDelete = 0 WHERE BookId = @bookId and ReturnDate IS NULL", new List<SqlParameter>{
+            _commands.Add(new Command("UPDATE RentalRecord SET IsDeleted = 0 WHERE BookId = @bookId and ReturnDate IS NULL", new List<SqlParameter>{
                 new SqlParameter{ ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId}
             }));
         }

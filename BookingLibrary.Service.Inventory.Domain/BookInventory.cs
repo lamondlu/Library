@@ -79,7 +79,7 @@ namespace BookingLibrary.Service.Inventory.Domain
             });
         }
 
-        public void RentedBookOutStore(string notes)
+        public void RentedBookOutStore(Guid customerId, string notes)
         {
             if (this.Status == BookInventoryStatus.OutStore)
             {
@@ -89,7 +89,8 @@ namespace BookingLibrary.Service.Inventory.Domain
             ApplyChange(new RentedBookOutStoredEvent
             {
                 Notes = notes,
-                AggregateId = this.Id
+                AggregateId = this.Id,
+                CustomerId = customerId
             });
         }
     }

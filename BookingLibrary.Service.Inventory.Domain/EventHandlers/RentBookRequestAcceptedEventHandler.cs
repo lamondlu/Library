@@ -23,7 +23,7 @@ namespace BookingLibrary.Service.Inventory.Domain.EventHandlers
 
             try
             {
-                bookInventory.RentedBookOutStore(evt.Notes);
+                bookInventory.RentedBookOutStore(evt.CustomerId, evt.Notes);
                 _domainRepository.Save(bookInventory, bookInventory.Version, evt.CommandUniqueId);
             }
             catch

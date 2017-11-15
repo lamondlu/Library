@@ -62,11 +62,11 @@ namespace BookingLibrary.Infrastructure.Messaging.RabbitMQ
                 {
                     //执行命令操作
                     instance.Handle(cmd);
-                    tracker.Finish(cmd.CommandUniqueId, cmd.EventKey);
+                    //tracker.Finish(cmd.CommandUniqueId, cmd.EventKey);
                 }
                 catch(Exception ex)
                 {
-                    tracker.Error(cmd.CommandUniqueId, cmd.EventKey, "100001", ex.Message);
+                    //tracker.Error(cmd.CommandUniqueId, cmd.EventKey, "100001", ex.Message);
                 }
 
                 Console.WriteLine("[x] Event Handler Completed");

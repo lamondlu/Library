@@ -7,9 +7,9 @@ namespace BookingLibrary.Service.Rental.Domain.Events
 {
     public class RentBookRequestAcceptedEvent : DomainEvent
     {
-        public readonly static string Event_RentBookRequestAcceptedEvent = "Event_RentBookRequestAcceptedEvent";
+        public readonly static string Event_RentBookRequestAccepted = "Event_RentBookRequestAccepted";
 
-        public RentBookRequestAcceptedEvent() : base(Event_RentBookRequestAcceptedEvent)
+        public RentBookRequestAcceptedEvent() : base(Event_RentBookRequestAccepted)
         {
 
         }

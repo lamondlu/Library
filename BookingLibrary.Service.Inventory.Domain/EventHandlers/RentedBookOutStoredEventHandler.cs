@@ -34,7 +34,8 @@ namespace BookingLibrary.Service.Inventory.Domain.EventHandlers
                 {
                     CommandUniqueId = evt.CommandUniqueId,
                     BookInventoryId = evt.AggregateId,
-                    CustomerId = evt.CustomerId
+                    CustomerId = evt.CustomerId,
+                    AggregateId = evt.AggregateId
                 };
 
                 _eventPublisher.Publish(rentBookRequestSucceedEvent);
