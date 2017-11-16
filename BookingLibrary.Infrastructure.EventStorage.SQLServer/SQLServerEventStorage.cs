@@ -89,7 +89,7 @@ namespace BookingLibrary.Infrastructure.EventStorage.SQLServer
 
                         foreach (var @event in uncommittedChanges)
                         {
-                            
+
                             var desEvent = Converter.ChangeTo(@event, @event.GetType());
                             _eventPublisher.Publish(desEvent);
                         }
@@ -98,7 +98,7 @@ namespace BookingLibrary.Infrastructure.EventStorage.SQLServer
                     }
                     catch
                     {
-                        
+
                     }
                 }
             }

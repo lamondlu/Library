@@ -2,6 +2,8 @@ using System;
 using BookingLibrary.Domain.Core.Commands;
 using BookingLibrary.Domain.Core.DataAccessor;
 using BookingLibrary.Service.Rental.Domain.DataAccessors;
+using BookingLibrary.Domain.Core.Messaging;
+using BookingLibrary.Service.Rental.Domain.Events;
 
 namespace BookingLibrary.Service.Rental.Domain
 {
@@ -9,11 +11,13 @@ namespace BookingLibrary.Service.Rental.Domain
     {
         private IDomainRepository _domainRepository = null;
         private IRentalReportDataAccessor _dataAccessor = null;
+        private IEventPublisher _eventPublisher = null;
 
-        public RentBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor)
+        public RentBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, IEventPublisher eventPublisher)
         {
             _domainRepository = domainRepository;
             _dataAccessor = dataAccesor;
+            _eventPublisher = eventPublisher;
         }
 
         public void Dispose()
@@ -34,14 +38,22 @@ namespace BookingLibrary.Service.Rental.Domain
                 customer = _domainRepository.GetById<Customer>(command.CustomerId);
             }
 
-            customer.RentBookRequest(new Book
+            if (customer.Books.Count == 3)
             {
-                BookName = command.BookName,
-                ISBN = command.ISBN,
-                Id = command.BookId
-            });
-
-            _domainRepository.Save(customer, customer.Version, command.CommandUniqueId);
+                _eventPublisher.Publish(new CustomerOwnedBookExcceedEvent { CommandUniqueId = command.CommandUniqueId });
+            }
+            else
+            {
+                _eventPublisher.Publish(new RentBookRequestCreatedEvent
+                {
+                    ISBN = command.ISBN,
+                    BookName = command.BookName,
+                    BookInventoryId = command.BookId,
+                    RentDate = DateTime.Now,
+                    Name = customer.Name,
+                    CommandUniqueId = command.CommandUniqueId
+                });
+            }
         }
     }
 }

@@ -9,8 +9,7 @@ namespace BookingLibrary.Service.Rental.Domain
     public class Customer : AggregateRoot,
     IHandler<BookRentedEvent>,
     IHandler<BookReturnedEvent>,
-    IHandler<CustomerAccountInitializedEvent>,
-    IHandler<RentBookRequestCreatedEvent>
+    IHandler<CustomerAccountInitializedEvent>
     {
         public Customer()
         {
@@ -47,19 +46,6 @@ namespace BookingLibrary.Service.Rental.Domain
             this.Id = evt.AggregateId;
         }
 
-        public void RentBookRequest(Book book)
-        {
-            ApplyChange(new RentBookRequestCreatedEvent
-            {
-                ISBN = book.ISBN,
-                BookName = book.BookName,
-                BookInventoryId = book.Id,
-                RentDate = DateTime.Now,
-                AggregateId = this.Id,
-                Name = this.Name
-            });
-        }
-
         public void RentBook(Guid bookInventoryId)
         {
             ApplyChange(new BookRentedEvent
@@ -77,11 +63,6 @@ namespace BookingLibrary.Service.Rental.Domain
                 ReturnDate = DateTime.Now,
                 AggregateId = this.Id
             });
-        }
-
-        public void Handle(RentBookRequestCreatedEvent evt)
-        {
-            
         }
     }
 }

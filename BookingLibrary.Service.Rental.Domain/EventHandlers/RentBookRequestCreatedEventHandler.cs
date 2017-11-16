@@ -20,16 +20,23 @@ namespace BookingLibrary.Service.Rental.Domain
 
         public void Handle(RentBookRequestCreatedEvent evt)
         {
-            _reportDataAccessor.CreateRentBookRequest(evt.BookInventoryId, evt.BookName, evt.ISBN, evt.AggregateId, evt.Name, evt.RentDate);
-            _reportDataAccessor.Commit();
-
-            _eventPublisher.Publish(new RentBookRequestAcceptedEvent
+            try
             {
-                AggregateId = evt.BookInventoryId,
-                CommandUniqueId = evt.CommandUniqueId,
-                Notes = $"Rent by {evt.Name.FirstName} {evt.Name.LastName} at {evt.RentDate.ToString("yyyy-MM-dd HH:mm:ss")}",
-                CustomerId = evt.AggregateId
-            });
+                _reportDataAccessor.CreateRentBookRequest(evt.BookInventoryId, evt.BookName, evt.ISBN, evt.AggregateId, evt.Name, evt.RentDate);
+                _reportDataAccessor.Commit();
+
+                _eventPublisher.Publish(new RentBookRequestAcceptedEvent
+                {
+                    AggregateId = evt.BookInventoryId,
+                    CommandUniqueId = evt.CommandUniqueId,
+                    Notes = $"Rent by {evt.Name.FirstName} {evt.Name.LastName} at {evt.RentDate.ToString("yyyy-MM-dd HH:mm:ss")}",
+                    CustomerId = evt.AggregateId
+                });
+            }
+            catch
+            {
+
+            }
         }
 
         public Task HandleAsync(RentBookRequestCreatedEvent evt)
