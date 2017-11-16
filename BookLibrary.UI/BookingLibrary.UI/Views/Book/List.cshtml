@@ -61,7 +61,9 @@
                 if (commandUniqueId == currentCommandUnqiueId) {
                     hideMask();
                     alert('Bulk imported successfully.');
+                    
                     command.server.removeCommand(currentCommandUnqiueId);
+                    currentCommandUnqiueId = null;
                 }
             };
 

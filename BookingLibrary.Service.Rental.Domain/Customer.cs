@@ -31,6 +31,11 @@ namespace BookingLibrary.Service.Rental.Domain
 
         public void Handle(BookRentedEvent evt)
         {
+            if (this.Books == null)
+            {
+                this.Books = new List<Guid>();
+            }
+
             this.Books.Add(evt.BookInventoryId);
         }
 

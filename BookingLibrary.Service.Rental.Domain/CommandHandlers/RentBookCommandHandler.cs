@@ -32,6 +32,7 @@ namespace BookingLibrary.Service.Rental.Domain
             if (_dataAccessor.IsNewCustomer(command.CustomerId))
             {
                 customer = new Customer(command.CustomerId, command.Name);
+                _domainRepository.Save(customer, -1, command.CommandUniqueId);
             }
             else
             {
@@ -52,7 +53,7 @@ namespace BookingLibrary.Service.Rental.Domain
                     RentDate = DateTime.Now,
                     Name = customer.Name,
                     CommandUniqueId = command.CommandUniqueId,
-                    AggregateId = customer.Id
+                    AggregateId = command.CustomerId
                 });
             }
         }

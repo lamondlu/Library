@@ -85,6 +85,11 @@
         var currentCommandUnqiueId = '';
         var commandType = '';
 
+        function resetCommand() {
+            currentCommandUnqiueId = '';
+            commandType = '';
+        }
+
         $(function () {
             $.connection.hub.url = "http://localhost:6044/signalr";
             $.connection.hub.logging = true;
@@ -98,16 +103,17 @@
                     command.server.removeCommand(currentCommandUnqiueId);
                     window.location.reload();
                 }
-                else if (commandUniqueId == currentCommandUnqiueId && commandType == 'Return Book'){
+                else if (commandUniqueId == currentCommandUnqiueId && commandType == 'Return Book') {
                     alert('Return successfully.');
                     command.server.removeCommand(currentCommandUnqiueId);
                     window.location.reload();
                 }
             };
 
-            command.client.failure = function (commandUniqueId) {
+            command.client.failure = function (commandUniqueId, errorCode, errorMessage) {
                 if (commandUniqueId == currentCommandUnqiueId && commandType == 'Rent Book') {
-                    alert('Rent failure.');
+                    alert(errorMessage);
+                    resetCommand();
                 }
             };
 

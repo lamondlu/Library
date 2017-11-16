@@ -26,8 +26,9 @@ namespace BookingLibrary.Service.Rental.Domain.EventHandlers
                 customer.RentBook(evt.BookInventoryId);
                 _domainRepository.Save(customer, customer.Version, evt.CommandUniqueId);
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e.ToString());
                 //publish RentBookFailedEvent
             }
         }

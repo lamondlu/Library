@@ -33,7 +33,7 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
 
         public void DirectError(Guid commandUniqueId, string errorCode, string errorMessage)
         {
-            ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}", new { Status = "0", ErrorCode = errorCode, errorMessage= errorMessage });
+            ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}", new { Status = "1", ErrorCode = errorCode, errorMessage= errorMessage });
         }
 
         public void Error(Guid commandUniqueId, string eventName, string errorCode, string errorMessage)
