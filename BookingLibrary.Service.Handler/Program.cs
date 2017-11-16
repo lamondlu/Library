@@ -37,6 +37,7 @@ namespace BookingLibrary.Service.Handler
             InjectContainer.RegisterType<IRentalReadDBConnectionStringProvider, AppsettingRentalReadDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRentalWriteDBConnectionStringProvider, AppsettingRentalWriteDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRentalReportDataAccessor, RentalReportDataAccessor>();
+            InjectContainer.RegisterType<ISignalRConnectionProvider, AppsettingSignalRConnectionProvider>();
             InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
 
 

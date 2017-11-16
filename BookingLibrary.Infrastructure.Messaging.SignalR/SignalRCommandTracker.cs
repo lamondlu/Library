@@ -7,14 +7,24 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
 {
     public class SignalRCommandTracker : ICommandTracker
     {
-        public SignalRCommandTracker()
-        {
+        private ISignalRConnectionProvider _provider = null;
 
+        public SignalRCommandTracker(ISignalRConnectionProvider provider)
+        {
+            _provider = provider;
+        }
+
+        private string Url
+        {
+            get
+            {
+                return _provider.Url;
+            }
         }
 
         public void Track(Guid commandUniqueId, List<string> eventNames)
         {
-            ApiRequest.Post("http://localhost:6044/api/monitored_commands", new
+            ApiRequest.Post($"{Url}/api/monitored_commands", new
             {
                 CommandUniqueId = commandUniqueId,
                 EventNames = eventNames
@@ -23,17 +33,17 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
 
         public void Finish(Guid commandUniqueId, string eventName)
         {
-            ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}/events/{eventName}", new { Status = "0" });
+            ApiRequest.Put($"{Url}/api/monitored_commands/{commandUniqueId}/events/{eventName}", new { Status = "0" });
         }
 
         public void DirectFinish(Guid commandUniqueId)
         {
-            ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}", new { Status = "0" });
+            ApiRequest.Put($"{Url}/api/monitored_commands/{commandUniqueId}", new { Status = "0" });
         }
 
         public void DirectError(Guid commandUniqueId, string errorCode, string errorMessage)
         {
-            ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}", new { Status = "1", ErrorCode = errorCode, errorMessage= errorMessage });
+            ApiRequest.Put($"{Url}/api/monitored_commands/{commandUniqueId}", new { Status = "1", ErrorCode = errorCode, errorMessage = errorMessage });
         }
 
         public void Error(Guid commandUniqueId, string eventName, string errorCode, string errorMessage)
@@ -45,7 +55,7 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
 
             if (string.IsNullOrEmpty(eventName))
             {
-                ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}", new
+                ApiRequest.Put($"{Url}/api/monitored_commands/{commandUniqueId}", new
                 {
                     Status = "1",
                     ErrorCode = errorCode,
@@ -54,7 +64,7 @@ namespace BookingLibrary.Infrastructure.Messaging.SignalR
             }
             else
             {
-                ApiRequest.Put($"http://localhost:6044/api/monitored_commands/{commandUniqueId}/events/{eventName}", new
+                ApiRequest.Put($"{Url}/api/monitored_commands/{commandUniqueId}/events/{eventName}", new
                 {
                     Status = "1",
                     ErrorCode = errorCode,
