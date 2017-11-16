@@ -51,7 +51,8 @@ namespace BookingLibrary.Service.Rental.Domain
                     BookInventoryId = command.BookId,
                     RentDate = DateTime.Now,
                     Name = customer.Name,
-                    CommandUniqueId = command.CommandUniqueId
+                    CommandUniqueId = command.CommandUniqueId,
+                    AggregateId = customer.Id
                 });
             }
         }

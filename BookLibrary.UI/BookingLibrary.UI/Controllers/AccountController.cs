@@ -55,13 +55,17 @@ namespace BookingLibrary.UI.Controllers
 
             var validationResult = ApiRequestWithFormUrlEncodedContent.Post<IdentityDTO>(url, datas);
 
-            if (validationResult.UserId != Guid.Empty)
+            if (validationResult != null && validationResult.UserId != Guid.Empty)
             {
                 FormsAuthentication.SetAuthCookie(validationResult.UserId.ToString(), false);
                 return RedirectToAction("List", "Book");
             }
-
-            return View();
+            else
+            {
+                ModelState.AddModelError("LoginFailure", "User is not existed or password is wrong.");
+                return View();
+            }
+            
         }
     }
 }
