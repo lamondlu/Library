@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/BookingLibrary.Service/bin/Debug/netcoreapp2.0/BookingLibrary.Service.dll",
+            "program": "${workspaceRoot}/BookLibrary.Service/bin/Debug/netcoreapp2.0/BookLibrary.Service.dll",
             "args": [],
-            "cwd": "${workspaceRoot}/BookingLibrary.Service",
+            "cwd": "${workspaceRoot}/BookLibrary.Service",
             // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window
             "console": "internalConsole",
             "stopAtEntry": false,

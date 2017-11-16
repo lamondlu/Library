@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "${workspaceRoot}/BookingLibrary.Service/BookingLibrary.Service.csproj"
+                "${workspaceRoot}/BookLibrary.Service/BookLibrary.Service.csproj"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
