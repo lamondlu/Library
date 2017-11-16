@@ -10,7 +10,9 @@ A project using .NET Core 2.0, DDD, CQRS, Event Sourcing and RabbitMQ
 ## Description
 There are user service, book inventory service and book rental service in the system.
 
-## Rent Book Flow
+## WorkFlow
+
+### Rent Book WorkFlow
 ![EDA](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Flow/rentbookflow.png)
 
 ### User Service
