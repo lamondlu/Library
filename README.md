@@ -10,11 +10,6 @@ A project using .NET Core 2.0, DDD, CQRS, Event Sourcing and RabbitMQ
 ## Description
 There are user service, book inventory service and book rental service in the system.
 
-## WorkFlow
-
-### Rent Book WorkFlow
-![EDA](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Flow/rentbookflow.png)
-
 ### User Service
 * There are two role in the system, Admin User and Customer.
 * Admin user can add/edit/update/delete customer information.
@@ -36,4 +31,7 @@ There are user service, book inventory service and book rental service in the sy
 * If one book inventory has been rented by one customer, it can't be rented by others.
 * One customer can rent 3 books at most.
 
+## WorkFlow
 
+### Rent Book WorkFlow
+![EDA](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Flow/rentbookflow.png)
