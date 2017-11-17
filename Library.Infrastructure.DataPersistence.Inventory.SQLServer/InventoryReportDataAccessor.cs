@@ -1,17 +1,18 @@
 ﻿using System;
-using  Library.Service.Inventory.Domain.DataAccessors;
-using  Library.Infrastructure.InjectionFramework;
+using Library.Service.Inventory.Domain.DataAccessors;
+using Library.Infrastructure.InjectionFramework;
 using System.Collections.Generic;
-using  Library.Service.Inventory.Domain.DTOs;
+using Library.Service.Inventory.Domain.DTOs;
 using System.Data.SqlClient;
 using System.Data;
-using  Library.Service.Inventory.Domain.ViewModels;
-using  Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions;
+using Library.Service.Inventory.Domain.ViewModels;
+using Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions;
 using System.Threading.Tasks;
-using  Library.Service.Inventory.Domain;
+using Library.Service.Inventory.Domain;
 using System.Linq;
+using Library.Infrastructure.DataPersistence.Core.SQLServer;
 
-namespace  Library.Infrastructure.DataPersistence.Inventory.SQLServer
+namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer
 {
     public class InventoryReportDataAccessor : IInventoryReportDataAccessor
     {

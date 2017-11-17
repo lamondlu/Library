@@ -5,11 +5,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using  Library.Domain.Core;
-using  Library.Domain.Core.DataAccessor;
-using  Library.Infrastructure.InjectionFramework;
 
-namespace  Library.Infrastructure.DataPersistence.Inventory.SQLServer
+namespace  Library.Infrastructure.DataPersistence.Core.SQLServer
 {
     public class DbHelper
     {
@@ -34,6 +31,39 @@ namespace  Library.Infrastructure.DataPersistence.Inventory.SQLServer
                         SqlCommand cmd = new SqlCommand(query.SQL, Connection);
                         cmd.Transaction = trans;
                         cmd.Parameters.AddRange(query.Parameters.ToArray());
+                        if (Connection.State != ConnectionState.Open)
+                        {
+                            Connection.Open();
+                        }
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    trans.Commit();
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
+
+
+        public void ExecuteNoQuery(Dictionary<string, List<SqlParameter>> queries)
+        {
+            using (SqlConnection Connection = new SqlConnection(connectionString))
+            {
+                Connection.Open();
+                SqlTransaction trans = Connection.BeginTransaction();
+
+                try
+                {
+                    foreach (var query in queries)
+                    {
+                        SqlCommand cmd = new SqlCommand(query.Key, Connection);
+                        cmd.Transaction = trans;
+                        cmd.Parameters.AddRange(query.Value.ToArray());
                         if (Connection.State != ConnectionState.Open)
                         {
                             Connection.Open();

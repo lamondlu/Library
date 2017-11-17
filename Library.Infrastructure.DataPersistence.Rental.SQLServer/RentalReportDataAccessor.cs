@@ -8,6 +8,7 @@ using  Library.Infrastructure.DataPersistence.Rental.SQLServer;
 using  Library.Service.Rental.Domain.DataAccessors;
 using  Library.Service.Rental.Domain.ViewModels;
 using  Library.Infrastructure.DataPersistence.Rental.SQLServer.Extensions;
+using Library.Infrastructure.DataPersistence.Core.SQLServer;
 
 namespace  Library.Infrastructure.DataPersistence.Rental.SQLServer
 {
