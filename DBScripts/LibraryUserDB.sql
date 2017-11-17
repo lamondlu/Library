@@ -1,6 +1,6 @@
-USE [ LibraryUserDB]
+USE [LibraryUserDB]
 GO
-/****** Object:  Table [dbo].[Person]    Script Date: 11/9/2017 8:52:15 PM ******/
+/****** Object:  Table [dbo].[Person]    Script Date: 11/17/2017 5:01:27 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -17,7 +17,7 @@ CREATE TABLE [dbo].[Person](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[User]    Script Date: 11/9/2017 8:52:15 PM ******/
+/****** Object:  Table [dbo].[User]    Script Date: 11/17/2017 5:01:27 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -49,5 +49,5 @@ ALTER TABLE [dbo].[User] CHECK CONSTRAINT [FK_User_Person]
 GO
 USE [master]
 GO
-ALTER DATABASE [ LibraryUserDB] SET  READ_WRITE 
+ALTER DATABASE [LibraryUserDB] SET  READ_WRITE 
 GO
