@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Library.Domain.Core\Library.Domain.Core.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.Messaging.RabbitMQ\Library.Infrastructure.Messaging.RabbitMQ.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.Messaging.SignalR\Library.Infrastructure.Messaging.SignalR.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.InjectionFramework\Library.Infrastructure.InjectionFramework.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.EventStorage.SQLServer\Library.Infrastructure.EventStorage.SQLServer.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.DataPersistence.Inventory.SQLServer\Library.Infrastructure.DataPersistence.Inventory.SQLServer.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.DataPersistence.Rental.SQLServer\Library.Infrastructure.DataPersistence.Rental.SQLServer.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+</Project>

@@ -1,4 +1,4 @@
-# BookLibrary
+#  Library
 A project using .NET Core 2.0, DDD, CQRS, Event Sourcing and RabbitMQ
 
 ## System Architecture

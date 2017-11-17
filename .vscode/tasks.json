@@ -3,14 +3,12 @@
     "command": "dotnet",
     "isShellCommand": true,
     "args": [],
-    "tasks": [
-        {
-            "taskName": "build",
-            "args": [
-                "${workspaceRoot}/BookLibrary.Service/BookLibrary.Service.csproj"
-            ],
-            "isBuildCommand": true,
-            "problemMatcher": "$msCompile"
-        }
-    ]
+    "tasks": [{
+        "taskName": "build",
+        "args": [
+            "${workspaceRoot}/ Library.Service/ Library.Service.csproj"
+        ],
+        "isBuildCommand": true,
+        "problemMatcher": "$msCompile"
+    }]
 }

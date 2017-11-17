@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Library.Service.Inventory.Domain\Library.Service.Inventory.Domain.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.InjectionFramework\Library.Infrastructure.InjectionFramework.csproj" />
+  </ItemGroup>
+   <ItemGroup>
+    <PackageReference Include="System.Data.SQLClient" Version="4.4.0" />
+  </ItemGroup>
+</Project>

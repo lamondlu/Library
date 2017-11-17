@@ -1,4 +1,4 @@
-USE [BookLibraryUserDB]
+USE [ LibraryUserDB]
 GO
 /****** Object:  Table [dbo].[Person]    Script Date: 11/9/2017 8:52:15 PM ******/
 SET ANSI_NULLS ON
@@ -49,5 +49,5 @@ ALTER TABLE [dbo].[User] CHECK CONSTRAINT [FK_User_Person]
 GO
 USE [master]
 GO
-ALTER DATABASE [BookLibraryUserDB] SET  READ_WRITE 
+ALTER DATABASE [ LibraryUserDB] SET  READ_WRITE 
 GO
