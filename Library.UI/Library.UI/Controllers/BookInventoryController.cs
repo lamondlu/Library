@@ -1,6 +1,7 @@
-﻿using BookingLibrary.UI.DTOs;
-using BookingLibrary.UI.SessionStorages;
-using BookingLibrary.UI.Utilities;
+﻿using Library.UI.DTOs;
+using Library.UI.SessionStorages;
+using Library.UI.Utilities;
+using Library.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -9,12 +10,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BookingLibrary.UI.Controllers
+namespace Library.UI.Controllers
 {
     [Authorize]
     public class BookInventoryController : BaseController
     {
-        public BookInventoryController() 
+        public BookInventoryController()
         {
 
         }
@@ -40,6 +41,11 @@ namespace BookingLibrary.UI.Controllers
             return Content(commandKey.ToString());
         }
 
-        
+        [HttpGet]
+        public ActionResult Histories(Guid id)
+        {
+            var histories = ApiRequestWithStringContent.Get<List<BookInventoryHistoryViewModel>>($"{_inventoryApiBaseUrl}/api/inventories/{id}/histories");
+            return View(histories);
+        }
     }
 }

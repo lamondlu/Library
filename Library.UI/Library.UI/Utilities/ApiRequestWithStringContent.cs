@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace BookingLibrary.UI.Utilities
+namespace Library.UI.Utilities
 {
     public class ApiRequestWithStringContent
     {

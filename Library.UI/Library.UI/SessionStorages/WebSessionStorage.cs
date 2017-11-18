@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BookingLibrary.UI.SessionStorages
+namespace Library.UI.SessionStorages
 {
     public class WebSessionStorage : ISessionStorage
     {

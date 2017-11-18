@@ -87,6 +87,12 @@ namespace Library.Service.Inventory
             return command.CommandUniqueId;
         }
 
+        [HttpGet("~/api/inventories/{bookInventoryId}/histories")]
+        public List<BookInventoryHistoryViewModel> GetBookInventoryHistories(Guid bookInventoryId)
+        {
+            return _reportDatabase.GetBookInventoryHistories(bookInventoryId);
+        }
+
         [HttpPut("{bookId}/inventories/{InventoryId}/status")]
         public void ChangeBookInventoryStatus(Guid bookId, Guid InventoryId, ChangeBookStatusDTO dto)
         {

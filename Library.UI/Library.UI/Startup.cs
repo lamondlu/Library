@@ -1,9 +1,9 @@
-﻿using BookingLibrary.UI.SessionStorages;
+﻿using Library.UI.SessionStorages;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(BookingLibrary.UI.Startup))]
-namespace BookingLibrary.UI
+[assembly: OwinStartupAttribute(typeof(Library.UI.Startup))]
+namespace Library.UI
 {
     public partial class Startup
     {

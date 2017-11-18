@@ -147,6 +147,14 @@ namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer
             return result;
         }
 
+        public List<BookInventoryHistoryViewModel> GetBookInventoryHistories(Guid bookInventoryId)
+        {
+            var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
+            var dataTable = dbHelper.ExecuteDataTable("SELECT * FROM History WHERE BookInventoryId = @bookInventoryId ORDER BY CreatedOn DESC", new SqlParameter { ParameterName = "@bookInventoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookInventoryId });
+
+            return dataTable.ConvertToBookInventoryHistoryViewModel();
+        }
+
         public bool ExistISBN(string isbn, Guid? bookId = null)
         {
             var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);

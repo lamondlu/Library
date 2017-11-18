@@ -238,6 +238,7 @@
     <Compile Include="Utilities\ApiRequestWithStringContent.cs" />
     <Compile Include="Utilities\ApiRequestWithFormUrlEncodedContent.cs" />
     <Compile Include="ViewModels\AvailableBookModel.cs" />
+    <Compile Include="ViewModels\BookInventoryHistoryViewModel.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\UnreturnedBookViewModel.cs" />
@@ -299,6 +300,7 @@
     <Content Include="Views\Book\Add.cshtml" />
     <Content Include="Views\Book\Edit.cshtml" />
     <Content Include="Views\Rental\UnreturnedBooks.cshtml" />
+    <Content Include="Views\BookInventory\Histories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,16 +8,16 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using BookingLibrary.UI.Models;
-using BookingLibrary.UI.Utilities;
-using BookingLibrary.UI.DTOs;
+using Library.UI.Models;
+using Library.UI.Utilities;
+using Library.UI.DTOs;
 using System.Configuration;
 using System.Net;
 using System.Web.Security;
 using System.Collections.Specialized;
-using BookingLibrary.UI.SessionStorages;
+using Library.UI.SessionStorages;
 
-namespace BookingLibrary.UI.Controllers
+namespace Library.UI.Controllers
 {
     [Authorize]
     public class AccountController : Controller

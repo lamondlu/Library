@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace BookingLibrary.UI.DTOs
+namespace Library.UI.DTOs
 {
     public class EditBookDTO
     {

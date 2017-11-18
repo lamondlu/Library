@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingLibrary.UI.SessionStorages
+namespace Library.UI.SessionStorages
 {
     public interface ISessionStorage : IDisposable
     {

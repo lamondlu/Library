@@ -1,4 +1,4 @@
-﻿@model BookingLibrary.UI.DTOs.EditBookDTO
+﻿@model Library.UI.DTOs.EditBookDTO
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -55,19 +55,19 @@
                         {
                             <tr>
                                 <td>@item.BookInventoryId</td>
-                                <td>@(item.Status == 1?"IN":"OUT")</td>
+                                <td>@(item.Status == 1 ? "IN" : "OUT")</td>
                                 <td>@item.LastNote</td>
-                                <td><input type="button" class="btn btn-success" value="View Histories"/> </td>
+                                <td><input type="button" class="btn btn-success" value="View Histories" onclick="window.location='@Url.Action("Histories", "BookInventory", new { id = item.BookInventoryId })'"/> </td>
                             </tr>
                         }
                     }
                     else
                     {
-                    <tr>
-                        <td colspan="4">
-                            No record.
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="4">
+                                No record.
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -78,7 +78,7 @@
         </div>
     }
 
-    
+
 </section>
 
 

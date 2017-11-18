@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace BookingLibrary.UI
+namespace Library.UI
 {
     public class BundleConfig
     {

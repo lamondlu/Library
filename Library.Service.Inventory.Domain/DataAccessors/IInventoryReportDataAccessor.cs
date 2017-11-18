@@ -32,6 +32,8 @@ namespace Library.Service.Inventory.Domain.DataAccessors
 
         void RemoveBookInventory(Guid bookInventoryId);
 
+        List<BookInventoryHistoryViewModel> GetBookInventoryHistories(Guid bookInventoryId);
+
         void DeleteBook(Guid bookId);
 
         void Commit();
