@@ -1,14 +1,13 @@
-﻿using System;
-using  Library.Service.Identity.Domain.DataAccessors;
-using  Library.Service.Identity.Domain.ViewModels;
-using  Library.Service.Identity.DTOs;
-using  Library.Domain.Core;
+﻿using Library.Infrastructure.InjectionFramework;
+using Library.Service.Identity.Domain;
+using Library.Service.Identity.Domain.DataAccessors;
+using Library.Service.Identity.Domain.ViewModels;
+using Library.Service.Identity.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using  Library.Service.Identity.Domain;
-using  Library.Infrastructure.InjectionFramework;
+using System;
 using System.Collections.Generic;
 
-namespace  Library.Service.Identity
+namespace Library.Service.Identity
 {
     [Route("api/identities")]
     public class IdentityController : Controller

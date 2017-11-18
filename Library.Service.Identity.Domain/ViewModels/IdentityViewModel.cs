@@ -1,7 +1,6 @@
 using System;
-using  Library.Domain.Core;
 
-namespace  Library.Service.Identity.Domain.ViewModels
+namespace Library.Service.Identity.Domain.ViewModels
 {
     public class IdentityViewModel
     {

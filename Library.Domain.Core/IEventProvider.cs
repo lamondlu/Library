@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 
-namespace  Library.Domain.Core
+namespace Library.Domain.Core
 {
     public interface IEventProvider
     {

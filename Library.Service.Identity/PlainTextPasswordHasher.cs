@@ -1,7 +1,6 @@
-using System;
-using  Library.Service.Identity.Domain;
+using Library.Service.Identity.Domain;
 
-namespace  Library.Service.Identity
+namespace Library.Service.Identity
 {
     public class PlainTextPasswordHasher : IPasswordHasher
     {

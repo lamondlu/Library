@@ -1,6 +1,6 @@
 using System;
 
-namespace  Library.Domain.Core.Commands
+namespace Library.Domain.Core.Commands
 {
     public interface ICommandHandler<TCommand> : IDisposable where TCommand : ICommand
     {

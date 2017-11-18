@@ -1,9 +1,7 @@
-﻿using  Library.Domain.Core;
+﻿using Library.Domain.Core;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace  Library.Service.Rental.Domain.Events
+namespace Library.Service.Rental.Domain.Events
 {
     public class RentBookRequestAcceptedEvent : DomainEvent
     {
@@ -11,7 +9,6 @@ namespace  Library.Service.Rental.Domain.Events
 
         public RentBookRequestAcceptedEvent() : base(Event_RentBookRequestAccepted)
         {
-
         }
 
         public string Notes { get; set; }

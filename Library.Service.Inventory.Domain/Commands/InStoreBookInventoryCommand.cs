@@ -1,7 +1,7 @@
+using Library.Domain.Core.Commands;
 using System;
-using  Library.Domain.Core.Commands;
 
-namespace  Library.Service.Inventory.Domain.Commands
+namespace Library.Service.Inventory.Domain.Commands
 {
     public class InStoreBookInventoryCommand : CommonCommand
     {
@@ -9,7 +9,6 @@ namespace  Library.Service.Inventory.Domain.Commands
 
         public InStoreBookInventoryCommand() : base(InStoreBookInventoryCommandKey)
         {
-
         }
 
         public Guid BookId { get; set; }

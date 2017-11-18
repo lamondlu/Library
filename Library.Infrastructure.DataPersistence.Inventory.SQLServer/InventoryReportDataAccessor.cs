@@ -1,16 +1,15 @@
-﻿using System;
-using Library.Service.Inventory.Domain.DataAccessors;
-using Library.Infrastructure.InjectionFramework;
-using System.Collections.Generic;
-using Library.Service.Inventory.Domain.DTOs;
-using System.Data.SqlClient;
-using System.Data;
-using Library.Service.Inventory.Domain.ViewModels;
+﻿using Library.Infrastructure.DataPersistence.Core.SQLServer;
 using Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions;
-using System.Threading.Tasks;
 using Library.Service.Inventory.Domain;
+using Library.Service.Inventory.Domain.DataAccessors;
+using Library.Service.Inventory.Domain.DTOs;
+using Library.Service.Inventory.Domain.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
-using Library.Infrastructure.DataPersistence.Core.SQLServer;
+using System.Threading.Tasks;
 
 namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer
 {
@@ -136,7 +135,6 @@ namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer
 
             if (result != null)
             {
-
                 var InventoryDatas = dbHelper.ExecuteDataTable(@"
                     SELECT *, (SELECT TOP 1 h.Note From History h Where h.BookInventoryId = br.BookInventoryId) as LastNote FROM BookInventory br WHERE br.BookId = @bookId
                     ", new SqlParameter { ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId });

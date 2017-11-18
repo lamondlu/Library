@@ -1,10 +1,9 @@
-using System;
-using  Library.Domain.Core.Commands;
-using  Library.Domain.Core.DataAccessor;
-using  Library.Service.Rental.Domain.Commands;
-using  Library.Service.Rental.Domain.DataAccessors;
+using Library.Domain.Core.Commands;
+using Library.Domain.Core.DataAccessor;
+using Library.Service.Rental.Domain.Commands;
+using Library.Service.Rental.Domain.DataAccessors;
 
-namespace  Library.Service.Rental.Domain.CommandHandlers
+namespace Library.Service.Rental.Domain.CommandHandlers
 {
     public class ReturnBookCommandHandler : ICommandHandler<ReturnBookCommand>
     {

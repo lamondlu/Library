@@ -1,6 +1,6 @@
 using System;
 
-namespace  Library.Service.Inventory.Domain.ViewModels
+namespace Library.Service.Inventory.Domain.ViewModels
 {
     public class AvailableBookLookupModel
     {

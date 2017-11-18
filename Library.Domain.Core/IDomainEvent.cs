@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace  Library.Domain.Core
+namespace Library.Domain.Core
 {
     public interface IDomainEvent
     {
@@ -8,6 +8,6 @@ namespace  Library.Domain.Core
 
         DateTime OccurredOn { get; }
 
-        Guid CommandUniqueId { get; set;}
+        Guid CommandUniqueId { get; set; }
     }
 }

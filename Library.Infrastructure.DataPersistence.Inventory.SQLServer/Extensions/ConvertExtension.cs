@@ -1,11 +1,11 @@
+using Library.Service.Inventory.Domain;
+using Library.Service.Inventory.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using  Library.Service.Inventory.Domain;
-using  Library.Service.Inventory.Domain.ViewModels;
 
-namespace  Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions
+namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions
 {
     public static class ConvertExtension
     {

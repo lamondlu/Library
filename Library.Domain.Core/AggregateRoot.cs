@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace  Library.Domain.Core
+namespace Library.Domain.Core
 {
     public abstract class AggregateRoot : Entity, IEventProvider
     {

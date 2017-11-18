@@ -1,6 +1,6 @@
 using System;
 
-namespace  Library.Service.Rental.Domain.ViewModels
+namespace Library.Service.Rental.Domain.ViewModels
 {
     public class UnreturnedBookViewModel
     {

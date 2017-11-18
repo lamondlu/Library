@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using  Library.Domain.Core;
-using System.Data.SqlClient;
-using System.Data;
+﻿using Library.Domain.Core;
+using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
+using Library.Infrastructure.InjectionFramework;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Reflection;
-using  Library.Infrastructure.InjectionFramework;
-using  Library.Domain.Core.DataAccessor;
-using  Library.Domain.Core.Messaging;
 
-namespace  Library.Infrastructure.EventStorage.SQLServer
+namespace Library.Infrastructure.EventStorage.SQLServer
 {
     public class SQLServerEventStorage : IEventStorage
     {
@@ -46,6 +46,7 @@ namespace  Library.Infrastructure.EventStorage.SQLServer
 
             return result;
         }
+
         public void Save(AggregateRoot aggregate, Guid commandUniqueId)
         {
             using (var connection = new SqlConnection(InjectContainer.GetInstance<IEventDBConnectionStringProvider>().ConnectionString))
@@ -54,7 +55,6 @@ namespace  Library.Infrastructure.EventStorage.SQLServer
 
                 using (var tran = connection.BeginTransaction())
                 {
-
                     var uncommittedChanges = aggregate.GetUncommittedChanges();
                     var currentIndex = 0;
 
@@ -64,7 +64,6 @@ namespace  Library.Infrastructure.EventStorage.SQLServer
 
                         foreach (var @event in uncommittedChanges)
                         {
-
                             version++;
                             @event.Version = version;
                             @event.CommandUniqueId = commandUniqueId;
@@ -89,7 +88,6 @@ namespace  Library.Infrastructure.EventStorage.SQLServer
 
                         foreach (var @event in uncommittedChanges)
                         {
-
                             var desEvent = Converter.ChangeTo(@event, @event.GetType());
                             _eventPublisher.Publish(desEvent);
                         }
@@ -98,7 +96,6 @@ namespace  Library.Infrastructure.EventStorage.SQLServer
                     }
                     catch
                     {
-
                     }
                 }
             }

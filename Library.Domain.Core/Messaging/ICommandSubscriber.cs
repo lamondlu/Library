@@ -1,10 +1,10 @@
+using Library.Domain.Core.Commands;
 using System;
-using  Library.Domain.Core.Commands;
 
-namespace  Library.Domain.Core.Messaging
+namespace Library.Domain.Core.Messaging
 {
     public interface ICommandSubscriber : IDisposable
     {
-        void Subscribe<T>(T command) where T: ICommand;
+        void Subscribe<T>(T command) where T : ICommand;
     }
 }

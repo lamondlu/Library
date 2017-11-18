@@ -1,15 +1,13 @@
-using System;
-using System.Text;
-using  Library.Domain.Core.Messaging;
-using  Library.Domain.Core.Commands;
+using Library.Domain.Core.Commands;
+using Library.Domain.Core.Messaging;
+using Library.Infrastructure.InjectionFramework;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System.Reflection;
-using System.Linq;
-using  Library.Infrastructure.InjectionFramework;
+using System;
+using System.Text;
 
-namespace  Library.Infrastructure.Messaging.RabbitMQ
+namespace Library.Infrastructure.Messaging.RabbitMQ
 {
     public class RabbitMQCommandSubscriber : ICommandSubscriber
     {

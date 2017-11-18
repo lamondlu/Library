@@ -1,11 +1,8 @@
-﻿using  Library.Infrastructure.Messaging.SignalR;
+﻿using Library.Infrastructure.Messaging.SignalR;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
-namespace  Library.Service.Handler
+namespace Library.Service.Handler
 {
     public class AppsettingSignalRConnectionProvider : ISignalRConnectionProvider
     {

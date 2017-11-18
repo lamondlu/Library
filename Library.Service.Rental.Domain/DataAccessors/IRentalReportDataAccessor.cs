@@ -1,10 +1,10 @@
+using Library.Domain.Core;
+using Library.Service.Rental.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using  Library.Domain.Core;
-using  Library.Service.Rental.Domain.ViewModels;
 
-namespace  Library.Service.Rental.Domain.DataAccessors
+namespace Library.Service.Rental.Domain.DataAccessors
 {
     public interface IRentalReportDataAccessor
     {

@@ -2,11 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace  Library.Infrastructure.DataPersistence.Core.SQLServer
+namespace Library.Infrastructure.DataPersistence.Core.SQLServer
 {
     public class DbHelper
     {
@@ -48,7 +45,6 @@ namespace  Library.Infrastructure.DataPersistence.Core.SQLServer
                 }
             }
         }
-
 
         public void ExecuteNoQuery(Dictionary<string, List<SqlParameter>> queries)
         {
@@ -150,7 +146,6 @@ namespace  Library.Infrastructure.DataPersistence.Core.SQLServer
             }
         }
 
-
         public int ExecuteScalar(string sql, SqlParameter[] values)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -172,7 +167,6 @@ namespace  Library.Infrastructure.DataPersistence.Core.SQLServer
             SqlDataReader reader = cmd.ExecuteReader();
             return reader;
         }
-
 
         public SqlDataReader ExecuteReader(string sql, SqlParameter[] values, SqlConnection Connection)
         {
@@ -220,7 +214,6 @@ namespace  Library.Infrastructure.DataPersistence.Core.SQLServer
             }
         }
 
-
         public DataTable ExecuteDataTable(string sql, params SqlParameter[] values)
         {
             using (SqlConnection Connection = new SqlConnection(connectionString))
@@ -236,8 +229,6 @@ namespace  Library.Infrastructure.DataPersistence.Core.SQLServer
                 return ds.Tables[0];
             }
         }
-
-
 
         public DataSet GetDataSet(string safeSql, string tabName, params SqlParameter[] values)
         {
@@ -256,14 +247,12 @@ namespace  Library.Infrastructure.DataPersistence.Core.SQLServer
                 {
                     da.Fill(ds, tabName);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.ToString());
                 }
                 return ds;
             }
         }
-
     }
-
 }

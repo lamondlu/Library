@@ -1,12 +1,11 @@
-using System;
+using Library.Domain.Core;
+using Library.Domain.Core.Messaging;
+using Library.Service.Inventory.Domain.DataAccessors;
+using Library.Service.Inventory.Domain.DTOs;
+using Library.Service.Inventory.Domain.Events;
 using System.Threading.Tasks;
-using  Library.Domain.Core;
-using  Library.Domain.Core.Messaging;
-using  Library.Service.Inventory.Domain.DataAccessors;
-using  Library.Service.Inventory.Domain.DTOs;
-using  Library.Service.Inventory.Domain.Events;
 
-namespace  Library.Service.Inventory.Domain.EventHandlers
+namespace Library.Service.Inventory.Domain.EventHandlers
 {
     public class BookAddedEventHandler : IEventHandler<BookAddedEvent>
     {
@@ -32,12 +31,12 @@ namespace  Library.Service.Inventory.Domain.EventHandlers
 
             _reportDataAccessor.Commit();
             _commandTracker.DirectFinish(evt.CommandUniqueId);
-            
         }
 
         public Task HandleAsync(BookAddedEvent evt)
         {
-            return Task.Factory.StartNew(()=>{
+            return Task.Factory.StartNew(() =>
+            {
                 Handle(evt);
             });
         }

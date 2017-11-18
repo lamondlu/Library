@@ -1,8 +1,8 @@
+using Library.Domain.Core.Commands;
 using System;
 using System.Collections.Generic;
-using  Library.Domain.Core.Commands;
 
-namespace  Library.Service.Inventory.Domain
+namespace Library.Service.Inventory.Domain
 {
     public class ImportBookInventoryCommand : CommonCommand
     {
@@ -10,7 +10,6 @@ namespace  Library.Service.Inventory.Domain
 
         public ImportBookInventoryCommand() : base(ImportBookInventoryCommandKey)
         {
-
         }
 
         public Guid BookId { get; set; }

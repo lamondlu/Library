@@ -1,15 +1,15 @@
-﻿using  Library.Domain.Core;
-using  Library.Domain.Core.Commands;
-using  Library.Domain.Core.DataAccessor;
-using  Library.Domain.Core.Messaging;
-using  Library.Infrastructure.DataPersistence.Inventory.SQLServer;
-using  Library.Infrastructure.DataPersistence.Rental.SQLServer;
-using  Library.Infrastructure.EventStorage.SQLServer;
-using  Library.Infrastructure.InjectionFramework;
-using  Library.Infrastructure.Messaging.RabbitMQ;
-using  Library.Infrastructure.Messaging.SignalR;
-using  Library.Service.Inventory.Domain.DataAccessors;
-using  Library.Service.Rental.Domain.DataAccessors;
+﻿using Library.Domain.Core;
+using Library.Domain.Core.Commands;
+using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
+using Library.Infrastructure.DataPersistence.Inventory.SQLServer;
+using Library.Infrastructure.DataPersistence.Rental.SQLServer;
+using Library.Infrastructure.EventStorage.SQLServer;
+using Library.Infrastructure.InjectionFramework;
+using Library.Infrastructure.Messaging.RabbitMQ;
+using Library.Infrastructure.Messaging.SignalR;
+using Library.Service.Inventory.Domain.DataAccessors;
+using Library.Service.Rental.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -17,13 +17,12 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace  Library.Service.Handler
+namespace Library.Service.Handler
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
             InjectContainer.RegisterType<IDomainRepository, DomainRepository>();
             InjectContainer.RegisterType<IEventStorage, SQLServerEventStorage>();
             InjectContainer.RegisterInstance<IEventPublisher>(new RabbitMQEventPublisher("amqp://localhost:5672"));
@@ -39,7 +38,6 @@ namespace  Library.Service.Handler
             InjectContainer.RegisterType<IRentalReportDataAccessor, RentalReportDataAccessor>();
             InjectContainer.RegisterType<ISignalRConnectionProvider, AppsettingSignalRConnectionProvider>();
             InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
-
 
             var handlers = BuildHandlerConfigurations();
 

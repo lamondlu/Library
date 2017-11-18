@@ -1,14 +1,14 @@
+using Library.Domain.Core.Messaging;
+using Library.Infrastructure.DataPersistence.Rental.SQLServer;
+using Library.Infrastructure.InjectionFramework;
+using Library.Infrastructure.Messaging.RabbitMQ;
+using Library.Infrastructure.Messaging.SignalR;
+using Library.Service.Rental.Domain.DataAccessors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using  Library.Infrastructure.InjectionFramework;
-using  Library.Infrastructure.Messaging.RabbitMQ;
-using  Library.Domain.Core.Messaging;
 using Microsoft.Extensions.DependencyInjection;
-using  Library.Service.Rental.Domain.DataAccessors;
-using  Library.Infrastructure.DataPersistence.Rental.SQLServer;
-using  Library.Infrastructure.Messaging.SignalR;
 
-namespace  Library.Service.Rental
+namespace Library.Service.Rental
 {
     public class Startup
     {

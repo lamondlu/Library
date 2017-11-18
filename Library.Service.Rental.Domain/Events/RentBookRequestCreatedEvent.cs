@@ -1,7 +1,7 @@
+using Library.Domain.Core;
 using System;
-using  Library.Domain.Core;
 
-namespace  Library.Service.Rental.Domain.Events
+namespace Library.Service.Rental.Domain.Events
 {
     public class RentBookRequestCreatedEvent : DomainEvent
     {
@@ -9,7 +9,6 @@ namespace  Library.Service.Rental.Domain.Events
 
         public RentBookRequestCreatedEvent() : base(Event_RentBookRequestCreatedEvent)
         {
-
         }
 
         public Guid BookInventoryId { get; set; }

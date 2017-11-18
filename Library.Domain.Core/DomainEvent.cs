@@ -1,6 +1,6 @@
 using System;
 
-namespace  Library.Domain.Core
+namespace Library.Domain.Core
 {
     public abstract class DomainEvent : IDomainEvent
     {

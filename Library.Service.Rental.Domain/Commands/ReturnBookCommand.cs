@@ -1,7 +1,7 @@
+using Library.Domain.Core.Commands;
 using System;
-using  Library.Domain.Core.Commands;
 
-namespace  Library.Service.Rental.Domain.Commands
+namespace Library.Service.Rental.Domain.Commands
 {
     public class ReturnBookCommand : CommonCommand
     {
@@ -9,7 +9,6 @@ namespace  Library.Service.Rental.Domain.Commands
 
         public ReturnBookCommand() : base(Command_ReturnBook)
         {
-
         }
 
         public Guid CustomerId { get; set; }

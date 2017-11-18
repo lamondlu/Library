@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace  Library.Domain.Core
+namespace Library.Domain.Core
 {
     public class ActionDelegateDomainEventHandler<TEvent> : IEventHandler<TEvent> where TEvent : IDomainEvent
     {
@@ -27,7 +24,6 @@ namespace  Library.Domain.Core
 
         public void Rollback(TEvent evt, AggregateRoot previousVersion)
         {
-
         }
     }
 }

@@ -1,14 +1,11 @@
-﻿using  Library.Domain.Core;
-using  Library.Service.Inventory.Domain.DataAccessors;
-using  Library.Service.Inventory.Domain.Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Library.Domain.Core;
+using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
+using Library.Service.Inventory.Domain.DataAccessors;
+using Library.Service.Inventory.Domain.Events;
 using System.Threading.Tasks;
-using  Library.Domain.Core.Messaging;
-using  Library.Domain.Core.DataAccessor;
 
-namespace  Library.Service.Inventory.Domain.EventHandlers
+namespace Library.Service.Inventory.Domain.EventHandlers
 {
     public class RentedBookOutStoredEventHandler : IEventHandler<RentedBookOutStoredEvent>
     {
@@ -42,7 +39,6 @@ namespace  Library.Service.Inventory.Domain.EventHandlers
             }
             catch
             {
-
             }
         }
 

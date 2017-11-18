@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using  Library.Domain.Core;
-using  Library.Service.Inventory.Domain.Events;
-using System.Linq;
+﻿using Library.Domain.Core;
+using Library.Service.Inventory.Domain.Events;
+using System;
 
-namespace  Library.Service.Inventory.Domain
+namespace Library.Service.Inventory.Domain
 {
     public class Book : AggregateRoot,
     IHandler<BookAddedEvent>,
@@ -16,7 +14,6 @@ namespace  Library.Service.Inventory.Domain
     {
         public Book()
         {
-
         }
 
         public Book(Guid bookId, string isbn, string bookName, string description, DateTime dateIssued)
@@ -86,7 +83,6 @@ namespace  Library.Service.Inventory.Domain
 
         public void Handle(BookRemovedEvent evt)
         {
-
         }
 
         public void Handle(BookIssuedDateChangedEvent evt)

@@ -1,6 +1,4 @@
-using System;
-
-namespace  Library.Service.Identity.DTOs
+namespace Library.Service.Identity.DTOs
 {
     public class IdentityDTO
     {

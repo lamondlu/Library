@@ -1,9 +1,8 @@
-using System;
-using System.IO;
-using  Library.Service.Identity.Domain.DataAccessors;
+using Library.Service.Identity.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;
+using System.IO;
 
-namespace  Library.Service.Identity
+namespace Library.Service.Identity
 {
     public class AppsettingRepositoryReadDBConnectionStringProvider : IIdentityReadDBConnectionStringProvider
     {

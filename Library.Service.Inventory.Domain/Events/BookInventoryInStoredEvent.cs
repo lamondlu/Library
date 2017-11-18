@@ -1,7 +1,6 @@
-using System;
-using  Library.Domain.Core;
+using Library.Domain.Core;
 
-namespace  Library.Service.Inventory.Domain.Events
+namespace Library.Service.Inventory.Domain.Events
 {
     public class BookInventoryInStoredEvent : DomainEvent
     {
@@ -9,7 +8,6 @@ namespace  Library.Service.Inventory.Domain.Events
 
         public BookInventoryInStoredEvent() : base(Event_BookInventoryInStored)
         {
-
         }
 
         public string Notes { get; set; }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace  Library.Service.Inventory.Domain.ViewModels
+namespace Library.Service.Inventory.Domain.ViewModels
 {
     public class BookDetailedModel
     {

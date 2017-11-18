@@ -1,8 +1,7 @@
-using System;
-using  Library.Domain.Core.Commands;
-using  Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Commands;
+using Library.Domain.Core.DataAccessor;
 
-namespace  Library.Service.Inventory.Domain
+namespace Library.Service.Inventory.Domain
 {
     public class ImportBookInventoryCommandHandler : ICommandHandler<ImportBookInventoryCommand>
     {
@@ -20,11 +19,12 @@ namespace  Library.Service.Inventory.Domain
 
         public void Execute(ImportBookInventoryCommand command)
         {
-            if(command.BookInventoryIds == null || command.BookInventoryIds.Count == 0){
+            if (command.BookInventoryIds == null || command.BookInventoryIds.Count == 0)
+            {
                 return;
             }
 
-            foreach(var id in command.BookInventoryIds)
+            foreach (var id in command.BookInventoryIds)
             {
                 var bookInventory = new BookInventory(id, command.BookId, "Bulk Imported");
                 _domainRepository.Save(bookInventory, -1, command.CommandUniqueId);

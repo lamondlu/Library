@@ -1,7 +1,6 @@
-using System;
-using  Library.Domain.Core;
+using Library.Domain.Core;
 
-namespace  Library.Service.Rental.Domain
+namespace Library.Service.Rental.Domain
 {
     public class CustomerAccountInitializedEvent : DomainEvent
     {
@@ -9,7 +8,6 @@ namespace  Library.Service.Rental.Domain
 
         public CustomerAccountInitializedEvent() : base(Event_CustomerAccountInitialized)
         {
-            
         }
 
         public PersonName Name { get; set; }

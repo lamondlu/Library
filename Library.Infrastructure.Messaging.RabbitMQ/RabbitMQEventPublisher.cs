@@ -1,15 +1,14 @@
-using System;
-using  Library.Domain.Core.Messaging;
+using Library.Domain.Core;
+using Library.Domain.Core.Messaging;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
+using System;
 using System.Text;
-using  Library.Domain.Core;
 
-namespace  Library.Infrastructure.Messaging.RabbitMQ
+namespace Library.Infrastructure.Messaging.RabbitMQ
 {
     public class RabbitMQEventPublisher : IEventPublisher
     {
-
         private readonly IConnection connection;
         private readonly IModel channel;
 

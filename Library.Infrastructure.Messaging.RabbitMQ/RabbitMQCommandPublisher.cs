@@ -1,11 +1,11 @@
-﻿using System;
-using System.Text;
-using  Library.Domain.Core.Messaging;
-using  Library.Domain.Core.Commands;
+﻿using Library.Domain.Core.Commands;
+using Library.Domain.Core.Messaging;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
+using System;
+using System.Text;
 
-namespace  Library.Infrastructure.Messaging.RabbitMQ
+namespace Library.Infrastructure.Messaging.RabbitMQ
 {
     public class RabbitMQCommandPublisher : ICommandPublisher
     {

@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace  Library.Infrastructure.DataPersistence.Core.SQLServer
+namespace Library.Infrastructure.DataPersistence.Core.SQLServer
 {
     public class Command
     {

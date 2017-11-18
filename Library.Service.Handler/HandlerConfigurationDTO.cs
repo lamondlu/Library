@@ -1,6 +1,4 @@
-using System;
-
-namespace  Library.Service.Handler
+namespace Library.Service.Handler
 {
     public class HandlerConfigurationDTO
     {

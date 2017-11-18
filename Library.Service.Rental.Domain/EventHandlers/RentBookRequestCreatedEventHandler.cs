@@ -1,11 +1,10 @@
-using System;
+using Library.Domain.Core;
+using Library.Domain.Core.Messaging;
+using Library.Service.Rental.Domain.DataAccessors;
+using Library.Service.Rental.Domain.Events;
 using System.Threading.Tasks;
-using  Library.Domain.Core;
-using  Library.Service.Rental.Domain.Events;
-using  Library.Service.Rental.Domain.DataAccessors;
-using  Library.Domain.Core.Messaging;
 
-namespace  Library.Service.Rental.Domain
+namespace Library.Service.Rental.Domain
 {
     public class RentBookRequestCreatedEventHandler : IEventHandler<RentBookRequestCreatedEvent>
     {
@@ -35,7 +34,6 @@ namespace  Library.Service.Rental.Domain
             }
             catch
             {
-
             }
         }
 

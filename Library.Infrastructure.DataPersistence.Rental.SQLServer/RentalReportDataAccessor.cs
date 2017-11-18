@@ -1,16 +1,15 @@
+using Library.Domain.Core;
+using Library.Infrastructure.DataPersistence.Core.SQLServer;
+using Library.Infrastructure.DataPersistence.Rental.SQLServer.Extensions;
+using Library.Service.Rental.Domain.DataAccessors;
+using Library.Service.Rental.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using  Library.Domain.Core;
-using  Library.Infrastructure.DataPersistence.Rental.SQLServer;
-using  Library.Service.Rental.Domain.DataAccessors;
-using  Library.Service.Rental.Domain.ViewModels;
-using  Library.Infrastructure.DataPersistence.Rental.SQLServer.Extensions;
-using Library.Infrastructure.DataPersistence.Core.SQLServer;
 
-namespace  Library.Infrastructure.DataPersistence.Rental.SQLServer
+namespace Library.Infrastructure.DataPersistence.Rental.SQLServer
 {
     public class RentalReportDataAccessor : IRentalReportDataAccessor
     {

@@ -1,7 +1,7 @@
+using Library.Domain.Core;
 using System;
-using  Library.Domain.Core;
 
-namespace  Library.Service.Inventory.Domain.Events
+namespace Library.Service.Inventory.Domain.Events
 {
     public class BookAddedEvent : DomainEvent
     {
@@ -9,7 +9,6 @@ namespace  Library.Service.Inventory.Domain.Events
 
         public BookAddedEvent() : base(Event_BookAdded)
         {
-
         }
 
         public string ISBN { get; set; }

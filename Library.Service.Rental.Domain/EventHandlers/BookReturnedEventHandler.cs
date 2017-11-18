@@ -1,10 +1,9 @@
-using System;
+using Library.Domain.Core;
+using Library.Service.Rental.Domain.DataAccessors;
+using Library.Service.Rental.Domain.Events;
 using System.Threading.Tasks;
-using  Library.Domain.Core;
-using  Library.Service.Rental.Domain.Events;
-using  Library.Service.Rental.Domain.DataAccessors;
 
-namespace  Library.Service.Rental.Domain
+namespace Library.Service.Rental.Domain
 {
     public class BookReturnedEventHandler : IEventHandler<BookReturnedEvent>
     {

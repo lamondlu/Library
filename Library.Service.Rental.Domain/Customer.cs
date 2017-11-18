@@ -1,10 +1,9 @@
+using Library.Domain.Core;
+using Library.Service.Rental.Domain.Events;
 using System;
 using System.Collections.Generic;
-using  Library.Domain.Core;
-using  Library.Service.Rental.Domain.Events;
-using System.Linq;
 
-namespace  Library.Service.Rental.Domain
+namespace Library.Service.Rental.Domain
 {
     public class Customer : AggregateRoot,
     IHandler<BookRentedEvent>,
@@ -13,7 +12,6 @@ namespace  Library.Service.Rental.Domain
     {
         public Customer()
         {
-
         }
 
         public Customer(Guid customerId, PersonName name)

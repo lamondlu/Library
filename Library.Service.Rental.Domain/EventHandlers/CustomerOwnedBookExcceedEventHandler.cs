@@ -1,14 +1,9 @@
-using  Library.Domain.Core;
-using  Library.Domain.Core.DataAccessor;
-using  Library.Service.Rental.Domain.DataAccessors;
-using  Library.Service.Rental.Domain.Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Library.Domain.Core;
+using Library.Domain.Core.Messaging;
+using Library.Service.Rental.Domain.Events;
 using System.Threading.Tasks;
-using  Library.Domain.Core.Messaging;
 
-namespace  Library.Service.Rental.Domain.EventHandlers
+namespace Library.Service.Rental.Domain.EventHandlers
 {
     public class CustomerOwnedBookExcceedEventHandler : IEventHandler<CustomerOwnedBookExcceedEvent>
     {
@@ -27,7 +22,6 @@ namespace  Library.Service.Rental.Domain.EventHandlers
             }
             catch
             {
-
             }
         }
 

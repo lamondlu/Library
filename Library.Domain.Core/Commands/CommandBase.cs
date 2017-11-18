@@ -1,11 +1,6 @@
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace  Library.Domain.Core.Commands
+namespace Library.Domain.Core.Commands
 {
     public class CommandBase : ICommand
     {
@@ -27,7 +22,8 @@ namespace  Library.Domain.Core.Commands
             {
                 return _commandUniqueId;
             }
-            set{
+            set
+            {
                 _commandUniqueId = value;
             }
         }
@@ -38,5 +34,4 @@ namespace  Library.Domain.Core.Commands
             _commandUniqueId = Guid.NewGuid();
         }
     }
-
 }

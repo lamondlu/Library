@@ -1,10 +1,10 @@
+using Library.Service.Rental.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using  Library.Service.Rental.Domain.ViewModels;
 
-namespace  Library.Infrastructure.DataPersistence.Rental.SQLServer.Extensions
+namespace Library.Infrastructure.DataPersistence.Rental.SQLServer.Extensions
 {
     public static class Convertors
     {
@@ -24,7 +24,7 @@ namespace  Library.Infrastructure.DataPersistence.Rental.SQLServer.Extensions
                 FirstName = dr["ContactFirstName"].ToString(),
                 LastName = dr["ContactLastName"].ToString(),
                 MiddleName = dr["ContactMiddleName"].ToString(),
-                RentDate = Convert.ToDateTime(dr["RentDate"])  
+                RentDate = Convert.ToDateTime(dr["RentDate"])
             };
         }
 

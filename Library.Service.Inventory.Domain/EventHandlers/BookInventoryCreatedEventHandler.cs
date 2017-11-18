@@ -1,13 +1,10 @@
-using System;
+using Library.Domain.Core;
+using Library.Domain.Core.Messaging;
+using Library.Service.Inventory.Domain.DataAccessors;
+using Library.Service.Inventory.Domain.Events;
 using System.Threading.Tasks;
-using  Library.Domain.Core;
-using  Library.Service.Inventory.Domain.DataAccessors;
-using  Library.Service.Inventory.Domain.DTOs;
-using  Library.Service.Inventory.Domain.Events;
-using System.Linq;
-using  Library.Domain.Core.Messaging;
 
-namespace  Library.Service.Inventory.Domain.EventHandlers
+namespace Library.Service.Inventory.Domain.EventHandlers
 {
     public class BookInventoryCreatedEventHandler : IEventHandler<BookInventoryCreatedEvent>
     {
@@ -29,7 +26,8 @@ namespace  Library.Service.Inventory.Domain.EventHandlers
 
         public Task HandleAsync(BookInventoryCreatedEvent evt)
         {
-            return Task.Factory.StartNew(()=>{
+            return Task.Factory.StartNew(() =>
+            {
                 Handle(evt);
             });
         }

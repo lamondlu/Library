@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using  Library.Domain.Core.Messaging;
-using  Library.Infrastructure.InjectionFramework;
-using  Library.Service.Inventory.Domain;
-using  Library.Service.Inventory.Domain.Commands;
-using  Library.Service.Inventory.Domain.DataAccessors;
-using  Library.Service.Inventory.Domain.ViewModels;
-using  Library.Service.Inventory.DTOs;
+﻿using Library.Domain.Core.Messaging;
+using Library.Infrastructure.InjectionFramework;
+using Library.Service.Inventory.Domain;
+using Library.Service.Inventory.Domain.Commands;
+using Library.Service.Inventory.Domain.DataAccessors;
+using Library.Service.Inventory.Domain.ViewModels;
+using Library.Service.Inventory.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
-namespace  Library.Service.Inventory
+namespace Library.Service.Inventory
 {
     [Route("api/[controller]")]
     public class BooksController : Controller

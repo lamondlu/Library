@@ -1,14 +1,13 @@
+using Library.Domain.Core;
 using System;
-using  Library.Domain.Core;
 
-namespace  Library.Service.Identity.Domain
+namespace Library.Service.Identity.Domain
 {
     public class Administrator : Person,
     IHandler<AdministratorCreatedEvent>
     {
         public Administrator() : base()
         {
-            
         }
 
         public Administrator(Guid personId, PersonName name, UserPrincipal principal) : base(personId, name)

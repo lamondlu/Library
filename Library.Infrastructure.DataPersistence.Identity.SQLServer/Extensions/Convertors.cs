@@ -1,10 +1,10 @@
+using Library.Service.Identity.Domain.ViewModels;
 using System;
-using System.Data;
-using  Library.Service.Identity.Domain.ViewModels;
-using System.Linq;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 
-namespace  Library.Infrastructure.DataPersistence.Identity.SQLServer.Extensions
+namespace Library.Infrastructure.DataPersistence.Identity.SQLServer.Extensions
 {
     public static class Convertors
     {

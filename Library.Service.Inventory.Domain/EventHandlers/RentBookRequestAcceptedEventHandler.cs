@@ -1,13 +1,10 @@
-﻿using  Library.Domain.Core;
-using  Library.Domain.Core.DataAccessor;
-using  Library.Service.Inventory.Domain.Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Library.Domain.Core;
+using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
+using Library.Service.Inventory.Domain.Events;
 using System.Threading.Tasks;
-using  Library.Domain.Core.Messaging;
 
-namespace  Library.Service.Inventory.Domain.EventHandlers
+namespace Library.Service.Inventory.Domain.EventHandlers
 {
     public class RentBookRequestAcceptedEventHandler : IEventHandler<RentBookRequestAcceptedEvent>
     {
@@ -28,7 +25,8 @@ namespace  Library.Service.Inventory.Domain.EventHandlers
             {
                 if (bookInventory.Status == BookInventoryStatus.OutStore)
                 {
-                    _eventPublisher.Publish(new BookInventoryOutputFailedEvent{
+                    _eventPublisher.Publish(new BookInventoryOutputFailedEvent
+                    {
                         CommandUniqueId = evt.CommandUniqueId
                     });
                 }

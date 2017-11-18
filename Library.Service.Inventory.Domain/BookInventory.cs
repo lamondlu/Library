@@ -1,8 +1,8 @@
+using Library.Domain.Core;
+using Library.Service.Inventory.Domain.Events;
 using System;
-using  Library.Domain.Core;
-using  Library.Service.Inventory.Domain.Events;
 
-namespace  Library.Service.Inventory.Domain
+namespace Library.Service.Inventory.Domain
 {
     public class BookInventory : AggregateRoot,
         IHandler<BookInventoryInStoredEvent>,
@@ -12,7 +12,6 @@ namespace  Library.Service.Inventory.Domain
     {
         public BookInventory()
         {
-
         }
 
         public BookInventory(Guid bookInventoryId, Guid bookId, string notes)

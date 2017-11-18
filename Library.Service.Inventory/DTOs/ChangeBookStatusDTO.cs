@@ -1,8 +1,6 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-using  Library.Service.Inventory.Domain;
+using Library.Service.Inventory.Domain;
 
-namespace  Library.Service.Inventory.DTOs
+namespace Library.Service.Inventory.DTOs
 {
     public class ChangeBookStatusDTO
     {

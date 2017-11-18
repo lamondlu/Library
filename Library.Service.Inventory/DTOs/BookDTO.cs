@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace  Library.Service.Inventory.DTOs
+namespace Library.Service.Inventory.DTOs
 {
     public class BookDTO
     {

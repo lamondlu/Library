@@ -1,15 +1,15 @@
-using System;
-using  Library.Domain.Core.Messaging;
-using  Library.Infrastructure.InjectionFramework;
-using  Library.Service.Rental.Domain;
-using  Library.Service.Rental.Domain.DataAccessors;
-using  Library.Service.Rental.DTOs;
+using Library.Domain.Core.Messaging;
+using Library.Infrastructure.InjectionFramework;
+using Library.Service.Rental.Domain;
+using Library.Service.Rental.Domain.Commands;
+using Library.Service.Rental.Domain.DataAccessors;
+using Library.Service.Rental.Domain.ViewModels;
+using Library.Service.Rental.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using  Library.Service.Rental.Domain.Commands;
-using  Library.Service.Rental.Domain.ViewModels;
+using System;
 using System.Collections.Generic;
 
-namespace  Library.Service.Rental
+namespace Library.Service.Rental
 {
     [Route("api/customers/{customerId}/books")]
     public class RentalRecordsController : Controller

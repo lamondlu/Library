@@ -1,13 +1,10 @@
-using  Library.Domain.Core;
+using Library.Domain.Core.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using  Library.Domain.Core.Messaging;
 
-namespace  Library.Domain.Core.DataAccessor
+namespace Library.Domain.Core.DataAccessor
 {
     public class DomainRepository : IDomainRepository
     {
@@ -42,7 +39,7 @@ namespace  Library.Domain.Core.DataAccessor
             {
                 lock (_lockStorage)
                 {
-                    var allEvents = aggregateRoot.GetUncommittedChanges().OrderBy(p=>p.Version).Select(p=>p.EventKey).ToList();
+                    var allEvents = aggregateRoot.GetUncommittedChanges().OrderBy(p => p.Version).Select(p => p.EventKey).ToList();
 
                     var item = new T();
 

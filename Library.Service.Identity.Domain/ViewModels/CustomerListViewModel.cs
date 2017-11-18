@@ -1,6 +1,6 @@
 using System;
 
-namespace  Library.Service.Identity.Domain.ViewModels
+namespace Library.Service.Identity.Domain.ViewModels
 {
     public class CustomerListViewModel
     {

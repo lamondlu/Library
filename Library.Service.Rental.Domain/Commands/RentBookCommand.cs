@@ -1,8 +1,8 @@
+using Library.Domain.Core;
+using Library.Domain.Core.Commands;
 using System;
-using  Library.Domain.Core;
-using  Library.Domain.Core.Commands;
 
-namespace  Library.Service.Rental.Domain
+namespace Library.Service.Rental.Domain
 {
     public class RentBookCommand : CommonCommand
     {
@@ -10,7 +10,6 @@ namespace  Library.Service.Rental.Domain
 
         public RentBookCommand() : base(Command_RentBook)
         {
-
         }
 
         public Guid BookId { get; set; }

@@ -1,7 +1,6 @@
-using System;
-using  Library.Domain.Core;
+using Library.Domain.Core;
 
-namespace  Library.Service.Inventory.Domain.Events
+namespace Library.Service.Inventory.Domain.Events
 {
     public class BookInventoryOutputFailedEvent : DomainEvent
     {
@@ -9,7 +8,6 @@ namespace  Library.Service.Inventory.Domain.Events
 
         public BookInventoryOutputFailedEvent() : base(Event_BookInventoryOutputFailed)
         {
-
         }
     }
 }

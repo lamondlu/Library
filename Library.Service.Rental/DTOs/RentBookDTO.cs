@@ -1,7 +1,7 @@
+using Library.Domain.Core;
 using System;
-using  Library.Domain.Core;
 
-namespace  Library.Service.Rental.DTOs
+namespace Library.Service.Rental.DTOs
 {
     public class RentBookDTO
     {

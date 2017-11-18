@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using Unity;
-using System.Linq;
 
-namespace  Library.Infrastructure.InjectionFramework
+namespace Library.Infrastructure.InjectionFramework
 {
     public class InjectContainer
     {
@@ -25,8 +23,6 @@ namespace  Library.Infrastructure.InjectionFramework
         public static void RegisterType<TFrom, TTo>() where TTo : TFrom
         {
             unityContainer.RegisterType<TFrom, TTo>();
-
-
         }
 
         public static void RegisterType(Type from, Type to)

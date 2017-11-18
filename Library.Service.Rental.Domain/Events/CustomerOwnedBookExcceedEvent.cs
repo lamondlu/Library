@@ -1,9 +1,6 @@
-﻿using  Library.Domain.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Library.Domain.Core;
 
-namespace  Library.Service.Rental.Domain.Events
+namespace Library.Service.Rental.Domain.Events
 {
     public class CustomerOwnedBookExcceedEvent : DomainEvent
     {
@@ -11,7 +8,6 @@ namespace  Library.Service.Rental.Domain.Events
 
         public CustomerOwnedBookExcceedEvent() : base(EVENT_CustomerOwnedBookExcceed)
         {
-
         }
     }
 }

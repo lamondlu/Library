@@ -1,9 +1,8 @@
-using System;
+using Library.Domain.Core;
+using Library.Service.Rental.Domain.DataAccessors;
 using System.Threading.Tasks;
-using  Library.Domain.Core;
-using  Library.Service.Rental.Domain.DataAccessors;
 
-namespace  Library.Service.Rental.Domain
+namespace Library.Service.Rental.Domain
 {
     public class CustomerAccountInitializedEventHandler : IEventHandler<CustomerAccountInitializedEvent>
     {
@@ -16,7 +15,6 @@ namespace  Library.Service.Rental.Domain
 
         public void Handle(CustomerAccountInitializedEvent evt)
         {
-            
         }
 
         public Task HandleAsync(CustomerAccountInitializedEvent evt)

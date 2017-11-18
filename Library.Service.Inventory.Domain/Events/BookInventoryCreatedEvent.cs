@@ -1,8 +1,7 @@
+using Library.Domain.Core;
 using System;
-using System.Collections.Generic;
-using  Library.Domain.Core;
 
-namespace  Library.Service.Inventory.Domain.Events
+namespace Library.Service.Inventory.Domain.Events
 {
     public class BookInventoryCreatedEvent : DomainEvent
     {
@@ -10,7 +9,6 @@ namespace  Library.Service.Inventory.Domain.Events
 
         public BookInventoryCreatedEvent() : base(Event_BookInventoryCreated)
         {
-
         }
 
         public Guid BookId { get; set; }

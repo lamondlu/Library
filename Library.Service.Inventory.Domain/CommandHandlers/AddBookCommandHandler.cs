@@ -1,12 +1,10 @@
-using System;
-using  Library.Domain.Core.Commands;
-using  Library.Service.Inventory.Domain.Commands;
-using  Library.Domain.Core.DataAccessor;
-using  Library.Service.Inventory.Domain;
-using  Library.Service.Inventory.Domain.DataAccessors;
-using  Library.Domain.Core.Messaging;
+using Library.Domain.Core.Commands;
+using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
+using Library.Service.Inventory.Domain.Commands;
+using Library.Service.Inventory.Domain.DataAccessors;
 
-namespace  Library.Service.Inventory.Domain.CommandHandlers
+namespace Library.Service.Inventory.Domain.CommandHandlers
 {
     public class AddBookCommandHandler : ICommandHandler<AddBookCommand>
     {
@@ -34,7 +32,7 @@ namespace  Library.Service.Inventory.Domain.CommandHandlers
             else
             {
                 var book = new Book(command.BookId, command.ISBN, command.BookName, command.Description, command.DateIssued);
-                
+
                 _domainRepository.Save(book, -1, command.CommandUniqueId);
             }
         }

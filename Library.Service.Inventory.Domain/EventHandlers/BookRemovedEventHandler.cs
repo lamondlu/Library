@@ -1,11 +1,9 @@
-using System;
+using Library.Domain.Core;
+using Library.Service.Inventory.Domain.DataAccessors;
+using Library.Service.Inventory.Domain.Events;
 using System.Threading.Tasks;
-using  Library.Domain.Core;
-using  Library.Service.Inventory.Domain.DataAccessors;
-using  Library.Service.Inventory.Domain.DTOs;
-using  Library.Service.Inventory.Domain.Events;
 
-namespace  Library.Service.Inventory.Domain.EventHandlers
+namespace Library.Service.Inventory.Domain.EventHandlers
 {
     public class BookRemovedEventHandler : IEventHandler<BookRemovedEvent>
     {
@@ -18,7 +16,6 @@ namespace  Library.Service.Inventory.Domain.EventHandlers
 
         public void Handle(BookRemovedEvent evt)
         {
-            
         }
 
         public Task HandleAsync(BookRemovedEvent evt)

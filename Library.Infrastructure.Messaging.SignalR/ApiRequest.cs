@@ -1,14 +1,11 @@
+using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Collections.Specialized;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace  Library.Infrastructure.Messaging.SignalR
+namespace Library.Infrastructure.Messaging.SignalR
 {
     public class ApiRequest
     {
@@ -121,6 +118,5 @@ namespace  Library.Infrastructure.Messaging.SignalR
             HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data));
             HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
         }
-
     }
 }

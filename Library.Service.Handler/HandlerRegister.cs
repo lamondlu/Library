@@ -1,27 +1,22 @@
+using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
+using Library.Infrastructure.InjectionFramework;
+using Library.Infrastructure.Messaging.RabbitMQ;
 using System;
-using System.Reflection;
 using System.Linq;
-using  Library.Domain.Core;
-using  Library.Domain.Core.Commands;
-using  Library.Infrastructure.Messaging.RabbitMQ;
-using  Library.Infrastructure.InjectionFramework;
-using  Library.Domain.Core.DataAccessor;
-using  Library.Domain.Core.Messaging;
-using  Library.Infrastructure.Messaging.SignalR;
+using System.Reflection;
 
-namespace  Library.Service.Handler
+namespace Library.Service.Handler
 {
     public class HandlerRegister
     {
         public HandlerRegister()
         {
-
         }
 
         public void RegisterAndStart(string libraryName)
         {
             var connectionString = InjectContainer.GetInstance<IEventDBConnectionStringProvider>().ConnectionString;
-           
 
             Console.WriteLine($"Handler starting...");
             Console.WriteLine($"Event DB Connection String: {connectionString}");

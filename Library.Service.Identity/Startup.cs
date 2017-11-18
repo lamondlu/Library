@@ -1,14 +1,12 @@
+using Library.Infrastructure.DataPersistence.Identity.SQLServer;
+using Library.Infrastructure.InjectionFramework;
+using Library.Service.Identity.Domain;
+using Library.Service.Identity.Domain.DataAccessors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using  Library.Infrastructure.InjectionFramework;
-using  Library.Infrastructure.Messaging.RabbitMQ;
-using  Library.Domain.Core.Messaging;
 using Microsoft.Extensions.DependencyInjection;
-using  Library.Service.Identity.Domain;
-using  Library.Service.Identity.Domain.DataAccessors;
-using  Library.Infrastructure.DataPersistence.Identity.SQLServer;
 
-namespace  Library.Service.Identity
+namespace Library.Service.Identity
 {
     public class Startup
     {

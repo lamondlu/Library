@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace  Library.Domain.Core
+namespace Library.Domain.Core
 {
     public struct PersonName
     {
@@ -23,7 +17,7 @@ namespace  Library.Domain.Core
 
         public override bool Equals(object obj)
         {
-            if(obj == null)
+            if (obj == null)
             {
                 return false;
             }

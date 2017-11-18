@@ -1,17 +1,16 @@
-using System;
-using  Library.Domain.Core.Messaging;
+using Library.Domain.Core;
+using Library.Domain.Core.Messaging;
+using Library.Infrastructure.InjectionFramework;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
-using System.Text;
-using  Library.Domain.Core;
 using RabbitMQ.Client.Events;
-using  Library.Infrastructure.InjectionFramework;
+using System;
+using System.Text;
 
-namespace  Library.Infrastructure.Messaging.RabbitMQ
+namespace Library.Infrastructure.Messaging.RabbitMQ
 {
     public class RabbitMQEventSubscriber : IEventSubscriber
     {
-
         private readonly IConnection connection;
         private readonly IModel channel;
 
@@ -64,13 +63,12 @@ namespace  Library.Infrastructure.Messaging.RabbitMQ
                     instance.Handle(cmd);
                     //tracker.Finish(cmd.CommandUniqueId, cmd.EventKey);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     //tracker.Error(cmd.CommandUniqueId, cmd.EventKey, "100001", ex.Message);
                 }
 
                 Console.WriteLine("[x] Event Handler Completed");
-
 
                 channel.BasicAck(ea.DeliveryTag, false);
             };

@@ -1,10 +1,9 @@
-using System;
-using System.IO;
-using  Library.Service.Inventory.Domain.DataAccessors;
-using  Library.Service.Rental.Domain.DataAccessors;
+using Library.Service.Inventory.Domain.DataAccessors;
+using Library.Service.Rental.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;
+using System.IO;
 
-namespace  Library.Service.Handler
+namespace Library.Service.Handler
 {
     public class AppsettingInventoryReadDBConnectionStringProvider : IInventoryReadDBConnectionStringProvider
     {

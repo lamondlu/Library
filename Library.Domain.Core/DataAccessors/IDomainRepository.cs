@@ -1,7 +1,6 @@
-
 using System;
 
-namespace  Library.Domain.Core.DataAccessor
+namespace Library.Domain.Core.DataAccessor
 {
     public interface IDomainRepository
     {

@@ -1,10 +1,8 @@
-using System;
-using  Library.Domain.Core.Commands;
-using  Library.Service.Inventory.Domain.Commands;
-using  Library.Domain.Core.DataAccessor;
-using  Library.Service.Inventory.Domain;
+using Library.Domain.Core.Commands;
+using Library.Domain.Core.DataAccessor;
+using Library.Service.Inventory.Domain.Commands;
 
-namespace  Library.Service.Inventory.Domain.CommandHandlers
+namespace Library.Service.Inventory.Domain.CommandHandlers
 {
     public class OutStoreBookInventoryCommandHandler : ICommandHandler<OutStoreBookInventoryCommand>
     {

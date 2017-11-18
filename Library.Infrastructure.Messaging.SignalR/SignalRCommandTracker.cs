@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Library.Domain.Core.Messaging;
+using System;
 using System.Collections.Generic;
-using  Library.Domain.Core.Messaging;
 using System.Collections.Specialized;
 
-namespace  Library.Infrastructure.Messaging.SignalR
+namespace Library.Infrastructure.Messaging.SignalR
 {
     public class SignalRCommandTracker : ICommandTracker
     {
@@ -71,7 +71,6 @@ namespace  Library.Infrastructure.Messaging.SignalR
                     ErrorMessage = errorMessage
                 });
             }
-
         }
     }
 }

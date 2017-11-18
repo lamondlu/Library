@@ -1,13 +1,12 @@
-﻿using System;
-using  Library.Domain.Core;
+﻿using Library.Domain.Core;
+using System;
 
-namespace  Library.Service.Rental.Domain
+namespace Library.Service.Rental.Domain
 {
     public class Book : Entity
     {
         public Book()
         {
-
         }
 
         public Book(Guid bookId)

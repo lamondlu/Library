@@ -1,7 +1,6 @@
-using System;
-using  Library.Domain.Core;
+using Library.Domain.Core;
 
-namespace  Library.Service.Identity.Domain
+namespace Library.Service.Identity.Domain
 {
     public class AdministratorCreatedEvent : DomainEvent
     {
@@ -9,7 +8,6 @@ namespace  Library.Service.Identity.Domain
 
         public AdministratorCreatedEvent() : base(Event_AdministratorCreated)
         {
-            
         }
 
         public UserPrincipal Principal { get; set; }

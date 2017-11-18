@@ -1,8 +1,8 @@
+using Library.Service.Identity.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
-using  Library.Service.Identity.Domain.ViewModels;
 
-namespace  Library.Service.Identity.Domain.DataAccessors
+namespace Library.Service.Identity.Domain.DataAccessors
 {
     public interface IIdentityReportDataAccessor
     {

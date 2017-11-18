@@ -1,7 +1,7 @@
-﻿using System;
-using  Library.Domain.Core;
+﻿using Library.Domain.Core;
+using System;
 
-namespace  Library.Service.Identity.Domain
+namespace Library.Service.Identity.Domain
 {
     public class User : Person
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace  Library.Service.Inventory.Domain.DTOs
+namespace Library.Service.Inventory.Domain.DTOs
 {
     public class AddBookDTO
     {

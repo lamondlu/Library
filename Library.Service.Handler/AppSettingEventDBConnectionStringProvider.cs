@@ -1,10 +1,8 @@
-using System;
-using System.IO;
-using  Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.DataAccessor;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
+using System.IO;
 
-namespace  Library.Service.Handler
+namespace Library.Service.Handler
 {
     public class AppSettingEventDBConnectionStringProvider : IEventDBConnectionStringProvider
     {

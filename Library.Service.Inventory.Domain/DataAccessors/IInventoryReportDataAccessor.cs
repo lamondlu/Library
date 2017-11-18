@@ -1,11 +1,10 @@
+using Library.Service.Inventory.Domain.DTOs;
+using Library.Service.Inventory.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using  Library.Domain.Core;
-using  Library.Service.Inventory.Domain.DTOs;
-using  Library.Service.Inventory.Domain.ViewModels;
 
-namespace  Library.Service.Inventory.Domain.DataAccessors
+namespace Library.Service.Inventory.Domain.DataAccessors
 {
     public interface IInventoryReportDataAccessor
     {
@@ -21,7 +20,7 @@ namespace  Library.Service.Inventory.Domain.DataAccessors
 
         void UpdateBookName(Guid bookId, string bookName);
 
-        void UpdateBookDescription(Guid bookId,string description);
+        void UpdateBookDescription(Guid bookId, string description);
 
         void UpdateBookISBN(Guid bookId, string isbn);
 

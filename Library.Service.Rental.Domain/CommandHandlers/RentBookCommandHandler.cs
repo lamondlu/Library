@@ -1,11 +1,11 @@
+using Library.Domain.Core.Commands;
+using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
+using Library.Service.Rental.Domain.DataAccessors;
+using Library.Service.Rental.Domain.Events;
 using System;
-using  Library.Domain.Core.Commands;
-using  Library.Domain.Core.DataAccessor;
-using  Library.Service.Rental.Domain.DataAccessors;
-using  Library.Domain.Core.Messaging;
-using  Library.Service.Rental.Domain.Events;
 
-namespace  Library.Service.Rental.Domain
+namespace Library.Service.Rental.Domain
 {
     public class RentBookCommandHandler : ICommandHandler<RentBookCommand>
     {

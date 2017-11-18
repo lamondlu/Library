@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Library.Infrastructure.DataPersistence.Core.SQLServer;
+using Library.Infrastructure.DataPersistence.Identity.SQLServer.Extensions;
+using Library.Service.Identity.Domain;
+using Library.Service.Identity.Domain.DataAccessors;
+using Library.Service.Identity.Domain.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using Library.Service.Identity.Domain.DataAccessors;
-using Library.Service.Identity.Domain.ViewModels;
-using Library.Infrastructure.DataPersistence.Identity.SQLServer.Extensions;
 using System.Linq;
-using Library.Service.Identity.Domain;
-using Library.Infrastructure.DataPersistence.Core.SQLServer;
 
 namespace Library.Infrastructure.DataPersistence.Identity.SQLServer
 {
@@ -77,7 +77,6 @@ namespace Library.Infrastructure.DataPersistence.Identity.SQLServer
             var dbHelper = new DbHelper(_readDBConnectionStringProvider.ConnectionString);
             var sql = "SELECT TOP 1 p.* FROM dbo.[User] AS u INNER JOIN dbo.[Person] p on u.PersonId = p.PersonId WHERE u.PersonId=@personId";
 
-
             var dt = dbHelper.ExecuteDataTable(sql, new List<SqlParameter>{
                 new SqlParameter
                 {
@@ -99,6 +98,5 @@ namespace Library.Infrastructure.DataPersistence.Identity.SQLServer
 
             return null;
         }
-
     }
 }

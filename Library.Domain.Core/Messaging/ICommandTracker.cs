@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace  Library.Domain.Core.Messaging
+namespace Library.Domain.Core.Messaging
 {
     public interface ICommandTracker
     {
@@ -9,7 +9,7 @@ namespace  Library.Domain.Core.Messaging
 
         void Finish(Guid commandUniqueId, string eventName);
 
-        void Error(Guid commandUniqueId, string eventName,string errorCode, string errorMessage);
+        void Error(Guid commandUniqueId, string eventName, string errorCode, string errorMessage);
 
         void DirectFinish(Guid commandUniqueId);
 
