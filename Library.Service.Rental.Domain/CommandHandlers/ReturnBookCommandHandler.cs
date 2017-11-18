@@ -1,7 +1,10 @@
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
 using Library.Service.Rental.Domain.Commands;
 using Library.Service.Rental.Domain.DataAccessors;
+using Library.Service.Rental.Domain.Events;
+using System;
 
 namespace Library.Service.Rental.Domain.CommandHandlers
 {
@@ -9,11 +12,13 @@ namespace Library.Service.Rental.Domain.CommandHandlers
     {
         private IDomainRepository _domainRepository = null;
         private IRentalReportDataAccessor _dataAccessor = null;
+        private IEventPublisher _eventPublisher = null;
 
-        public ReturnBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor)
+        public ReturnBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, IEventPublisher eventPublisher)
         {
             _domainRepository = domainRepository;
             _dataAccessor = dataAccesor;
+            _eventPublisher = eventPublisher;
         }
 
         public void Dispose()
@@ -24,9 +29,15 @@ namespace Library.Service.Rental.Domain.CommandHandlers
         public void Execute(ReturnBookCommand command)
         {
             Customer customer = _domainRepository.GetById<Customer>(command.CustomerId);
-            customer.ReturnBook(command.BookId);
 
-            _domainRepository.Save(customer, customer.Version, command.CommandUniqueId);
+            _eventPublisher.Publish(new ReturnBookRequestCreatedEvent
+            {
+                BookInventoryId = command.BookId,
+                ReturnDate = DateTime.Now,
+                Name = customer.Name,
+                CommandUniqueId = command.CommandUniqueId,
+                AggregateId = command.CustomerId
+            });
         }
     }
 }

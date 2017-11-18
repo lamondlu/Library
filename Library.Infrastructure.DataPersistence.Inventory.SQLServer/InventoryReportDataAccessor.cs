@@ -136,7 +136,7 @@ namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer
             if (result != null)
             {
                 var InventoryDatas = dbHelper.ExecuteDataTable(@"
-                    SELECT *, (SELECT TOP 1 h.Note From History h Where h.BookInventoryId = br.BookInventoryId) as LastNote FROM BookInventory br WHERE br.BookId = @bookId
+                    SELECT *, (SELECT TOP 1 h.Note From History h Where h.BookInventoryId = br.BookInventoryId ORDER BY CreatedOn DESC) as LastNote FROM BookInventory br WHERE br.BookId = @bookId
                     ", new SqlParameter { ParameterName = "@bookId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookId });
 
                 var inventories = InventoryDatas.ConvertToBookInventoryViewModel();
