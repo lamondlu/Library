@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Library.Infrastructure.Core.Extensions;
 
 namespace Library.Infrastructure.DataPersistence.Rental.SQLServer.Extensions
 {
@@ -19,11 +20,11 @@ namespace Library.Infrastructure.DataPersistence.Rental.SQLServer.Extensions
             {
                 BookId = Guid.Parse(dr["BookId"].ToString()),
                 CustomerId = Guid.Parse(dr["CustomerId"].ToString()),
-                BookName = dr["BookName"].ToString(),
-                ISBN = dr["ISBN"].ToString(),
-                FirstName = dr["ContactFirstName"].ToString(),
-                LastName = dr["ContactLastName"].ToString(),
-                MiddleName = dr["ContactMiddleName"].ToString(),
+                BookName = dr["BookName"].SafeConvertToString(),
+                ISBN = dr["ISBN"].SafeConvertToString(),
+                FirstName = dr["ContactFirstName"].SafeConvertToString(),
+                LastName = dr["ContactLastName"].SafeConvertToString(),
+                MiddleName = dr["ContactMiddleName"].SafeConvertToString(),
                 RentDate = Convert.ToDateTime(dr["RentDate"])
             };
         }

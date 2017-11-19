@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
  <ItemGroup>
+    <ProjectReference Include="..\Library.Infrastructure.Core\Library.Infrastructure.Core.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.DataPersistence.Core.SQLServer\Library.Infrastructure.DataPersistence.Core.SQLServer.csproj" />
     <ProjectReference Include="..\Library.Service.Rental.Domain\Library.Service.Rental.Domain.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.InjectionFramework\Library.Infrastructure.InjectionFramework.csproj" />

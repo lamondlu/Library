@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Library.Infrastructure.Core.Extensions;
+
 
 namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions
 {
@@ -20,10 +22,10 @@ namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions
                 var model = new BookViewModel();
 
                 model.BookId = Guid.Parse(dr["BookId"].ToString());
-                model.BookName = dr["BookName"].ToString();
+                model.BookName = dr["BookName"].SafeConvertToString();
                 model.DateIssued = Convert.ToDateTime(dr["DateIssued"]);
-                model.ISBN = dr["ISBN"].ToString();
-                model.Description = dr["Description"].ToString();
+                model.ISBN = dr["ISBN"].SafeConvertToString();
+                model.Description = dr["Description"].SafeConvertToString();
 
                 return model;
             }
@@ -40,7 +42,7 @@ namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions
                 var model = new BookInventoryViewModel();
 
                 model.BookInventoryId = Guid.Parse(dr["BookInventoryId"].ToString());
-                model.LastNote = dr["LastNote"].ToString();
+                model.LastNote = dr["LastNote"].SafeConvertToString();
                 model.Status = (BookInventoryStatus)Enum.Parse(typeof(BookInventoryStatus), dr["Status"].ToString());
 
                 return model;
@@ -58,10 +60,10 @@ namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions
                 var model = new BookDetailedModel();
 
                 model.BookId = Guid.Parse(dr["BookId"].ToString());
-                model.BookName = dr["BookName"].ToString();
+                model.BookName = dr["BookName"].SafeConvertToString();
                 model.DateIssued = Convert.ToDateTime(dr["DateIssued"]);
-                model.ISBN = dr["ISBN"].ToString();
-                model.Description = dr["Description"].ToString();
+                model.ISBN = dr["ISBN"].SafeConvertToString();
+                model.Description = dr["Description"].SafeConvertToString();
 
                 return model;
             }

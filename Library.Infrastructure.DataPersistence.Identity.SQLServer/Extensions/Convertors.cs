@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Library.Infrastructure.Core.Extensions;
 
 namespace Library.Infrastructure.DataPersistence.Identity.SQLServer.Extensions
 {
@@ -23,9 +24,9 @@ namespace Library.Infrastructure.DataPersistence.Identity.SQLServer.Extensions
             return new CustomerListViewModel
             {
                 CustomerId = Guid.Parse(dr["PersonId"].ToString()),
-                FirstName = dr["FirstName"].ToString(),
-                MiddleName = dr["MiddleName"].ToString(),
-                LastName = dr["LastName"].ToString()
+                FirstName = dr["FirstName"].SafeConvertToString(),
+                MiddleName = dr["MiddleName"].SafeConvertToString(),
+                LastName = dr["LastName"].SafeConvertToString()
             };
         }
     }
