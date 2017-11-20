@@ -48,9 +48,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.UI", "Library.UI\Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.SignalR", "Library.SignalR\Library.SignalR\Library.SignalR.csproj", "{A1BA8AFE-8804-4853-8E75-D80DC5EEBF15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure.Core", "Library.Infrastructure.Core\Library.Infrastructure.Core.csproj", "{08AF216A-D013-4898-A7AD-949F986C09E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure.Core", "Library.Infrastructure.Core\Library.Infrastructure.Core.csproj", "{08AF216A-D013-4898-A7AD-949F986C09E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrasturcture.Logger.Log4Net", "Library.Infrasturcture.Logger.Log4Net\Library.Infrasturcture.Logger.Log4Net.csproj", "{1EFCCB6F-B8C7-483D-B34F-1E52650D5AAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrasturcture.Logger.SQLServer", "Library.Infrasturcture.Logger.SQLServer\Library.Infrasturcture.Logger.SQLServer.csproj", "{1EFCCB6F-B8C7-483D-B34F-1E52650D5AAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
