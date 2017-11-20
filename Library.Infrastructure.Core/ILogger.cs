@@ -5,10 +5,10 @@ namespace Library.Infrastructure.Core
 {
     public interface ILogger
     {
-        void Success(string commandUnqiueId, string commandName, string eventName, string message);
+        void Success(Guid commandUnqiueId, string commandName, string eventName, string message, string data);
 
-        void Error(string commandUniqueId, string commandName, string eventName, string message);
+        void Error(Guid commandUniqueId, string commandName, string eventName, string message, string data);
 
-        void Info(string commandUniqueId, string commandName, string eventName, string message);
+        void Info(Guid commandUniqueId, string commandName, string eventName, string message, string data);
     }
 }

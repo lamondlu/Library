@@ -5,10 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Library.Infrastructure.DataPersistence.Core.SQLServer\Library.Infrastructure.DataPersistence.Core.SQLServer.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.Core\Library.Infrastructure.Core.csproj" />
   </ItemGroup>
 
