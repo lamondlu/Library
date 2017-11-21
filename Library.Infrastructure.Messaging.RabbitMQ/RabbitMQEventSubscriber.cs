@@ -45,6 +45,7 @@ namespace Library.Infrastructure.Messaging.RabbitMQ
             IEventHandler<T> instance = InjectContainer.GetInstance<IEventHandler<T>>();
             if (instance == null)
             {
+                Console.WriteLine("no Mapping");
                 return;
             }
 

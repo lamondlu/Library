@@ -36,7 +36,7 @@ namespace Library.Infrastructure.Messaging.RabbitMQ
             ICommandHandler<T> instance = InjectContainer.GetInstance<ICommandHandler<T>>();
             if (instance == null)
             {
-                throw new Exception($"The command handler for {typeof(T).FullName} is not prepared.");
+                Console.WriteLine($"The command handler for {typeof(T).FullName} is not prepared.");
             }
 
             consumer.Received += (model, ea) =>

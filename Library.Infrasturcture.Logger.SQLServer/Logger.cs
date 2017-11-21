@@ -45,7 +45,7 @@ namespace Library.Infrasturcture.Logger.SQLServer
 
         public void EventInfo<T>(T eventObject, string message) where T : DomainEvent
         {
-            Command(eventObject.CommandUniqueId, string.Empty, eventObject.EventKey, message, false, LogType.Info, eventObject);
+            Command(eventObject.CommandUniqueId, string.Empty, eventObject.EventKey, message, true, LogType.Info, eventObject);
         }
 
         public void EventWarning<T>(T eventObject, string message) where T : DomainEvent

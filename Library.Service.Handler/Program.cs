@@ -43,10 +43,17 @@ namespace Library.Service.Handler
 
         private static void Injection()
         {
+            InjectContainer.RegisterType<ILogDBConnectionStringProvider, AppsettingLogDBConnectionStringProvider>();
+            InjectContainer.RegisterType<ILogger, Logger>();
             InjectContainer.RegisterType<IDomainRepository, DomainRepository>();
             InjectContainer.RegisterType<IEventStorage, SQLServerEventStorage>();
             InjectContainer.RegisterType<IRabbitMQUrlProvider, AppsettingRabbitMQUrlProvider>();
             InjectContainer.RegisterType<IEventPublisher, RabbitMQEventPublisher>();
+            InjectContainer.RegisterType<IEventSubscriber, RabbitMQEventSubscriber>();
+
+            InjectContainer.RegisterType<ICommandSubscriber, RabbitMQCommandSubscriber>();
+
+
             InjectContainer.RegisterType<IEventDBConnectionStringProvider, AppSettingEventDBConnectionStringProvider>();
 
             InjectContainer.RegisterType<IInventoryReadDBConnectionStringProvider, AppsettingInventoryReadDBConnectionStringProvider>();
@@ -59,7 +66,7 @@ namespace Library.Service.Handler
             InjectContainer.RegisterType<ISignalRConnectionProvider, AppsettingSignalRConnectionProvider>();
             InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
 
-            InjectContainer.RegisterType<ILogger, Logger>();
+
         }
 
         private static List<HandlerConfigurationDTO> BuildHandlerConfigurations()

@@ -1,5 +1,6 @@
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
+using Library.Infrastructure.Core;
 using Library.Infrastructure.InjectionFramework;
 using Library.Infrastructure.Messaging.RabbitMQ;
 using System;
@@ -34,7 +35,7 @@ namespace Library.Service.Handler
             var allCommands = assembly.GetExportedTypes().Where(p => p.GetInterface("ICommand") != null);
             foreach (var command in allCommands)
             {
-                var register = InjectContainer.GetInstance<ICommandSubscriber>();
+                var register = new RabbitMQCommandSubscriber(InjectContainer.GetInstance<IRabbitMQUrlProvider>());
                 var registerMethod = register.GetType().GetMethod("Subscribe");
 
                 var cmd = Activator.CreateInstance(command);
@@ -50,10 +51,10 @@ namespace Library.Service.Handler
             var allEvents = assembly.GetExportedTypes().Where(p => p.GetInterface("IDomainEvent") != null);
             foreach (var @event in allEvents)
             {
-                var register = InjectContainer.GetInstance<IEventSubscriber>();
+                var register = new RabbitMQEventSubscriber(InjectContainer.GetInstance<IRabbitMQUrlProvider>(), InjectContainer.GetInstance<ICommandTracker>());
 
                 if (register != null)
-                {
+                { 
                     var registerMethod = register.GetType().GetMethod("Subscribe");
 
                     var cmd = Activator.CreateInstance(@event);
