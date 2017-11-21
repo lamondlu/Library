@@ -34,7 +34,7 @@ namespace Library.Service.Handler
             var allCommands = assembly.GetExportedTypes().Where(p => p.GetInterface("ICommand") != null);
             foreach (var command in allCommands)
             {
-                var register = new RabbitMQCommandSubscriber("amqp://localhost:5672");
+                var register = InjectContainer.GetInstance<ICommandSubscriber>();
                 var registerMethod = register.GetType().GetMethod("Subscribe");
 
                 var cmd = Activator.CreateInstance(command);
@@ -50,7 +50,7 @@ namespace Library.Service.Handler
             var allEvents = assembly.GetExportedTypes().Where(p => p.GetInterface("IDomainEvent") != null);
             foreach (var @event in allEvents)
             {
-                var register = new RabbitMQEventSubscriber("amqp://localhost:5672", InjectContainer.GetInstance<ICommandTracker>());
+                var register = InjectContainer.GetInstance<IEventSubscriber>();
 
                 if (register != null)
                 {

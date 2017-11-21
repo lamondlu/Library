@@ -45,7 +45,8 @@ namespace Library.Service.Handler
         {
             InjectContainer.RegisterType<IDomainRepository, DomainRepository>();
             InjectContainer.RegisterType<IEventStorage, SQLServerEventStorage>();
-            InjectContainer.RegisterInstance<IEventPublisher>(new RabbitMQEventPublisher("amqp://localhost:5672"));
+            InjectContainer.RegisterType<IRabbitMQUrlProvider, AppsettingRabbitMQUrlProvider>();
+            InjectContainer.RegisterType<IEventPublisher, RabbitMQEventPublisher>();
             InjectContainer.RegisterType<IEventDBConnectionStringProvider, AppSettingEventDBConnectionStringProvider>();
 
             InjectContainer.RegisterType<IInventoryReadDBConnectionStringProvider, AppsettingInventoryReadDBConnectionStringProvider>();

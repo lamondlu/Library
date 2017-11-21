@@ -33,20 +33,20 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
                     //Record down the error and use signalR to transfer the error.
 
                     _tracker.Error(command.CommandUniqueId, string.Empty, "ADDBOOK_EXISTED", "The book has existed in the system.");
-                    _logger.Error(command.CommandUniqueId, command.CommandKey, string.Empty, "ADDBOOK_EXISTED:The book has existed in the system.", command);
+                    _logger.CommandWarning(command, "ADDBOOK_EXISTED:The book has existed in the system.");
                 }
                 else
                 {
                     var book = new Book(command.BookId, command.ISBN, command.BookName, command.Description, command.DateIssued);
                     _domainRepository.Save(book, -1, command.CommandUniqueId);
 
-                    _logger.Success(command.CommandUniqueId, command.CommandKey, string.Empty, string.Empty, command);
+                    _logger.CommandInfo(command, "Command Finished.");
                 }
             }
             catch (Exception ex)
             {
                 _tracker.Error(command.CommandUniqueId, string.Empty, "SERVER_ERROR", ex.ToString());
-                _logger.Error(command.CommandUniqueId, command.CommandKey, string.Empty, $"SERVER_ERROR:{ex.ToString()}", command);
+                _logger.CommandError(command, $"SERVER_ERROR:{ex.ToString()}");
             }
         }
 

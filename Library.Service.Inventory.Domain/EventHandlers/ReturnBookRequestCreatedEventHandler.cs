@@ -1,6 +1,7 @@
 ﻿using Library.Domain.Core;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
+using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.DataAccessors;
 using Library.Service.Inventory.Domain.Events;
 using System;
@@ -15,12 +16,14 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         private IInventoryReportDataAccessor _reportDataAccessor = null;
         private IDomainRepository _domainRepository = null;
         private IEventPublisher _eventPublisher = null;
+        private ILogger _logger = null;
 
-        public ReturnBookRequestCreatedEventHandler(IInventoryReportDataAccessor reportDataAccessor, IDomainRepository domainRepository, IEventPublisher eventPublisher)
+        public ReturnBookRequestCreatedEventHandler(IInventoryReportDataAccessor reportDataAccessor, IDomainRepository domainRepository, IEventPublisher eventPublisher, ILogger logger)
         {
             _reportDataAccessor = reportDataAccessor;
             _domainRepository = domainRepository;
             _eventPublisher = eventPublisher;
+            _logger = logger;
         }
 
         public void Handle(ReturnBookRequestCreatedEvent evt)
@@ -36,10 +39,14 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                     CustomerId = evt.AggregateId,
                     CommandUniqueId = evt.CommandUniqueId
                 });
+
+                _logger.EventInfo(evt, "Event Finished.");
             }
-            catch
+            catch (Exception ex)
             {
                 //send event ReturnBookRequestFailedEvent
+
+                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
             }
         }
 
