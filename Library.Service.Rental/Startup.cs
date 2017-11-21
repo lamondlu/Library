@@ -32,7 +32,8 @@ namespace Library.Service.Rental
 
         private void InjectService()
         {
-            InjectContainer.RegisterInstance<ICommandPublisher>(new RabbitMQCommandPublisher("amqp://localhost:5672"));
+            InjectContainer.RegisterType<IRabbitMQUrlProvider, AppsettingRabbitMQUrlProvider>();
+            InjectContainer.RegisterType<ICommandPublisher, RabbitMQCommandPublisher>();
             InjectContainer.RegisterType<IRentalReadDBConnectionStringProvider, AppsettingRentalReadDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRentalWriteDBConnectionStringProvider, AppsettingRentalWriteDBConnectionStringProvider>();
             InjectContainer.RegisterType<IRentalReportDataAccessor, RentalReportDataAccessor>();
