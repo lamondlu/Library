@@ -1,6 +1,7 @@
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
+using Library.Infrastructure.Core;
 using Library.Service.Rental.Domain.Commands;
 using Library.Service.Rental.Domain.DataAccessors;
 using Library.Service.Rental.Domain.Events;
@@ -13,12 +14,14 @@ namespace Library.Service.Rental.Domain.CommandHandlers
         private IDomainRepository _domainRepository = null;
         private IRentalReportDataAccessor _dataAccessor = null;
         private IEventPublisher _eventPublisher = null;
+        private ILogger _logger = null;
 
-        public ReturnBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, IEventPublisher eventPublisher)
+        public ReturnBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, IEventPublisher eventPublisher, ILogger logger)
         {
             _domainRepository = domainRepository;
             _dataAccessor = dataAccesor;
             _eventPublisher = eventPublisher;
+            _logger = logger;
         }
 
         public void Dispose()
@@ -28,16 +31,25 @@ namespace Library.Service.Rental.Domain.CommandHandlers
 
         public void Execute(ReturnBookCommand command)
         {
-            Customer customer = _domainRepository.GetById<Customer>(command.CustomerId);
-
-            _eventPublisher.Publish(new ReturnBookRequestCreatedEvent
+            try
             {
-                BookInventoryId = command.BookId,
-                ReturnDate = DateTime.Now,
-                Name = customer.Name,
-                CommandUniqueId = command.CommandUniqueId,
-                AggregateId = command.CustomerId
-            });
+                Customer customer = _domainRepository.GetById<Customer>(command.CustomerId);
+
+                _eventPublisher.Publish(new ReturnBookRequestCreatedEvent
+                {
+                    BookInventoryId = command.BookId,
+                    ReturnDate = DateTime.Now,
+                    Name = customer.Name,
+                    CommandUniqueId = command.CommandUniqueId,
+                    AggregateId = command.CustomerId
+                });
+
+                _logger.CommandInfo(command, "Command Finished.");
+            }
+            catch (Exception ex)
+            {
+                _logger.CommandError(command, $"SERVER_ERROR: {ex.ToString()}");
+            }
         }
     }
 }

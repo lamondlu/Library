@@ -1,5 +1,6 @@
 ﻿using Library.Domain.Core;
 using Library.Domain.Core.DataAccessor;
+using Library.Infrastructure.Core;
 using Library.Service.Rental.Domain.Events;
 using System;
 using System.Threading.Tasks;
@@ -9,10 +10,12 @@ namespace Library.Service.Rental.Domain.EventHandlers
     public class RentBookRequestSucceedEventHandler : IEventHandler<RentBookRequestSucceedEvent>
     {
         private IDomainRepository _domainRepository = null;
+        private ILogger _logger = null;
 
-        public RentBookRequestSucceedEventHandler(IDomainRepository domainRepository)
+        public RentBookRequestSucceedEventHandler(IDomainRepository domainRepository, ILogger logger)
         {
             _domainRepository = domainRepository;
+            _logger = logger;
         }
 
         public void Handle(RentBookRequestSucceedEvent evt)
@@ -22,10 +25,12 @@ namespace Library.Service.Rental.Domain.EventHandlers
                 var customer = _domainRepository.GetById<Customer>(evt.CustomerId);
                 customer.RentBook(evt.BookInventoryId);
                 _domainRepository.Save(customer, customer.Version, evt.CommandUniqueId);
+
+                _logger.EventInfo(evt, "Event Finished.");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.ToString());
+                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
                 //publish RentBookFailedEvent
             }
         }

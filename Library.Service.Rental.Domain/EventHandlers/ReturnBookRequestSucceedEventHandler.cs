@@ -1,5 +1,6 @@
 ﻿using Library.Domain.Core;
 using Library.Domain.Core.DataAccessor;
+using Library.Infrastructure.Core;
 using Library.Service.Rental.Domain.Events;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace Library.Service.Rental.Domain.EventHandlers
     public class ReturnBookRequestSucceedEventHandler : IEventHandler<ReturnBookRequestSucceedEvent>
     {
         private IDomainRepository _domainRepository = null;
+        private ILogger _logger = null;
 
-        public ReturnBookRequestSucceedEventHandler(IDomainRepository domainRepository)
+        public ReturnBookRequestSucceedEventHandler(IDomainRepository domainRepository, ILogger logger)
         {
             _domainRepository = domainRepository;
+            _logger = logger;
         }
 
         public void Handle(ReturnBookRequestSucceedEvent evt)
@@ -25,16 +28,22 @@ namespace Library.Service.Rental.Domain.EventHandlers
                 customer.ReturnBook(evt.BookInventoryId);
 
                 _domainRepository.Save(customer, customer.Version, evt.CommandUniqueId);
+                _logger.EventInfo(evt, "Event Finished.");
             }
-            catch
+            catch (Exception ex)
             {
                 //Send compensation event to make the book outstore again.
+
+                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
             }
         }
 
         public Task HandleAsync(ReturnBookRequestSucceedEvent evt)
         {
-            throw new NotImplementedException();
+            return Task.Factory.StartNew(() =>
+            {
+                Handle(evt);
+            });
         }
     }
 }

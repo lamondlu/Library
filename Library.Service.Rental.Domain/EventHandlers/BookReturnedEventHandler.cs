@@ -1,7 +1,9 @@
 using Library.Domain.Core;
 using Library.Domain.Core.Messaging;
+using Library.Infrastructure.Core;
 using Library.Service.Rental.Domain.DataAccessors;
 using Library.Service.Rental.Domain.Events;
+using System;
 using System.Threading.Tasks;
 
 namespace Library.Service.Rental.Domain
@@ -10,11 +12,13 @@ namespace Library.Service.Rental.Domain
     {
         private IRentalReportDataAccessor _reportDataAccessor = null;
         private ICommandTracker _commandTracker = null;
+        private ILogger _logger = null;
 
-        public BookReturnedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker)
+        public BookReturnedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger)
         {
             _reportDataAccessor = reportDataAccessor;
             _commandTracker = commandTracker;
+            _logger = logger;
         }
 
         public void Handle(BookReturnedEvent evt)
@@ -25,10 +29,11 @@ namespace Library.Service.Rental.Domain
                 _reportDataAccessor.Commit();
 
                 _commandTracker.DirectFinish(evt.CommandUniqueId);
+                _logger.EventInfo(evt, "Event Finished.");
             }
-            catch
+            catch (Exception ex)
             {
-
+                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
             }
         }
 
