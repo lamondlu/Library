@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using Newtonsoft.Json;
+using Library.Domain.Core;
+using Library.Domain.Core.Commands;
 
 namespace Library.Infrasturcture.Logger.SQLServer
 {
@@ -16,11 +18,6 @@ namespace Library.Infrasturcture.Logger.SQLServer
         public Logger(ILogDBConnectionStringProvider logDBConnectionStringProvider)
         {
             _logDBConnectionStringProvider = logDBConnectionStringProvider;
-        }
-
-        public void Error(Guid commandUniqueId, string commandName, string eventName, string message, object data)
-        {
-            Command(commandUniqueId, commandName, eventName, message, false, LogType.Error, data);
         }
 
         public void Command(Guid commandUniqueId, string commandName, string eventName, string message, bool isSuccess, LogType logType, object data)
@@ -41,14 +38,34 @@ namespace Library.Infrasturcture.Logger.SQLServer
             }.ToArray());
         }
 
-        public void Info(Guid commandUniqueId, string commandName, string eventName, string message, object data)
+        public void EventError<T>(T eventObject, string message) where T : DomainEvent
         {
-            Command(commandUniqueId, commandName, eventName, message, true, LogType.Info, data);
+            Command(eventObject.CommandUniqueId, string.Empty, eventObject.EventKey, message, false, LogType.Error, eventObject);
         }
 
-        public void Success(Guid commandUnqiueId, string commandName, string eventName, string message, object data)
+        public void EventInfo<T>(T eventObject, string message) where T : DomainEvent
         {
-            Command(commandUnqiueId, commandName, eventName, message, true, LogType.Info, data);
+            Command(eventObject.CommandUniqueId, string.Empty, eventObject.EventKey, message, false, LogType.Info, eventObject);
+        }
+
+        public void EventWarning<T>(T eventObject, string message) where T : DomainEvent
+        {
+             Command(eventObject.CommandUniqueId, string.Empty, eventObject.EventKey, message, false, LogType.Warning, eventObject);
+        }
+
+        public void CommandError<T>(T command, string message) where T : CommonCommand
+        {
+           Command(command.CommandUniqueId, command.CommandKey, string.Empty, message, false, LogType.Error, command);
+        }
+
+        public void CommandInfo<T>(T command, string message) where T : CommonCommand
+        {
+            Command(command.CommandUniqueId, command.CommandKey, string.Empty, message, true, LogType.Info, command);
+        }
+
+        public void CommandWarning<T>(T command, string message) where T : CommonCommand
+        {
+            Command(command.CommandUniqueId, command.CommandKey, string.Empty, message, false, LogType.Warning, command);
         }
     }
 }

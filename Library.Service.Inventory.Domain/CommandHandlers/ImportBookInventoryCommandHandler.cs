@@ -1,15 +1,22 @@
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
+using Library.Infrastructure.Core;
 
 namespace Library.Service.Inventory.Domain
 {
     public class ImportBookInventoryCommandHandler : ICommandHandler<ImportBookInventoryCommand>
     {
         private IDomainRepository _domainRepository = null;
+        private ICommandTracker _tracker = null;
 
-        public ImportBookInventoryCommandHandler(IDomainRepository domainRepository)
+        private ILogger _logger = null;
+
+        public ImportBookInventoryCommandHandler(IDomainRepository domainRepository, ICommandTracker tracker, ILogger logger)
         {
             _domainRepository = domainRepository;
+            _tracker = tracker;
+            _logger = logger;
         }
 
         public void Dispose()
@@ -19,15 +26,22 @@ namespace Library.Service.Inventory.Domain
 
         public void Execute(ImportBookInventoryCommand command)
         {
-            if (command.BookInventoryIds == null || command.BookInventoryIds.Count == 0)
+            try
             {
-                return;
-            }
+                if (command.BookInventoryIds == null || command.BookInventoryIds.Count == 0)
+                {
+                    _tracker.Error(command.CommandUniqueId, string.Empty, "NO_INVENTORY", "No inventory.");
+                }
 
-            foreach (var id in command.BookInventoryIds)
+                foreach (var id in command.BookInventoryIds)
+                {
+                    var bookInventory = new BookInventory(id, command.BookId, "Bulk Imported");
+                    _domainRepository.Save(bookInventory, -1, command.CommandUniqueId);
+                }
+            }
+            catch (Exception ex)
             {
-                var bookInventory = new BookInventory(id, command.BookId, "Bulk Imported");
-                _domainRepository.Save(bookInventory, -1, command.CommandUniqueId);
+
             }
         }
     }

@@ -1,14 +1,23 @@
 ﻿using Library.Infrastructure.Core.Models;
 using System;
+using Library.Domain.Core.Commands;
+using Library.Domain.Core;
 
 namespace Library.Infrastructure.Core
 {
     public interface ILogger
     {
-        void Success(Guid commandUnqiueId, string commandName, string eventName, string message, object data);
 
-        void Error(Guid commandUniqueId, string commandName, string eventName, string message, object data);
+        void EventError<T>(T eventObject, string message) where T : DomainEvent;
 
-        void Info(Guid commandUniqueId, string commandName, string eventName, string message, object data);
+        void CommandError<T>(T command, string message) where T : CommonCommand;
+
+        void EventInfo<T>(T eventObject, string message) where T : DomainEvent;
+
+        void CommandInfo<T>(T command, string message) where T : CommonCommand;
+
+        void EventWarning<T>(T eventObject, string message) where T : DomainEvent;
+
+        void CommandWarning<T>(T command, string message) where T : CommonCommand;
     }
 }

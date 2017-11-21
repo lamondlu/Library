@@ -46,6 +46,7 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
             catch (Exception ex)
             {
                 _tracker.Error(command.CommandUniqueId, string.Empty, "SERVER_ERROR", ex.ToString());
+                _logger.Error(command.CommandUniqueId, command.CommandKey, string.Empty, $"SERVER_ERROR:{ex.ToString()}", command);
             }
         }
 
