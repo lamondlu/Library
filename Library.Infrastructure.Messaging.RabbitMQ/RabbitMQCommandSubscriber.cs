@@ -14,9 +14,9 @@ namespace Library.Infrastructure.Messaging.RabbitMQ
         private readonly IConnection connection;
         private readonly IModel channel;
 
-        public RabbitMQCommandSubscriber(string uri)
+        public RabbitMQCommandSubscriber(IRabbitMQUrlProvider provider)
         {
-            var factory = new ConnectionFactory() { Uri = new Uri(uri) };
+            var factory = new ConnectionFactory() { Uri = new Uri(provider.Url) };
             this.connection = factory.CreateConnection();
             this.channel = connection.CreateModel();
         }

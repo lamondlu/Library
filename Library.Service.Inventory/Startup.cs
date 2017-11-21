@@ -32,7 +32,8 @@ namespace Library.Service.Inventory
 
         private void InjectService()
         {
-            InjectContainer.RegisterInstance<ICommandPublisher>(new RabbitMQCommandPublisher("amqp://localhost:5672"));
+            InjectContainer.RegisterType<IRabbitMQUrlProvider, AppsettingRabbitMQUrlProvider>();
+            InjectContainer.RegisterType<ICommandPublisher, RabbitMQCommandPublisher>();
             InjectContainer.RegisterType<IInventoryReadDBConnectionStringProvider, AppsettingInventoryReadDBConnectionStringProvider>();
             InjectContainer.RegisterType<IInventoryWriteDBConnectionStringProvider, AppsettingInventoryWriteDBConnectionStringProvider>();
             InjectContainer.RegisterType<IInventoryReportDataAccessor, InventoryReportDataAccessor>();
