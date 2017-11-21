@@ -5,6 +5,7 @@ using Library.Infrastructure.Core.Models;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
+using Newtonsoft.Json;
 
 namespace Library.Infrasturcture.Logger.SQLServer
 {
@@ -17,12 +18,12 @@ namespace Library.Infrasturcture.Logger.SQLServer
             _logDBConnectionStringProvider = logDBConnectionStringProvider;
         }
 
-        public void Error(Guid commandUniqueId, string commandName, string eventName, string message, string data)
+        public void Error(Guid commandUniqueId, string commandName, string eventName, string message, object data)
         {
             Command(commandUniqueId, commandName, eventName, message, false, LogType.Error, data);
         }
 
-        public void Command(Guid commandUniqueId, string commandName, string eventName, string message, bool isSuccess, LogType logType, string data)
+        public void Command(Guid commandUniqueId, string commandName, string eventName, string message, bool isSuccess, LogType logType, object data)
         {
             var dbHelper = new DbHelper(_logDBConnectionStringProvider.ConnectionString);
             var sql = "INSERT INTO Logs(Id, LogType, CommandName, CommandUniqueId, EventName, IsSuccess, Message, CreatedOn, Data) VALUES(@id, @logType, @commandName, @commandUniqueId, @eventName, @isSuccess, @message, @createdOn, @data)";
@@ -36,16 +37,16 @@ namespace Library.Infrasturcture.Logger.SQLServer
                 new SqlParameter{ ParameterName = "@isSuccess", SqlDbType = SqlDbType.Bit, Value= isSuccess},
                 new SqlParameter{ ParameterName = "@message", SqlDbType = SqlDbType.NVarChar, Value= message},
                 new SqlParameter{ ParameterName = "@createdOn", SqlDbType = SqlDbType.DateTime2, Value= DateTime.Now},
-                new SqlParameter{ ParameterName = "@data", SqlDbType = SqlDbType.NVarChar, Value= data}
+                new SqlParameter{ ParameterName = "@data", SqlDbType = SqlDbType.NVarChar, Value= JsonConvert.SerializeObject(data)}
             }.ToArray());
         }
 
-        public void Info(Guid commandUniqueId, string commandName, string eventName, string message, string data)
+        public void Info(Guid commandUniqueId, string commandName, string eventName, string message, object data)
         {
             Command(commandUniqueId, commandName, eventName, message, true, LogType.Info, data);
         }
 
-        public void Success(Guid commandUnqiueId, string commandName, string eventName, string message, string data)
+        public void Success(Guid commandUnqiueId, string commandName, string eventName, string message, object data)
         {
             Command(commandUnqiueId, commandName, eventName, message, true, LogType.Info, data);
         }

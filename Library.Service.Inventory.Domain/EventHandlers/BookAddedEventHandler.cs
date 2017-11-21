@@ -1,5 +1,6 @@
 using Library.Domain.Core;
 using Library.Domain.Core.Messaging;
+using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.DataAccessors;
 using Library.Service.Inventory.Domain.DTOs;
 using Library.Service.Inventory.Domain.Events;
@@ -11,26 +12,35 @@ namespace Library.Service.Inventory.Domain.EventHandlers
     {
         private IInventoryReportDataAccessor _reportDataAccessor = null;
         private ICommandTracker _commandTracker = null;
+        private ILogger _logger = null;
 
-        public BookAddedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker)
+        public BookAddedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger)
         {
             _reportDataAccessor = reportDataAccessor;
             _commandTracker = commandTracker;
+            _logger = logger;
         }
 
         public void Handle(BookAddedEvent evt)
         {
-            _reportDataAccessor.AddBook(new AddBookDTO
+            try
             {
-                BookId = evt.AggregateId,
-                BookName = evt.BookName,
-                Description = evt.Description,
-                ISBN = evt.ISBN,
-                DateIssued = evt.DateIssued
-            });
+                _reportDataAccessor.AddBook(new AddBookDTO
+                {
+                    BookId = evt.AggregateId,
+                    BookName = evt.BookName,
+                    Description = evt.Description,
+                    ISBN = evt.ISBN,
+                    DateIssued = evt.DateIssued
+                });
 
-            _reportDataAccessor.Commit();
-            _commandTracker.DirectFinish(evt.CommandUniqueId);
+                _reportDataAccessor.Commit();
+                _commandTracker.DirectFinish(evt.CommandUniqueId);
+            }
+            catch
+            {
+
+            }
         }
 
         public Task HandleAsync(BookAddedEvent evt)
