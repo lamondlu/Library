@@ -12,9 +12,9 @@ namespace Library.Infrastructure.Messaging.RabbitMQ
         private readonly IConnection connection;
         private readonly IModel channel;
 
-        public RabbitMQEventPublisher(string uri)
+        public RabbitMQEventPublisher(IRabbitMQUrlProvider provider)
         {
-            var factory = new ConnectionFactory() { Uri = new Uri(uri) };
+            var factory = new ConnectionFactory() { Uri = new Uri(provider.Url) };
             this.connection = factory.CreateConnection();
             this.channel = connection.CreateModel();
         }
