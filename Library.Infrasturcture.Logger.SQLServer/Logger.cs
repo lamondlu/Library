@@ -10,9 +10,11 @@ namespace Library.Infrasturcture.Logger.SQLServer
 {
     public class Logger : ILogger
     {
-        public Logger()
-        {
+        private ILogDBConnectionStringProvider _logDBConnectionStringProvider = null;
 
+        public Logger(ILogDBConnectionStringProvider logDBConnectionStringProvider)
+        {
+            _logDBConnectionStringProvider = logDBConnectionStringProvider;
         }
 
         public void Error(Guid commandUniqueId, string commandName, string eventName, string message, string data)
@@ -22,7 +24,7 @@ namespace Library.Infrasturcture.Logger.SQLServer
 
         public void Command(Guid commandUniqueId, string commandName, string eventName, string message, bool isSuccess, LogType logType, string data)
         {
-            var dbHelper = new DbHelper(string.Empty);
+            var dbHelper = new DbHelper(_logDBConnectionStringProvider.ConnectionString);
             var sql = "INSERT INTO Logs(Id, LogType, CommandName, CommandUniqueId, EventName, IsSuccess, Message, CreatedOn, Data) VALUES(@id, @logType, @commandName, @commandUniqueId, @eventName, @isSuccess, @message, @createdOn, @data)";
 
             dbHelper.ExecuteNonQuery(sql, new List<SqlParameter>{

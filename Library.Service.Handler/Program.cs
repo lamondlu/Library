@@ -2,12 +2,14 @@
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
+using Library.Infrastructure.Core;
 using Library.Infrastructure.DataPersistence.Inventory.SQLServer;
 using Library.Infrastructure.DataPersistence.Rental.SQLServer;
 using Library.Infrastructure.EventStorage.SQLServer;
 using Library.Infrastructure.InjectionFramework;
 using Library.Infrastructure.Messaging.RabbitMQ;
 using Library.Infrastructure.Messaging.SignalR;
+using Library.Infrasturcture.Logger.SQLServer;
 using Library.Service.Inventory.Domain.DataAccessors;
 using Library.Service.Rental.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;
@@ -23,21 +25,7 @@ namespace Library.Service.Handler
     {
         private static void Main(string[] args)
         {
-            InjectContainer.RegisterType<IDomainRepository, DomainRepository>();
-            InjectContainer.RegisterType<IEventStorage, SQLServerEventStorage>();
-            InjectContainer.RegisterInstance<IEventPublisher>(new RabbitMQEventPublisher("amqp://localhost:5672"));
-            InjectContainer.RegisterType<IEventDBConnectionStringProvider, AppSettingEventDBConnectionStringProvider>();
-
-            //这一部分需要重构到配置文件中
-            InjectContainer.RegisterType<IInventoryReadDBConnectionStringProvider, AppsettingInventoryReadDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IInventoryWriteDBConnectionStringProvider, AppsettingInventoryWriteDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IInventoryReportDataAccessor, InventoryReportDataAccessor>();
-
-            InjectContainer.RegisterType<IRentalReadDBConnectionStringProvider, AppsettingRentalReadDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IRentalWriteDBConnectionStringProvider, AppsettingRentalWriteDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IRentalReportDataAccessor, RentalReportDataAccessor>();
-            InjectContainer.RegisterType<ISignalRConnectionProvider, AppsettingSignalRConnectionProvider>();
-            InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
+            Injection();
 
             var handlers = BuildHandlerConfigurations();
 
@@ -51,6 +39,26 @@ namespace Library.Service.Handler
 
                 Console.WriteLine($"Started handler '{handler.Name}'");
             }
+        }
+
+        private static void Injection()
+        {
+            InjectContainer.RegisterType<IDomainRepository, DomainRepository>();
+            InjectContainer.RegisterType<IEventStorage, SQLServerEventStorage>();
+            InjectContainer.RegisterInstance<IEventPublisher>(new RabbitMQEventPublisher("amqp://localhost:5672"));
+            InjectContainer.RegisterType<IEventDBConnectionStringProvider, AppSettingEventDBConnectionStringProvider>();
+
+            InjectContainer.RegisterType<IInventoryReadDBConnectionStringProvider, AppsettingInventoryReadDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IInventoryWriteDBConnectionStringProvider, AppsettingInventoryWriteDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IInventoryReportDataAccessor, InventoryReportDataAccessor>();
+
+            InjectContainer.RegisterType<IRentalReadDBConnectionStringProvider, AppsettingRentalReadDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IRentalWriteDBConnectionStringProvider, AppsettingRentalWriteDBConnectionStringProvider>();
+            InjectContainer.RegisterType<IRentalReportDataAccessor, RentalReportDataAccessor>();
+            InjectContainer.RegisterType<ISignalRConnectionProvider, AppsettingSignalRConnectionProvider>();
+            InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
+
+            InjectContainer.RegisterType<ILogger, Logger>();
         }
 
         private static List<HandlerConfigurationDTO> BuildHandlerConfigurations()

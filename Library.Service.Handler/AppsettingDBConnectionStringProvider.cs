@@ -1,3 +1,4 @@
+using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.DataAccessors;
 using Library.Service.Rental.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;
@@ -89,6 +90,28 @@ namespace Library.Service.Handler
             get
             {
                 return _configuration["rentalWriteDBConnectionString"];
+            }
+        }
+    }
+
+    public class AppsettingLogDBConnectionStringProvider : ILogDBConnectionStringProvider
+    {
+        private IConfigurationRoot _configuration = null;
+
+        public AppsettingLogDBConnectionStringProvider()
+        {
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json");
+
+            _configuration = builder.Build();
+        }
+
+        public string ConnectionString
+        {
+            get
+            {
+                return _configuration["logDBConnectionString"];
             }
         }
     }
