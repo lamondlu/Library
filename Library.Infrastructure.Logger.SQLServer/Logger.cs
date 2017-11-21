@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using Library.Domain.Core;
 using Library.Domain.Core.Commands;
 
-namespace Library.Infrasturcture.Logger.SQLServer
+namespace Library.Infrastructure.Logger.SQLServer
 {
     public class Logger : ILogger
     {
@@ -23,7 +23,7 @@ namespace Library.Infrasturcture.Logger.SQLServer
         public void Command(Guid commandUniqueId, string commandName, string eventName, string message, bool isSuccess, LogType logType, object data)
         {
             var dbHelper = new DbHelper(_logDBConnectionStringProvider.ConnectionString);
-            var sql = "INSERT INTO Logs(Id, LogType, CommandName, CommandUniqueId, EventName, IsSuccess, Message, CreatedOn, Data) VALUES(@id, @logType, @commandName, @commandUniqueId, @eventName, @isSuccess, @message, @createdOn, @data)";
+            var sql = "INSERT INTO CommandLogs(Id, LogType, CommandName, CommandUniqueId, EventName, IsSuccess, Message, CreatedOn, Data) VALUES(@id, @logType, @commandName, @commandUniqueId, @eventName, @isSuccess, @message, @createdOn, @data)";
 
             dbHelper.ExecuteNonQuery(sql, new List<SqlParameter>{
                 new SqlParameter{ ParameterName = "@id", SqlDbType = SqlDbType.UniqueIdentifier, Value= Guid.NewGuid()},
@@ -50,12 +50,12 @@ namespace Library.Infrasturcture.Logger.SQLServer
 
         public void EventWarning<T>(T eventObject, string message) where T : DomainEvent
         {
-             Command(eventObject.CommandUniqueId, string.Empty, eventObject.EventKey, message, false, LogType.Warning, eventObject);
+            Command(eventObject.CommandUniqueId, string.Empty, eventObject.EventKey, message, false, LogType.Warning, eventObject);
         }
 
         public void CommandError<T>(T command, string message) where T : CommonCommand
         {
-           Command(command.CommandUniqueId, command.CommandKey, string.Empty, message, false, LogType.Error, command);
+            Command(command.CommandUniqueId, command.CommandKey, string.Empty, message, false, LogType.Error, command);
         }
 
         public void CommandInfo<T>(T command, string message) where T : CommonCommand
@@ -66,6 +66,31 @@ namespace Library.Infrasturcture.Logger.SQLServer
         public void CommandWarning<T>(T command, string message) where T : CommonCommand
         {
             Command(command.CommandUniqueId, command.CommandKey, string.Empty, message, false, LogType.Warning, command);
+        }
+
+        public List<CommandLogModel> GetCommandLogs()
+        {
+            var sql = "SELECT * FROM CommandLogs WHERE CommandName <> ''";
+
+            var dbHelper = new DbHelper(_logDBConnectionStringProvider.ConnectionString);
+            var dataTable = dbHelper.ExecuteDataTable(sql);
+
+            return dataTable.ConvertTo();
+        }
+
+        public List<CommandLogModel> GetEventLogs(Guid commandUniqueId)
+        {
+            var sql = "SELECT * FROM CommandLogs WHERE CommandUniqueId = @commandUniqueId";
+
+            var dbHelper = new DbHelper(_logDBConnectionStringProvider.ConnectionString);
+            var dataTable = dbHelper.ExecuteDataTable(sql, new SqlParameter
+            {
+                ParameterName = "@commandUniqueId",
+                SqlDbType = SqlDbType.UniqueIdentifier,
+                Value = commandUniqueId
+            });
+
+            return dataTable.ConvertTo();
         }
     }
 }

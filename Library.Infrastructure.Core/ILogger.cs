@@ -2,6 +2,7 @@
 using System;
 using Library.Domain.Core.Commands;
 using Library.Domain.Core;
+using System.Collections.Generic;
 
 namespace Library.Infrastructure.Core
 {
@@ -19,5 +20,9 @@ namespace Library.Infrastructure.Core
         void EventWarning<T>(T eventObject, string message) where T : DomainEvent;
 
         void CommandWarning<T>(T command, string message) where T : CommonCommand;
+
+        List<CommandLogModel> GetCommandLogs();
+
+        List<CommandLogModel> GetEventLogs(Guid commandUniqueId);
     }
 }

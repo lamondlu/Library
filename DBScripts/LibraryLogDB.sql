@@ -5,7 +5,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Logs](
+CREATE TABLE [dbo].[CommandLogs](
 	[Id] [uniqueidentifier] NOT NULL,
 	[LogType] [int] NOT NULL,
 	[CommandName] [nvarchar](max) NULL,
