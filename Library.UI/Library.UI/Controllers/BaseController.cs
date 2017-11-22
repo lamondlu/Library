@@ -19,6 +19,8 @@ namespace Library.UI.Controllers
 
         protected string _rentalApiBaseUrl => ConfigurationManager.AppSettings["rentalApiUrl"];
 
+        protected string _logApiBaseUrl => ConfigurationManager.AppSettings["logApiUrl"];
+
         protected ISessionStorage _sessionStorage = null;
 
         public BaseController()

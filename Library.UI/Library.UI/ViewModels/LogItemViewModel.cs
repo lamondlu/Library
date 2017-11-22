@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Web;
 
-namespace Library.Infrastructure.Core.Models
+namespace BookingLibrary.UI.Models
 {
-    public class CommandLogModel
+    public class LogItemViewModel
     {
         public Guid Id { get; set; }
 
@@ -22,6 +23,13 @@ namespace Library.Infrastructure.Core.Models
 
         public string Data { get; set; }
 
-        public DateTime CreatedOn { get; set;}
+        public DateTime CreatedOn { get; set; }
+    }
+
+    public enum LogType
+    {
+        Info,
+        Warning,
+        Error
     }
 }

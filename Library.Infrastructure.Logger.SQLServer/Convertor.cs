@@ -32,7 +32,8 @@ namespace Library.Infrastructure.Logger.SQLServer
                     Id = Guid.Parse(dr["Id"].SafeConvertToString()),
                     IsSuccess = Convert.ToBoolean(dr["IsSuccess"]),
                     LogType = (LogType)Enum.Parse(typeof(LogType), dr["LogType"].SafeConvertToString()),
-                    Message = dr["Message"].SafeConvertToString()
+                    Message = dr["Message"].SafeConvertToString(),
+                    CreatedOn = Convert.ToDateTime(dr["CreatedOn"])
                 };
             }
         }

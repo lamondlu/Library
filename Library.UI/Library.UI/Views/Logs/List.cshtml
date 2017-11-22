@@ -1,0 +1,44 @@
+﻿@model List<BookingLibrary.UI.Models.LogItemViewModel>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Logs</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Date Occurred</th>
+            <th>Command Name</th>
+            <th>Log Type</th>
+            <th>Message</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            var index = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CreatedOn.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>@item.CommandName</td>
+                    <td>@item.LogType.ToString()</td>
+                    <td>@item.Message</td>
+                    <td><button type="button" class="btn btn-primary" onclick="viewDetails('@item.CommandUniqueId')">View Details</button></td>
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">
+                    No Record.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

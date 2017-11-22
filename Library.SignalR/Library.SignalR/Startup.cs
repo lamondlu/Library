@@ -5,9 +5,9 @@ using Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.AspNet.SignalR;
 
-[assembly: OwinStartup(typeof( Library.SignalR.Startup))]
+[assembly: OwinStartup(typeof(Library.SignalR.Startup))]
 
-namespace  Library.SignalR
+namespace Library.SignalR
 {
     public class Startup
     {

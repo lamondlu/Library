@@ -216,6 +216,7 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\BookInventoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\RentalController.cs" />
     <Compile Include="DTOs\AddBookDTO.cs" />
     <Compile Include="DTOs\BulkImportDTO.cs" />
@@ -229,6 +230,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="ViewModels\LogItemViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionStorages\ISessionStorage.cs" />
@@ -302,6 +304,7 @@
     <Content Include="Views\Book\Edit.cshtml" />
     <Content Include="Views\Rental\UnreturnedBooks.cshtml" />
     <Content Include="Views\BookInventory\Histories.cshtml" />
+    <Content Include="Views\Logs\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
