@@ -230,6 +230,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Utilities\JsonHelper.cs" />
     <Compile Include="ViewModels\LogItemViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -305,6 +306,7 @@
     <Content Include="Views\Rental\UnreturnedBooks.cshtml" />
     <Content Include="Views\BookInventory\Histories.cshtml" />
     <Content Include="Views\Logs\List.cshtml" />
+    <Content Include="Views\Shared\_EventLogs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -26,7 +26,7 @@ namespace Library.Service.Logs
             return _logger.GetCommandLogs();
         }
 
-        [HttpGet("{commandUnqiueId}/eventLogs")]
+        [HttpGet("{commandUniqueId}/EventLogs")]
         public List<CommandLogModel> GetAllCommandLogs(Guid commandUniqueId)
         {
             return _logger.GetEventLogs(commandUniqueId);

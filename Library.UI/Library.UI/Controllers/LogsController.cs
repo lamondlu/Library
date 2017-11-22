@@ -7,14 +7,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace BookingLibrary.UI.Controllers
 {
     public class LogsController : BaseController
     {
         public ActionResult List()
         {
-            var data = ApiRequestWithStringContent.Get<List<LoginViewModel>>($"{_logApiBaseUrl}/api/CommandLogs");
-            return Json(data, JsonRequestBehavior.AllowGet);
+            var data = ApiRequestWithStringContent.Get<List<BookingLibrary.UI.Models.LogItemViewModel>>($"{_logApiBaseUrl}/api/CommandLogs");
+            return View(data);
+        }
+
+        public ActionResult _AjaxListItem(Guid commandUniqueId)
+        {
+            var data = ApiRequestWithStringContent.Get<List<BookingLibrary.UI.Models.LogItemViewModel>>($"{_logApiBaseUrl}/api/CommandLogs/{commandUniqueId}/EventLogs");
+            return PartialView("_EventLogs", data);
         }
     }
 }
