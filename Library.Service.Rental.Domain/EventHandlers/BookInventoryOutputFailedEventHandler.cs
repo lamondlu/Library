@@ -24,7 +24,7 @@ namespace Library.Service.Rental.Domain.EventHandlers
             {
                 _commandTracker.DirectError(evt.CommandUniqueId, "Error_BookInventoryOutputFailedEvent", "The book has been output by others, you can't rent this book");
 
-                _logger.EventInfo(evt, "Event Finished.");
+                _logger.EventWarning(evt, "The book has been output by others, you can't rent this book");
             }
             catch (Exception ex)
             {
