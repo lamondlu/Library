@@ -31,7 +31,5 @@ There are user service, book inventory service and book rental service in the sy
 * If one book inventory has been rented by one customer, it can't be rented by others.
 * One customer can rent 3 books at most.
 
-## WorkFlow
 
-### Rent Book WorkFlow
-![EDA](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Flow/rentbookflow.png)
+
