@@ -8,5 +8,9 @@ namespace Library.Infrastructure.Messaging.RabbitMQ
         {
             get;
         }
+
+        string UserName{get;}
+
+        string Password{get;}
     }
 }

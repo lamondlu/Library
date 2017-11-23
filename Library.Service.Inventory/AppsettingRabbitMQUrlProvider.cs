@@ -25,5 +25,21 @@ namespace Library.Service.Inventory
                 return _configuration["rabbitMQUrl"];
             }
         }
+
+        public string UserName
+        {
+            get
+            {
+                return _configuration["rabbitMQUserName"];
+            }
+        }
+
+        public string Password
+        {
+            get
+            {
+                return _configuration["rabbitMQPassword"];
+            }
+        }
     }
 }

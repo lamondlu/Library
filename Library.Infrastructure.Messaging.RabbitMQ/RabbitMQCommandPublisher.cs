@@ -14,7 +14,7 @@ namespace Library.Infrastructure.Messaging.RabbitMQ
 
         public RabbitMQCommandPublisher(IRabbitMQUrlProvider provider)
         {
-            var factory = new ConnectionFactory() { Uri = new Uri(provider.Url) };
+            var factory = new ConnectionFactory() { Uri = new Uri(provider.Url), UserName = provider.UserName, Password = provider.Password };
             this.connection = factory.CreateConnection();
             this.channel = connection.CreateModel();
         }
