@@ -25,7 +25,7 @@ namespace Library.UI.Controllers
 
         public BaseController()
         {
-            _sessionStorage = new RedisSessionStorage("192.168.1.105", 6379);
+            _sessionStorage = new RedisSessionStorage(ConfigurationManager.AppSettings["redisServerIp"], Convert.ToInt32(ConfigurationManager.AppSettings["redisServerPort"]));
         }
 
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)

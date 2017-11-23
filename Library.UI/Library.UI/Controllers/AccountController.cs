@@ -28,7 +28,7 @@ namespace Library.UI.Controllers
 
         public AccountController()
         {
-            _sessionStorage = new RedisSessionStorage("192.168.1.105", 6379);
+            _sessionStorage = new RedisSessionStorage(ConfigurationManager.AppSettings["redisServerIp"], Convert.ToInt32(ConfigurationManager.AppSettings["redisServerPort"]));
         }
 
         //
@@ -65,7 +65,7 @@ namespace Library.UI.Controllers
                 ModelState.AddModelError("LoginFailure", "User is not existed or password is wrong.");
                 return View();
             }
-            
+
         }
     }
 }
