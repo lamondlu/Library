@@ -43,8 +43,7 @@ namespace Library.UI.Controllers
         //
         // POST: /Account/Login
         [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             var url = $"{_identityApiBaseUrl}/api/identities";
