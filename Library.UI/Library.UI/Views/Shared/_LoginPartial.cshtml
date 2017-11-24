@@ -1,9 +1,9 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+@if (ViewBag.CurrentUser!=null)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-        @Html.AntiForgeryToken()
+        
 
 
         string userName = ViewBag.CurrentUser.FirstName + " " + ViewBag.CurrentUser.LastName;

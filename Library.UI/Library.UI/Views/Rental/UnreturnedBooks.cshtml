@@ -91,7 +91,7 @@
         }
 
         $(function () {
-            $.connection.hub.url = "http://localhost:6044/signalr";
+            $.connection.hub.url = "@(ConfigurationManager.AppSettings["signalRUrl"])/signalr";
             $.connection.hub.logging = true;
             var command = $.connection.commandHub;
 

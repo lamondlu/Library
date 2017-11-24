@@ -52,7 +52,7 @@
         var currentCommandUnqiueId = null;
 
         $(function () {
-            $.connection.hub.url = "http://localhost:6044/signalr";
+            $.connection.hub.url = "@(ConfigurationManager.AppSettings["signalRUrl"])/signalr";
             $.connection.hub.logging = true;
             var command = $.connection.commandHub;
 
@@ -61,7 +61,7 @@
                 if (commandUniqueId == currentCommandUnqiueId) {
                     hideMask();
                     alert('Bulk imported successfully.');
-                    
+
                     command.server.removeCommand(currentCommandUnqiueId);
                     currentCommandUnqiueId = null;
                 }
@@ -91,7 +91,7 @@
             });
         }
 
-        
+
     </script>
 
 }

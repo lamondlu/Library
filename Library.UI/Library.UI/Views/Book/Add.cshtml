@@ -34,8 +34,8 @@
             </div>
         </div>
         <div class="form-group">
-            <input type="button" class="btn btn-default" value="保存" id="btnSave" />
-            <input type="button" class="btn btn-default" value="返回" onclick="window.location='@Url.Action("List", "Book")'" />
+            <input type="button" class="btn btn-default" value="Save" id="btnSave" />
+            <input type="button" class="btn btn-default" value="Return" onclick="window.location='@Url.Action("List", "Book")'" />
         </div>
 
     }
@@ -51,7 +51,7 @@
         var currentCommandUnqiueId = null;
 
         $(function () {
-            $.connection.hub.url = "http://localhost:6044/signalr";
+            $.connection.hub.url = "@(ConfigurationManager.AppSettings["signalRUrl"])/signalr";
             $.connection.hub.logging = true;
             var command = $.connection.commandHub;
 

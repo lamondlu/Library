@@ -12,7 +12,6 @@ using System.Web.Mvc;
 
 namespace Library.UI.Controllers
 {
-    [Authorize]
     public class BookInventoryController : BaseController
     {
         public BookInventoryController()

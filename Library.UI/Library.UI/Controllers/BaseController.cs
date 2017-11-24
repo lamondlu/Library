@@ -7,10 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Linq;
 
 namespace Library.UI.Controllers
 {
-    [Authorize]
     public class BaseController : Controller
     {
         protected string _inventoryApiBaseUrl => ConfigurationManager.AppSettings["inventoryApiUrl"];
@@ -30,8 +30,20 @@ namespace Library.UI.Controllers
 
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
-            var user = ApiRequestWithStringContent.Get<IdentityDetailsDTO>($"{_identityApiBaseUrl}/api/accounts/{User.Identity.Name.ToString()}");
-            ViewBag.CurrentUser = user;
+            var cookie = Request.Cookies["UserId"];
+
+            if (cookie == null)
+            {
+                Response.Redirect("~/Account/Login");
+            }
+            else
+            {
+                var userId = cookie.Value;
+                var user = _sessionStorage.Get<IdentityDetailsDTO>(userId);
+
+                ViewBag.CurrentUser = user;
+            }
+            
             return base.BeginExecuteCore(callback, state);
         }
     }

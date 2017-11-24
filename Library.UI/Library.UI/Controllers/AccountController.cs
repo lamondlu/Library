@@ -19,7 +19,6 @@ using Library.UI.SessionStorages;
 
 namespace Library.UI.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private string _identityApiBaseUrl => ConfigurationManager.AppSettings["identityApiUrl"];
@@ -43,7 +42,7 @@ namespace Library.UI.Controllers
         //
         // POST: /Account/Login
         [HttpPost]
-        [AllowAnonymous]]
+        [AllowAnonymous]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             var url = $"{_identityApiBaseUrl}/api/identities";
@@ -56,7 +55,14 @@ namespace Library.UI.Controllers
 
             if (validationResult != null && validationResult.UserId != Guid.Empty)
             {
-                FormsAuthentication.SetAuthCookie(validationResult.UserId.ToString(), false);
+                var cookie = new HttpCookie("UserId", validationResult.UserId.ToString());
+                cookie.Expires = DateTime.Now.AddMinutes(10);
+
+                var user = ApiRequestWithStringContent.Get<IdentityDetailsDTO>($"{_identityApiBaseUrl}/api/accounts/{validationResult.UserId.ToString()}");
+                _sessionStorage.Set<IdentityDetailsDTO>(validationResult.UserId.ToString(), user);
+
+                Response.Cookies.Add(cookie);
+
                 return RedirectToAction("List", "Book");
             }
             else
