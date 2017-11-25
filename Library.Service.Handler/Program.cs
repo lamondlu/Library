@@ -43,13 +43,7 @@ namespace Library.Service.Handler
 
         private static void Injection()
         {
-            var builder = new ConfigurationBuilder()
-                        .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile("appsettings.json");
-
-            var configuration = builder.Build();
-
-            var mappings = configuration.GetSection("diMappings").GetChildren();
+            var mappings = GetConfiguration().GetSection("diMappings").GetChildren();
 
             foreach (IConfigurationSection mapping in mappings)
             {
@@ -62,13 +56,7 @@ namespace Library.Service.Handler
 
         private static List<HandlerConfigurationDTO> BuildHandlerConfigurations()
         {
-            var builder = new ConfigurationBuilder()
-                        .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile("appsettings.json");
-
-            var configuration = builder.Build();
-
-            var s_handlers = configuration.GetSection("handlers").GetChildren();
+            var s_handlers = GetConfiguration().GetSection("handlers").GetChildren();
             var handlers = new List<HandlerConfigurationDTO>();
 
             foreach (IConfigurationSection s_handler in s_handlers)
@@ -81,6 +69,17 @@ namespace Library.Service.Handler
             }
 
             return handlers;
+        }
+
+        private static IConfigurationRoot GetConfiguration()
+        {
+            var builder = new ConfigurationBuilder()
+                       .SetBasePath(Directory.GetCurrentDirectory())
+                       .AddJsonFile("appsettings.json");
+
+            var configuration = builder.Build();
+
+            return configuration;
         }
 
         private static void RegisterCommandHandlers(string libraryName)
