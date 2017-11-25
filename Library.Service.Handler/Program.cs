@@ -43,30 +43,21 @@ namespace Library.Service.Handler
 
         private static void Injection()
         {
-            InjectContainer.RegisterType<ILogDBConnectionStringProvider, AppsettingLogDBConnectionStringProvider>();
-            InjectContainer.RegisterType<ILogger, Logger>();
-            InjectContainer.RegisterType<IDomainRepository, DomainRepository>();
-            InjectContainer.RegisterType<IEventStorage, SQLServerEventStorage>();
-            InjectContainer.RegisterType<IRabbitMQUrlProvider, AppsettingRabbitMQUrlProvider>();
-            InjectContainer.RegisterType<IEventPublisher, RabbitMQEventPublisher>();
-            InjectContainer.RegisterType<IEventSubscriber, RabbitMQEventSubscriber>();
+            var builder = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json");
 
-            InjectContainer.RegisterType<ICommandSubscriber, RabbitMQCommandSubscriber>();
+            var configuration = builder.Build();
 
+            var mappings = configuration.GetSection("diMappings").GetChildren();
 
-            InjectContainer.RegisterType<IEventDBConnectionStringProvider, AppSettingEventDBConnectionStringProvider>();
+            foreach (IConfigurationSection mapping in mappings)
+            {
+                var source = Assembly.Load(mapping["sAssembly"]).GetType(mapping["interface"]);
+                var target = Assembly.Load(mapping["tAssembly"]).GetType(mapping["implementation"]);
 
-            InjectContainer.RegisterType<IInventoryReadDBConnectionStringProvider, AppsettingInventoryReadDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IInventoryWriteDBConnectionStringProvider, AppsettingInventoryWriteDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IInventoryReportDataAccessor, InventoryReportDataAccessor>();
-
-            InjectContainer.RegisterType<IRentalReadDBConnectionStringProvider, AppsettingRentalReadDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IRentalWriteDBConnectionStringProvider, AppsettingRentalWriteDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IRentalReportDataAccessor, RentalReportDataAccessor>();
-            InjectContainer.RegisterType<ISignalRConnectionProvider, AppsettingSignalRConnectionProvider>();
-            InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
-
-
+                InjectContainer.RegisterType(source, target);
+            }
         }
 
         private static List<HandlerConfigurationDTO> BuildHandlerConfigurations()
