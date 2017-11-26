@@ -2,30 +2,20 @@ using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Infrastructure.Core;
+using Library.Service.Inventory.Domain.CommandHandlers;
+using Library.Service.Inventory.Domain.DataAccessors;
 using System;
 
 namespace Library.Service.Inventory.Domain
 {
-    public class ImportBookInventoryCommandHandler : ICommandHandler<ImportBookInventoryCommand>
+    public class ImportBookInventoryCommandHandler : BaseInventoryCommandHandler<ImportBookInventoryCommand>
     {
-        private IDomainRepository _domainRepository = null;
-        private ICommandTracker _tracker = null;
-
-        private ILogger _logger = null;
-
-        public ImportBookInventoryCommandHandler(IDomainRepository domainRepository, ICommandTracker tracker, ILogger logger)
+        public ImportBookInventoryCommandHandler(IDomainRepository domainRepository, IInventoryReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger) : base(domainRepository, dataAccesor, tracker, logger)
         {
-            _domainRepository = domainRepository;
-            _tracker = tracker;
-            _logger = logger;
         }
 
-        public void Dispose()
-        {
-            _domainRepository = null;
-        }
 
-        public void Execute(ImportBookInventoryCommand command)
+        public override void Execute(ImportBookInventoryCommand command)
         {
             try
             {

@@ -1,23 +1,20 @@
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
 using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.Commands;
+using Library.Service.Inventory.Domain.DataAccessors;
 using System;
 
 namespace Library.Service.Inventory.Domain.CommandHandlers
 {
-    public class InStoreBookInventoryCommandHandler : ICommandHandler<InStoreBookInventoryCommand>
+    public class InStoreBookInventoryCommandHandler : BaseInventoryCommandHandler<InStoreBookInventoryCommand>
     {
-        private IDomainRepository _domainRepository = null;
-        private ILogger _logger = null;
-
-        public InStoreBookInventoryCommandHandler(IDomainRepository domainRepository, ILogger logger)
+        public InStoreBookInventoryCommandHandler(IDomainRepository domainRepository, IInventoryReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger) : base(domainRepository, dataAccesor, tracker, logger)
         {
-            _domainRepository = domainRepository;
-            _logger = logger;
         }
 
-        public void Execute(InStoreBookInventoryCommand command)
+        public override void Execute(InStoreBookInventoryCommand command)
         {
             try
             {
@@ -31,11 +28,6 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
             {
                 _logger.CommandError(command, $"SERVER_ERROR:{ex.ToString()}");
             }
-        }
-
-        public void Dispose()
-        {
-            _domainRepository = null;
         }
     }
 }

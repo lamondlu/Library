@@ -39,7 +39,7 @@ namespace Library.Service.Handler
                 var registerMethod = register.GetType().GetMethod("Subscribe");
 
                 var cmd = Activator.CreateInstance(command);
-                Console.WriteLine($"Find command {command.FullName}.");
+                Console.WriteLine($"Found command {command.FullName}.");
                 registerMethod.MakeGenericMethod(command).Invoke(register, new object[1] { cmd });
             }
         }
@@ -58,7 +58,7 @@ namespace Library.Service.Handler
                     var registerMethod = register.GetType().GetMethod("Subscribe");
 
                     var cmd = Activator.CreateInstance(@event);
-                    Console.WriteLine($"Find event {@event.FullName}.");
+                    Console.WriteLine($"Found event {@event.FullName}.");
                     registerMethod.MakeGenericMethod(@event).Invoke(register, new object[1] { cmd });
                 }
             }

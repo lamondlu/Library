@@ -11,22 +11,14 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Inventory.Domain.EventHandlers
 {
-    public class ReturnBookRequestCreatedEventHandler : IEventHandler<ReturnBookRequestCreatedEvent>
+    public class ReturnBookRequestCreatedEventHandler : BaseEventHandler<ReturnBookRequestCreatedEvent>
     {
-        private IInventoryReportDataAccessor _reportDataAccessor = null;
-        private IDomainRepository _domainRepository = null;
-        private IEventPublisher _eventPublisher = null;
-        private ILogger _logger = null;
-
-        public ReturnBookRequestCreatedEventHandler(IInventoryReportDataAccessor reportDataAccessor, IDomainRepository domainRepository, IEventPublisher eventPublisher, ILogger logger)
+        public ReturnBookRequestCreatedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {
-            _reportDataAccessor = reportDataAccessor;
-            _domainRepository = domainRepository;
-            _eventPublisher = eventPublisher;
-            _logger = logger;
+
         }
 
-        public void Handle(ReturnBookRequestCreatedEvent evt)
+        public override void Handle(ReturnBookRequestCreatedEvent evt)
         {
             try
             {
@@ -48,14 +40,6 @@ namespace Library.Service.Inventory.Domain.EventHandlers
 
                 _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
             }
-        }
-
-        public Task HandleAsync(ReturnBookRequestCreatedEvent evt)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                Handle(evt);
-            });
         }
     }
 }

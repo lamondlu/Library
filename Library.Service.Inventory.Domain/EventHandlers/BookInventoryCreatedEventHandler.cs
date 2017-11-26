@@ -1,4 +1,5 @@
 using Library.Domain.Core;
+using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.DataAccessors;
@@ -8,20 +9,14 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Inventory.Domain.EventHandlers
 {
-    public class BookInventoryCreatedEventHandler : IEventHandler<BookInventoryCreatedEvent>
+    public class BookInventoryCreatedEventHandler : BaseEventHandler<BookInventoryCreatedEvent>
     {
-        private IInventoryReportDataAccessor _reportDataAccessor = null;
-        private ICommandTracker _commandTracker = null;
-        private ILogger _logger = null;
-
-        public BookInventoryCreatedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger)
+        public BookInventoryCreatedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {
-            _reportDataAccessor = reportDataAccessor;
-            _commandTracker = commandTracker;
-            _logger = logger;
+
         }
 
-        public void Handle(BookInventoryCreatedEvent evt)
+        public override void Handle(BookInventoryCreatedEvent evt)
         {
             try
             {
@@ -35,14 +30,6 @@ namespace Library.Service.Inventory.Domain.EventHandlers
             {
                 _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
             }
-        }
-
-        public Task HandleAsync(BookInventoryCreatedEvent evt)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                Handle(evt);
-            });
         }
     }
 }

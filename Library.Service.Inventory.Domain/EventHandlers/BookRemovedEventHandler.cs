@@ -1,4 +1,6 @@
 using Library.Domain.Core;
+using Library.Domain.Core.DataAccessor;
+using Library.Domain.Core.Messaging;
 using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.DataAccessors;
 using Library.Service.Inventory.Domain.Events;
@@ -6,28 +8,16 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Inventory.Domain.EventHandlers
 {
-    public class BookRemovedEventHandler : IEventHandler<BookRemovedEvent>
+    public class BookRemovedEventHandler : BaseEventHandler<BookRemovedEvent>
     {
-        private IInventoryReportDataAccessor _reportDataAccessor = null;
-        private ILogger _logger = null;
-
-        public BookRemovedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ILogger logger)
+        public BookRemovedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {
-            _reportDataAccessor = reportDataAccessor;
-            _logger = logger;
+
         }
 
-        public void Handle(BookRemovedEvent evt)
+        public override void Handle(BookRemovedEvent evt)
         {
             _logger.EventInfo(evt, "Event Finished.");
-        }
-
-        public Task HandleAsync(BookRemovedEvent evt)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                Handle(evt);
-            });
         }
     }
 }

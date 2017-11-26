@@ -8,22 +8,14 @@ using System;
 
 namespace Library.Service.Inventory.Domain.CommandHandlers
 {
-    public class AddBookCommandHandler : ICommandHandler<AddBookCommand>
+    public class AddBookCommandHandler : BaseInventoryCommandHandler<AddBookCommand>
     {
-        private IDomainRepository _domainRepository = null;
-        private IInventoryReportDataAccessor _dataAccessor = null;
-        private ICommandTracker _tracker = null;
-        private ILogger _logger = null;
-
-        public AddBookCommandHandler(IDomainRepository domainRepository, IInventoryReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger)
+        public AddBookCommandHandler(IDomainRepository domainRepository, IInventoryReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger) : base(domainRepository, dataAccesor, tracker, logger)
         {
-            _domainRepository = domainRepository;
-            _dataAccessor = dataAccesor;
-            _tracker = tracker;
-            _logger = logger;
+
         }
 
-        public void Execute(AddBookCommand command)
+        public override void Execute(AddBookCommand command)
         {
             try
             {
@@ -48,11 +40,6 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
                 _tracker.Error(command.CommandUniqueId, string.Empty, "SERVER_ERROR", ex.ToString());
                 _logger.CommandError(command, $"SERVER_ERROR:{ex.ToString()}");
             }
-        }
-
-        public void Dispose()
-        {
-            _domainRepository = null;
         }
     }
 }
