@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Inventory.Domain.EventHandlers
 {
-    public class BookRemovedEventHandler : BaseEventHandler<BookRemovedEvent>
+    public class BookRemovedEventHandler : BaseInventoryEventHandler<BookRemovedEvent>
     {
         public BookRemovedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {

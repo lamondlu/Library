@@ -1,24 +1,22 @@
 using Library.Domain.Core;
+using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Infrastructure.Core;
+using Library.Service.Rental.Domain.DataAccessors;
 using Library.Service.Rental.Domain.Events;
 using System;
 using System.Threading.Tasks;
 
 namespace Library.Service.Rental.Domain.EventHandlers
 {
-    public class CustomerOwnedBookExcceedEventHandler : IEventHandler<CustomerOwnedBookExcceedEvent>
+    public class CustomerOwnedBookExcceedEventHandler : BaseRentalEventHandler<CustomerOwnedBookExcceedEvent>
     {
-        private ICommandTracker _commandTracker = null;
-        private ILogger _logger = null;
-
-        public CustomerOwnedBookExcceedEventHandler(ICommandTracker commandTracker, ILogger logger)
+        public CustomerOwnedBookExcceedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {
-            _commandTracker = commandTracker;
-            _logger = logger;
+
         }
 
-        public void Handle(CustomerOwnedBookExcceedEvent evt)
+        public override void Handle(CustomerOwnedBookExcceedEvent evt)
         {
             try
             {
@@ -29,14 +27,6 @@ namespace Library.Service.Rental.Domain.EventHandlers
             {
                 _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
             }
-        }
-
-        public Task HandleAsync(CustomerOwnedBookExcceedEvent evt)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                Handle(evt);
-            });
         }
     }
 }

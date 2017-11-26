@@ -9,27 +9,13 @@ using System;
 
 namespace Library.Service.Rental.Domain.CommandHandlers
 {
-    public class ReturnBookCommandHandler : ICommandHandler<ReturnBookCommand>
+    public class ReturnBookCommandHandler : BaseRentalCommandHandler<ReturnBookCommand>
     {
-        private IDomainRepository _domainRepository = null;
-        private IRentalReportDataAccessor _dataAccessor = null;
-        private IEventPublisher _eventPublisher = null;
-        private ILogger _logger = null;
-
-        public ReturnBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, IEventPublisher eventPublisher, ILogger logger)
+        public ReturnBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger, IEventPublisher eventPublisher) : base(domainRepository, dataAccesor, tracker, logger, eventPublisher)
         {
-            _domainRepository = domainRepository;
-            _dataAccessor = dataAccesor;
-            _eventPublisher = eventPublisher;
-            _logger = logger;
         }
 
-        public void Dispose()
-        {
-            _domainRepository = null;
-        }
-
-        public void Execute(ReturnBookCommand command)
+        public override void Execute(ReturnBookCommand command)
         {
             try
             {

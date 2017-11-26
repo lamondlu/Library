@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Rental.Domain.EventHandlers
 {
-    public class ReturnBookRequestSucceedEventHandler : IEventHandler<ReturnBookRequestSucceedEvent>
+    public class ReturnBookRequestSucceedEventHandler : Library.Domain.Core.IEventHandler<ReturnBookRequestSucceedEvent>
     {
         private IDomainRepository _domainRepository = null;
         private ILogger _logger = null;

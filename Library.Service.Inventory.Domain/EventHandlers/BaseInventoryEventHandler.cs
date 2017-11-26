@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Inventory.Domain.EventHandlers
 {
-    public abstract class BaseEventHandler<T> : IEventHandler<T> where T : DomainEvent
+    public abstract class BaseInventoryEventHandler<T> : IEventHandler<T> where T : DomainEvent
     {
         protected IInventoryReportDataAccessor _reportDataAccessor = null;
         protected IDomainRepository _domainRepository = null;
@@ -18,7 +18,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         protected IEventPublisher _eventPublisher = null;
         protected ILogger _logger = null;
 
-        public BaseEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher)
+        public BaseInventoryEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher)
         {
             _reportDataAccessor = reportDataAccessor;
             _commandTracker = commandTracker;

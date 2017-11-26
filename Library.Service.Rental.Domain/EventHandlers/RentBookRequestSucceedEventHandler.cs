@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Rental.Domain.EventHandlers
 {
-    public class RentBookRequestSucceedEventHandler : IEventHandler<RentBookRequestSucceedEvent>
+    public class RentBookRequestSucceedEventHandler : Library.Domain.Core.IEventHandler<RentBookRequestSucceedEvent>
     {
         private IDomainRepository _domainRepository = null;
         private ILogger _logger = null;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Inventory.Domain.EventHandlers
 {
-    public class BookDescriptionChangedEventHandler : BaseEventHandler<BookDescriptionChangedEvent>
+    public class BookDescriptionChangedEventHandler : BaseInventoryEventHandler<BookDescriptionChangedEvent>
     {
         public BookDescriptionChangedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {

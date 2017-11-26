@@ -1,27 +1,23 @@
 using Library.Domain.Core;
+using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Infrastructure.Core;
 using Library.Service.Rental.Domain.DataAccessors;
+using Library.Service.Rental.Domain.EventHandlers;
 using Library.Service.Rental.Domain.Events;
 using System;
 using System.Threading.Tasks;
 
 namespace Library.Service.Rental.Domain
 {
-    public class RentBookRequestCreatedEventHandler : IEventHandler<RentBookRequestCreatedEvent>
+    public class RentBookRequestCreatedEventHandler : BaseRentalEventHandler<RentBookRequestCreatedEvent>
     {
-        private IRentalReportDataAccessor _reportDataAccessor = null;
-        private IEventPublisher _eventPublisher = null;
-        private ILogger _logger = null;
-
-        public RentBookRequestCreatedEventHandler(IRentalReportDataAccessor reportDataAccessor, IEventPublisher eventPublisher, ILogger logger)
+        public RentBookRequestCreatedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {
-            _reportDataAccessor = reportDataAccessor;
-            _eventPublisher = eventPublisher;
-            _logger = logger;
+
         }
 
-        public void Handle(RentBookRequestCreatedEvent evt)
+        public override void Handle(RentBookRequestCreatedEvent evt)
         {
             try
             {
@@ -42,14 +38,6 @@ namespace Library.Service.Rental.Domain
             {
                 _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
             }
-        }
-
-        public Task HandleAsync(RentBookRequestCreatedEvent evt)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                Handle(evt);
-            });
         }
     }
 }

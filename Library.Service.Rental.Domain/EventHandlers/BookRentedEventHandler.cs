@@ -1,4 +1,5 @@
 ﻿using Library.Domain.Core;
+using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Infrastructure.Core;
 using Library.Service.Rental.Domain.DataAccessors;
@@ -8,25 +9,19 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Rental.Domain.EventHandlers
 {
-    public class BookRentedEventHandler : IEventHandler<BookRentedEvent>
+    public class BookRentedEventHandler : BaseRentalEventHandler<BookRentedEvent>
     {
-        private IRentalReportDataAccessor _dataAccessor = null;
-        private ICommandTracker _commandTracker = null;
-        private ILogger _logger = null;
-
-        public BookRentedEventHandler(IRentalReportDataAccessor dataAccessor, ICommandTracker commandTracker, ILogger logger)
+        public BookRentedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {
-            _dataAccessor = dataAccessor;
-            _commandTracker = commandTracker;
-            _logger = logger;
+
         }
 
-        public void Handle(BookRentedEvent evt)
+        public override void Handle(BookRentedEvent evt)
         {
             try
             {
-                _dataAccessor.RentBook(evt.BookInventoryId);
-                _dataAccessor.Commit();
+                _reportDataAccessor.RentBook(evt.BookInventoryId);
+                _reportDataAccessor.Commit();
 
                 _commandTracker.DirectFinish(evt.CommandUniqueId);
                 _logger.EventInfo(evt, "Event Finished.");
@@ -35,14 +30,6 @@ namespace Library.Service.Rental.Domain.EventHandlers
             {
                 _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
             }
-        }
-
-        public Task HandleAsync(BookRentedEvent evt)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                Handle(evt);
-            });
         }
     }
 }

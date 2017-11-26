@@ -2,33 +2,20 @@ using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Infrastructure.Core;
+using Library.Service.Rental.Domain.CommandHandlers;
 using Library.Service.Rental.Domain.DataAccessors;
 using Library.Service.Rental.Domain.Events;
 using System;
 
 namespace Library.Service.Rental.Domain
 {
-    public class RentBookCommandHandler : ICommandHandler<RentBookCommand>
+    public class RentBookCommandHandler : BaseRentalCommandHandler<RentBookCommand>
     {
-        private IDomainRepository _domainRepository = null;
-        private IRentalReportDataAccessor _dataAccessor = null;
-        private IEventPublisher _eventPublisher = null;
-        private ILogger _logger = null;
-
-        public RentBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, IEventPublisher eventPublisher, ILogger logger)
+        public RentBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger, IEventPublisher eventPublisher) : base(domainRepository, dataAccesor, tracker, logger, eventPublisher)
         {
-            _domainRepository = domainRepository;
-            _dataAccessor = dataAccesor;
-            _eventPublisher = eventPublisher;
-            _logger = logger;
         }
 
-        public void Dispose()
-        {
-            _domainRepository = null;
-        }
-
-        public void Execute(RentBookCommand command)
+        public override void Execute(RentBookCommand command)
         {
             try
             {
