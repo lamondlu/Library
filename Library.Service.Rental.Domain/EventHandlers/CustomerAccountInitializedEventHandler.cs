@@ -17,7 +17,8 @@ namespace Library.Service.Rental.Domain
 
         public override void Handle(CustomerAccountInitializedEvent evt)
         {
-            _logger.EventInfo(evt, "Event Finished.");
+            AddEventLog(evt, "CUSTOMERACCOUNT_INITIALIZED");
+            //_logger.EventInfo(evt, "Event Finished.");
         }
     }
 }

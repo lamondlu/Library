@@ -2,9 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Library.Domain.Core.Attributes;
+using Library.Domain.Core.Models;
 
 namespace Library.Service.Rental.Domain.Events
 {
+    [EventLog(Code = "RETURNBOOKREQUEST_SUCCEED", Message= "Event Finished.", Type = LogType.Info)]
+    [EventLog(Code = "SERVER_ERROR", Type = LogType.Error)]
     public class ReturnBookRequestSucceedEvent : DomainEvent
     {
         private static string EVENT_ReturnBookRequestSucceed = "EVENT_ReturnBookRequestSucceed";

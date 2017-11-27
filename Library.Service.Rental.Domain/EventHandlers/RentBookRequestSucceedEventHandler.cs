@@ -4,21 +4,18 @@ using Library.Infrastructure.Core;
 using Library.Service.Rental.Domain.Events;
 using System;
 using System.Threading.Tasks;
+using Library.Service.Rental.Domain.DataAccessors;
+using Library.Domain.Core.Messaging;
 
 namespace Library.Service.Rental.Domain.EventHandlers
 {
-    public class RentBookRequestSucceedEventHandler : Library.Domain.Core.IEventHandler<RentBookRequestSucceedEvent>
+    public class RentBookRequestSucceedEventHandler : BaseRentalEventHandler<RentBookRequestSucceedEvent>
     {
-        private IDomainRepository _domainRepository = null;
-        private ILogger _logger = null;
+        public RentBookRequestSucceedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher){
 
-        public RentBookRequestSucceedEventHandler(IDomainRepository domainRepository, ILogger logger)
-        {
-            _domainRepository = domainRepository;
-            _logger = logger;
         }
 
-        public void Handle(RentBookRequestSucceedEvent evt)
+        public override void Handle(RentBookRequestSucceedEvent evt)
         {
             try
             {
@@ -26,21 +23,13 @@ namespace Library.Service.Rental.Domain.EventHandlers
                 customer.RentBook(evt.BookInventoryId);
                 _domainRepository.Save(customer, customer.Version, evt.CommandUniqueId);
 
-                _logger.EventInfo(evt, "Event Finished.");
+                AddEventLog(evt, "RENTBOOKREQUEST_SUCCEED");
             }
             catch (Exception ex)
             {
-                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
                 //publish RentBookFailedEvent
             }
-        }
-
-        public Task HandleAsync(RentBookRequestSucceedEvent evt)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                Handle(evt);
-            });
         }
     }
 }

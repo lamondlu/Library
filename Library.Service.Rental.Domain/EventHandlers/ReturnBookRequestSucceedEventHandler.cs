@@ -6,21 +6,19 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Service.Rental.Domain.DataAccessors;
+using Library.Domain.Core.Messaging;
 
 namespace Library.Service.Rental.Domain.EventHandlers
 {
-    public class ReturnBookRequestSucceedEventHandler : Library.Domain.Core.IEventHandler<ReturnBookRequestSucceedEvent>
+    public class ReturnBookRequestSucceedEventHandler : BaseRentalEventHandler<ReturnBookRequestSucceedEvent>
     {
-        private IDomainRepository _domainRepository = null;
-        private ILogger _logger = null;
-
-        public ReturnBookRequestSucceedEventHandler(IDomainRepository domainRepository, ILogger logger)
+        public ReturnBookRequestSucceedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {
-            _domainRepository = domainRepository;
-            _logger = logger;
+
         }
 
-        public void Handle(ReturnBookRequestSucceedEvent evt)
+        public override void Handle(ReturnBookRequestSucceedEvent evt)
         {
             try
             {
@@ -29,21 +27,14 @@ namespace Library.Service.Rental.Domain.EventHandlers
 
                 _domainRepository.Save(customer, customer.Version, evt.CommandUniqueId);
                 _logger.EventInfo(evt, "Event Finished.");
+
+                AddEventLog(evt, "RETURNBOOKREQUEST_SUCCEED");
             }
             catch (Exception ex)
             {
                 //Send compensation event to make the book outstore again.
-
-                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
             }
-        }
-
-        public Task HandleAsync(ReturnBookRequestSucceedEvent evt)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                Handle(evt);
-            });
         }
     }
 }

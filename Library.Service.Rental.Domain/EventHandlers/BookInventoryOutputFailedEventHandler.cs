@@ -20,13 +20,11 @@ namespace Library.Service.Rental.Domain.EventHandlers
         {
             try
             {
-                _commandTracker.DirectError(evt.CommandUniqueId, "Error_BookInventoryOutputFailedEvent", "The book has been output by others, you can't rent this book");
-
-                _logger.EventWarning(evt, "The book has been output by others, you can't rent this book");
+                AddEventLogAndSendToTracker(evt, "BOOKINVENTORYOUTPUT_FAILED");
             }
             catch (Exception ex)
             {
-                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
             }
         }
     }

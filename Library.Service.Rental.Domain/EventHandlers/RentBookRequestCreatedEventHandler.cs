@@ -1,3 +1,4 @@
+
 using Library.Domain.Core;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
@@ -32,11 +33,11 @@ namespace Library.Service.Rental.Domain
                     CustomerId = evt.AggregateId
                 });
 
-                _logger.EventInfo(evt, "Event Finished.");
+                AddEventLog(evt, "RENTBOOKREQUEST_CREATED");
             }
             catch (Exception ex)
             {
-                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
             }
         }
     }

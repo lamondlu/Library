@@ -1,8 +1,12 @@
 using Library.Domain.Core;
 using System;
+using Library.Domain.Core.Attributes;
+using Library.Domain.Core.Models;
 
 namespace Library.Service.Rental.Domain.Events
 {
+    [EventLog(Code = "RENTBOOKREQUEST_CREATED", Message= "Event Finished.", Type = LogType.Info)]
+    [EventLog(Code = "SERVER_ERROR", Type = LogType.Error)]
     public class RentBookRequestCreatedEvent : DomainEvent
     {
         public readonly static string Event_RentBookRequestCreatedEvent = "Event_RentBookRequestCreated";

@@ -24,12 +24,12 @@ namespace Library.Service.Rental.Domain
                 _reportDataAccessor.ReturnBook(evt.BookId, evt.ReturnDate);
                 _reportDataAccessor.Commit();
 
-                _commandTracker.DirectFinish(evt.CommandUniqueId);
-                _logger.EventInfo(evt, "Event Finished.");
+                AddEventLogAndSendToTracker(evt, "BOOK_RETURNED");
             }
             catch (Exception ex)
             {
-                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                //_logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
             }
         }
     }

@@ -1,8 +1,12 @@
 using Library.Domain.Core;
 using System;
+using Library.Domain.Core.Attributes;
+using Library.Domain.Core.Models;
 
 namespace Library.Service.Rental.Domain.Events
 {
+    [EventLog(Code = "BOOK_RETURNED", Message = "Event finsihed.", Type = LogType.Info, DirectFinish = true)]
+    [EventLog(Code = "SERVER_ERROR", Type = LogType.Error)]
     public class BookReturnedEvent : DomainEvent
     {
         public readonly static string Event_BookReturned = "Event_BookReturned";

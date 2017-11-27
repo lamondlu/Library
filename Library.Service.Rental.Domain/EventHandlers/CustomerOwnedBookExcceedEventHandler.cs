@@ -6,6 +6,8 @@ using Library.Service.Rental.Domain.DataAccessors;
 using Library.Service.Rental.Domain.Events;
 using System;
 using System.Threading.Tasks;
+using Library.Domain.Core.Attributes;
+using Library.Domain.Core.Models;
 
 namespace Library.Service.Rental.Domain.EventHandlers
 {
@@ -15,17 +17,16 @@ namespace Library.Service.Rental.Domain.EventHandlers
         {
 
         }
-
+        
         public override void Handle(CustomerOwnedBookExcceedEvent evt)
         {
             try
             {
-                _commandTracker.DirectError(evt.CommandUniqueId, "Error_CustomerOwnedBookExcceed", "One customer can only have 3 books at most.");
-                _logger.EventInfo(evt, "Event Finished.");
+                AddEventLogAndSendToTracker(evt, "CUSTOMEOWNEDBOOK_EXCCEED");
             }
             catch (Exception ex)
             {
-                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
             }
         }
     }

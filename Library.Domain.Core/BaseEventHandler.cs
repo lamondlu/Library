@@ -68,6 +68,10 @@ namespace Library.Domain.Core
                     case LogType.Error:
                         _logger.EventError(evt, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
 
+                        if (first.DirectFinish)
+                        {
+                            _commandTracker.DirectFinish(evt.CommandUniqueId);
+                        }
                         if (first.DirectError)
                         {
                             _commandTracker.DirectError(evt.CommandUniqueId, key, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
@@ -77,6 +81,17 @@ namespace Library.Domain.Core
                     case LogType.Warning:
                         _logger.EventWarning(evt, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
 
+
+                        if (first.DirectFinish)
+                        {
+                            _commandTracker.DirectFinish(evt.CommandUniqueId);
+                        }
+
+                        if (first.DirectError)
+                        {
+                            _commandTracker.DirectError(evt.CommandUniqueId, key, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
+                        }
+
                         break;
                     case LogType.Info:
                         _logger.EventInfo(evt, first.Message);
@@ -84,6 +99,11 @@ namespace Library.Domain.Core
                         if (first.DirectFinish)
                         {
                             _commandTracker.DirectFinish(evt.CommandUniqueId);
+                        }
+
+                        if (first.DirectError)
+                        {
+                            _commandTracker.DirectError(evt.CommandUniqueId, key, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         }
                         break;
                     default:
