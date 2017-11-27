@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Library.SignalR.Models;
+using Microsoft.AspNet.SignalR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Microsoft.AspNet.SignalR;
-using  Library.SignalR.Models;
 
-namespace  Library.SignalR.Hubs
+namespace Library.SignalR.Hubs
 {
     public class CommandHub : Hub
     {
@@ -19,7 +18,6 @@ namespace  Library.SignalR.Hubs
 
         public CommandHub()
         {
-
         }
 
         public void JoinGroup(Guid commandUnqiueId)
@@ -50,7 +48,6 @@ namespace  Library.SignalR.Hubs
             else if (isFinished)
             {
                 _hub.Clients.All.success(commandUniqueId);
-
             }
         }
 

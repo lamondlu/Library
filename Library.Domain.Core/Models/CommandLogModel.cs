@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.Domain.Core.Models
 {
@@ -22,6 +20,6 @@ namespace Library.Domain.Core.Models
 
         public string Data { get; set; }
 
-        public DateTime CreatedOn { get; set;}
+        public DateTime CreatedOn { get; set; }
     }
 }

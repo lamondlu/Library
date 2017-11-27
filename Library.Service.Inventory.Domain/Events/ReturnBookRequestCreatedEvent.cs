@@ -2,8 +2,6 @@
 using Library.Domain.Core.Attributes;
 using Library.Domain.Core.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.Service.Inventory.Domain.Events
 {
@@ -15,7 +13,6 @@ namespace Library.Service.Inventory.Domain.Events
 
         public ReturnBookRequestCreatedEvent() : base(Event_ReturnBookRequestCreated)
         {
-
         }
 
         public Guid BookInventoryId { get; set; }

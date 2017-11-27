@@ -1,10 +1,6 @@
-﻿using Library.Infrastructure.Core;
+﻿using Library.Domain.Core;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Library.Service.Logs
 {

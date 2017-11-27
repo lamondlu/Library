@@ -1,13 +1,7 @@
 ﻿using Library.UI.SessionStorages;
-using Library.UI.Utilities;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
-using System.Linq;
 
 namespace Library.UI.Controllers
 {
@@ -43,7 +37,7 @@ namespace Library.UI.Controllers
 
                 ViewBag.CurrentUser = user;
             }
-            
+
             return base.BeginExecuteCore(callback, state);
         }
     }

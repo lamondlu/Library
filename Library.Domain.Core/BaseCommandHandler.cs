@@ -1,11 +1,9 @@
 ﻿using Library.Domain.Core.Attributes;
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using Library.Domain.Core.Models;
+using System;
+using System.Linq;
 
 namespace Library.Domain.Core
 {
@@ -41,12 +39,15 @@ namespace Library.Domain.Core
                     case LogType.Error:
                         _logger.CommandError(command, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         break;
+
                     case LogType.Warning:
                         _logger.CommandWarning(command, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         break;
+
                     case LogType.Info:
                         _logger.CommandInfo(command, first.Message);
                         break;
+
                     default:
                         break;
                 }
@@ -67,19 +68,20 @@ namespace Library.Domain.Core
                         _logger.CommandError(command, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         _tracker.Error(command.CommandUniqueId, string.Empty, key, message);
                         break;
+
                     case LogType.Warning:
                         _logger.CommandWarning(command, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         _tracker.Error(command.CommandUniqueId, string.Empty, key, message);
                         break;
+
                     case LogType.Info:
                         _logger.CommandInfo(command, first.Message);
                         break;
+
                     default:
                         break;
                 }
             }
-
-           
         }
     }
 }

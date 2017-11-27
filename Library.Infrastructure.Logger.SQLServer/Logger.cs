@@ -1,13 +1,12 @@
-﻿using Library.Infrastructure.Core;
-using System;
-using Library.Infrastructure.DataPersistence.Core.SQLServer;
-using Library.Infrastructure.Core.Models;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using Newtonsoft.Json;
-using Library.Domain.Core;
+﻿using Library.Domain.Core;
 using Library.Domain.Core.Commands;
+using Library.Domain.Core.Models;
+using Library.Infrastructure.DataPersistence.Core.SQLServer;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Library.Infrastructure.Logger.SQLServer
 {

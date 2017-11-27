@@ -1,7 +1,7 @@
 using Library.Domain.Core;
-using System;
 using Library.Domain.Core.Attributes;
 using Library.Domain.Core.Models;
+using System;
 
 namespace Library.Service.Rental.Domain.Events
 {

@@ -1,14 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace Library.UI.Utilities
 {
@@ -21,7 +16,6 @@ namespace Library.UI.Utilities
             _httpClient = new HttpClient();
             _httpClient.Timeout = new TimeSpan(0, 0, 10);
             _httpClient.DefaultRequestHeaders.Connection.Add("keep-alive");
-
         }
 
         public static T Get<T>(string url)
@@ -76,7 +70,6 @@ namespace Library.UI.Utilities
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
             }
 
-            
             HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             HttpResponseMessage response = _httpClient.PutAsync(url, httpContent).Result;
 
@@ -110,7 +103,7 @@ namespace Library.UI.Utilities
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
             }
-            
+
             HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
 
             T result = default(T);

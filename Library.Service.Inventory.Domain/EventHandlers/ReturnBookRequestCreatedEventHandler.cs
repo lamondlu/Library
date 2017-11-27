@@ -1,15 +1,9 @@
 ﻿using Library.Domain.Core;
-using Library.Domain.Core.Attributes;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
-using Library.Domain.Core.Models;
-using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.DataAccessors;
 using Library.Service.Inventory.Domain.Events;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Service.Inventory.Domain.EventHandlers
 {
@@ -17,7 +11,6 @@ namespace Library.Service.Inventory.Domain.EventHandlers
     {
         public ReturnBookRequestCreatedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {
-
         }
 
         public override void Handle(ReturnBookRequestCreatedEvent evt)
@@ -39,7 +32,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
             catch (Exception ex)
             {
                 //send event ReturnBookRequestFailedEvent
-                
+
                 AddEventLog(evt, "SERVER_ERROR", ex.ToString());
             }
         }

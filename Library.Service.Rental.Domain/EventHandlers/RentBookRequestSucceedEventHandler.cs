@@ -1,18 +1,16 @@
 ﻿using Library.Domain.Core;
 using Library.Domain.Core.DataAccessor;
-using Library.Infrastructure.Core;
+using Library.Domain.Core.Messaging;
+using Library.Service.Rental.Domain.DataAccessors;
 using Library.Service.Rental.Domain.Events;
 using System;
-using System.Threading.Tasks;
-using Library.Service.Rental.Domain.DataAccessors;
-using Library.Domain.Core.Messaging;
 
 namespace Library.Service.Rental.Domain.EventHandlers
 {
     public class RentBookRequestSucceedEventHandler : BaseRentalEventHandler<RentBookRequestSucceedEvent>
     {
-        public RentBookRequestSucceedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher){
-
+        public RentBookRequestSucceedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
+        {
         }
 
         public override void Handle(RentBookRequestSucceedEvent evt)

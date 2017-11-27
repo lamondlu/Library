@@ -1,17 +1,6 @@
 ﻿using Library.Domain.Core;
 using Library.Domain.Core.Commands;
-using Library.Domain.Core.DataAccessor;
-using Library.Domain.Core.Messaging;
-using Library.Infrastructure.Core;
-using Library.Infrastructure.DataPersistence.Inventory.SQLServer;
-using Library.Infrastructure.DataPersistence.Rental.SQLServer;
-using Library.Infrastructure.EventStorage.SQLServer;
 using Library.Infrastructure.InjectionFramework;
-using Library.Infrastructure.Logger.SQLServer;
-using Library.Infrastructure.Messaging.RabbitMQ;
-using Library.Infrastructure.Messaging.SignalR;
-using Library.Service.Inventory.Domain.DataAccessors;
-using Library.Service.Rental.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

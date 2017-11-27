@@ -64,7 +64,6 @@
                                 @{ Html.RenderAction("_AjaxListItem", new { commandUniqueId = item.CommandUniqueId });}
                             </div>
                         </div>
-
                     </td>
                 </tr>
                                             index++;
@@ -80,7 +79,6 @@
                                     }
     </tbody>
 </table>
-
 
 @section scripts{
     <script type="text/javascript">
@@ -99,7 +97,7 @@
                 json = JSON.stringify(json, undefined, 2);
             }
 
-            json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+            json = json.replace(/&/g, '&').replace(/</g, '<').replace( />/g, '>');
             return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
                 var cls = 'number';
                 if (/^"/.test(match)) {
@@ -116,6 +114,5 @@
                 return '<span class="' + cls + '">' + match + '</span>';
             });
         }
-
     </script>
 }

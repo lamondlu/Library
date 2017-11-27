@@ -6,7 +6,7 @@ using System;
 namespace Library.Service.Inventory.Domain.Events
 {
     [EventLog(Code = "BOOKISSUEDDATE_CHANGED", Message = "Event finished.", Type = LogType.Info)]
-    [EventLog(Code = "SERVER_ERROR",  Type = LogType.Error)]
+    [EventLog(Code = "SERVER_ERROR", Type = LogType.Error)]
     public class BookIssuedDateChangedEvent : DomainEvent
     {
         public readonly static string Event_BookIssuedDateChanged = "Event_BookIssuedDateChanged";

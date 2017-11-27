@@ -1,21 +1,16 @@
 ﻿using Library.UI.DTOs;
-using Library.UI.SessionStorages;
 using Library.UI.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Library.UI.Controllers
 {
     public class RentalController : BaseController
     {
-        public RentalController() 
+        public RentalController()
         {
-
         }
 
         public ActionResult UnreturnedBooks()

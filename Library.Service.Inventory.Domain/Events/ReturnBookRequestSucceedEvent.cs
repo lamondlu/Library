@@ -1,7 +1,5 @@
 ﻿using Library.Domain.Core;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.Service.Inventory.Domain.Events
 {
@@ -11,7 +9,6 @@ namespace Library.Service.Inventory.Domain.Events
 
         public ReturnBookRequestSucceedEvent() : base(EVENT_ReturnBookRequestSucceed)
         {
-
         }
 
         public Guid CustomerId { get; set; }

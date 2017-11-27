@@ -1,9 +1,8 @@
-﻿using Library.Infrastructure.Core.Models;
+﻿using Library.Domain.Core.Models;
 using Library.Infrastructure.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Linq;
 
 namespace Library.Infrastructure.Logger.SQLServer
@@ -37,6 +36,5 @@ namespace Library.Infrastructure.Logger.SQLServer
                 };
             }
         }
-
     }
 }

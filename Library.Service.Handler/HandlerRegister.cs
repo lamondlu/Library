@@ -1,6 +1,5 @@
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
-using Library.Infrastructure.Core;
 using Library.Infrastructure.InjectionFramework;
 using Library.Infrastructure.Messaging.RabbitMQ;
 using System;
@@ -54,7 +53,7 @@ namespace Library.Service.Handler
                 var register = new RabbitMQEventSubscriber(InjectContainer.GetInstance<IRabbitMQUrlProvider>(), InjectContainer.GetInstance<ICommandTracker>());
 
                 if (register != null)
-                { 
+                {
                     var registerMethod = register.GetType().GetMethod("Subscribe");
 
                     var cmd = Activator.CreateInstance(@event);

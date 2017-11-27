@@ -1,14 +1,10 @@
-﻿using  Library.SignalR.DTOs;
-using  Library.SignalR.Hubs;
-using  Library.SignalR.Models;
-using Microsoft.AspNet.SignalR;
+﻿using Library.SignalR.DTOs;
+using Library.SignalR.Hubs;
+using Library.SignalR.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 
-namespace  Library.SignalR.Controllers
+namespace Library.SignalR.Controllers
 {
     [RoutePrefix("api/monitored_commands")]
     public class MonitoredCommandController : ApiController
@@ -28,8 +24,8 @@ namespace  Library.SignalR.Controllers
         public void UpdateCommandStatus(Guid commandUniqueId, EventStatusDTO dto)
         {
             CommandHub hub = new Hubs.CommandHub();
-            hub.CommandStatusChangeDirectly(commandUniqueId, 
-                (dto.Status == EventStatusEnum.Finished), 
+            hub.CommandStatusChangeDirectly(commandUniqueId,
+                (dto.Status == EventStatusEnum.Finished),
                 (dto.Status == EventStatusEnum.Error),
                 dto.ErrorCode,
                 dto.ErrorMessage

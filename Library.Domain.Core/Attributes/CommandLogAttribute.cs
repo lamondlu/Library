@@ -1,8 +1,5 @@
-﻿using Library.Domain.Core.Commands;
-using Library.Domain.Core.Models;
+﻿using Library.Domain.Core.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.Domain.Core.Attributes
 {
@@ -18,6 +15,5 @@ namespace Library.Domain.Core.Attributes
         public bool DirectFinish { get; set; }
 
         public bool DirectError { get; set; }
-        
     }
 }

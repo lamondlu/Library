@@ -18,7 +18,7 @@ namespace Library.Infrastructure.Messaging.RabbitMQ
 
         public RabbitMQEventSubscriber(IRabbitMQUrlProvider provider, ICommandTracker tracker)
         {
-            var factory = new ConnectionFactory() { Uri = new Uri(provider.Url), UserName = provider.UserName, Password = provider.Password  };
+            var factory = new ConnectionFactory() { Uri = new Uri(provider.Url), UserName = provider.UserName, Password = provider.Password };
             this.connection = factory.CreateConnection();
             this.channel = connection.CreateModel();
             this.tracker = tracker;

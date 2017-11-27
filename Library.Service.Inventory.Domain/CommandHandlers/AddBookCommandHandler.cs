@@ -1,10 +1,6 @@
 using Library.Domain.Core;
-using Library.Domain.Core.Attributes;
-using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
-using Library.Domain.Core.Models;
-using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.Commands;
 using Library.Service.Inventory.Domain.DataAccessors;
 using System;
@@ -15,9 +11,8 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
     {
         public AddBookCommandHandler(IDomainRepository domainRepository, IInventoryReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger) : base(domainRepository, dataAccesor, tracker, logger)
         {
-
         }
-        
+
         public override void Execute(AddBookCommand command)
         {
             try

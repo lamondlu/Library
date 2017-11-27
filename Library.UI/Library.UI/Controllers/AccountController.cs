@@ -1,21 +1,13 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using Library.UI.DTOs;
+using Library.UI.Models;
+using Library.UI.SessionStorages;
+using Library.UI.Utilities;
+using System;
+using System.Collections.Specialized;
+using System.Configuration;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Library.UI.Models;
-using Library.UI.Utilities;
-using Library.UI.DTOs;
-using System.Configuration;
-using System.Net;
-using System.Web.Security;
-using System.Collections.Specialized;
-using Library.UI.SessionStorages;
 
 namespace Library.UI.Controllers
 {
@@ -70,7 +62,6 @@ namespace Library.UI.Controllers
                 ModelState.AddModelError("LoginFailure", "User is not existed or password is wrong.");
                 return View();
             }
-
         }
     }
 }

@@ -1,11 +1,9 @@
 ﻿using Library.Domain.Core.Attributes;
 using Library.Domain.Core.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
 using Library.Domain.Core.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Library.Domain.Core
 {
@@ -43,12 +41,15 @@ namespace Library.Domain.Core
                     case LogType.Error:
                         _logger.EventError(evt, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         break;
+
                     case LogType.Warning:
                         _logger.EventWarning(evt, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         break;
+
                     case LogType.Info:
                         _logger.EventInfo(evt, first.Message);
                         break;
+
                     default:
                         break;
                 }
@@ -78,9 +79,9 @@ namespace Library.Domain.Core
                         }
 
                         break;
+
                     case LogType.Warning:
                         _logger.EventWarning(evt, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
-
 
                         if (first.DirectFinish)
                         {
@@ -93,6 +94,7 @@ namespace Library.Domain.Core
                         }
 
                         break;
+
                     case LogType.Info:
                         _logger.EventInfo(evt, first.Message);
 
@@ -106,11 +108,11 @@ namespace Library.Domain.Core
                             _commandTracker.DirectError(evt.CommandUniqueId, key, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         }
                         break;
+
                     default:
                         break;
                 }
             }
         }
     }
-
 }

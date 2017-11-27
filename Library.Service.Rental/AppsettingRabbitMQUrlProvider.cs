@@ -1,7 +1,6 @@
-using Library.Service.Rental.Domain.DataAccessors;
+using Library.Infrastructure.Messaging.RabbitMQ;
 using Microsoft.Extensions.Configuration;
 using System.IO;
-using Library.Infrastructure.Messaging.RabbitMQ;
 
 namespace Library.Service.Rental
 {

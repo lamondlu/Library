@@ -57,7 +57,7 @@
                                 <td>@item.BookInventoryId</td>
                                 <td>@(item.Status == 1 ? "IN" : "OUT")</td>
                                 <td>@item.LastNote</td>
-                                <td><input type="button" class="btn btn-success" value="View Histories" onclick="window.location='@Url.Action("Histories", "BookInventory", new { id = item.BookInventoryId })'"/> </td>
+                                <td><input type="button" class="btn btn-success" value="View Histories" onclick="window.location='@Url.Action("Histories", "BookInventory", new { id = item.BookInventoryId })'" /> </td>
                             </tr>
                         }
                     }
@@ -77,11 +77,7 @@
             <input type="button" class="btn btn-default" value="Return" onclick="window.location='@Url.Action("List", "Book")'" />
         </div>
     }
-
-
 </section>
-
-
 
 @section scripts{
     <script type="text/javascript">

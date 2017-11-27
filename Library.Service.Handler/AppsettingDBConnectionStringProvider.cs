@@ -1,4 +1,4 @@
-using Library.Infrastructure.Core;
+using Library.Domain.Core;
 using Library.Service.Inventory.Domain.DataAccessors;
 using Library.Service.Rental.Domain.DataAccessors;
 using Microsoft.Extensions.Configuration;

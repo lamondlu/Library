@@ -1,14 +1,12 @@
-﻿using Library.Domain.Core.Models;
+﻿using Library.Domain.Core.Commands;
+using Library.Domain.Core.Models;
 using System;
-using Library.Domain.Core.Commands;
-using Library.Domain.Core;
 using System.Collections.Generic;
 
 namespace Library.Domain.Core
 {
     public interface ILogger
     {
-
         void EventError<T>(T eventObject, string message) where T : DomainEvent;
 
         void CommandError<T>(T command, string message) where T : CommonCommand;

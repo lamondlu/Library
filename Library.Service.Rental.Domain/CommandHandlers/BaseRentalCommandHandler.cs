@@ -2,11 +2,7 @@
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
-using Library.Infrastructure.Core;
 using Library.Service.Rental.Domain.DataAccessors;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.Service.Rental.Domain.CommandHandlers
 {
@@ -22,7 +18,6 @@ namespace Library.Service.Rental.Domain.CommandHandlers
             _dataAccessor = dataAccesor;
             _eventPublisher = eventPublisher;
         }
-
 
         public override void Dispose()
         {

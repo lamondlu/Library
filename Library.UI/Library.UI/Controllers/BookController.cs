@@ -1,22 +1,17 @@
 ﻿using Library.UI.DTOs;
-using Library.UI.SessionStorages;
 using Library.UI.Utilities;
 using Library.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Library.UI.Controllers
 {
     public class BookController : BaseController
     {
-        public BookController() 
+        public BookController()
         {
-
         }
 
         [HttpGet]
@@ -84,7 +79,5 @@ namespace Library.UI.Controllers
             var data = ApiRequestWithFormUrlEncodedContent.Get<List<AvailableBookModel>>($"{_inventoryApiBaseUrl}/api/available_books");
             return Json(data, JsonRequestBehavior.AllowGet);
         }
-
-
     }
 }

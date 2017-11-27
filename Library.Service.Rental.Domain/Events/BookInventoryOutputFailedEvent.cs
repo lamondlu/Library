@@ -12,7 +12,6 @@ namespace Library.Service.Rental.Domain.Events
 
         public BookInventoryOutputFailedEvent() : base(Event_BookInventoryOutputFailed)
         {
-            
         }
     }
 }

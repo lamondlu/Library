@@ -1,5 +1,3 @@
-using System;
-
 namespace Library.Infrastructure.Messaging.RabbitMQ
 {
     public interface IRabbitMQUrlProvider
@@ -9,8 +7,8 @@ namespace Library.Infrastructure.Messaging.RabbitMQ
             get;
         }
 
-        string UserName{get;}
+        string UserName { get; }
 
-        string Password{get;}
+        string Password { get; }
     }
 }

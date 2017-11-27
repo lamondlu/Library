@@ -1,9 +1,9 @@
+using Library.Infrastructure.Core.Extensions;
 using Library.Service.Identity.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Library.Infrastructure.Core.Extensions;
 
 namespace Library.Infrastructure.DataPersistence.Identity.SQLServer.Extensions
 {

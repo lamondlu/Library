@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
-using Owin;
 using Microsoft.Owin.Cors;
-using Microsoft.AspNet.SignalR;
+using Owin;
 
 [assembly: OwinStartup(typeof(Library.SignalR.Startup))]
 
@@ -16,7 +14,7 @@ namespace Library.SignalR
             app.Map("/signalr", map =>
             {
                 // Setup the CORS middleware to run before SignalR.
-                // By default this will allow all origins. You can 
+                // By default this will allow all origins. You can
                 // configure the set of origins and/or http verbs by
                 // providing a cors options with a different policy.
                 map.UseCors(CorsOptions.AllowAll);

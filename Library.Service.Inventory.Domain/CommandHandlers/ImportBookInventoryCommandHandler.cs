@@ -1,10 +1,6 @@
 using Library.Domain.Core;
-using Library.Domain.Core.Attributes;
-using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
-using Library.Domain.Core.Models;
-using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.CommandHandlers;
 using Library.Service.Inventory.Domain.DataAccessors;
 using System;
@@ -15,10 +11,8 @@ namespace Library.Service.Inventory.Domain
     {
         public ImportBookInventoryCommandHandler(IDomainRepository domainRepository, IInventoryReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger) : base(domainRepository, dataAccesor, tracker, logger)
         {
-
         }
 
-        
         public override void Execute(ImportBookInventoryCommand command)
         {
             try
@@ -36,7 +30,6 @@ namespace Library.Service.Inventory.Domain
                 }
 
                 AddCommandLog(command, "IMPORTED_COMPLETED");
-
             }
             catch (Exception ex)
             {

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Library.UI.DTOs
 {
@@ -32,5 +30,4 @@ namespace Library.UI.DTOs
 
         public int Status { get; set; }
     }
-
 }

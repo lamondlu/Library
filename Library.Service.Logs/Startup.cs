@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Library.Domain.Core;
+using Library.Infrastructure.Logger.SQLServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Library.Infrastructure.Logger.SQLServer;
 
 namespace Library.Service.Logs
 {
@@ -25,8 +20,8 @@ namespace Library.Service.Logs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddTransient<Infrastructure.Core.ILogDBConnectionStringProvider, AppsettingLogDBConnectionStringProvider>();
-            services.AddTransient<Infrastructure.Core.ILogger, Logger>();
+            services.AddTransient<ILogDBConnectionStringProvider, AppsettingLogDBConnectionStringProvider>();
+            services.AddTransient<ILogger, Logger>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

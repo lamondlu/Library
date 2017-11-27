@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Library.Infrastructure.Core.Extensions
+﻿namespace Library.Infrastructure.Core.Extensions
 {
     public static class StringExtensions
     {

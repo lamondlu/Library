@@ -1,11 +1,10 @@
+using Library.Infrastructure.Core.Extensions;
 using Library.Service.Inventory.Domain;
 using Library.Service.Inventory.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Library.Infrastructure.Core.Extensions;
-
 
 namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions
 {
@@ -90,7 +89,6 @@ namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer.Extensions
         {
             return dt.Rows.Cast<DataRow>().Select(ConvertToBookViewModel).ToList();
         }
-
 
         public static List<BookDetailedModel> ConvertToBookDetailedModel(this DataTable dt)
         {
