@@ -1,7 +1,11 @@
 using Library.Domain.Core;
+using Library.Domain.Core.Attributes;
+using Library.Domain.Core.Models;
 
 namespace Library.Service.Inventory.Domain.Events
 {
+    [EventLog(Code = "BOOKINVENTORY_INSTORED", DirectFinish = true, Message = "Event Finished.", Type = LogType.Info)]
+    [EventLog(Code = "SERVER_ERROR", Message = "Event Finished.", Type = LogType.Error)]
     public class BookInventoryInStoredEvent : DomainEvent
     {
         public readonly static string Event_BookInventoryInStored = "Event_BookInventoryInStored";

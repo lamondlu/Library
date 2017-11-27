@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Infrastructure.Core
+namespace Library.Domain.Core
 {
     public interface ILogDBConnectionStringProvider
     {

@@ -1,6 +1,9 @@
+using Library.Domain.Core;
+using Library.Domain.Core.Attributes;
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
+using Library.Domain.Core.Models;
 using Library.Infrastructure.Core;
 using Library.Service.Rental.Domain.CommandHandlers;
 using Library.Service.Rental.Domain.DataAccessors;
@@ -15,6 +18,7 @@ namespace Library.Service.Rental.Domain
         {
         }
 
+       
         public override void Execute(RentBookCommand command)
         {
             try
@@ -34,7 +38,8 @@ namespace Library.Service.Rental.Domain
                 if (customer.Books.Count == 3)
                 {
                     _eventPublisher.Publish(new CustomerOwnedBookExcceedEvent { CommandUniqueId = command.CommandUniqueId });
-                    _logger.CommandWarning(command, "OWNED_BOOK_EXCCEED: One customer can only have 3 book at most.");
+
+                    AddCommandLog(command, "OWNED_BOOK_EXCCEED");
                 }
                 else
                 {
@@ -49,12 +54,12 @@ namespace Library.Service.Rental.Domain
                         AggregateId = command.CustomerId
                     });
 
-                    _logger.CommandInfo(command, "Command Finished.");
+                    AddCommandLog(command, "BOOK_RENTED");
                 }
             }
             catch (Exception ex)
             {
-                _logger.CommandError(command, $"SERVER_ERROR: {ex.ToString()}");
+                AddCommandLog(command, "SERVER_ERROR", ex.ToString());
             }
         }
     }

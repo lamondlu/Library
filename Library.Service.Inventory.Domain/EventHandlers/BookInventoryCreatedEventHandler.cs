@@ -1,6 +1,8 @@
 using Library.Domain.Core;
+using Library.Domain.Core.Attributes;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
+using Library.Domain.Core.Models;
 using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.DataAccessors;
 using Library.Service.Inventory.Domain.Events;
@@ -16,19 +18,19 @@ namespace Library.Service.Inventory.Domain.EventHandlers
 
         }
 
+
         public override void Handle(BookInventoryCreatedEvent evt)
         {
             try
             {
                 _reportDataAccessor.AddBookInventory(evt.BookId, evt.AggregateId, BookInventoryStatus.InStore, evt.Notes);
                 _reportDataAccessor.Commit();
-                _commandTracker.DirectFinish(evt.CommandUniqueId);
 
-                _logger.EventInfo(evt, "Event Finished.");
+                AddEventLogAndSendToTracker(evt, "BOOKINVENTORY_CREATED");
             }
             catch (Exception ex)
             {
-                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
             }
         }
     }

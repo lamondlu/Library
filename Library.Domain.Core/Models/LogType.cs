@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Infrastructure.Core.Models
+namespace Library.Domain.Core.Models
 {
     public enum LogType
     {

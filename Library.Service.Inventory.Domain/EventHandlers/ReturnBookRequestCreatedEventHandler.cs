@@ -1,6 +1,8 @@
 ﻿using Library.Domain.Core;
+using Library.Domain.Core.Attributes;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
+using Library.Domain.Core.Models;
 using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.DataAccessors;
 using Library.Service.Inventory.Domain.Events;
@@ -32,13 +34,13 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                     CommandUniqueId = evt.CommandUniqueId
                 });
 
-                _logger.EventInfo(evt, "Event Finished.");
+                AddEventLog(evt, "RETURNBOOKREQUEST_CREATED");
             }
             catch (Exception ex)
             {
                 //send event ReturnBookRequestFailedEvent
-
-                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                
+                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
             }
         }
     }

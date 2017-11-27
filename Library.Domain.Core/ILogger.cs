@@ -1,10 +1,10 @@
-﻿using Library.Infrastructure.Core.Models;
+﻿using Library.Domain.Core.Models;
 using System;
 using Library.Domain.Core.Commands;
 using Library.Domain.Core;
 using System.Collections.Generic;
 
-namespace Library.Infrastructure.Core
+namespace Library.Domain.Core
 {
     public interface ILogger
     {

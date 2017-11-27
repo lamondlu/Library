@@ -1,6 +1,9 @@
+using Library.Domain.Core;
+using Library.Domain.Core.Attributes;
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
+using Library.Domain.Core.Models;
 using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.CommandHandlers;
 using Library.Service.Inventory.Domain.DataAccessors;
@@ -12,17 +15,17 @@ namespace Library.Service.Inventory.Domain
     {
         public ImportBookInventoryCommandHandler(IDomainRepository domainRepository, IInventoryReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger) : base(domainRepository, dataAccesor, tracker, logger)
         {
+
         }
 
-
+        
         public override void Execute(ImportBookInventoryCommand command)
         {
             try
             {
                 if (command.BookInventoryIds == null || command.BookInventoryIds.Count == 0)
                 {
-                    _tracker.Error(command.CommandUniqueId, string.Empty, "NO_INVENTORY", "No inventory.");
-                    _logger.CommandWarning(command, "NO_INVENTORY: No Inventory.");
+                    AddCommandLogAndSendToTracker(command, "NO_INVENTORY");
                     return;
                 }
 
@@ -32,12 +35,12 @@ namespace Library.Service.Inventory.Domain
                     _domainRepository.Save(bookInventory, -1, command.CommandUniqueId);
                 }
 
-                _logger.CommandInfo(command, "Command Finished.");
+                AddCommandLog(command, "IMPORTED_COMPLETED");
+
             }
             catch (Exception ex)
             {
-                _tracker.Error(command.CommandUniqueId, string.Empty, "SERVER_ERROR", "SERVER_ERROR:" + ex.ToString());
-                _logger.CommandInfo(command, "SERVER_ERROR:" + ex.ToString());
+                AddCommandLogAndSendToTracker(command, "SERVER_ERROR", ex.ToString());
             }
         }
     }

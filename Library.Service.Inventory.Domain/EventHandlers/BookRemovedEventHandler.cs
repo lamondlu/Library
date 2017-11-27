@@ -17,7 +17,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
 
         public override void Handle(BookRemovedEvent evt)
         {
-            _logger.EventInfo(evt, "Event Finished.");
+            AddEventLog(evt, "BOOK_REMOVED");
         }
     }
 }

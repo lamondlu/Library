@@ -1,6 +1,9 @@
+using Library.Domain.Core;
+using Library.Domain.Core.Attributes;
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
+using Library.Domain.Core.Models;
 using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.Commands;
 using Library.Service.Inventory.Domain.DataAccessors;
@@ -14,7 +17,7 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
         {
 
         }
-
+        
         public override void Execute(AddBookCommand command)
         {
             try
@@ -22,23 +25,19 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
                 var hasDuplicatedISBN = _dataAccessor.ExistISBN(command.ISBN);
                 if (hasDuplicatedISBN)
                 {
-                    //Record down the error and use signalR to transfer the error.
-
-                    _tracker.Error(command.CommandUniqueId, string.Empty, "ADDBOOK_EXISTED", "The book has existed in the system.");
-                    _logger.CommandWarning(command, "ADDBOOK_EXISTED:The book has existed in the system.");
+                    AddCommandLogAndSendToTracker(command, "ADDBOOK_EXISTED");
                 }
                 else
                 {
                     var book = new Book(command.BookId, command.ISBN, command.BookName, command.Description, command.DateIssued);
                     _domainRepository.Save(book, -1, command.CommandUniqueId);
 
-                    _logger.CommandInfo(command, "Command Finished.");
+                    AddCommandLog(command, "ADDBOOK_COMPLETED");
                 }
             }
             catch (Exception ex)
             {
-                _tracker.Error(command.CommandUniqueId, string.Empty, "SERVER_ERROR", ex.ToString());
-                _logger.CommandError(command, $"SERVER_ERROR:{ex.ToString()}");
+                AddCommandLogAndSendToTracker(command, "SERVER_ERROR", ex.ToString());
             }
         }
     }

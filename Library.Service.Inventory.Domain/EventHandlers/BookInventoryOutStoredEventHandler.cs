@@ -1,4 +1,5 @@
 using Library.Domain.Core;
+using Library.Domain.Core.Attributes;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Infrastructure.Core;
@@ -24,12 +25,11 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                 _reportDataAccessor.UpdateBookInventoryStatus(evt.AggregateId, BookInventoryStatus.OutStore, evt.Notes);
                 _reportDataAccessor.Commit();
 
-                _commandTracker.DirectFinish(evt.CommandUniqueId);
-                _logger.EventInfo(evt, "Event Finished.");
+                AddEventLogAndSendToTracker(evt, "BOOKINVENTORY_OUTSTORED");
             }
             catch (Exception ex)
             {
-                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
             }
         }
     }

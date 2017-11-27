@@ -23,11 +23,11 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                 _reportDataAccessor.UpdateBookISBN(evt.AggregateId, evt.NewBookISBN);
                 _reportDataAccessor.Commit();
 
-                _logger.EventInfo(evt, "Event Finished.");
+                AddEventLog(evt, "BOOKISBN_UPDATED");
             }
             catch (Exception ex)
             {
-                _logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
             }
         }
     }

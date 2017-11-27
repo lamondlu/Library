@@ -1,6 +1,9 @@
+using Library.Domain.Core;
+using Library.Domain.Core.Attributes;
 using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
+using Library.Domain.Core.Models;
 using Library.Infrastructure.Core;
 using Library.Service.Inventory.Domain.Commands;
 using Library.Service.Inventory.Domain.DataAccessors;
@@ -14,6 +17,7 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
         {
         }
 
+        
         public override void Execute(OutStoreBookInventoryCommand command)
         {
             try
@@ -23,11 +27,11 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
                 bookInventory.OutStore(command.Notes);
                 _domainRepository.Save(bookInventory, bookInventory.Version, command.CommandUniqueId);
 
-                _logger.CommandInfo(command, "Command finished.");
+                AddCommandLog(command, "OUTSTORE_COMPLETED");
             }
             catch (Exception ex)
             {
-                _logger.CommandError(command, $"SERVER_ERROR:{ex.ToString()}");
+                AddCommandLog(command, "SERVER_ERROR", ex.ToString());
             }
         }
     }
