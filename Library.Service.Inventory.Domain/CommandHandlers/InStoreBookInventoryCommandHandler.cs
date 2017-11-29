@@ -21,11 +21,11 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
                 bookInventory.InStore(command.Notes);
                 _domainRepository.Save(bookInventory, bookInventory.Version, command.CommandUniqueId);
 
-                AddCommandLog(command, "INSTORE_COMPLETED");
+                command.Result("INSTORE_COMPLETED");
             }
             catch (Exception ex)
             {
-                AddCommandLog(command, "SERVER_ERROR", ex.ToString());
+                command.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

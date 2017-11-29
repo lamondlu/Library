@@ -22,11 +22,11 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
                 bookInventory.OutStore(command.Notes);
                 _domainRepository.Save(bookInventory, bookInventory.Version, command.CommandUniqueId);
 
-                AddCommandLog(command, "OUTSTORE_COMPLETED");
+                command.Result("OUTSTORE_COMPLETED");
             }
             catch (Exception ex)
             {
-                AddCommandLog(command, "SERVER_ERROR", ex.ToString());
+                command.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

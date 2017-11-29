@@ -29,11 +29,11 @@ namespace Library.Service.Rental.Domain.CommandHandlers
                     AggregateId = command.CustomerId
                 });
 
-                AddCommandLog(command, "BOOK_RETURNED");
+                command.Result("BOOK_RETURNED");
             }
             catch (Exception ex)
             {
-                AddCommandLog(command, "SERVER_ERROR", ex.ToString());
+                command.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

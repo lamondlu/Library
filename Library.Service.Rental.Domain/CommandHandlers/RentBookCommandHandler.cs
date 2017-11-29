@@ -34,7 +34,7 @@ namespace Library.Service.Rental.Domain
                 {
                     _eventPublisher.Publish(new CustomerOwnedBookExcceedEvent { CommandUniqueId = command.CommandUniqueId });
 
-                    AddCommandLog(command, "OWNED_BOOK_EXCCEED");
+                    command.Result("OWNED_BOOK_EXCCEED");
                 }
                 else
                 {
@@ -49,12 +49,12 @@ namespace Library.Service.Rental.Domain
                         AggregateId = command.CustomerId
                     });
 
-                    AddCommandLog(command, "BOOK_RENTED");
+                    command.Result("BOOK_RENTED");
                 }
             }
             catch (Exception ex)
             {
-                AddCommandLog(command, "SERVER_ERROR", ex.ToString());
+                command.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }
