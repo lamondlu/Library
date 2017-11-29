@@ -13,26 +13,26 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
         {
         }
 
-        public override void Execute(AddBookCommand command)
+        public override void ExecuteCore(AddBookCommand command)
         {
             try
             {
                 var hasDuplicatedISBN = _dataAccessor.ExistISBN(command.ISBN);
                 if (hasDuplicatedISBN)
                 {
-                    AddCommandLogAndSendToTracker(command, "ADDBOOK_EXISTED");
+                    command.Result("ADDBOOK_EXISTED");
                 }
                 else
                 {
                     var book = new Book(command.BookId, command.ISBN, command.BookName, command.Description, command.DateIssued);
                     _domainRepository.Save(book, -1, command.CommandUniqueId);
 
-                    AddCommandLog(command, "ADDBOOK_COMPLETED");
+                    command.Result("ADDBOOK_COMPLETED");
                 }
             }
             catch (Exception ex)
             {
-                AddCommandLogAndSendToTracker(command, "SERVER_ERROR", ex.ToString());
+                command.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

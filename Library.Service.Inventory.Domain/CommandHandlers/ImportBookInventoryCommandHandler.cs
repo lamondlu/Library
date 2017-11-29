@@ -13,13 +13,13 @@ namespace Library.Service.Inventory.Domain
         {
         }
 
-        public override void Execute(ImportBookInventoryCommand command)
+        public override void ExecuteCore(ImportBookInventoryCommand command)
         {
             try
             {
                 if (command.BookInventoryIds == null || command.BookInventoryIds.Count == 0)
                 {
-                    AddCommandLogAndSendToTracker(command, "NO_INVENTORY");
+                    command.Result("NO_INVENTORY");
                     return;
                 }
 
@@ -29,11 +29,11 @@ namespace Library.Service.Inventory.Domain
                     _domainRepository.Save(bookInventory, -1, command.CommandUniqueId);
                 }
 
-                AddCommandLog(command, "IMPORTED_COMPLETED");
+                command.Result("IMPORTED_COMPLETED");
             }
             catch (Exception ex)
             {
-                AddCommandLogAndSendToTracker(command, "SERVER_ERROR", ex.ToString());
+                command.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

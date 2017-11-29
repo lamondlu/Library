@@ -13,7 +13,7 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
         {
         }
 
-        public override void Execute(OutStoreBookInventoryCommand command)
+        public override void ExecuteCore(OutStoreBookInventoryCommand command)
         {
             try
             {

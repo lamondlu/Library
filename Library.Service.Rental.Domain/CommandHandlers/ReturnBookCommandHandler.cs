@@ -14,7 +14,7 @@ namespace Library.Service.Rental.Domain.CommandHandlers
         {
         }
 
-        public override void Execute(ReturnBookCommand command)
+        public override void ExecuteCore(ReturnBookCommand command)
         {
             try
             {

@@ -6,7 +6,7 @@ using Library.Service.Inventory.Domain.DataAccessors;
 
 namespace Library.Service.Inventory.Domain.CommandHandlers
 {
-    public abstract class BaseInventoryCommandHandler<T> : BaseCommandHandler<T> where T : ICommand
+    public abstract class BaseInventoryCommandHandler<T> : BaseCommandHandler<T> where T : CommonCommand
     {
         protected IDomainRepository _domainRepository = null;
         protected IInventoryReportDataAccessor _dataAccessor = null;

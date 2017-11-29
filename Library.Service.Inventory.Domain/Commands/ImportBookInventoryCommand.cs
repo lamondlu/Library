@@ -6,9 +6,9 @@ using System.Collections.Generic;
 
 namespace Library.Service.Inventory.Domain
 {
-    [CommandLog(Code = "NO_INVENTORY", Message = "No inventory.", Type = LogType.Warning)]
+    [CommandLog(Code = "NO_INVENTORY", Message = "No inventory.", Type = LogType.Warning, SendError = true)]
     [CommandLog(Code = "IMPORTED_COMPLETED", Message = "Command Finished.", Type = LogType.Info)]
-    [CommandLog(Code = "SERVER_ERROR", Type = LogType.Error)]
+    [CommandLog(Code = "SERVER_ERROR", Type = LogType.Error, SendError = true)]
     public class ImportBookInventoryCommand : CommonCommand
     {
         private static string ImportBookInventoryCommandKey = "Command_ImportBookInventory";

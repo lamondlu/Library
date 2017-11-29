@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Library.Domain.Core
 {
-    public abstract class BaseCommandHandler<T> : ICommandHandler<T> where T : ICommand
+    public abstract class BaseCommandHandler<T> : ICommandHandler<T> where T : CommonCommand
     {
         protected ICommandTracker _tracker = null;
         protected ILogger _logger = null;
@@ -24,11 +24,17 @@ namespace Library.Domain.Core
             _logger = null;
         }
 
-        public abstract void Execute(T command);
-
-        protected void AddCommandLog(CommonCommand command, string key, string message = "")
+        public void Execute(T command)
         {
-            var attrs = Attribute.GetCustomAttributes(command.GetType(), typeof(CommandLogAttribute));
+            ExecuteCore(command);
+            AddCommandLog(command, command.CommandResult, command.ExtraMessage);
+        }
+
+        public abstract void ExecuteCore(T command);
+
+        private void AddCommandLog(T command, string key, string message = "")
+        {
+            var attrs = Attribute.GetCustomAttributes(this.GetType().GetMethod("Execute"), typeof(CommandLogAttribute));
 
             if (attrs.Length > 0 && attrs.Any(x => (x is CommandLogAttribute) && ((CommandLogAttribute)x).Code == key))
             {
@@ -51,35 +57,15 @@ namespace Library.Domain.Core
                     default:
                         break;
                 }
-            }
-        }
 
-        protected void AddCommandLogAndSendToTracker(CommonCommand command, string key, string message = "")
-        {
-            var attrs = Attribute.GetCustomAttributes(this.GetType().GetMethod("Execute"), typeof(CommandLogAttribute));
-
-            if (attrs.Length > 0 && attrs.Any(x => (x is CommandLogAttribute) && ((CommandLogAttribute)x).Code == key))
-            {
-                var first = (CommandLogAttribute)attrs.First(x => ((CommandLogAttribute)x).Code == key);
-
-                switch (first.Type)
+                if (first.SendError)
                 {
-                    case LogType.Error:
-                        _logger.CommandError(command, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
-                        _tracker.Error(command.CommandUniqueId, string.Empty, key, message);
-                        break;
+                    _tracker.Error(command.CommandUniqueId, string.Empty, key, message);
+                }
 
-                    case LogType.Warning:
-                        _logger.CommandWarning(command, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
-                        _tracker.Error(command.CommandUniqueId, string.Empty, key, message);
-                        break;
-
-                    case LogType.Info:
-                        _logger.CommandInfo(command, first.Message);
-                        break;
-
-                    default:
-                        break;
+                if (first.SendFinish)
+                {
+                    _tracker.DirectFinish(command.CommandUniqueId);
                 }
             }
         }

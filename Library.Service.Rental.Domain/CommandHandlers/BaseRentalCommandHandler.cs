@@ -6,7 +6,7 @@ using Library.Service.Rental.Domain.DataAccessors;
 
 namespace Library.Service.Rental.Domain.CommandHandlers
 {
-    public abstract class BaseRentalCommandHandler<T> : BaseCommandHandler<T> where T : ICommand
+    public abstract class BaseRentalCommandHandler<T> : BaseCommandHandler<T> where T : CommonCommand
     {
         protected IDomainRepository _domainRepository = null;
         protected IRentalReportDataAccessor _dataAccessor = null;

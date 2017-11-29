@@ -14,7 +14,7 @@ namespace Library.Service.Rental.Domain
         {
         }
 
-        public override void Execute(RentBookCommand command)
+        public override void ExecuteCore(RentBookCommand command)
         {
             try
             {

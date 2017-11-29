@@ -11,5 +11,9 @@ namespace Library.Domain.Core.Attributes
         public string Message { get; set; }
 
         public LogType Type { get; set; }
+
+        public bool SendError { get; set; }
+
+        public bool SendFinish { get; set; }
     }
 }
