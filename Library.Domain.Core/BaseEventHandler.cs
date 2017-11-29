@@ -18,17 +18,24 @@ namespace Library.Domain.Core
             _logger = logger;
         }
 
-        public abstract void Handle(T evt);
+        public void Handle(T evt)
+        {
+            HandleCore(evt);
+
+            AddEventLog(evt, evt.EventResult, evt.ExtraMessage);
+        }
+
+        public abstract void HandleCore(T evt);
 
         public Task HandleAsync(T evt)
         {
             return Task.Factory.StartNew(() =>
             {
-                Handle(evt);
+                HandleCore(evt);
             });
         }
 
-        public void AddEventLog(T evt, string key, string message = "")
+        private void AddEventLog(T evt, string key, string message = "")
         {
             var attrs = Attribute.GetCustomAttributes(evt.GetType(), typeof(EventLogAttribute));
 
@@ -40,40 +47,12 @@ namespace Library.Domain.Core
                 {
                     case LogType.Error:
                         _logger.EventError(evt, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
-                        break;
 
-                    case LogType.Warning:
-                        _logger.EventWarning(evt, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
-                        break;
-
-                    case LogType.Info:
-                        _logger.EventInfo(evt, first.Message);
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-        }
-
-        public void AddEventLogAndSendToTracker(T evt, string key, string message = "")
-        {
-            var attrs = Attribute.GetCustomAttributes(this.GetType().GetMethod("Handle"), typeof(EventLogAttribute));
-
-            if (attrs.Length > 0 && attrs.Any(x => (x is EventLogAttribute) && ((EventLogAttribute)x).Code == key))
-            {
-                var first = (EventLogAttribute)attrs.First(x => ((EventLogAttribute)x).Code == key);
-
-                switch (first.Type)
-                {
-                    case LogType.Error:
-                        _logger.EventError(evt, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
-
-                        if (first.DirectFinish)
+                        if (first.SendFinish)
                         {
                             _commandTracker.DirectFinish(evt.CommandUniqueId);
                         }
-                        if (first.DirectError)
+                        if (first.SendError)
                         {
                             _commandTracker.DirectError(evt.CommandUniqueId, key, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         }
@@ -83,12 +62,12 @@ namespace Library.Domain.Core
                     case LogType.Warning:
                         _logger.EventWarning(evt, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
 
-                        if (first.DirectFinish)
+                        if (first.SendFinish)
                         {
                             _commandTracker.DirectFinish(evt.CommandUniqueId);
                         }
 
-                        if (first.DirectError)
+                        if (first.SendError)
                         {
                             _commandTracker.DirectError(evt.CommandUniqueId, key, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         }
@@ -98,12 +77,12 @@ namespace Library.Domain.Core
                     case LogType.Info:
                         _logger.EventInfo(evt, first.Message);
 
-                        if (first.DirectFinish)
+                        if (first.SendFinish)
                         {
                             _commandTracker.DirectFinish(evt.CommandUniqueId);
                         }
 
-                        if (first.DirectError)
+                        if (first.SendError)
                         {
                             _commandTracker.DirectError(evt.CommandUniqueId, key, $"{first.Code}:{(!string.IsNullOrEmpty(message) ? message : first.Message)}");
                         }

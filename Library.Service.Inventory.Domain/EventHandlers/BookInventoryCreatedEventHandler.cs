@@ -13,18 +13,18 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
         }
 
-        public override void Handle(BookInventoryCreatedEvent evt)
+        public override void HandleCore(BookInventoryCreatedEvent evt)
         {
             try
             {
                 _reportDataAccessor.AddBookInventory(evt.BookId, evt.AggregateId, BookInventoryStatus.InStore, evt.Notes);
                 _reportDataAccessor.Commit();
 
-                AddEventLogAndSendToTracker(evt, "BOOKINVENTORY_CREATED");
+                evt.Result("BOOKINVENTORY_CREATED");
             }
             catch (Exception ex)
             {
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

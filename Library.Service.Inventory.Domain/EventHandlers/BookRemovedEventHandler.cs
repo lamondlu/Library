@@ -12,9 +12,9 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
         }
 
-        public override void Handle(BookRemovedEvent evt)
+        public override void HandleCore(BookRemovedEvent evt)
         {
-            AddEventLog(evt, "BOOK_REMOVED");
+            evt.Result("BOOK_REMOVED");
         }
     }
 }

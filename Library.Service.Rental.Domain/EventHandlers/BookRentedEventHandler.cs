@@ -13,18 +13,18 @@ namespace Library.Service.Rental.Domain.EventHandlers
         {
         }
 
-        public override void Handle(BookRentedEvent evt)
+        public override void HandleCore(BookRentedEvent evt)
         {
             try
             {
                 _reportDataAccessor.RentBook(evt.BookInventoryId);
                 _reportDataAccessor.Commit();
 
-                AddEventLogAndSendToTracker(evt, "BOOK_RENTED");
+                evt.Result("BOOK_RENTED");
             }
             catch (Exception ex)
             {
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

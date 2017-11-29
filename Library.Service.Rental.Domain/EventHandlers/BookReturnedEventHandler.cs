@@ -14,19 +14,18 @@ namespace Library.Service.Rental.Domain
         {
         }
 
-        public override void Handle(BookReturnedEvent evt)
+        public override void HandleCore(BookReturnedEvent evt)
         {
             try
             {
                 _reportDataAccessor.ReturnBook(evt.BookId, evt.ReturnDate);
                 _reportDataAccessor.Commit();
 
-                AddEventLogAndSendToTracker(evt, "BOOK_RETURNED");
+                evt.Result("BOOK_RETURNED");
             }
             catch (Exception ex)
             {
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
-                //_logger.EventError(evt, $"SERVER_ERROR: {ex.ToString()}");
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

@@ -13,18 +13,18 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
         }
 
-        public override void Handle(BookNameChangedEvent evt)
+        public override void HandleCore(BookNameChangedEvent evt)
         {
             try
             {
                 _reportDataAccessor.UpdateBookName(evt.AggregateId, evt.NewBookName);
                 _reportDataAccessor.Commit();
 
-                AddEventLog(evt, "BOOKNAME_CHANGED");
+                evt.Result("BOOKNAME_CHANGED");
             }
             catch (Exception ex)
             {
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

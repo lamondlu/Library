@@ -13,7 +13,7 @@ namespace Library.Service.Rental.Domain.EventHandlers
         {
         }
 
-        public override void Handle(RentBookRequestSucceedEvent evt)
+        public override void HandleCore(RentBookRequestSucceedEvent evt)
         {
             try
             {
@@ -21,12 +21,11 @@ namespace Library.Service.Rental.Domain.EventHandlers
                 customer.RentBook(evt.BookInventoryId);
                 _domainRepository.Save(customer, customer.Version, evt.CommandUniqueId);
 
-                AddEventLog(evt, "RENTBOOKREQUEST_SUCCEED");
+                evt.Result("RENTBOOKREQUEST_SUCCEED");
             }
             catch (Exception ex)
             {
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
-                //publish RentBookFailedEvent
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

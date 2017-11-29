@@ -6,7 +6,7 @@ namespace Library.Service.Identity.Domain
 {
     public class AdministratorCreatedEventHandler : IEventHandler<AdministratorCreatedEvent>
     {
-        public void Handle(AdministratorCreatedEvent evt)
+        public void HandleCore(AdministratorCreatedEvent evt)
         {
         }
 

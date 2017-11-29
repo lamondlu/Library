@@ -13,7 +13,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
         }
 
-        public override void Handle(ReturnBookRequestCreatedEvent evt)
+        public override void HandleCore(ReturnBookRequestCreatedEvent evt)
         {
             try
             {
@@ -27,13 +27,13 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                     CommandUniqueId = evt.CommandUniqueId
                 });
 
-                AddEventLog(evt, "RETURNBOOKREQUEST_CREATED");
+                evt.Result("RETURNBOOKREQUEST_CREATED");
             }
             catch (Exception ex)
             {
                 //send event ReturnBookRequestFailedEvent
 
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

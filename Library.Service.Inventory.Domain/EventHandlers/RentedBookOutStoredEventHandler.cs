@@ -13,7 +13,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
         }
 
-        public override void Handle(RentedBookOutStoredEvent evt)
+        public override void HandleCore(RentedBookOutStoredEvent evt)
         {
             try
             {
@@ -30,11 +30,12 @@ namespace Library.Service.Inventory.Domain.EventHandlers
 
                 _eventPublisher.Publish(rentBookRequestSucceedEvent);
 
-                AddEventLog(evt, "RENTEDBOOK_OUTSTORED");
+                evt.Result("RENTEDBOOK_OUTSTORED");
             }
             catch (Exception ex)
             {
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
+
             }
         }
     }

@@ -14,7 +14,7 @@ namespace Library.Service.Rental.Domain
         {
         }
 
-        public override void Handle(RentBookRequestCreatedEvent evt)
+        public override void HandleCore(RentBookRequestCreatedEvent evt)
         {
             try
             {
@@ -29,11 +29,11 @@ namespace Library.Service.Rental.Domain
                     CustomerId = evt.AggregateId
                 });
 
-                AddEventLog(evt, "RENTBOOKREQUEST_CREATED");
+                evt.Result("RENTBOOKREQUEST_CREATED");
             }
             catch (Exception ex)
             {
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

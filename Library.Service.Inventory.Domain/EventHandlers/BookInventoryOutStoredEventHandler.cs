@@ -13,18 +13,18 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
         }
 
-        public override void Handle(BookInventoryOutStoredEvent evt)
+        public override void HandleCore(BookInventoryOutStoredEvent evt)
         {
             try
             {
                 _reportDataAccessor.UpdateBookInventoryStatus(evt.AggregateId, BookInventoryStatus.OutStore, evt.Notes);
                 _reportDataAccessor.Commit();
 
-                AddEventLogAndSendToTracker(evt, "BOOKINVENTORY_OUTSTORED");
+                evt.Result("BOOKINVENTORY_OUTSTORED");
             }
             catch (Exception ex)
             {
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

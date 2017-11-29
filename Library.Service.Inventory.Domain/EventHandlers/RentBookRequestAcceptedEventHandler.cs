@@ -13,7 +13,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
         }
 
-        public override void Handle(RentBookRequestAcceptedEvent evt)
+        public override void HandleCore(RentBookRequestAcceptedEvent evt)
         {
             var bookInventory = _domainRepository.GetById<BookInventory>(evt.AggregateId);
 
@@ -32,13 +32,13 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                     _domainRepository.Save(bookInventory, bookInventory.Version, evt.CommandUniqueId);
                 }
 
-                AddEventLog(evt, "RENTBOOKREQUEST_ACCEPTED");
+                evt.Result("RENTBOOKREQUEST_ACCEPTED");
             }
             catch (Exception ex)
             {
                 //publish an RentBookRequestFailedEvent
 
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

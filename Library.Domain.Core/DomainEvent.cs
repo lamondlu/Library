@@ -5,6 +5,8 @@ namespace Library.Domain.Core
     public abstract class DomainEvent : IDomainEvent
     {
         private string _eventKey = string.Empty;
+        private string _eventResult = string.Empty;
+        private string _extraMessage = string.Empty;
 
         private DateTime _occurredOn;
 
@@ -45,6 +47,28 @@ namespace Library.Domain.Core
             get
             {
                 return _occurredOn;
+            }
+        }
+
+        public void Result(string code, string extraMessage = "")
+        {
+            _eventResult = code;
+            _extraMessage = extraMessage;
+        }
+
+        public string EventResult
+        {
+            get
+            {
+                return _eventResult;
+            }
+        }
+
+        public string ExtraMessage
+        {
+            get
+            {
+                return _extraMessage;
             }
         }
     }

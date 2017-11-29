@@ -61,7 +61,7 @@ namespace Library.Infrastructure.Messaging.RabbitMQ
                 try
                 {
                     //执行命令操作
-                    instance.Handle(cmd);
+                    instance.HandleCore(cmd);
                     //tracker.Finish(cmd.CommandUniqueId, cmd.EventKey);
                 }
                 catch (Exception ex)

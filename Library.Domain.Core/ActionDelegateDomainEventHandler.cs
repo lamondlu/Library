@@ -12,7 +12,7 @@ namespace Library.Domain.Core
             _eventHandlerDelegate = eventHandlerDelegate;
         }
 
-        public void Handle(TEvent evt)
+        public void HandleCore(TEvent evt)
         {
             _eventHandlerDelegate(evt);
         }

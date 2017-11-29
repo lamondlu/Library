@@ -12,8 +12,8 @@ namespace Library.Domain.Core.Attributes
 
         public LogType Type { get; set; }
 
-        public bool DirectFinish { get; set; }
+        public bool SendFinish { get; set; }
 
-        public bool DirectError { get; set; }
+        public bool SendError { get; set; }
     }
 }

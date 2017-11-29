@@ -5,7 +5,7 @@ using System;
 
 namespace Library.Service.Inventory.Domain.Events
 {
-    [EventLog(Code = "BOOKINVENTORY_CREATED", DirectFinish = true, Message = "Event Finished.", Type = LogType.Info)]
+    [EventLog(Code = "BOOKINVENTORY_CREATED", SendFinish = true, Message = "Event Finished.", Type = LogType.Info)]
     [EventLog(Code = "SERVER_ERROR", Type = LogType.Error)]
     public class BookInventoryCreatedEvent : DomainEvent
     {

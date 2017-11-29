@@ -13,15 +13,15 @@ namespace Library.Service.Rental.Domain.EventHandlers
         {
         }
 
-        public override void Handle(BookInventoryOutputFailedEvent evt)
+        public override void HandleCore(BookInventoryOutputFailedEvent evt)
         {
             try
             {
-                AddEventLogAndSendToTracker(evt, "BOOKINVENTORYOUTPUT_FAILED");
+                evt.Result("BOOKINVENTORYOUTPUT_FAILED");
             }
             catch (Exception ex)
             {
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

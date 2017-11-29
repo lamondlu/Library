@@ -13,15 +13,15 @@ namespace Library.Service.Rental.Domain.EventHandlers
         {
         }
 
-        public override void Handle(CustomerOwnedBookExcceedEvent evt)
+        public override void HandleCore(CustomerOwnedBookExcceedEvent evt)
         {
             try
             {
-                AddEventLogAndSendToTracker(evt, "CUSTOMEOWNEDBOOK_EXCCEED");
+                evt.Result("CUSTOMEOWNEDBOOK_EXCCEED");
             }
             catch (Exception ex)
             {
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

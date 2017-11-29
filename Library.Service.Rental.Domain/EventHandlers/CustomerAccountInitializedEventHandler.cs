@@ -12,10 +12,9 @@ namespace Library.Service.Rental.Domain
         {
         }
 
-        public override void Handle(CustomerAccountInitializedEvent evt)
+        public override void HandleCore(CustomerAccountInitializedEvent evt)
         {
-            AddEventLog(evt, "CUSTOMERACCOUNT_INITIALIZED");
-            //_logger.EventInfo(evt, "Event Finished.");
+            evt.Result("CUSTOMERACCOUNT_INITIALIZED");
         }
     }
 }

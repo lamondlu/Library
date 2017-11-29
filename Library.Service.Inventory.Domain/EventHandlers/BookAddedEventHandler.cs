@@ -14,7 +14,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
         }
 
-        public override void Handle(BookAddedEvent evt)
+        public override void HandleCore(BookAddedEvent evt)
         {
             try
             {
@@ -29,11 +29,11 @@ namespace Library.Service.Inventory.Domain.EventHandlers
 
                 _reportDataAccessor.Commit();
 
-                AddEventLogAndSendToTracker(evt, "BOOK_ADDED");
+                evt.Result("BOOK_ADDED");
             }
             catch (Exception ex)
             {
-                AddEventLogAndSendToTracker(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }

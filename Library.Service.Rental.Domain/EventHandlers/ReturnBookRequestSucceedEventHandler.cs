@@ -13,7 +13,7 @@ namespace Library.Service.Rental.Domain.EventHandlers
         {
         }
 
-        public override void Handle(ReturnBookRequestSucceedEvent evt)
+        public override void HandleCore(ReturnBookRequestSucceedEvent evt)
         {
             try
             {
@@ -21,14 +21,12 @@ namespace Library.Service.Rental.Domain.EventHandlers
                 customer.ReturnBook(evt.BookInventoryId);
 
                 _domainRepository.Save(customer, customer.Version, evt.CommandUniqueId);
-                _logger.EventInfo(evt, "Event Finished.");
 
-                AddEventLog(evt, "RETURNBOOKREQUEST_SUCCEED");
+                evt.Result("RETURNBOOKREQUEST_SUCCEED");
             }
             catch (Exception ex)
             {
-                //Send compensation event to make the book outstore again.
-                AddEventLog(evt, "SERVER_ERROR", ex.ToString());
+                evt.Result("SERVER_ERROR", ex.ToString());
             }
         }
     }
