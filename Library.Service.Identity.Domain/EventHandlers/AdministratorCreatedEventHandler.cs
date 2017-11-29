@@ -14,5 +14,10 @@ namespace Library.Service.Identity.Domain
         {
             throw new NotImplementedException();
         }
+
+        public void Handle(AdministratorCreatedEvent evt)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

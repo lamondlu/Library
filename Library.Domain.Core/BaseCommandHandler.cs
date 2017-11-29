@@ -34,7 +34,7 @@ namespace Library.Domain.Core
 
         private void AddCommandLog(T command, string key, string message = "")
         {
-            var attrs = Attribute.GetCustomAttributes(this.GetType().GetMethod("Execute"), typeof(CommandLogAttribute));
+            var attrs = Attribute.GetCustomAttributes(command.GetType(), typeof(CommandLogAttribute));
 
             if (attrs.Length > 0 && attrs.Any(x => (x is CommandLogAttribute) && ((CommandLogAttribute)x).Code == key))
             {
