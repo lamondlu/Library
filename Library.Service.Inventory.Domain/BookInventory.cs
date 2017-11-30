@@ -50,7 +50,7 @@ namespace Library.Service.Inventory.Domain
             this.Status = BookInventoryStatus.OutStore;
         }
 
-        public void InStore(string notes)
+        public void InStore(string notes, DateTime inStoreDate)
         {
             if (this.Status == BookInventoryStatus.InStore)
             {
@@ -60,11 +60,12 @@ namespace Library.Service.Inventory.Domain
             ApplyChange(new BookInventoryInStoredEvent
             {
                 Notes = notes,
-                AggregateId = this.Id
+                AggregateId = this.Id,
+                InStoreDate = inStoreDate
             });
         }
 
-        public void OutStore(string notes)
+        public void OutStore(string notes, DateTime outStoreDate)
         {
             if (this.Status == BookInventoryStatus.OutStore)
             {
@@ -74,7 +75,8 @@ namespace Library.Service.Inventory.Domain
             ApplyChange(new BookInventoryOutStoredEvent
             {
                 Notes = notes,
-                AggregateId = this.Id
+                AggregateId = this.Id,
+                OutStoreDate = outStoreDate
             });
         }
 

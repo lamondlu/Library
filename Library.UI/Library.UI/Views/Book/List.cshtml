@@ -30,7 +30,7 @@
                     <td>@item.BookName</td>
                     <td>@item.ISBN</td>
                     <td>@item.DateIssued.ToString("yyyy-MM-dd")</td>
-                    <td><button type="button" class="btn btn-primary" onclick="window.location='@Url.Action("Edit","Book", new { id=item.BookId})'">Edit</button>&nbsp;<button type="button" class="btn btn-danger">Delete</button>&nbsp;<button type="button" class="btn btn-primary" onclick="bulkImported('@item.BookId')">Bulk Imported</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="window.location='@Url.Action("Edit","Book", new { id=item.BookId})'">Edit</button>&nbsp;@*<button type="button" class="btn btn-danger">Delete</button>&nbsp;*@<button type="button" class="btn btn-primary" onclick="bulkImported('@item.BookId')">Bulk Imported</button></td>
                 </tr>
                 index++;
             }

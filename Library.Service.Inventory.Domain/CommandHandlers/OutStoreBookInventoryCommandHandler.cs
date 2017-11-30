@@ -19,7 +19,7 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
             {
                 var bookInventory = _domainRepository.GetById<BookInventory>(command.BookInventoryId);
 
-                bookInventory.OutStore(command.Notes);
+                bookInventory.OutStore(command.Notes, command.OutStoreDate);
                 _domainRepository.Save(bookInventory, bookInventory.Version, command.CommandUniqueId);
 
                 command.Result("OUTSTORE_COMPLETED");

@@ -47,7 +47,7 @@
         @if (Model.Count > 0)
         {
             var index = 1;
-            foreach (var item in Model)
+            foreach (var item in Model.OrderByDescending(p => p.CreatedOn))
             {
                 <tr class="@(item.LogType == BookingLibrary.UI.Models.LogType.Info?"info":(item.LogType == BookingLibrary.UI.Models.LogType.Error?"danger": "warning"))">
                     <td>@item.CreatedOn.ToString("yyyy-MM-dd HH:mm:ss")</td>
@@ -97,7 +97,7 @@
                 json = JSON.stringify(json, undefined, 2);
             }
 
-            json = json.replace(/&/g, '&').replace(/</g, '<').replace( />/g, '>');
+            json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
             return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
                 var cls = 'number';
                 if (/^"/.test(match)) {

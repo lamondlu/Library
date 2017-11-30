@@ -224,6 +224,8 @@
     <Compile Include="DTOs\IdentityDetailsDTO.cs" />
     <Compile Include="DTOs\IdentityDTO.cs" />
     <Compile Include="DTOs\ImportBookInventoryDTO.cs" />
+    <Compile Include="DTOs\InStoreBookInventoryDTO.cs" />
+    <Compile Include="DTOs\OutStoreBookInventoryDTO.cs" />
     <Compile Include="DTOs\RentBookDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

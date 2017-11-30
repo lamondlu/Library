@@ -17,7 +17,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
             try
             {
-                _reportDataAccessor.UpdateBookInventoryStatus(evt.AggregateId, BookInventoryStatus.OutStore, evt.Notes);
+                _reportDataAccessor.UpdateBookInventoryStatus(evt.AggregateId, BookInventoryStatus.OutStore, evt.Notes, evt.OccurredOn);
                 _reportDataAccessor.Commit();
 
                 var rentBookRequestSucceedEvent = new RentBookRequestSucceedEvent

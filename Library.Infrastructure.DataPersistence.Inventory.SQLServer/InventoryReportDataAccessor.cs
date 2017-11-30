@@ -70,7 +70,7 @@ namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer
             }));
         }
 
-        public void UpdateBookInventoryStatus(Guid bookInventoryId, BookInventoryStatus status, string notes)
+        public void UpdateBookInventoryStatus(Guid bookInventoryId, BookInventoryStatus status, string notes, DateTime occurredDate)
         {
             _commands.Add(new Command("UPDATE BookInventory SET Status=@status WHERE BookInventoryId = @bookInventoryId", new List<SqlParameter>{
                 new SqlParameter{ ParameterName ="@bookInventoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookInventoryId },
@@ -82,7 +82,7 @@ namespace Library.Infrastructure.DataPersistence.Inventory.SQLServer
                 _commands.Add(new Command("INSERT INTO History(HistoryId, BookInventoryId, Note, CreatedOn) values(@historyId, @bookInventoryId, @note, @createdOn)", new List<SqlParameter>{
                 new SqlParameter{ ParameterName ="@bookInventoryId", SqlDbType = SqlDbType.UniqueIdentifier, Value = bookInventoryId },
                 new SqlParameter{ ParameterName ="@historyId", SqlDbType = SqlDbType.UniqueIdentifier, Value = Guid.NewGuid() },
-                new SqlParameter{ ParameterName ="@createdOn", SqlDbType = SqlDbType.DateTime2, Value = DateTime.Now },
+                new SqlParameter{ ParameterName ="@createdOn", SqlDbType = SqlDbType.DateTime2, Value = occurredDate },
                 new SqlParameter{ ParameterName ="@note", SqlDbType = SqlDbType.NVarChar, Value = notes },
             }));
             }

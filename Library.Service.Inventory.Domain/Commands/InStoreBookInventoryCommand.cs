@@ -19,6 +19,8 @@ namespace Library.Service.Inventory.Domain.Commands
 
         public Guid BookInventoryId { get; set; }
 
+        public DateTime InStoreDate { get; set; }
+
         public string Notes { get; set; }
     }
 }

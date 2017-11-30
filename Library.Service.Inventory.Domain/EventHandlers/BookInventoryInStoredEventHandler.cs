@@ -17,7 +17,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
             try
             {
-                _reportDataAccessor.UpdateBookInventoryStatus(evt.AggregateId, BookInventoryStatus.InStore, evt.Notes);
+                _reportDataAccessor.UpdateBookInventoryStatus(evt.AggregateId, BookInventoryStatus.InStore, evt.Notes, evt.InStoreDate);
                 _reportDataAccessor.Commit();
 
                 evt.Result("BOOKINVENTORY_INSTORED");

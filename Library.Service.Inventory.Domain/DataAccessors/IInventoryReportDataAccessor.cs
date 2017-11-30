@@ -26,7 +26,7 @@ namespace Library.Service.Inventory.Domain.DataAccessors
 
         void UpdateBookIssuedDate(Guid bookId, DateTime issuedDate);
 
-        void UpdateBookInventoryStatus(Guid bookInventoryId, BookInventoryStatus status, string notes);
+        void UpdateBookInventoryStatus(Guid bookInventoryId, BookInventoryStatus status, string notes, DateTime occurredDate);
 
         void AddBookInventory(Guid bookId, Guid bookInventoryId, BookInventoryStatus status, string notes);
 

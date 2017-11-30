@@ -79,7 +79,7 @@ namespace Library.Infrastructure.Logger.SQLServer
 
         public List<CommandLogModel> GetEventLogs(Guid commandUniqueId)
         {
-            var sql = "SELECT * FROM CommandLogs WHERE CommandUniqueId = @commandUniqueId AND CommandName = '' ORDER BY CreatedOn ASC";
+            var sql = "SELECT * FROM CommandLogs WHERE CommandUniqueId = @commandUniqueId AND CommandName = '' ORDER BY CreatedOn DESC";
 
             var dbHelper = new DbHelper(_logDBConnectionStringProvider.ConnectionString);
             var dataTable = dbHelper.ExecuteDataTable(sql, new SqlParameter

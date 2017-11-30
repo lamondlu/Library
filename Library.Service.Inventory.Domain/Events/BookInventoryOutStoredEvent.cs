@@ -1,6 +1,7 @@
 using Library.Domain.Core;
 using Library.Domain.Core.Attributes;
 using Library.Domain.Core.Models;
+using System;
 
 namespace Library.Service.Inventory.Domain.Events
 {
@@ -15,5 +16,7 @@ namespace Library.Service.Inventory.Domain.Events
         }
 
         public string Notes { get; set; }
+
+        public DateTime OutStoreDate { get; set; }
     }
 }

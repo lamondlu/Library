@@ -18,7 +18,7 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
             try
             {
                 var bookInventory = _domainRepository.GetById<BookInventory>(command.BookInventoryId);
-                bookInventory.InStore(command.Notes);
+                bookInventory.InStore(command.Notes, command.InStoreDate);
                 _domainRepository.Save(bookInventory, bookInventory.Version, command.CommandUniqueId);
 
                 command.Result("INSTORE_COMPLETED");
