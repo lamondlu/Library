@@ -17,14 +17,16 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
             try
             {
+                var bookInventory = _domainRepository.GetById<BookInventory>(evt.BookInventoryId);
+                bookInventory.InStore($"Return by {evt.Name.FirstName} {evt.Name.LastName} at {evt.ReturnDate.ToString("yyyy-MM-dd HH:mm:ss")}", evt.OccurredOn);
+                _domainRepository.Save(bookInventory, bookInventory.Version, evt.CommandUniqueId);
+
                 _eventPublisher.Publish(new ReturnBookRequestSucceedEvent
                 {
                     BookInventoryId = evt.BookInventoryId,
                     CustomerId = evt.AggregateId,
                     CommandUniqueId = evt.CommandUniqueId
                 });
-
-                evt.Result("RETURNBOOKREQUEST_CREATED");
             }
             catch (Exception ex)
             {
