@@ -17,9 +17,6 @@ namespace Library.Service.Inventory.Domain.EventHandlers
         {
             try
             {
-                _reportDataAccessor.UpdateBookInventoryStatus(evt.BookInventoryId, BookInventoryStatus.InStore, $"Return by {evt.Name.FirstName} {evt.Name.LastName} at {evt.ReturnDate.ToString("yyyy-MM-dd HH:mm:ss")}", evt.OccurredOn);
-                _reportDataAccessor.Commit();
-
                 _eventPublisher.Publish(new ReturnBookRequestSucceedEvent
                 {
                     BookInventoryId = evt.BookInventoryId,

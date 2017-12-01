@@ -21,8 +21,6 @@ namespace Library.Service.Rental.Domain.EventHandlers
                 customer.ReturnBook(evt.BookInventoryId);
 
                 _domainRepository.Save(customer, customer.Version, evt.CommandUniqueId);
-
-                evt.Result("RETURNBOOKREQUEST_SUCCEED");
             }
             catch (Exception ex)
             {
