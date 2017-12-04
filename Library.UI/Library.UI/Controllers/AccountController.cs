@@ -1,4 +1,5 @@
-﻿using Library.UI.DTOs;
+﻿using BookingLibrary.UI.Consts;
+using Library.UI.DTOs;
 using Library.UI.Models;
 using Library.UI.SessionStorages;
 using Library.UI.Utilities;
@@ -43,14 +44,14 @@ namespace Library.UI.Controllers
             datas.Add("UserName", model.UserName);
             datas.Add("Password", model.Password);
 
-            var validationResult = ApiRequestWithFormUrlEncodedContent.Post<IdentityDTO>(url, datas);
+            var validationResult = ApiRequestWithFormUrlEncodedContent.Post<IdentityDTO>(ServiceConsts.IdentityServiceApiName, url, datas);
 
             if (validationResult != null && validationResult.UserId != Guid.Empty)
             {
                 var cookie = new HttpCookie("UserId", validationResult.UserId.ToString());
                 cookie.Expires = DateTime.Now.AddMinutes(10);
 
-                var user = ApiRequestWithStringContent.Get<IdentityDetailsDTO>($"{_identityApiBaseUrl}/api/accounts/{validationResult.UserId.ToString()}");
+                var user = ApiRequestWithStringContent.Get<IdentityDetailsDTO>(ServiceConsts.IdentityServiceApiName, $"{_identityApiBaseUrl}/api/accounts/{validationResult.UserId.ToString()}");
                 _sessionStorage.Set<IdentityDetailsDTO>(validationResult.UserId.ToString(), user);
 
                 Response.Cookies.Add(cookie);

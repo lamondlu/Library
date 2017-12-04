@@ -18,12 +18,21 @@ namespace Library.Service.Rental
             services.AddMvc();
 
             InjectService();
+
+            services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
+            {
+                options.Authority = "http://localhost:5004";
+                options.RequireHttpsMetadata = false;
+                options.ApiName = "rentalService";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
+
+            app.UseAuthentication();
             app.UseMvc(r =>
             {
                 r.MapRoute("default", "api/{controller}/{id?}");

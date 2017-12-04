@@ -22,6 +22,13 @@ namespace Library.Service.Logs
             services.AddMvc();
             services.AddTransient<ILogDBConnectionStringProvider, AppsettingLogDBConnectionStringProvider>();
             services.AddTransient<ILogger, Logger>();
+
+            services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
+            {
+                options.Authority = "http://localhost:5004";
+                options.RequireHttpsMetadata = false;
+                options.ApiName = "logService";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +39,7 @@ namespace Library.Service.Logs
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
