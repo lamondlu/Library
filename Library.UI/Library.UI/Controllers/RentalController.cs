@@ -1,4 +1,5 @@
-﻿using Library.UI.DTOs;
+﻿using BookingLibrary.UI.Consts;
+using Library.UI.DTOs;
 using Library.UI.Utilities;
 using System;
 using System.Collections.Generic;
@@ -15,20 +16,20 @@ namespace Library.UI.Controllers
 
         public ActionResult UnreturnedBooks()
         {
-            var data = ApiRequestWithFormUrlEncodedContent.Get<List<UnreturnedBookViewModel>>($"{_rentalApiBaseUrl}/api/unreturned_books");
+            var data = ApiRequestWithFormUrlEncodedContent.Get<List<UnreturnedBookViewModel>>(ServiceConsts.RentalServiceApiName, $"{_rentalApiBaseUrl}/api/unreturned_books");
             return View(data);
         }
 
         [HttpPost]
         public ActionResult _AjaxRentBook(RentBookDTO dto)
         {
-            var bookInfo = ApiRequestWithFormUrlEncodedContent.Get<EditBookDTO>($"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}");
+            var bookInfo = ApiRequestWithFormUrlEncodedContent.Get<EditBookDTO>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}");
 
             var bookInventoryId = bookInfo.BookInventories.Where(p => p.Status == 1).FirstOrDefault()?.BookInventoryId;
 
             if (bookInventoryId.HasValue)
             {
-                var commandId = ApiRequestWithStringContent.Post<Guid>($"{_rentalApiBaseUrl}/api/customers/{dto.CustomerId}/books", new
+                var commandId = ApiRequestWithStringContent.Post<Guid>(ServiceConsts.InventoryServiceApiName, $"{_rentalApiBaseUrl}/api/customers/{dto.CustomerId}/books", new
                 {
                     BookId = bookInventoryId,
                     BookName = bookInfo.BookName,
@@ -53,7 +54,7 @@ namespace Library.UI.Controllers
         [HttpPost]
         public ActionResult _AjaxReturnBook(Guid customerId, Guid bookId)
         {
-            var commandId = ApiRequestWithStringContent.Delete<Guid>($"{_rentalApiBaseUrl}/api/customers/{customerId}/books/{bookId}");
+            var commandId = ApiRequestWithStringContent.Delete<Guid>(ServiceConsts.RentalServiceApiName,$"{_rentalApiBaseUrl}/api/customers/{customerId}/books/{bookId}");
 
             return Json(new { result = true, commandId = commandId });
         }

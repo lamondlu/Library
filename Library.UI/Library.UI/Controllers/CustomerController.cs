@@ -1,4 +1,5 @@
-﻿using Library.UI.Utilities;
+﻿using BookingLibrary.UI.Consts;
+using Library.UI.Utilities;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -14,7 +15,7 @@ namespace Library.UI.Controllers
         // GET: Customer
         public ActionResult _AjaxGetAllCustomers()
         {
-            var data = ApiRequestWithFormUrlEncodedContent.Get<List<CustomerViewModel>>($"{_identityApiBaseUrl}/api/customers");
+            var data = ApiRequestWithFormUrlEncodedContent.Get<List<CustomerViewModel>>(ServiceConsts.IdentityServiceApiName, $"{_identityApiBaseUrl}/api/customers");
             return Json(data, JsonRequestBehavior.AllowGet);
         }
     }

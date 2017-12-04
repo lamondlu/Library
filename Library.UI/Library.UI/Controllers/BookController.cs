@@ -1,4 +1,5 @@
-﻿using Library.UI.DTOs;
+﻿using BookingLibrary.UI.Consts;
+using Library.UI.DTOs;
 using Library.UI.Utilities;
 using Library.UI.ViewModels;
 using System;
@@ -17,7 +18,7 @@ namespace Library.UI.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            var data = ApiRequestWithFormUrlEncodedContent.Get<List<BookViewModel>>($"{_inventoryApiBaseUrl}/api/Books");
+            var data = ApiRequestWithFormUrlEncodedContent.Get<List<BookViewModel>>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books");
             return View(data);
         }
 

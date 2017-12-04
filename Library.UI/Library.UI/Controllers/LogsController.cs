@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
+using BookingLibrary.UI.Consts;
 
 namespace BookingLibrary.UI.Controllers
 {
@@ -11,13 +12,13 @@ namespace BookingLibrary.UI.Controllers
     {
         public ActionResult List()
         {
-            var data = ApiRequestWithStringContent.Get<List<BookingLibrary.UI.Models.LogItemViewModel>>($"{_logApiBaseUrl}/api/CommandLogs");
+            var data = ApiRequestWithStringContent.Get<List<BookingLibrary.UI.Models.LogItemViewModel>>(ServiceConsts.LogServiceApiName, $"{_logApiBaseUrl}/api/CommandLogs");
             return View(data);
         }
 
         public ActionResult _AjaxListItem(Guid commandUniqueId)
         {
-            var data = ApiRequestWithStringContent.Get<List<BookingLibrary.UI.Models.LogItemViewModel>>($"{_logApiBaseUrl}/api/CommandLogs/{commandUniqueId}/EventLogs");
+            var data = ApiRequestWithStringContent.Get<List<BookingLibrary.UI.Models.LogItemViewModel>>(ServiceConsts.LogServiceApiName, $"{_logApiBaseUrl}/api/CommandLogs/{commandUniqueId}/EventLogs");
 
             if (data.Count > 0)
             {

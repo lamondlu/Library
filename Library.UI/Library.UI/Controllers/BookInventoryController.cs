@@ -1,4 +1,5 @@
-﻿using BookingLibrary.UI.DTOs;
+﻿using BookingLibrary.UI.Consts;
+using BookingLibrary.UI.DTOs;
 using Library.UI.DTOs;
 using Library.UI.Utilities;
 using Library.UI.ViewModels;
@@ -29,7 +30,7 @@ namespace Library.UI.Controllers
 
             var data = new NameValueCollection();
             data.Add("BookRepositoryIds", string.Join(",", newBookInventories.Select(p => p.ToString())));
-            var commandKey = ApiRequestWithStringContent.Post<Guid>($"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}/Inventories", new ImportBookInventoryDTO
+            var commandKey = ApiRequestWithStringContent.Post<Guid>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}/Inventories", new ImportBookInventoryDTO
             {
                 BookInventoryIds = newBookInventories
             });
@@ -40,14 +41,14 @@ namespace Library.UI.Controllers
         [HttpGet]
         public ActionResult Histories(Guid id)
         {
-            var histories = ApiRequestWithStringContent.Get<List<BookInventoryHistoryViewModel>>($"{_inventoryApiBaseUrl}/api/inventories/{id}/histories");
+            var histories = ApiRequestWithStringContent.Get<List<BookInventoryHistoryViewModel>>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/inventories/{id}/histories");
             return View(histories);
         }
 
         [HttpPut]
         public ActionResult InStore(InStoreBookInventoryDTO dto)
         {
-            var commandKey = ApiRequestWithStringContent.Put<Guid>($"{_inventoryApiBaseUrl}/api/inventories/{dto.BookInventoryId}/status", new
+            var commandKey = ApiRequestWithStringContent.Put<Guid>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/inventories/{dto.BookInventoryId}/status", new
             {
                 Status = 1,
                 Notes = dto.Note,
@@ -60,7 +61,7 @@ namespace Library.UI.Controllers
         [HttpPut]
         public ActionResult OutStore(OutStoreBookInventoryDTO dto)
         {
-            var commandKey = ApiRequestWithStringContent.Put<Guid>($"{_inventoryApiBaseUrl}/api/inventories/{dto.BookInventoryId}/status", new
+            var commandKey = ApiRequestWithStringContent.Put<Guid>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/inventories/{dto.BookInventoryId}/status", new
             {
                 Status = 2,
                 Notes = dto.Note,
