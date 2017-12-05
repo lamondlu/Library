@@ -32,13 +32,13 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                     _domainRepository.Save(bookInventory, bookInventory.Version, evt.CommandUniqueId);
                 }
 
-                evt.Result("RENTBOOKREQUEST_ACCEPTED");
+                evt.Result(RentBookRequestAcceptedEvent.Code_RENTBOOKREQUEST_ACCEPTED);
             }
             catch (Exception ex)
             {
                 //publish an RentBookRequestFailedEvent
 
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(RentBookRequestAcceptedEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

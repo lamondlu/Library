@@ -29,11 +29,11 @@ namespace Library.Service.Inventory.Domain.EventHandlers
 
                 _reportDataAccessor.Commit();
 
-                evt.Result("BOOK_ADDED");
+                evt.Result(BookAddedEvent.Code_BOOK_ADDED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(BookAddedEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

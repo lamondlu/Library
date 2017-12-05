@@ -41,11 +41,11 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
 
                 _domainRepository.Save(book, book.Version, command.CommandUniqueId);
 
-                command.Result("BOOK_UPDATED");
+                command.Result(UpdateBookCommand.Code_BOOK_UPDATED);
             }
             catch (Exception ex)
             {
-                command.Result("SERVER_ERROR", ex.ToString());
+                command.Result(UpdateBookCommand.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

@@ -5,11 +5,12 @@ using System;
 
 namespace Library.Service.Inventory.Domain.Events
 {
-    [EventLog(Code = "RETURNBOOKREQUEST_CREATED", Message = "Event Finished.", Type = LogType.Info)]
-    [EventLog(Code = "SERVER_ERROR", Type = LogType.Error)]
+    [EventLog(Code = Code_RETURNBOOKREQUEST_CREATED, Message = "Event Finished.", Type = LogType.Info)]
+    [EventLog(Code = Code_SERVER_ERROR, Type = LogType.Error)]
     public class ReturnBookRequestCreatedEvent : DomainEvent
     {
         private static string Event_ReturnBookRequestCreated = "Event_ReturnBookRequestCreated";
+        public const string Code_RETURNBOOKREQUEST_CREATED = "RETURNBOOKREQUEST_CREATED";
 
         public ReturnBookRequestCreatedEvent() : base(Event_ReturnBookRequestCreated)
         {

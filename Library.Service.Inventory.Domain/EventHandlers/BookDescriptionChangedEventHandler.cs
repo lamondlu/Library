@@ -20,11 +20,11 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                 _reportDataAccessor.UpdateBookDescription(evt.AggregateId, evt.Description);
                 _reportDataAccessor.Commit();
 
-                evt.Result("BOOKDESCRIPTION_UPDATED");
+                evt.Result(BookDescriptionChangedEvent.Code_BOOKDESCRIPTION_UPDATED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(BookDescriptionChangedEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

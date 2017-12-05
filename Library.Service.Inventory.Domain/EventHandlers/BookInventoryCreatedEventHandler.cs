@@ -20,11 +20,11 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                 _reportDataAccessor.AddBookInventory(evt.BookId, evt.AggregateId, BookInventoryStatus.InStore, evt.Notes);
                 _reportDataAccessor.Commit();
 
-                evt.Result("BOOKINVENTORY_CREATED");
+                evt.Result(BookInventoryCreatedEvent.Code_BOOKINVENTORY_CREATED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(BookInventoryCreatedEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

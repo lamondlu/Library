@@ -14,7 +14,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
 
         public override void HandleCore(BookRemovedEvent evt)
         {
-            evt.Result("BOOK_REMOVED");
+            evt.Result(BookRemovedEvent.Code_BOOK_REMOVED);
         }
     }
 }

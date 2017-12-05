@@ -20,11 +20,11 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                 _reportDataAccessor.UpdateBookIssuedDate(evt.AggregateId, evt.NewBookIssuedDate);
                 _reportDataAccessor.Commit();
 
-                evt.Result("BOOKISSUEDDATE_CHANGED");
+                evt.Result(BookIssuedDateChangedEvent.Code_BOOKISSUEDDATE_CHANGED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(BookIssuedDateChangedEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

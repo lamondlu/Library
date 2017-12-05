@@ -1,4 +1,5 @@
 using Library.Domain.Core;
+using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Service.Inventory.Domain.Commands;
@@ -20,19 +21,19 @@ namespace Library.Service.Inventory.Domain.CommandHandlers
                 var hasDuplicatedISBN = _dataAccessor.ExistISBN(command.ISBN);
                 if (hasDuplicatedISBN)
                 {
-                    command.Result("ADDBOOK_EXISTED");
+                    command.Result(AddBookCommand.Code_ADDBOOK_EXISTED);
                 }
                 else
                 {
                     var book = new Book(command.BookId, command.ISBN, command.BookName, command.Description, command.DateIssued);
                     _domainRepository.Save(book, -1, command.CommandUniqueId);
 
-                    command.Result("ADDBOOK_COMPLETED");
+                    command.Result(AddBookCommand.Code_ADDBOOK_COMPLETED);
                 }
             }
             catch (Exception ex)
             {
-                command.Result("SERVER_ERROR", ex.ToString());
+                command.Result(CommonCommand.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

@@ -1,4 +1,5 @@
 using Library.Domain.Core;
+using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Service.Inventory.Domain.CommandHandlers;
@@ -19,7 +20,7 @@ namespace Library.Service.Inventory.Domain
             {
                 if (command.BookInventoryIds == null || command.BookInventoryIds.Count == 0)
                 {
-                    command.Result("NO_INVENTORY");
+                    command.Result(ImportBookInventoryCommand.Code_NO_INVENTORY);
                     return;
                 }
 
@@ -29,11 +30,11 @@ namespace Library.Service.Inventory.Domain
                     _domainRepository.Save(bookInventory, -1, command.CommandUniqueId);
                 }
 
-                command.Result("IMPORTED_COMPLETED");
+                command.Result(ImportBookInventoryCommand.Code_IMPORTED_COMPLETED);
             }
             catch (Exception ex)
             {
-                command.Result("SERVER_ERROR", ex.ToString());
+                command.Result(CommonCommand.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

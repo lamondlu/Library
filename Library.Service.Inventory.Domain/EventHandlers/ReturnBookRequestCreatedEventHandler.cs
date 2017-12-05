@@ -32,7 +32,7 @@ namespace Library.Service.Inventory.Domain.EventHandlers
             {
                 //send event ReturnBookRequestFailedEvent
 
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(ReturnBookRequestCreatedEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

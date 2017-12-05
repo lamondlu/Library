@@ -20,11 +20,11 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                 _reportDataAccessor.UpdateBookInventoryStatus(evt.AggregateId, BookInventoryStatus.OutStore, evt.Notes, evt.OutStoreDate);
                 _reportDataAccessor.Commit();
 
-                evt.Result("BOOKINVENTORY_OUTSTORED");
+                evt.Result(BookInventoryOutStoredEvent.Code_BOOKINVENTORY_OUTSTORED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(BookInventoryOutStoredEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

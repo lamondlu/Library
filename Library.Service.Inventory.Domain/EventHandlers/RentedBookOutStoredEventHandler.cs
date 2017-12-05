@@ -30,11 +30,11 @@ namespace Library.Service.Inventory.Domain.EventHandlers
 
                 _eventPublisher.Publish(rentBookRequestSucceedEvent);
 
-                evt.Result("RENTEDBOOK_OUTSTORED");
+                evt.Result(RentedBookOutStoredEvent.Code_RENTEDBOOK_OUTSTORED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(RentedBookOutStoredEvent.Code_SERVER_ERROR, ex.ToString());
 
             }
         }
