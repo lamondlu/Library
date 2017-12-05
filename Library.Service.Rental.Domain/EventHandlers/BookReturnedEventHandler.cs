@@ -21,11 +21,11 @@ namespace Library.Service.Rental.Domain
                 _reportDataAccessor.ReturnBook(evt.BookId, evt.ReturnDate);
                 _reportDataAccessor.Commit();
 
-                evt.Result("BOOK_RETURNED");
+                evt.Result(BookReturnedEvent.Code_BOOK_RETURNED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(DomainEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

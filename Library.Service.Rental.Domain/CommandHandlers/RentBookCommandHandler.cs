@@ -50,7 +50,7 @@ namespace Library.Service.Rental.Domain
                         AggregateId = command.CustomerId
                     });
 
-                    command.Result(RentBookCommand.Code_BOOK_RENTED)
+                    command.Result(RentBookCommand.Code_BOOK_RENTED);
                 }
             }
             catch (Exception ex)

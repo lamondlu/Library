@@ -29,11 +29,11 @@ namespace Library.Service.Rental.Domain
                     CustomerId = evt.AggregateId
                 });
 
-                evt.Result("RENTBOOKREQUEST_CREATED");
+                evt.Result(RentBookRequestCreatedEvent.Code_RENTBOOKREQUEST_CREATED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(DomainEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

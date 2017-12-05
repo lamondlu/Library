@@ -9,6 +9,7 @@ namespace Library.Service.Rental.Domain.Events
     public class CustomerOwnedBookExcceedEvent : DomainEvent
     {
         private static string EVENT_CustomerOwnedBookExcceed = "Event_CustomerOwnedBookExcceed";
+        public const string Code_CUSTOMEOWNEDBOOK_EXCCEED = "CUSTOMEOWNEDBOOK_EXCCEED";
 
         public CustomerOwnedBookExcceedEvent() : base(EVENT_CustomerOwnedBookExcceed)
         {

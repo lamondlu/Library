@@ -8,6 +8,7 @@ namespace Library.Service.Rental.Domain
     public class CustomerAccountInitializedEvent : DomainEvent
     {
         private static string Event_CustomerAccountInitialized = "Event_CustomerAccountInitialized";
+        public const string Code_CUSTOMERACCOUNT_INITIALIZED = "CUSTOMERACCOUNT_INITIALIZED";
 
         public CustomerAccountInitializedEvent() : base(Event_CustomerAccountInitialized)
         {

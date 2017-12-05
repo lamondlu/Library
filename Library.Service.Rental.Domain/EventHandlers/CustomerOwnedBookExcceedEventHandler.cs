@@ -17,11 +17,11 @@ namespace Library.Service.Rental.Domain.EventHandlers
         {
             try
             {
-                evt.Result("CUSTOMEOWNEDBOOK_EXCCEED");
+                evt.Result(CustomerOwnedBookExcceedEvent.Code_CUSTOMEOWNEDBOOK_EXCCEED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(DomainEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

@@ -24,7 +24,7 @@ namespace Library.Service.Rental.Domain.EventHandlers
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(DomainEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

@@ -5,11 +5,12 @@ using System;
 
 namespace Library.Service.Rental.Domain.Events
 {
-    [EventLog(Code = "BOOK_RETURNED", Message = "Event finsihed.", Type = LogType.Info, SendFinish = true)]
-    [EventLog(Code = "SERVER_ERROR", Type = LogType.Error)]
+    [EventLog(Code = Code_BOOK_RETURNED, Message = "Event finsihed.", Type = LogType.Info, SendFinish = true)]
+    [EventLog(Code = Code_SERVER_ERROR, Type = LogType.Error)]
     public class BookReturnedEvent : DomainEvent
     {
         public readonly static string Event_BookReturned = "Event_BookReturned";
+        public const string Code_BOOK_RETURNED = "BOOK_RETURNED";
 
         public BookReturnedEvent() : base(Event_BookReturned)
         {

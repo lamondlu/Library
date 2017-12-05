@@ -14,7 +14,7 @@ namespace Library.Service.Rental.Domain
 
         public override void HandleCore(CustomerAccountInitializedEvent evt)
         {
-            evt.Result("CUSTOMERACCOUNT_INITIALIZED");
+            evt.Result(CustomerAccountInitializedEvent.Code_CUSTOMERACCOUNT_INITIALIZED);
         }
     }
 }

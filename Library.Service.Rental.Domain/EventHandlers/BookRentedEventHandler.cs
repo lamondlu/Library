@@ -20,11 +20,11 @@ namespace Library.Service.Rental.Domain.EventHandlers
                 _reportDataAccessor.RentBook(evt.BookInventoryId);
                 _reportDataAccessor.Commit();
 
-                evt.Result("BOOK_RENTED");
+                evt.Result(BookRentedEvent.Code_BOOK_RENTED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(DomainEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

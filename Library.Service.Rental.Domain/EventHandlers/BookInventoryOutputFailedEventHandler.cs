@@ -17,11 +17,11 @@ namespace Library.Service.Rental.Domain.EventHandlers
         {
             try
             {
-                evt.Result("BOOKINVENTORYOUTPUT_FAILED");
+                evt.Result(BookInventoryOutputFailedEvent.Code_BOOKINVENTORYOUTPUT_FAILED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(DomainEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

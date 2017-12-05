@@ -21,11 +21,11 @@ namespace Library.Service.Rental.Domain.EventHandlers
                 customer.RentBook(evt.BookInventoryId);
                 _domainRepository.Save(customer, customer.Version, evt.CommandUniqueId);
 
-                evt.Result("RENTBOOKREQUEST_SUCCEED");
+                evt.Result(RentBookRequestSucceedEvent.Code_RENTBOOKREQUEST_SUCCEED);
             }
             catch (Exception ex)
             {
-                evt.Result("SERVER_ERROR", ex.ToString());
+                evt.Result(DomainEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

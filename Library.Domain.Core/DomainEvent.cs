@@ -4,6 +4,7 @@ namespace Library.Domain.Core
 {
     public abstract class DomainEvent : IDomainEvent
     {
+        public const string Code_SERVER_ERROR = "SERVER_ERROR";
         private string _eventKey = string.Empty;
         private string _eventResult = string.Empty;
         private string _extraMessage = string.Empty;
