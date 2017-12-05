@@ -1,4 +1,5 @@
 using Library.Domain.Core;
+using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Service.Rental.Domain.Commands;
@@ -29,11 +30,11 @@ namespace Library.Service.Rental.Domain.CommandHandlers
                     AggregateId = command.CustomerId
                 });
 
-                command.Result("BOOK_RETURNED");
+                command.Result(ReturnBookCommand.Code_BOOK_RETURNED);
             }
             catch (Exception ex)
             {
-                command.Result("SERVER_ERROR", ex.ToString());
+                command.Result(CommonCommand.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }

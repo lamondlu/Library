@@ -1,4 +1,5 @@
 using Library.Domain.Core;
+using Library.Domain.Core.Commands;
 using Library.Domain.Core.DataAccessor;
 using Library.Domain.Core.Messaging;
 using Library.Service.Rental.Domain.CommandHandlers;
@@ -34,7 +35,7 @@ namespace Library.Service.Rental.Domain
                 {
                     _eventPublisher.Publish(new CustomerOwnedBookExcceedEvent { CommandUniqueId = command.CommandUniqueId });
 
-                    command.Result("OWNED_BOOK_EXCCEED");
+                    command.Result(RentBookCommand.Code_OWNED_BOOK_EXCCEED);
                 }
                 else
                 {
@@ -49,12 +50,12 @@ namespace Library.Service.Rental.Domain
                         AggregateId = command.CustomerId
                     });
 
-                    command.Result("BOOK_RENTED");
+                    command.Result(RentBookCommand.Code_BOOK_RENTED)
                 }
             }
             catch (Exception ex)
             {
-                command.Result("SERVER_ERROR", ex.ToString());
+                command.Result(CommonCommand.Code_SERVER_ERROR, ex.ToString());
             }
         }
     }
