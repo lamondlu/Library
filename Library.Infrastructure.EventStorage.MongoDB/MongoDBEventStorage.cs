@@ -102,7 +102,10 @@ namespace Library.Infrastructure.EventStorage.MongoDB
                                 Version = @event.Version
                             });
 
+                            var updateVersion = Builders<AggregateRoot>.Update.Set<int>(e => e.Version, @event.Version);
+
                             _dbContext.Collection<AggregateRoot>().UpdateOne(filter, update);
+                            _dbContext.Collection<AggregateRoot>().UpdateOne(filter, updateVersion);
                         }
 
                         currentIndex++;
