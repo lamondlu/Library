@@ -6,6 +6,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using System.Reflection;
 
 namespace Library.Infrastructure.EventStorage.MongoDB
 {
@@ -22,11 +24,28 @@ namespace Library.Infrastructure.EventStorage.MongoDB
 
         public IEnumerable<DomainEvent> GetEvents(Guid aggregateId)
         {
-            throw new NotImplementedException();
-            //using (_dbContext)
-            //{
-            //    var collection = _dbContext.Collection<EventObject>().FindAsync().Result;
-            //}
+            var result = new List<DomainEvent>();
+
+            using (_dbContext)
+            {
+                var root = _dbContext.Collection<AggregateRoot>().Find(p => p.AggregateRootId == aggregateId).FirstOrDefault();
+
+                if (root != null)
+                {
+                    JsonSerializerSettings setting = new JsonSerializerSettings();
+                    setting.MaxDepth = 10;
+
+                    foreach (var item in root.Events)
+                    {
+                        var type = Assembly.Load(item.AssemblyName).GetType(item.EventName);
+                        var c_item = (DomainEvent)JsonConvert.DeserializeObject(item.Content, type, setting);
+                        result.Add(c_item);
+                    }
+                }
+
+                return result;
+
+            }
         }
 
         public void Save(Domain.Core.AggregateRoot aggregate, Guid commandUniqueId)
@@ -50,17 +69,41 @@ namespace Library.Infrastructure.EventStorage.MongoDB
 
                         //}, aggregate.Id);
 
-                        //_dbContext.Collection<AggregateRoot>().FindOneAndUpdateAsync();
+                        var root = _dbContext.Collection<AggregateRoot>().Find(p => p.AggregateRootId == aggregate.Id).FirstOrDefault();
 
-                        //_dbContext.Collection<AggregateRoot>().InsertOne(new EventObject
-                        //{
-                        //    AggregateRootId = aggregate.Id,
-                        //    EventName = @event.GetType().FullName,
-                        //    AssemblyName = @event.GetType().Assembly.GetName().Name,
-                        //    Content = JsonConvert.SerializeObject(@event),
-                        //    OccurredOn = @event.OccurredOn,
-                        //    Version = @event.Version
-                        //});
+                        if (root == null)
+                        {
+                            _dbContext.Collection<AggregateRoot>().InsertOne(new AggregateRoot
+                            {
+                                AggregateRootId = aggregate.Id,
+                                Version = 1,
+                                Events = new List<EventObject>
+                                {
+                                    new EventObject
+                                    {
+                                        EventName = @event.GetType().FullName,
+                                        AssemblyName = @event.GetType().Assembly.GetName().Name,
+                                        Content = JsonConvert.SerializeObject(@event),
+                                        OccurredOn = @event.OccurredOn,
+                                        Version = @event.Version
+                                    }
+                                }
+                            });
+                        }
+                        else
+                        {
+                            var filter = Builders<AggregateRoot>.Filter.Eq(e => e.AggregateRootId, aggregate.Id);
+                            var update = Builders<AggregateRoot>.Update.Push<EventObject>(e => e.Events, new EventObject
+                            {
+                                EventName = @event.GetType().FullName,
+                                AssemblyName = @event.GetType().Assembly.GetName().Name,
+                                Content = JsonConvert.SerializeObject(@event),
+                                OccurredOn = @event.OccurredOn,
+                                Version = @event.Version
+                            });
+
+                            _dbContext.Collection<AggregateRoot>().UpdateOne(filter, update);
+                        }
 
                         currentIndex++;
                     }

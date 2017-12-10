@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Library.Infrastructure.EventStorage.MongoDB
 {
-    public class AggregateRoot: Entity
+    public class AggregateRoot : Entity
     {
         public AggregateRoot()
         {
