@@ -13,8 +13,11 @@ namespace Library.Infrastructure.EventStorage.MongoDB
 
         public DbContext()
         {
-            var client = new MongoClient(InjectContainer.GetInstance<IEventDBConnectionStringProvider>().ConnectionString);
-            var _db = client.GetDatabase("LibraryEventStorage");
+            var conn = InjectContainer.GetInstance<IEventDBConnectionStringProvider>().ConnectionString;
+            var client = new MongoClient(conn);
+
+            
+            _db = client.GetDatabase("LibraryEventStorage");
         }
 
         public IMongoCollection<T> Collection<T>() where T : Entity

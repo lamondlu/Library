@@ -2,6 +2,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Library.Domain.Core\Library.Domain.Core.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.Core\Library.Infrastructure.Core.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.EventStorage.MongoDB\Library.Infrastructure.EventStorage.MongoDB.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.Logger.SQLServer\Library.Infrastructure.Logger.SQLServer.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.Messaging.RabbitMQ\Library.Infrastructure.Messaging.RabbitMQ.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.Messaging.SignalR\Library.Infrastructure.Messaging.SignalR.csproj" />
