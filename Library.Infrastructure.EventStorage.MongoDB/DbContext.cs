@@ -34,7 +34,7 @@ namespace Library.Infrastructure.EventStorage.MongoDB
 
         public void Dispose()
         {
-            _db = null;
+            
         }
     }
 }

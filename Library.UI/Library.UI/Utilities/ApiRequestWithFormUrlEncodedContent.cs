@@ -30,8 +30,7 @@ namespace Library.UI.Utilities
 
         public static string GetToken(string serviceName)
         {
-            var disco = DiscoveryClient.GetAsync(_identityServer).Result;
-            var tokenClient = new TokenClient(disco.TokenEndpoint, _clientId, _clientSecret);
+            var tokenClient = new TokenClient($"{_identityServer}/connect/token", _clientId, _clientSecret);
             return tokenClient.RequestClientCredentialsAsync(serviceName).Result.AccessToken;
         }
 
