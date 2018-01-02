@@ -18,7 +18,7 @@ namespace Library.UI.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            var data = ApiRequestWithFormUrlEncodedContent.Get<List<BookViewModel>>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books");
+            var data = ApiRequest.Get<List<BookViewModel>>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books");
             return View(data);
         }
 
@@ -31,7 +31,7 @@ namespace Library.UI.Controllers
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
-            var data = ApiRequestWithFormUrlEncodedContent.Get<EditBookDTO>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books/{id}");
+            var data = ApiRequest.Get<EditBookDTO>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books/{id}");
 
             return View(data);
         }
@@ -39,15 +39,7 @@ namespace Library.UI.Controllers
         [HttpPost]
         public ActionResult Edit(Guid id, EditBookDTO dto)
         {
-            var data = new NameValueCollection();
-
-            data.Add("BookId", dto.BookId.ToString());
-            data.Add("BookName", dto.BookName);
-            data.Add("ISBN", dto.ISBN);
-            data.Add("IssueDate", dto.DateIssued.ToString("yyyy-MM-dd"));
-            data.Add("Description", dto.Description);
-
-            var commandId = ApiRequestWithFormUrlEncodedContent.Put<Guid>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}", data);
+            var commandId = ApiRequest.Put<Guid>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}", dto);
 
             if (commandId != Guid.Empty)
             {
@@ -62,14 +54,7 @@ namespace Library.UI.Controllers
         [HttpPost]
         public ActionResult Add(AddBookDTO dto)
         {
-            var data = new NameValueCollection();
-
-            data.Add("BookName", dto.BookName);
-            data.Add("ISBN", dto.ISBN);
-            data.Add("IssueDate", dto.IssueDate.ToString("yyyy-MM-dd"));
-            data.Add("Description", dto.Description);
-
-            var commandUnqiueId = ApiRequestWithFormUrlEncodedContent.Post<Guid>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books", data);
+            var commandUnqiueId = ApiRequest.Post<Guid>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books", dto);
 
             return Json(new { commandUnqiueId = commandUnqiueId });
         }
@@ -77,7 +62,7 @@ namespace Library.UI.Controllers
         [HttpGet]
         public ActionResult _AjaxGetAvailableBooks()
         {
-            var data = ApiRequestWithFormUrlEncodedContent.Get<List<AvailableBookModel>>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/available_books");
+            var data = ApiRequest.Get<List<AvailableBookModel>>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/available_books");
             return Json(data, JsonRequestBehavior.AllowGet);
         }
     }

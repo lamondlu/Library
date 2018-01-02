@@ -40,18 +40,14 @@ namespace Library.UI.Controllers
         {
             var url = $"{_identityApiBaseUrl}/api/identities";
 
-            var datas = new NameValueCollection();
-            datas.Add("UserName", model.UserName);
-            datas.Add("Password", model.Password);
-
-            var validationResult = ApiRequestWithFormUrlEncodedContent.Post<IdentityDTO>(ServiceConsts.IdentityServiceApiName, url, datas);
+            var validationResult = ApiRequest.Post<IdentityDTO>(ServiceConsts.IdentityServiceApiName, url, model);
 
             if (validationResult != null && validationResult.UserId != Guid.Empty)
             {
                 var cookie = new HttpCookie("UserId", validationResult.UserId.ToString());
                 cookie.Expires = DateTime.Now.AddMinutes(10);
 
-                var user = ApiRequestWithStringContent.Get<IdentityDetailsDTO>(ServiceConsts.IdentityServiceApiName, $"{_identityApiBaseUrl}/api/accounts/{validationResult.UserId.ToString()}");
+                var user = ApiRequest.Get<IdentityDetailsDTO>(ServiceConsts.IdentityServiceApiName, $"{_identityApiBaseUrl}/api/accounts/{validationResult.UserId.ToString()}");
                 _sessionStorage.Set<IdentityDetailsDTO>(validationResult.UserId.ToString(), user);
 
                 Response.Cookies.Add(cookie);

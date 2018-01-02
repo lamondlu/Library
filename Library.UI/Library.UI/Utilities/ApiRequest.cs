@@ -1,5 +1,6 @@
 ﻿using IdentityModel.Client;
 using Newtonsoft.Json;
+using Polly;
 using System;
 using System.Configuration;
 using System.Net;
@@ -9,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace Library.UI.Utilities
 {
-    public class ApiRequestWithStringContent
+    public class ApiRequest
     {
         private static readonly HttpClient _httpClient;
         private static readonly string _identityServer = string.Empty;
         private static readonly string _clientId = string.Empty;
         private static readonly string _clientSecret = string.Empty;
 
-        static ApiRequestWithStringContent()
+        static ApiRequest()
         {
             _httpClient = new HttpClient();
             _httpClient.Timeout = new TimeSpan(0, 0, 10);
@@ -44,6 +45,12 @@ namespace Library.UI.Utilities
 
             HttpResponseMessage response = _httpClient.GetAsync(url).Result;
 
+            Policy.HandleResult<HttpResponseMessage>(p => !p.IsSuccessStatusCode).Retry(2).Execute(() =>
+            {
+                response = _httpClient.GetAsync(url).Result;
+                return response;
+            });
+
             T result = default(T);
 
             if (response.IsSuccessStatusCode)
@@ -68,6 +75,13 @@ namespace Library.UI.Utilities
 
             HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             HttpResponseMessage response = _httpClient.PostAsync(url, httpContent).Result;
+
+            Policy.HandleResult<HttpResponseMessage>(p => !p.IsSuccessStatusCode).Retry(2).Execute(() =>
+            {
+                response = _httpClient.PostAsync(url, httpContent).Result;
+                return response;
+            });
+
 
             T result = default(T);
 
@@ -94,6 +108,12 @@ namespace Library.UI.Utilities
             HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             HttpResponseMessage response = _httpClient.PutAsync(url, httpContent).Result;
 
+            Policy.HandleResult<HttpResponseMessage>(p => !p.IsSuccessStatusCode).Retry(2).Execute(() =>
+            {
+                response = _httpClient.PutAsync(url, httpContent).Result;
+                return response;
+            });
+
             T result = default(T);
 
             if (response.IsSuccessStatusCode)
@@ -118,6 +138,12 @@ namespace Library.UI.Utilities
 
             HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
+
+            Policy.HandleResult<HttpResponseMessage>(p => !p.IsSuccessStatusCode).Retry(2).Execute(() =>
+            {
+                response = _httpClient.DeleteAsync(url).Result;
+                return response;
+            });
         }
 
         public static T Delete<T>(string serviceName, string url)
@@ -130,6 +156,12 @@ namespace Library.UI.Utilities
             }
 
             HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
+
+            Policy.HandleResult<HttpResponseMessage>(p => !p.IsSuccessStatusCode).Retry(2).Execute(() =>
+            {
+                response = response = _httpClient.DeleteAsync(url).Result;
+                return response;
+            });
 
             T result = default(T);
 

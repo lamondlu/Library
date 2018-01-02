@@ -237,8 +237,7 @@
     <Compile Include="SessionStorages\RedisSessionStorage.cs" />
     <Compile Include="SessionStorages\WebSessionStorage.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Utilities\ApiRequestWithStringContent.cs" />
-    <Compile Include="Utilities\ApiRequestWithFormUrlEncodedContent.cs" />
+    <Compile Include="Utilities\ApiRequest.cs" />
     <Compile Include="ViewModels\AvailableBookModel.cs" />
     <Compile Include="ViewModels\BookInventoryHistoryViewModel.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
