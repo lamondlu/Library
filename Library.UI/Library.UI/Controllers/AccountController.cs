@@ -21,7 +21,7 @@ namespace Library.UI.Controllers
         public AccountController()
         {
             _sessionStorage = new RedisSessionStorage(ConfigurationManager.AppSettings["redisServerIp"], Convert.ToInt32(ConfigurationManager.AppSettings["redisServerPort"]));
-        }
+        } 
 
         //
         // GET: /Account/Login
