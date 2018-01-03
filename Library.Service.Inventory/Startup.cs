@@ -23,7 +23,7 @@ namespace Library.Service.Inventory
 
             services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
             {
-                options.Authority = "http://localhost:5004";
+                options.Authority = "http://localhost:5001";
                 options.RequireHttpsMetadata = false;
                 options.ApiName = "inventoryService";
             });

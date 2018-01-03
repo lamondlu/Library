@@ -12,7 +12,7 @@ namespace Library.Service.Rental
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .UseUrls("http://localhost:5002")
+            .UseUrls("http://*:5002")
                 .UseStartup<Startup>()
                 .Build();
     }
