@@ -11,7 +11,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library.Infrastructure.Core\Library.Infrastructure.Core.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.InjectionFramework\Library.Infrastructure.InjectionFramework.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.Logger.SQLServer\Library.Infrastructure.Logger.SQLServer.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.Operation.Consul\Library.Infrastructure.Operation.Consul.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.Operation.Core\Library.Infrastructure.Operation.Core.csproj" />
   </ItemGroup>
 
 </Project>

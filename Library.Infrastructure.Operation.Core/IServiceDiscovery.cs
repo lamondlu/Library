@@ -8,7 +8,5 @@ namespace Library.Infrastructure.Operation.Core
     public interface IServiceDiscovery
     {
         void RegisterService(Service service);
-
-
     }
 }

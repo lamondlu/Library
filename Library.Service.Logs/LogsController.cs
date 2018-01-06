@@ -1,5 +1,6 @@
 ﻿using Library.Domain.Core;
 using Library.Domain.Core.Models;
+using Library.Infrastructure.InjectionFramework;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ namespace Library.Service.Logs
     {
         private ILogger _logger;
 
-        public CommandLogsController(ILogger logger)
+        public CommandLogsController()
         {
-            _logger = logger;
+            _logger = InjectContainer.GetInstance<ILogger>();
         }
 
         [HttpGet("")]

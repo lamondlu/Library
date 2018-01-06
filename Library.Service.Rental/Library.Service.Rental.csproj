@@ -10,6 +10,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library.Infrastructure.InjectionFramework\Library.Infrastructure.InjectionFramework.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.Operation.Consul\Library.Infrastructure.Operation.Consul.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.Operation.Core\Library.Infrastructure.Operation.Core.csproj" />
     <ProjectReference Include="..\Library.Service.Rental.Domain\Library.Service.Rental.Domain.csproj" />
     <ProjectReference Include="..\Library.Domain.Core\Library.Domain.Core.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.Messaging.RabbitMQ\Library.Infrastructure.Messaging.RabbitMQ.csproj" />

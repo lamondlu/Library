@@ -12,8 +12,6 @@ namespace Library.Infrastructure.Operation.Core.Models
 
         public string Tag { get; set; }
 
-        public string Address { get; set; }
-
-        public string Port { get; set; }
+        public int Port { get; set; }
     }
 }

@@ -12,19 +12,13 @@ namespace Library.Infrastructure.Operation.Consul
             Tags = new List<string>();
         }
 
-        public string ID { get; set; }
-
         public string Name { get; set; }
 
         public List<string> Tags { get; set; }
 
-        public string Address { get; set; }
-
-        public string Port { get; set; }
+        public int Port { get; set; }
 
         public bool EnableTagOverride { get; set; }
-
-        public CheckItem Check { get; set; }
 
         public static implicit operator ConsulServiceItem(Service service)
         {
@@ -34,7 +28,6 @@ namespace Library.Infrastructure.Operation.Consul
             }
 
             var item = new ConsulServiceItem();
-            item.ID = service.ServiceUniqueId;
             item.Name = service.ServiceName;
 
             if (!string.IsNullOrWhiteSpace(service.Tag))
@@ -42,7 +35,6 @@ namespace Library.Infrastructure.Operation.Consul
                 item.Tags.Add(service.Tag);
             }
 
-            item.Address = service.Address;
             item.Port = service.Port;
             item.EnableTagOverride = false;
 

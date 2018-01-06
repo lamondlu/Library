@@ -8,6 +8,8 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Library.Infrastructure.Operation.Consul\Library.Infrastructure.Operation.Consul.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure.Operation.Core\Library.Infrastructure.Operation.Core.csproj" />
     <ProjectReference Include="..\Library.Service.Identity.Domain\Library.Service.Identity.Domain.csproj" />
     <ProjectReference Include="..\Library.Domain.Core\Library.Domain.Core.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.Messaging.RabbitMQ\Library.Infrastructure.Messaging.RabbitMQ.csproj" />

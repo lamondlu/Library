@@ -27,7 +27,12 @@ namespace Library.Infrastructure.Operation.Consul
             var registerURL = $"{_urlProvider.Url}/{REGISTER_SERVICE_URL}";
             ConsulServiceItem item = service;
 
-            ApiRequest.Put(registerURL, item);
+            var result = ApiRequest.Put(registerURL, item);
+
+            if (!result)
+            {
+                throw new Exception("API register failure.");
+            }
         }
     }
 }
