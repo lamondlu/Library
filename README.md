@@ -7,6 +7,15 @@ A project using .NET Core 2.0, DDD, CQRS, Event Sourcing and RabbitMQ
 ## System Architecture
 ![System Architecture](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Architecture/20171107104353.png)
 
+## Prerequisites
+- Visual Studio 2017 (For development and debug propose)
+- RabbitMQ
+- Redis 
+- Consul (Service Discovery and registeration)
+- Consult Template (Update and Restart Nginx)
+- Nginx (For Load Balance)
+- MongoDB (For Event Store)
+
 ## EDA 
 ![EDA](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Architecture/20171108152513.png)
 
