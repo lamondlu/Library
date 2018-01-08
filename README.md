@@ -32,7 +32,7 @@ We will use the Nginx, Consul, Consul Template to create an service discovery an
 Use the Log service as an example.
 
 
-    	public void SelfRegister()
+    public void SelfRegister()
         {
             var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
             serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
