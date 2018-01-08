@@ -58,9 +58,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Identity", "Library
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure.EventStorage.MongoDB", "Library.Infrastructure.EventStorage.MongoDB\Library.Infrastructure.EventStorage.MongoDB.csproj", "{0E3B6728-8F00-4B82-8C5A-73AD1B7410EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure.Operation.Core", "Library.Infrastructure.Operation.Core\Library.Infrastructure.Operation.Core.csproj", "{1A4E55C5-9B0C-4E74-BE25-9E81D54F704C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure.Operation.Core", "Library.Infrastructure.Operation.Core\Library.Infrastructure.Operation.Core.csproj", "{1A4E55C5-9B0C-4E74-BE25-9E81D54F704C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure.Operation.Consul", "Library.Infrastructure.Operation.Consul\Library.Infrastructure.Operation.Consul.csproj", "{5816E1D3-45E5-4BE8-94E2-484DD5CDDF97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure.Operation.Consul", "Library.Infrastructure.Operation.Consul\Library.Infrastructure.Operation.Consul.csproj", "{5816E1D3-45E5-4BE8-94E2-484DD5CDDF97}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operation", "Operation", "{9A3E11CA-0198-4305-8A4E-132C2CC2637F}"
 EndProject
@@ -69,6 +69,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventStorage", "EventStorage", "{6DDD70E0-635A-4064-81F4-BCBACD6D7234}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{3E7F60B7-E5FC-41A9-85A5-85CA6B55E129}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44694BAD-8CFF-45C3-A2C9-244F5840F820}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
