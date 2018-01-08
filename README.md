@@ -1,5 +1,5 @@
 #  Library
-A project using .NET Core 2.0, DDD, CQRS, Event Sourcing and RabbitMQ
+A microservice project using .NET Core 2.0, DDD, CQRS, Event Sourcing, Redis and RabbitMQ.
 
 ## Components
 ![Components](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Architecture/20180108201702.png)
@@ -21,6 +21,13 @@ A project using .NET Core 2.0, DDD, CQRS, Event Sourcing and RabbitMQ
 
 ## Service Discovery 
 We will use the Nginx, Consul, Consul Template to create an service discovery and service registeration mechanism.
+
+![Service Discovery](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Architecture/20180108211340.png)
+- The nginx will do the load balance work.
+- All the web or api instances will be registered in the consul server.
+- Consul template will listen the consul server, if there is new instance, consul template will update the nginx.conf with assigned template and restart the nginx server, so the new instance will be connected with the nginx server correctly.
+
+
 
 
 
