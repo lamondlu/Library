@@ -72,6 +72,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44694BAD-8CFF-45C3-A2C9-244F5840F820}"
 	ProjectSection(SolutionItems) = preProject
+		dockerfile_handler = dockerfile_handler
+		dockerfile_identity = dockerfile_identity
+		dockerfile_inventory = dockerfile_inventory
+		dockerfile_rental = dockerfile_rental
 		README.md = README.md
 	EndProjectSection
 EndProject

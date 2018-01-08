@@ -17,6 +17,8 @@ COPY Library.Infrastructure.DataPersistence.Rental.SQLServer ./Library.Infrastru
 COPY Library.Infrastructure.EventStorage.MongoDB ./Library.Infrastructure.EventStorage.MongoDB/
 COPY Library.Infrastructure.EventStorage.SQLServer ./Library.Infrastructure.EventStorage.SQLServer/
 COPY Library.Infrastructure.Logger.SQLServer ./Library.Infrastructure.Logger.SQLServer/
+COPY Library.Infrastructure.Operation.Consul ./Library.Infrastructure.Operation.Consul/
+COPY Library.Infrastructure.Operation.Core ./Library.Infrastructure.Operation.Core/
 
 
 WORKDIR /app/Library.Service.Handler
