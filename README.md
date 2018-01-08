@@ -33,14 +33,14 @@ Use the Log service as an example.
 
 
     public void SelfRegister()
+    {
+        var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
+        serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
         {
-            var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
-            serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
-            {
-                Port = 5003,
-                ServiceName = "LogService",
-                Tag = "Microservice API"
-            });
+            Port = 5003,
+            ServiceName = "LogService",
+            Tag = "Microservice API"
+        });
 
-            Console.WriteLine("Register to consul successfully.");
-        }
+        Console.WriteLine("Register to consul successfully.");
+    }
