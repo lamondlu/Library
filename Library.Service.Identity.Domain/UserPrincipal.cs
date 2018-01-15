@@ -2,16 +2,16 @@ using Library.Domain.Core;
 
 namespace Library.Service.Identity.Domain
 {
-    public abstract class UserPrincipal : ValueObject
+    public class UserPrincipal : ValueObject
     {
-        public UserPrincipal(string role, string userName, string password)
+        public UserPrincipal(UserRole role, string userName, string password)
         {
             this.Role = role;
             this.UserName = userName;
             this.Password = password;
         }
 
-        public string Role { get; private set; }
+        public UserRole Role { get; private set; }
 
         public string UserName { get; private set; }
 

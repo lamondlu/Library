@@ -1,13 +1,21 @@
 ﻿using Library.Domain.Core;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Library.Service.Identity.Domain
 {
-    public class User : Person
+    public class User : Person,
+        IHandler<UserCreatedEvent>
     {
-        public User(PersonName name, UserPrincipal principal) : base(Guid.NewGuid(), name)
+        public User(PersonName name, UserPrincipal principal)
         {
-            this.UserPrincipal = principal;
+            ApplyChange(new UserCreatedEvent
+            {
+                AggregateId = Guid.NewGuid(),
+                PersonName = name,
+                Principal = principal
+            });
         }
 
         public User(Guid personId, PersonName name, UserPrincipal principal) : base(personId, name)
@@ -19,6 +27,20 @@ namespace Library.Service.Identity.Domain
         {
             get;
             internal set;
+        }
+
+        public List<Guid> Books
+        {
+            get;
+            internal set;
+        }
+
+        public void Handle(UserCreatedEvent evt)
+        {
+            Id = evt.AggregateId;
+            Name = evt.PersonName;
+            UserPrincipal = evt.Principal;
+            Books = new List<Guid>();
         }
     }
 }

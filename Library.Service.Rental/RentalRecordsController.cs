@@ -15,11 +15,12 @@ namespace Library.Service.Rental
     public class RentalRecordsController : Controller
     {
         private ICommandPublisher _commandPublisher = null;
+
         private IRentalReportDataAccessor _reportDatabase = null;
 
-        public RentalRecordsController()
+        public RentalRecordsController(ICommandPublisher commandPubliser)
         {
-            _commandPublisher = InjectContainer.GetInstance<ICommandPublisher>();
+            _commandPublisher = commandPubliser;
             _reportDatabase = InjectContainer.GetInstance<IRentalReportDataAccessor>();
         }
 
