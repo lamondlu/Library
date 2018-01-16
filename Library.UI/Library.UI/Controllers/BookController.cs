@@ -18,7 +18,7 @@ namespace Library.UI.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            var data = ApiRequest.Get<List<BookViewModel>>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books");
+            var data = ApiRequest.Get<List<BookViewModel>>($"{_inventoryApiBaseUrl}/api/Books");
             return View(data);
         }
 
@@ -31,7 +31,7 @@ namespace Library.UI.Controllers
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
-            var data = ApiRequest.Get<EditBookDTO>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books/{id}");
+            var data = ApiRequest.Get<EditBookDTO>($"{_inventoryApiBaseUrl}/api/Books/{id}");
 
             return View(data);
         }
@@ -39,7 +39,7 @@ namespace Library.UI.Controllers
         [HttpPost]
         public ActionResult Edit(Guid id, EditBookDTO dto)
         {
-            var commandId = ApiRequest.Put<Guid>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}", dto);
+            var commandId = ApiRequest.Put<Guid>($"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}", dto);
 
             if (commandId != Guid.Empty)
             {
@@ -54,7 +54,7 @@ namespace Library.UI.Controllers
         [HttpPost]
         public ActionResult Add(AddBookDTO dto)
         {
-            var commandUnqiueId = ApiRequest.Post<Guid>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/Books", dto);
+            var commandUnqiueId = ApiRequest.Post<Guid>($"{_inventoryApiBaseUrl}/api/Books", dto);
 
             return Json(new { commandUnqiueId = commandUnqiueId });
         }
@@ -62,7 +62,7 @@ namespace Library.UI.Controllers
         [HttpGet]
         public ActionResult _AjaxGetAvailableBooks()
         {
-            var data = ApiRequest.Get<List<AvailableBookModel>>(ServiceConsts.InventoryServiceApiName, $"{_inventoryApiBaseUrl}/api/available_books");
+            var data = ApiRequest.Get<List<AvailableBookModel>>($"{_inventoryApiBaseUrl}/api/available_books");
             return Json(data, JsonRequestBehavior.AllowGet);
         }
     }

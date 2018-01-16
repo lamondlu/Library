@@ -22,12 +22,7 @@ namespace Library.Service.Rental
 
             InjectService();
 
-            services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
-            {
-                options.Authority = "http://localhost:5004";
-                options.RequireHttpsMetadata = false;
-                options.ApiName = "rentalService";
-            });
+
 
             SelfRegister();
         }
@@ -37,7 +32,6 @@ namespace Library.Service.Rental
         {
             app.UseStaticFiles();
 
-            app.UseAuthentication();
             app.UseMvc(r =>
             {
                 r.MapRoute("default", "api/{controller}/{id?}");

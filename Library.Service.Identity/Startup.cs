@@ -20,15 +20,6 @@ namespace Library.Service.Identity
 
             InjectService();
 
-            services.AddMvcCore().AddAuthorization().AddJsonFormatters();
-
-            services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
-            {
-                options.Authority = "http://localhost:5004";
-                options.RequireHttpsMetadata = false;
-                options.ApiName = "identityService";
-            });
-
             SelfRegister();
         }
 
@@ -48,7 +39,6 @@ namespace Library.Service.Identity
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseMvc(r =>
             {

@@ -8,6 +8,11 @@ namespace Library.Service.Identity.Domain
     public class User : Person,
         IHandler<UserCreatedEvent>
     {
+        public User()
+        {
+
+        }
+
         public User(PersonName name, UserPrincipal principal)
         {
             ApplyChange(new UserCreatedEvent

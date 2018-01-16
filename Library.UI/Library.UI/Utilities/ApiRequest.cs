@@ -13,31 +13,16 @@ namespace Library.UI.Utilities
     public class ApiRequest
     {
         private static readonly HttpClient _httpClient;
-        private static readonly string _identityServer = string.Empty;
-        private static readonly string _clientId = string.Empty;
-        private static readonly string _clientSecret = string.Empty;
 
         static ApiRequest()
         {
             _httpClient = new HttpClient();
             _httpClient.Timeout = new TimeSpan(0, 0, 10);
             _httpClient.DefaultRequestHeaders.Connection.Add("keep-alive");
-
-            _identityServer = ConfigurationManager.AppSettings["identityServer"];
-            _clientId = ConfigurationManager.AppSettings["identityClientID"];
-            _clientSecret = ConfigurationManager.AppSettings["identityClientSecret"];
-        }
-
-        public static string GetToken(string serviceName)
-        {
-            var tokenClient = new TokenClient($"{_identityServer}/connect/token", _clientId, _clientSecret);
-            return tokenClient.RequestClientCredentialsAsync(serviceName).Result.AccessToken;
         }
 
         public static T Get<T>(string serviceName, string url)
         {
-            _httpClient.SetBearerToken(GetToken(serviceName));
-
             if (url.StartsWith("https"))
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
@@ -66,8 +51,6 @@ namespace Library.UI.Utilities
 
         public static T Post<T>(string serviceName, string url, object data)
         {
-            _httpClient.SetBearerToken(GetToken(serviceName));
-
             if (url.StartsWith("https"))
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
@@ -98,8 +81,6 @@ namespace Library.UI.Utilities
 
         public static T Put<T>(string serviceName, string url, object data)
         {
-            _httpClient.SetBearerToken(GetToken(serviceName));
-
             if (url.StartsWith("https"))
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
@@ -129,8 +110,6 @@ namespace Library.UI.Utilities
 
         public static void Delete(string serviceName, string url, object data)
         {
-            _httpClient.SetBearerToken(GetToken(serviceName));
-
             if (url.StartsWith("https"))
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
@@ -148,8 +127,6 @@ namespace Library.UI.Utilities
 
         public static T Delete<T>(string serviceName, string url)
         {
-            _httpClient.SetBearerToken(GetToken(serviceName));
-
             if (url.StartsWith("https"))
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;

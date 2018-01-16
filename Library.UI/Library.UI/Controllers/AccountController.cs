@@ -40,14 +40,14 @@ namespace Library.UI.Controllers
         {
             var url = $"{_identityApiBaseUrl}/api/identities";
 
-            var validationResult = ApiRequest.Post<IdentityDTO>(ServiceConsts.IdentityServiceApiName, url, model);
+            var validationResult = ApiRequest.Post<IdentityDTO>(url, model);
 
             if (validationResult != null && validationResult.UserId != Guid.Empty)
             {
                 var cookie = new HttpCookie("UserId", validationResult.UserId.ToString());
                 cookie.Expires = DateTime.Now.AddMinutes(10);
 
-                var user = ApiRequest.Get<IdentityDetailsDTO>(ServiceConsts.IdentityServiceApiName, $"{_identityApiBaseUrl}/api/accounts/{validationResult.UserId.ToString()}");
+                var user = ApiRequest.Get<IdentityDetailsDTO>($"{_identityApiBaseUrl}/api/accounts/{validationResult.UserId.ToString()}");
                 _sessionStorage.Set<IdentityDetailsDTO>(validationResult.UserId.ToString(), user);
 
                 Response.Cookies.Add(cookie);

@@ -12,13 +12,13 @@ namespace BookingLibrary.UI.Controllers
     {
         public ActionResult List()
         {
-            var data = ApiRequest.Get<List<BookingLibrary.UI.Models.LogItemViewModel>>(ServiceConsts.LogServiceApiName, $"{_logApiBaseUrl}/api/CommandLogs");
+            var data = ApiRequest.Get<List<BookingLibrary.UI.Models.LogItemViewModel>>($"{_logApiBaseUrl}/api/CommandLogs");
             return View(data);
         }
 
         public ActionResult _AjaxListItem(Guid commandUniqueId)
         {
-            var data = ApiRequest.Get<List<BookingLibrary.UI.Models.LogItemViewModel>>(ServiceConsts.LogServiceApiName, $"{_logApiBaseUrl}/api/CommandLogs/{commandUniqueId}/EventLogs");
+            var data = ApiRequest.Get<List<BookingLibrary.UI.Models.LogItemViewModel>>($"{_logApiBaseUrl}/api/CommandLogs/{commandUniqueId}/EventLogs");
 
             if (data.Count > 0)
             {

@@ -26,12 +26,7 @@ namespace Library.Service.Logs
             services.AddMvc();
             InjectService();
 
-            services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
-            {
-                options.Authority = "http://localhost:5004";
-                options.RequireHttpsMetadata = false;
-                options.ApiName = "logService";
-            });
+           
 
             SelfRegister();
         }
@@ -56,8 +51,7 @@ namespace Library.Service.Logs
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseAuthentication();
+            
             app.UseMvc();
         }
 
