@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Library.ApiGateway
 {
@@ -14,12 +15,18 @@ namespace Library.ApiGateway
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            IWebHostBuilder builder = new WebHostBuilder();
+            builder.ConfigureServices(s =>
+            {
+                s.AddSingleton(builder);
+            });
+            builder.UseKestrel()
+                   .UseContentRoot(Directory.GetCurrentDirectory())
+                   .UseIISIntegration()
+                   .UseStartup<Startup>()
+                   .UseApplicationInsights();
+            var host = builder.Build();
+            host.Run();
         }
-
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
     }
 }
