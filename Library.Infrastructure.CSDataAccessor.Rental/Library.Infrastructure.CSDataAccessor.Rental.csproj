@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Library.Infrastructure.CSDataAccessor.Core\Library.Infrastructure.CSDataAccessor.Core.csproj" />
     <ProjectReference Include="..\Library.Service.Rental.Domain\Library.Service.Rental.Domain.csproj" />
   </ItemGroup>
 

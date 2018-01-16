@@ -6,7 +6,7 @@ namespace Library.Service.Rental.Domain.DTOs
 {
     public class CustomerDetailsViewModel
     {
-        public Guid AccountId { get; set; }
+        public Guid CustomerId { get; set; }
 
         public string FirstName { get; set; }
 

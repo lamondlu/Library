@@ -9,38 +9,38 @@ using System;
 
 namespace Library.Service.Rental.Domain
 {
-    public class RentBookCommandHandler : BaseRentalCommandHandler<RentBookCommand>
-    {
-        private IIdentityCrossServiceDataAccessor _identityDataAccessor = null;
+	public class RentBookCommandHandler : BaseRentalCommandHandler<RentBookCommand>
+	{
+		private IIdentityCrossServiceDataAccessor _identityDataAccessor = null;
 
-        public RentBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger, IEventPublisher eventPublisher, IIdentityCrossServiceDataAccessor identityDataAccessor) : base(domainRepository, dataAccesor, tracker, logger, eventPublisher)
-        {
-            _identityDataAccessor = identityDataAccessor;
-        }
+		public RentBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger, IEventPublisher eventPublisher, IIdentityCrossServiceDataAccessor identityDataAccessor) : base(domainRepository, dataAccesor, tracker, logger, eventPublisher)
+		{
+			_identityDataAccessor = identityDataAccessor;
+		}
 
-        public override void ExecuteCore(RentBookCommand command)
-        {
-            try
-            {
-                var customer = _identityDataAccessor.GetCustomerDetails(command.CustomerId);
+		public override void ExecuteCore(RentBookCommand command)
+		{
+			try
+			{
+				var customer = _identityDataAccessor.GetCustomerDetails(command.CustomerId);
 
-                _eventPublisher.Publish(new RentBookRequestCreatedEvent
-                {
-                    ISBN = command.ISBN,
-                    BookName = command.BookName,
-                    BookInventoryId = command.BookId,
-                    RentDate = DateTime.Now,
-                    Name = new PersonName(customer.FirstName, customer.MiddleName, customer.LastName),
-                    CommandUniqueId = command.CommandUniqueId,
-                    AggregateId = command.CustomerId
-                });
+				_eventPublisher.Publish(new RentBookRequestCreatedEvent
+				{
+					ISBN = command.ISBN,
+					BookName = command.BookName,
+					BookInventoryId = command.BookId,
+					RentDate = DateTime.Now,
+					Name = new PersonName(customer.FirstName, customer.MiddleName, customer.LastName),
+					CommandUniqueId = command.CommandUniqueId,
+					AggregateId = command.CustomerId
+				});
 
-                command.Result(RentBookCommand.Code_BOOK_RENTED);
-            }
-            catch (Exception ex)
-            {
-                command.Result(CommonCommand.Code_SERVER_ERROR, ex.ToString());
-            }
-        }
-    }
+				command.Result(RentBookCommand.Code_BOOK_RENTED);
+			}
+			catch (Exception ex)
+			{
+				command.Result(CommonCommand.Code_SERVER_ERROR, ex.ToString());
+			}
+		}
+	}
 }

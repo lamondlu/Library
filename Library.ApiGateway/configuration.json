@@ -1,0 +1,19 @@
+﻿{
+  "ReRoutes": [
+    {
+      "ServiceName": "IdentityService",
+      "LoadBalancer": "LeastConnection",
+      "DownstreamPathTemplate": "/api/customers/{customerId}",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/customers/{customerId}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "UseServiceDiscovery": true
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500
+    }
+  }
+}

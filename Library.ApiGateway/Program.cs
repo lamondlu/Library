@@ -21,7 +21,8 @@ namespace Library.ApiGateway
                 s.AddSingleton(builder);
             });
             builder.UseKestrel()
-                   .UseContentRoot(Directory.GetCurrentDirectory())
+				   .UseUrls("http://*:4999")
+				   .UseContentRoot(Directory.GetCurrentDirectory())
                    .UseIISIntegration()
                    .UseStartup<Startup>()
                    .UseApplicationInsights();
