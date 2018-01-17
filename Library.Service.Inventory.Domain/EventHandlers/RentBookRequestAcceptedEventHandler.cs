@@ -36,8 +36,6 @@ namespace Library.Service.Inventory.Domain.EventHandlers
             }
             catch (Exception ex)
             {
-                //publish an RentBookRequestFailedEvent
-
                 evt.Result(RentBookRequestAcceptedEvent.Code_SERVER_ERROR, ex.ToString());
             }
         }
