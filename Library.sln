@@ -44,9 +44,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{D34D6F08-CDA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{71FC3006-4899-4E48-9199-C647C630438D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.UI", "Library.UI\Library.UI\Library.UI.csproj", "{C17BB95E-02B5-48FE-889B-0E49A244E8AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.UI", "Library.UI\Library.UI.csproj", "{C17BB95E-02B5-48FE-889B-0E49A244E8AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.SignalR", "Library.SignalR\Library.SignalR\Library.SignalR.csproj", "{A1BA8AFE-8804-4853-8E75-D80DC5EEBF15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.SignalR", "Library.SignalR\Library.SignalR.csproj", "{A1BA8AFE-8804-4853-8E75-D80DC5EEBF15}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure.Core", "Library.Infrastructure.Core\Library.Infrastructure.Core.csproj", "{08AF216A-D013-4898-A7AD-949F986C09E6}"
 EndProject
