@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Library.Infrastructure.Operation.Core
+﻿namespace Library.Infrastructure.Operation.Core
 {
-    public interface IHealthCheck
-    {
-
-    }
+	public interface IHealthCheck
+	{
+	}
 }

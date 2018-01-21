@@ -7,25 +7,25 @@ using System;
 
 namespace Library.Service.Inventory.Domain.EventHandlers
 {
-    public class BookNameChangedEventHandler : BaseInventoryEventHandler<BookNameChangedEvent>
-    {
-        public BookNameChangedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
-        {
-        }
+	public class BookNameChangedEventHandler : BaseInventoryEventHandler<BookNameChangedEvent>
+	{
+		public BookNameChangedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
+		{
+		}
 
-        public override void HandleCore(BookNameChangedEvent evt)
-        {
-            try
-            {
-                _reportDataAccessor.UpdateBookName(evt.AggregateId, evt.NewBookName);
-                _reportDataAccessor.Commit();
+		public override void HandleCore(BookNameChangedEvent evt)
+		{
+			try
+			{
+				_reportDataAccessor.UpdateBookName(evt.AggregateId, evt.NewBookName);
+				_reportDataAccessor.Commit();
 
-                evt.Result(BookNameChangedEvent.Code_BOOKNAME_CHANGED);
-            }
-            catch (Exception ex)
-            {
-                evt.Result(BookNameChangedEvent.Code_SERVER_ERROR, ex.ToString());
-            }
-        }
-    }
+				evt.Result(BookNameChangedEvent.Code_BOOKNAME_CHANGED);
+			}
+			catch (Exception ex)
+			{
+				evt.Result(BookNameChangedEvent.Code_SERVER_ERROR, ex.ToString());
+			}
+		}
+	}
 }

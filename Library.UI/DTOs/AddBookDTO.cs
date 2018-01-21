@@ -3,19 +3,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Library.UI.DTOs
 {
-    public class AddBookDTO
-    {
-        public Guid BookId { get; set; }
+	public class AddBookDTO
+	{
+		public Guid BookId { get; set; }
 
-        [Required]
-        public string BookName { get; set; }
+		[Required]
+		public string BookName { get; set; }
 
-        [Required]
-        public string ISBN { get; set; }
+		[Required]
+		public string ISBN { get; set; }
 
-        [Required]
-        public DateTime IssueDate { get; set; }
+		[Required]
+		public DateTime IssueDate { get; set; }
 
-        public string Description { get; set; }
-    }
+		public string Description { get; set; }
+	}
 }

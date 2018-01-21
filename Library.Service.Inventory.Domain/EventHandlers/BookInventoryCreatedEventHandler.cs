@@ -7,25 +7,25 @@ using System;
 
 namespace Library.Service.Inventory.Domain.EventHandlers
 {
-    public class BookInventoryCreatedEventHandler : BaseInventoryEventHandler<BookInventoryCreatedEvent>
-    {
-        public BookInventoryCreatedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
-        {
-        }
+	public class BookInventoryCreatedEventHandler : BaseInventoryEventHandler<BookInventoryCreatedEvent>
+	{
+		public BookInventoryCreatedEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
+		{
+		}
 
-        public override void HandleCore(BookInventoryCreatedEvent evt)
-        {
-            try
-            {
-                _reportDataAccessor.AddBookInventory(evt.BookId, evt.AggregateId, BookInventoryStatus.InStore, evt.Notes);
-                _reportDataAccessor.Commit();
+		public override void HandleCore(BookInventoryCreatedEvent evt)
+		{
+			try
+			{
+				_reportDataAccessor.AddBookInventory(evt.BookId, evt.AggregateId, BookInventoryStatus.InStore, evt.Notes);
+				_reportDataAccessor.Commit();
 
-                evt.Result(BookInventoryCreatedEvent.Code_BOOKINVENTORY_CREATED);
-            }
-            catch (Exception ex)
-            {
-                evt.Result(BookInventoryCreatedEvent.Code_SERVER_ERROR, ex.ToString());
-            }
-        }
-    }
+				evt.Result(BookInventoryCreatedEvent.Code_BOOKINVENTORY_CREATED);
+			}
+			catch (Exception ex)
+			{
+				evt.Result(BookInventoryCreatedEvent.Code_SERVER_ERROR, ex.ToString());
+			}
+		}
+	}
 }

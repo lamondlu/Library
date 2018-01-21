@@ -6,113 +6,113 @@ using System.IO;
 
 namespace Library.Service.Handler
 {
-    public class AppsettingInventoryReadDBConnectionStringProvider : IInventoryReadDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingInventoryReadDBConnectionStringProvider : IInventoryReadDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingInventoryReadDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingInventoryReadDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["inventoryReadDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["inventoryReadDBConnectionString"];
+			}
+		}
+	}
 
-    public class AppsettingInventoryWriteDBConnectionStringProvider : IInventoryWriteDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingInventoryWriteDBConnectionStringProvider : IInventoryWriteDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingInventoryWriteDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingInventoryWriteDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["inventoryWriteDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["inventoryWriteDBConnectionString"];
+			}
+		}
+	}
 
-    public class AppsettingRentalReadDBConnectionStringProvider : IRentalReadDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingRentalReadDBConnectionStringProvider : IRentalReadDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingRentalReadDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingRentalReadDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["rentalReadDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["rentalReadDBConnectionString"];
+			}
+		}
+	}
 
-    public class AppsettingRentalWriteDBConnectionStringProvider : IRentalWriteDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingRentalWriteDBConnectionStringProvider : IRentalWriteDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingRentalWriteDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingRentalWriteDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["rentalWriteDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["rentalWriteDBConnectionString"];
+			}
+		}
+	}
 
-    public class AppsettingLogDBConnectionStringProvider : ILogDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingLogDBConnectionStringProvider : ILogDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingLogDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingLogDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["logDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["logDBConnectionString"];
+			}
+		}
+	}
 }

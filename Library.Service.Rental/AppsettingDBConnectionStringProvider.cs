@@ -4,47 +4,47 @@ using System.IO;
 
 namespace Library.Service.Rental
 {
-    public class AppsettingRentalReadDBConnectionStringProvider : IRentalReadDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingRentalReadDBConnectionStringProvider : IRentalReadDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingRentalReadDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingRentalReadDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["rentalReadDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["rentalReadDBConnectionString"];
+			}
+		}
+	}
 
-    public class AppsettingRentalWriteDBConnectionStringProvider : IRentalWriteDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingRentalWriteDBConnectionStringProvider : IRentalWriteDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingRentalWriteDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingRentalWriteDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["rentalWriteDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["rentalWriteDBConnectionString"];
+			}
+		}
+	}
 }

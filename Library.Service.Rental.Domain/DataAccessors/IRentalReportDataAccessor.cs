@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Rental.Domain.DataAccessors
 {
-    public interface IRentalReportDataAccessor
-    {
-        List<UnreturnedBookViewModel> GetUnreturnBooks();
+	public interface IRentalReportDataAccessor
+	{
+		List<UnreturnedBookViewModel> GetUnreturnBooks();
 
-        bool IsNewCustomer(Guid customerId);
+		bool IsNewCustomer(Guid customerId);
 
-        void RentBook(Guid bookId);
+		void RentBook(Guid bookId);
 
-        void CreateRentBookRequest(Guid bookId, string bookName, string isbn, Guid customerId, PersonName name, DateTime rentDate);
+		void CreateRentBookRequest(Guid bookId, string bookName, string isbn, Guid customerId, PersonName name, DateTime rentDate);
 
-        void ReturnBook(Guid bookId, DateTime returnDate);
+		void ReturnBook(Guid bookId, DateTime returnDate);
 
-        void Commit();
+		void Commit();
 
-        Task CommitAsync();
-    }
+		Task CommitAsync();
+	}
 }

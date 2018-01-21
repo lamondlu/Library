@@ -92,7 +92,6 @@
     }
 </section>
 
-
 <div class="modal fade" id="inStoreInventoryModal" tabindex="-1" role="dialog" aria-labelledby="inStoreInventory" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -153,8 +152,6 @@
         var bookInventoryId = null;
         var commandType = '';
         var currentCommandUnqiueId = null;
-
-
 
         function inStore() {
             $.ajax({
@@ -222,7 +219,6 @@
                 bookInventoryId = $(this).attr('data-id');
                 $('#outStoreInventoryModal').modal('show');
             });
-
 
             $(".inStoreOperation").click(function () {
                 bookInventoryId = $(this).attr('data-id');

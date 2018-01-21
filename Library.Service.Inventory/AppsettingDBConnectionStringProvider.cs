@@ -4,47 +4,47 @@ using System.IO;
 
 namespace Library.Service.Inventory
 {
-    public class AppsettingInventoryReadDBConnectionStringProvider : IInventoryReadDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingInventoryReadDBConnectionStringProvider : IInventoryReadDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingInventoryReadDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingInventoryReadDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["InventoryReadDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["InventoryReadDBConnectionString"];
+			}
+		}
+	}
 
-    public class AppsettingInventoryWriteDBConnectionStringProvider : IInventoryWriteDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingInventoryWriteDBConnectionStringProvider : IInventoryWriteDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingInventoryWriteDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingInventoryWriteDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["InventoryWriteDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["InventoryWriteDBConnectionString"];
+			}
+		}
+	}
 }

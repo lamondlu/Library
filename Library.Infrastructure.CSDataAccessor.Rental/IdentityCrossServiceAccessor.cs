@@ -1,8 +1,8 @@
-﻿using Library.Service.Rental.Domain.DataAccessors;
-using System;
-using Library.Service.Rental.Domain.DTOs;
-using Library.Infrastructure.Core.Utilities;
+﻿using Library.Infrastructure.Core.Utilities;
 using Library.Infrastructure.CSDataAccessor.Core;
+using Library.Service.Rental.Domain.DataAccessors;
+using Library.Service.Rental.Domain.DTOs;
+using System;
 
 namespace Library.Infrastructure.CSDataAccessor.Rental
 {

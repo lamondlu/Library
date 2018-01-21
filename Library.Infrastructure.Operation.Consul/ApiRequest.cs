@@ -7,136 +7,134 @@ using System.Threading.Tasks;
 
 namespace Library.Infrastructure.Operation.Consul
 {
-    public class ApiRequest
-    {
-        private static readonly HttpClient _httpClient;
+	public class ApiRequest
+	{
+		private static readonly HttpClient _httpClient;
 
-        static ApiRequest()
-        {
-            _httpClient = new HttpClient();
-            _httpClient.Timeout = new TimeSpan(0, 0, 10);
-            _httpClient.DefaultRequestHeaders.Connection.Add("keep-alive");
-        }
+		static ApiRequest()
+		{
+			_httpClient = new HttpClient();
+			_httpClient.Timeout = new TimeSpan(0, 0, 10);
+			_httpClient.DefaultRequestHeaders.Connection.Add("keep-alive");
+		}
 
-        public static T Get<T>(string url)
-        {
-            if (url.StartsWith("https"))
-            {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-            }
+		public static T Get<T>(string url)
+		{
+			if (url.StartsWith("https"))
+			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+			}
 
-            HttpResponseMessage response = _httpClient.GetAsync(url).Result;
+			HttpResponseMessage response = _httpClient.GetAsync(url).Result;
 
-            T result = default(T);
+			T result = default(T);
 
-            if (response.IsSuccessStatusCode)
-            {
-                Task<string> t = response.Content.ReadAsStringAsync();
-                string s = t.Result;
+			if (response.IsSuccessStatusCode)
+			{
+				Task<string> t = response.Content.ReadAsStringAsync();
+				string s = t.Result;
 
-                result = JsonConvert.DeserializeObject<T>(s);
-            }
+				result = JsonConvert.DeserializeObject<T>(s);
+			}
 
-            return result;
-        }
+			return result;
+		}
 
-        public static T Post<T>(string url, object data)
-        {
+		public static T Post<T>(string url, object data)
+		{
+			if (url.StartsWith("https"))
+			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+			}
 
-            if (url.StartsWith("https"))
-            {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-            }
+			HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+			HttpResponseMessage response = _httpClient.PostAsync(url, httpContent).Result;
 
-            HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = _httpClient.PostAsync(url, httpContent).Result;
+			T result = default(T);
 
+			if (response.IsSuccessStatusCode)
+			{
+				Task<string> t = response.Content.ReadAsStringAsync();
+				string s = t.Result;
 
-            T result = default(T);
+				result = JsonConvert.DeserializeObject<T>(s);
+			}
 
-            if (response.IsSuccessStatusCode)
-            {
-                Task<string> t = response.Content.ReadAsStringAsync();
-                string s = t.Result;
+			return result;
+		}
 
-                result = JsonConvert.DeserializeObject<T>(s);
-            }
+		public static T Put<T>(string url, object data)
+		{
+			if (url.StartsWith("https"))
+			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+			}
 
-            return result;
-        }
+			HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+			HttpResponseMessage response = _httpClient.PutAsync(url, httpContent).Result;
 
-        public static T Put<T>(string url, object data)
-        {
-            if (url.StartsWith("https"))
-            {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-            }
+			T result = default(T);
 
-            HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = _httpClient.PutAsync(url, httpContent).Result;
+			if (response.IsSuccessStatusCode)
+			{
+				Task<string> t = response.Content.ReadAsStringAsync();
+				string s = t.Result;
 
-            T result = default(T);
+				result = JsonConvert.DeserializeObject<T>(s);
+			}
 
-            if (response.IsSuccessStatusCode)
-            {
-                Task<string> t = response.Content.ReadAsStringAsync();
-                string s = t.Result;
+			return result;
+		}
 
-                result = JsonConvert.DeserializeObject<T>(s);
-            }
+		public static bool Put(string url, object data)
+		{
+			if (url.StartsWith("https"))
+			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+			}
 
-            return result;
-        }
+			HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+			HttpResponseMessage response = _httpClient.PutAsync(url, httpContent).Result;
 
-        public static bool Put(string url, object data)
-        {
-            if (url.StartsWith("https"))
-            {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-            }
+			if (response.IsSuccessStatusCode)
+			{
+				return true;
+			}
 
-            HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = _httpClient.PutAsync(url, httpContent).Result;
+			return false;
+		}
 
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
+		public static void Delete(string url, object data)
+		{
+			if (url.StartsWith("https"))
+			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+			}
 
-            return false;
-        }
+			HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+			HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
+		}
 
-        public static void Delete(string url, object data)
-        {
-            if (url.StartsWith("https"))
-            {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-            }
+		public static T Delete<T>(string serviceName, string url)
+		{
+			if (url.StartsWith("https"))
+			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+			}
 
-            HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
-        }
+			HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
 
-        public static T Delete<T>(string serviceName, string url)
-        {
-            if (url.StartsWith("https"))
-            {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-            }
+			T result = default(T);
 
-            HttpResponseMessage response = _httpClient.DeleteAsync(url).Result;
+			if (response.IsSuccessStatusCode)
+			{
+				Task<string> t = response.Content.ReadAsStringAsync();
+				string s = t.Result;
 
-            T result = default(T);
+				result = JsonConvert.DeserializeObject<T>(s);
+			}
 
-            if (response.IsSuccessStatusCode)
-            {
-                Task<string> t = response.Content.ReadAsStringAsync();
-                string s = t.Result;
-
-                result = JsonConvert.DeserializeObject<T>(s);
-            }
-
-            return result;
-        }
-    }
+			return result;
+		}
+	}
 }

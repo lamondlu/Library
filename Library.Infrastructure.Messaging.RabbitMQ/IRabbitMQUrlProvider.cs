@@ -1,14 +1,14 @@
 namespace Library.Infrastructure.Messaging.RabbitMQ
 {
-    public interface IRabbitMQUrlProvider
-    {
-        string Url
-        {
-            get;
-        }
+	public interface IRabbitMQUrlProvider
+	{
+		string Url
+		{
+			get;
+		}
 
-        string UserName { get; }
+		string UserName { get; }
 
-        string Password { get; }
-    }
+		string Password { get; }
+	}
 }

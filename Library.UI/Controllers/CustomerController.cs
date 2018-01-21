@@ -1,22 +1,21 @@
-﻿using BookingLibrary.UI.Consts;
-using Library.UI.Utilities;
+﻿using Library.UI.Utilities;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Library.UI.Controllers
 {
-    public class CustomerController : BaseController
-    {
-        public CustomerController()
-        {
-        }
+	public class CustomerController : BaseController
+	{
+		public CustomerController()
+		{
+		}
 
-        [HttpGet]
-        // GET: Customer
-        public ActionResult _AjaxGetAllCustomers()
-        {
-            var data = ApiRequest.Get<List<CustomerViewModel>>($"{_identityApiBaseUrl}/api/customers");
-            return Json(data, JsonRequestBehavior.AllowGet);
-        }
-    }
+		[HttpGet]
+		// GET: Customer
+		public ActionResult _AjaxGetAllCustomers()
+		{
+			var data = ApiRequest.Get<List<CustomerViewModel>>($"{_identityApiBaseUrl}/api/customers");
+			return Json(data, JsonRequestBehavior.AllowGet);
+		}
+	}
 }

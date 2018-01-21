@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Library.Infrastructure.CSDataAccessor.Core
+﻿namespace Library.Infrastructure.CSDataAccessor.Core
 {
 	public interface IApiGatewayUrlProvider
 	{

@@ -9,26 +9,26 @@ using System.Collections.Generic;
 
 namespace Library.Service.Logs
 {
-    [Route("api/[controller]")]
-    public class CommandLogsController : Controller
-    {
-        private ILogger _logger;
+	[Route("api/[controller]")]
+	public class CommandLogsController : Controller
+	{
+		private ILogger _logger;
 
-        public CommandLogsController()
-        {
-            _logger = InjectContainer.GetInstance<ILogger>();
-        }
+		public CommandLogsController()
+		{
+			_logger = InjectContainer.GetInstance<ILogger>();
+		}
 
-        [HttpGet("")]
-        public List<CommandLogModel> GetAllCommandLogs()
-        {
-            return _logger.GetCommandLogs();
-        }
+		[HttpGet("")]
+		public List<CommandLogModel> GetAllCommandLogs()
+		{
+			return _logger.GetCommandLogs();
+		}
 
-        [HttpGet("{commandUniqueId}/EventLogs")]
-        public List<CommandLogModel> GetAllCommandLogs(Guid commandUniqueId)
-        {
-            return _logger.GetEventLogs(commandUniqueId);
-        }
-    }
+		[HttpGet("{commandUniqueId}/EventLogs")]
+		public List<CommandLogModel> GetAllCommandLogs(Guid commandUniqueId)
+		{
+			return _logger.GetEventLogs(commandUniqueId);
+		}
+	}
 }

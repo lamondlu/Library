@@ -7,25 +7,25 @@ using System;
 
 namespace Library.Service.Inventory.Domain.EventHandlers
 {
-    public class BookInventoryOutStoredEventHandler : BaseInventoryEventHandler<BookInventoryOutStoredEvent>
-    {
-        public BookInventoryOutStoredEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
-        {
-        }
+	public class BookInventoryOutStoredEventHandler : BaseInventoryEventHandler<BookInventoryOutStoredEvent>
+	{
+		public BookInventoryOutStoredEventHandler(IInventoryReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
+		{
+		}
 
-        public override void HandleCore(BookInventoryOutStoredEvent evt)
-        {
-            try
-            {
-                _reportDataAccessor.UpdateBookInventoryStatus(evt.AggregateId, BookInventoryStatus.OutStore, evt.Notes, evt.OutStoreDate);
-                _reportDataAccessor.Commit();
+		public override void HandleCore(BookInventoryOutStoredEvent evt)
+		{
+			try
+			{
+				_reportDataAccessor.UpdateBookInventoryStatus(evt.AggregateId, BookInventoryStatus.OutStore, evt.Notes, evt.OutStoreDate);
+				_reportDataAccessor.Commit();
 
-                evt.Result(BookInventoryOutStoredEvent.Code_BOOKINVENTORY_OUTSTORED);
-            }
-            catch (Exception ex)
-            {
-                evt.Result(BookInventoryOutStoredEvent.Code_SERVER_ERROR, ex.ToString());
-            }
-        }
-    }
+				evt.Result(BookInventoryOutStoredEvent.Code_BOOKINVENTORY_OUTSTORED);
+			}
+			catch (Exception ex)
+			{
+				evt.Result(BookInventoryOutStoredEvent.Code_SERVER_ERROR, ex.ToString());
+			}
+		}
+	}
 }

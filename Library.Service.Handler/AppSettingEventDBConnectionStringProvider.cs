@@ -4,25 +4,25 @@ using System.IO;
 
 namespace Library.Service.Handler
 {
-    public class AppSettingEventDBConnectionStringProvider : IEventDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppSettingEventDBConnectionStringProvider : IEventDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppSettingEventDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppSettingEventDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["connectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["connectionString"];
+			}
+		}
+	}
 }

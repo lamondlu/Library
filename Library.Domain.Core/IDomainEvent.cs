@@ -2,12 +2,12 @@
 
 namespace Library.Domain.Core
 {
-    public interface IDomainEvent
-    {
-        string EventKey { get; }
+	public interface IDomainEvent
+	{
+		string EventKey { get; }
 
-        DateTime OccurredOn { get; }
+		DateTime OccurredOn { get; }
 
-        Guid CommandUniqueId { get; set; }
-    }
+		Guid CommandUniqueId { get; set; }
+	}
 }

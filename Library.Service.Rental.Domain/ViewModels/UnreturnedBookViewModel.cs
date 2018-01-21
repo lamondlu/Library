@@ -2,22 +2,22 @@ using System;
 
 namespace Library.Service.Rental.Domain.ViewModels
 {
-    public class UnreturnedBookViewModel
-    {
-        public Guid BookId { get; set; }
+	public class UnreturnedBookViewModel
+	{
+		public Guid BookId { get; set; }
 
-        public Guid CustomerId { get; set; }
+		public Guid CustomerId { get; set; }
 
-        public string BookName { get; set; }
+		public string BookName { get; set; }
 
-        public string ISBN { get; set; }
+		public string ISBN { get; set; }
 
-        public string FirstName { get; set; }
+		public string FirstName { get; set; }
 
-        public string LastName { get; set; }
+		public string LastName { get; set; }
 
-        public string MiddleName { get; set; }
+		public string MiddleName { get; set; }
 
-        public DateTime RentDate { get; set; }
-    }
+		public DateTime RentDate { get; set; }
+	}
 }

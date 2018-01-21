@@ -1,8 +1,6 @@
-﻿using IdentityModel.Client;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Polly;
 using System;
-using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -64,7 +62,6 @@ namespace Library.UI.Utilities
 				response = _httpClient.PostAsync(url, httpContent).Result;
 				return response;
 			});
-
 
 			T result = default(T);
 

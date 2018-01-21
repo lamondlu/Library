@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -8,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Library.Infrastructure.Core.Utilities
 {
-    public class ApiRequest
-    {
+	public class ApiRequest
+	{
 		private static readonly HttpClient _httpClient;
 
 		static ApiRequest()
@@ -50,7 +49,6 @@ namespace Library.Infrastructure.Core.Utilities
 
 			HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
 			HttpResponseMessage response = _httpClient.PostAsync(url, httpContent).Result;
-
 
 			T result = default(T);
 

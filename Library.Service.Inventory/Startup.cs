@@ -13,52 +13,52 @@ using System;
 
 namespace Library.Service.Inventory
 {
-    public class Startup
-    {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
+	public class Startup
+	{
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddMvc();
 
-            InjectService();
+			InjectService();
 
-            SelfRegister();
-        }
+			SelfRegister();
+		}
 
-        public void SelfRegister()
-        {
-            var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
-            serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
-            {
-                Port = 5001,
-                ServiceName = "InventoryService",
-                Tag = "Microservice API"
-            });
+		public void SelfRegister()
+		{
+			var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
+			serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
+			{
+				Port = 5001,
+				ServiceName = "InventoryService",
+				Tag = "Microservice API"
+			});
 
-            Console.WriteLine("Register to consul successfully.");
-        }
+			Console.WriteLine("Register to consul successfully.");
+		}
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseStaticFiles();
-            app.UseMvc(r =>
-            {
-                r.MapRoute("default", "api/{controller}/{id?}");
-            });
-        }
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		{
+			app.UseStaticFiles();
+			app.UseMvc(r =>
+			{
+				r.MapRoute("default", "api/{controller}/{id?}");
+			});
+		}
 
-        private void InjectService()
-        {
-            InjectContainer.RegisterType<IRabbitMQUrlProvider, AppsettingRabbitMQUrlProvider>();
-            InjectContainer.RegisterType<ICommandPublisher, RabbitMQCommandPublisher>();
-            InjectContainer.RegisterType<IInventoryReadDBConnectionStringProvider, AppsettingInventoryReadDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IInventoryWriteDBConnectionStringProvider, AppsettingInventoryWriteDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IInventoryReportDataAccessor, InventoryReportDataAccessor>();
-            InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
+		private void InjectService()
+		{
+			InjectContainer.RegisterType<IRabbitMQUrlProvider, AppsettingRabbitMQUrlProvider>();
+			InjectContainer.RegisterType<ICommandPublisher, RabbitMQCommandPublisher>();
+			InjectContainer.RegisterType<IInventoryReadDBConnectionStringProvider, AppsettingInventoryReadDBConnectionStringProvider>();
+			InjectContainer.RegisterType<IInventoryWriteDBConnectionStringProvider, AppsettingInventoryWriteDBConnectionStringProvider>();
+			InjectContainer.RegisterType<IInventoryReportDataAccessor, InventoryReportDataAccessor>();
+			InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
 
-            InjectContainer.RegisterType<IConsulAPIUrlProvider, AppsettingConsulAPIUrlProvider>();
-            InjectContainer.RegisterType<IServiceDiscovery, ConsulServiceDiscovery>();
-        }
-    }
+			InjectContainer.RegisterType<IConsulAPIUrlProvider, AppsettingConsulAPIUrlProvider>();
+			InjectContainer.RegisterType<IServiceDiscovery, ConsulServiceDiscovery>();
+		}
+	}
 }

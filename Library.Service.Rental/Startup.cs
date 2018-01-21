@@ -13,55 +13,53 @@ using System;
 
 namespace Library.Service.Rental
 {
-    public class Startup
-    {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
+	public class Startup
+	{
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddMvc();
 
-            InjectService();
+			InjectService();
 
+			SelfRegister();
+		}
 
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		{
+			app.UseStaticFiles();
 
-            SelfRegister();
-        }
+			app.UseMvc(r =>
+			{
+				r.MapRoute("default", "api/{controller}/{id?}");
+			});
+		}
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseStaticFiles();
+		public void SelfRegister()
+		{
+			var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
+			serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
+			{
+				Port = 5002,
+				ServiceName = "RentalService",
+				Tag = "Microservice API"
+			});
 
-            app.UseMvc(r =>
-            {
-                r.MapRoute("default", "api/{controller}/{id?}");
-            });
-        }
+			Console.WriteLine("Register to consul successfully.");
+		}
 
-        public void SelfRegister()
-        {
-            var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
-            serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
-            {
-                Port = 5002,
-                ServiceName = "RentalService",
-                Tag = "Microservice API"
-            });
+		private void InjectService()
+		{
+			InjectContainer.RegisterType<IRabbitMQUrlProvider, AppsettingRabbitMQUrlProvider>();
+			InjectContainer.RegisterType<ICommandPublisher, RabbitMQCommandPublisher>();
+			InjectContainer.RegisterType<IRentalReadDBConnectionStringProvider, AppsettingRentalReadDBConnectionStringProvider>();
+			InjectContainer.RegisterType<IRentalWriteDBConnectionStringProvider, AppsettingRentalWriteDBConnectionStringProvider>();
+			InjectContainer.RegisterType<IRentalReportDataAccessor, RentalReportDataAccessor>();
+			InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
 
-            Console.WriteLine("Register to consul successfully.");
-        }
-
-        private void InjectService()
-        {
-            InjectContainer.RegisterType<IRabbitMQUrlProvider, AppsettingRabbitMQUrlProvider>();
-            InjectContainer.RegisterType<ICommandPublisher, RabbitMQCommandPublisher>();
-            InjectContainer.RegisterType<IRentalReadDBConnectionStringProvider, AppsettingRentalReadDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IRentalWriteDBConnectionStringProvider, AppsettingRentalWriteDBConnectionStringProvider>();
-            InjectContainer.RegisterType<IRentalReportDataAccessor, RentalReportDataAccessor>();
-            InjectContainer.RegisterType<ICommandTracker, SignalRCommandTracker>();
-
-            InjectContainer.RegisterType<IConsulAPIUrlProvider, AppsettingConsulAPIUrlProvider>();
-            InjectContainer.RegisterType<IServiceDiscovery, ConsulServiceDiscovery>();
-        }
-    }
+			InjectContainer.RegisterType<IConsulAPIUrlProvider, AppsettingConsulAPIUrlProvider>();
+			InjectContainer.RegisterType<IServiceDiscovery, ConsulServiceDiscovery>();
+		}
+	}
 }

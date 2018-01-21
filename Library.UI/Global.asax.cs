@@ -57,6 +57,5 @@ namespace Library.UI
 
 			return false;
 		}
-
 	}
 }

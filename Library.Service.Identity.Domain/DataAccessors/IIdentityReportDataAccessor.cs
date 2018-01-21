@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace Library.Service.Identity.Domain.DataAccessors
 {
-    public interface IIdentityReportDataAccessor
-    {
-        IdentityViewModel GetIdentity(string userName, string hashedPassword);
+	public interface IIdentityReportDataAccessor
+	{
+		IdentityViewModel GetIdentity(string userName, string hashedPassword);
 
-        List<CustomerListViewModel> GetCustomerList();
+		List<CustomerListViewModel> GetCustomerList();
 
-        CustomerListViewModel GetCustomerSingleListViewModel(Guid personId);
+		CustomerListViewModel GetCustomerSingleListViewModel(Guid personId);
 
-        IdentityDetailsViewModel GetAccountDetails(Guid accountId);
-    }
+		IdentityDetailsViewModel GetAccountDetails(Guid accountId);
+	}
 }

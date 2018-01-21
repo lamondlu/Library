@@ -4,47 +4,47 @@ using System.IO;
 
 namespace Library.Service.Identity
 {
-    public class AppsettingRepositoryReadDBConnectionStringProvider : IIdentityReadDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingRepositoryReadDBConnectionStringProvider : IIdentityReadDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingRepositoryReadDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingRepositoryReadDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["identityReadDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["identityReadDBConnectionString"];
+			}
+		}
+	}
 
-    public class AppsettingRepositoryWriteDBConnectionStringProvider : IIdentityWriteDBConnectionStringProvider
-    {
-        private IConfigurationRoot _configuration = null;
+	public class AppsettingRepositoryWriteDBConnectionStringProvider : IIdentityWriteDBConnectionStringProvider
+	{
+		private IConfigurationRoot _configuration = null;
 
-        public AppsettingRepositoryWriteDBConnectionStringProvider()
-        {
-            var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json");
+		public AppsettingRepositoryWriteDBConnectionStringProvider()
+		{
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json");
 
-            _configuration = builder.Build();
-        }
+			_configuration = builder.Build();
+		}
 
-        public string ConnectionString
-        {
-            get
-            {
-                return _configuration["identityWriteDBConnectionString"];
-            }
-        }
-    }
+		public string ConnectionString
+		{
+			get
+			{
+				return _configuration["identityWriteDBConnectionString"];
+			}
+		}
+	}
 }

@@ -2,10 +2,10 @@
 
 namespace Library.UI.DTOs
 {
-    public class BulkImportDTO
-    {
-        public Guid BookId { get; set; }
+	public class BulkImportDTO
+	{
+		public Guid BookId { get; set; }
 
-        public int Number { get; set; }
-    }
+		public int Number { get; set; }
+	}
 }

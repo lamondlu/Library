@@ -7,46 +7,46 @@ using System;
 
 namespace Library.Service.Inventory.Domain.CommandHandlers
 {
-    public class UpdateBookCommandHandler : BaseInventoryCommandHandler<UpdateBookCommand>
-    {
-        public UpdateBookCommandHandler(DomainRepository domainRepository, IInventoryReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger) : base(domainRepository, dataAccesor, tracker, logger)
-        {
-        }
+	public class UpdateBookCommandHandler : BaseInventoryCommandHandler<UpdateBookCommand>
+	{
+		public UpdateBookCommandHandler(DomainRepository domainRepository, IInventoryReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger) : base(domainRepository, dataAccesor, tracker, logger)
+		{
+		}
 
-        public override void ExecuteCore(UpdateBookCommand command)
-        {
-            try
-            {
-                var book = _domainRepository.GetById<Book>(command.BookId);
+		public override void ExecuteCore(UpdateBookCommand command)
+		{
+			try
+			{
+				var book = _domainRepository.GetById<Book>(command.BookId);
 
-                if (book.BookName != command.BookName)
-                {
-                    book.ChangeBookName(command.BookName);
-                }
+				if (book.BookName != command.BookName)
+				{
+					book.ChangeBookName(command.BookName);
+				}
 
-                if (book.ISBN != command.ISBN)
-                {
-                    book.ChangeISBN(command.ISBN);
-                }
+				if (book.ISBN != command.ISBN)
+				{
+					book.ChangeISBN(command.ISBN);
+				}
 
-                if (book.Description != command.Description)
-                {
-                    book.ChangeDescription(command.Description);
-                }
+				if (book.Description != command.Description)
+				{
+					book.ChangeDescription(command.Description);
+				}
 
-                if (book.DateIssued != command.DateIssued)
-                {
-                    book.ChangeIssuedDate(command.DateIssued);
-                }
+				if (book.DateIssued != command.DateIssued)
+				{
+					book.ChangeIssuedDate(command.DateIssued);
+				}
 
-                _domainRepository.Save(book, book.Version, command.CommandUniqueId);
+				_domainRepository.Save(book, book.Version, command.CommandUniqueId);
 
-                command.Result(UpdateBookCommand.Code_BOOK_UPDATED);
-            }
-            catch (Exception ex)
-            {
-                command.Result(UpdateBookCommand.Code_SERVER_ERROR, ex.ToString());
-            }
-        }
-    }
+				command.Result(UpdateBookCommand.Code_BOOK_UPDATED);
+			}
+			catch (Exception ex)
+			{
+				command.Result(UpdateBookCommand.Code_SERVER_ERROR, ex.ToString());
+			}
+		}
+	}
 }

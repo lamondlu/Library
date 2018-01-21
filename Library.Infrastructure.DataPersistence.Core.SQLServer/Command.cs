@@ -3,16 +3,16 @@ using System.Data.SqlClient;
 
 namespace Library.Infrastructure.DataPersistence.Core.SQLServer
 {
-    public class Command
-    {
-        public Command(string sql, List<SqlParameter> parameters)
-        {
-            this.SQL = sql;
-            this.Parameters = parameters;
-        }
+	public class Command
+	{
+		public Command(string sql, List<SqlParameter> parameters)
+		{
+			this.SQL = sql;
+			this.Parameters = parameters;
+		}
 
-        public string SQL { get; set; }
+		public string SQL { get; set; }
 
-        public List<SqlParameter> Parameters { get; set; }
-    }
+		public List<SqlParameter> Parameters { get; set; }
+	}
 }
