@@ -12,6 +12,15 @@
     {
       "ServiceName": "IdentityService",
       "LoadBalancer": "LeastConnection",
+      "DownstreamPathTemplate": "/api/accounts/{id}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/accounts/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "UseServiceDiscovery": true
+    },
+    {
+      "ServiceName": "IdentityService",
+      "LoadBalancer": "LeastConnection",
       "DownstreamPathTemplate": "/api/customers/{customerId}",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/customers/{customerId}",

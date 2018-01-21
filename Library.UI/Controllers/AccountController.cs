@@ -12,7 +12,7 @@ namespace Library.UI.Controllers
 {
 	public class AccountController : Controller
 	{
-		private string _identityApiBaseUrl => ConfigurationManager.AppSettings["identityApiUrl"];
+		protected string _apiGatewayUrl => ConfigurationManager.AppSettings["apiGatewayUrl"];
 
 		protected ISessionStorage _sessionStorage = null;
 
@@ -36,7 +36,7 @@ namespace Library.UI.Controllers
 		[AllowAnonymous]
 		public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
 		{
-			var url = $"{_identityApiBaseUrl}/api/identities";
+			var url = $"{_apiGatewayUrl}/api/identities";
 
 			var validationResult = ApiRequest.Post<IdentityDTO>(url, model);
 
@@ -45,7 +45,7 @@ namespace Library.UI.Controllers
 				var cookie = new HttpCookie("UserId", validationResult.UserId.ToString());
 				cookie.Expires = DateTime.Now.AddMinutes(10);
 
-				var user = ApiRequest.Get<IdentityDetailsDTO>($"{_identityApiBaseUrl}/api/accounts/{validationResult.UserId.ToString()}");
+				var user = ApiRequest.Get<IdentityDetailsDTO>($"{_apiGatewayUrl}/api/accounts/{validationResult.UserId.ToString()}");
 				_sessionStorage.Set<IdentityDetailsDTO>(validationResult.UserId.ToString(), user);
 
 				Response.Cookies.Add(cookie);

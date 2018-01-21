@@ -17,7 +17,6 @@ namespace Library.ApiGateway
 			var builder = new Microsoft.Extensions.Configuration.ConfigurationBuilder();
 			builder.SetBasePath(environment.ContentRootPath)
 				   .AddJsonFile("appsettings.json", false, reloadOnChange: true)
-				   .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
 				   .AddJsonFile("configuration.json", optional: false, reloadOnChange: true)
 				   .AddEnvironmentVariables();
 
