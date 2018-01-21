@@ -16,4 +16,9 @@
     <ProjectReference Include="..\Library.Infrastructure.InjectionFramework\Library.Infrastructure.InjectionFramework.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.DataPersistence.Identity.SQLServer\Library.Infrastructure.DataPersistence.Identity.SQLServer.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

@@ -7,13 +7,7 @@ namespace Library.UI.Controllers
 {
 	public class BaseController : Controller
 	{
-		protected string _inventoryApiBaseUrl => ConfigurationManager.AppSettings["inventoryApiUrl"];
-
-		protected string _identityApiBaseUrl => ConfigurationManager.AppSettings["identityApiUrl"];
-
-		protected string _rentalApiBaseUrl => ConfigurationManager.AppSettings["rentalApiUrl"];
-
-		protected string _logApiBaseUrl => ConfigurationManager.AppSettings["logApiUrl"];
+		protected string _apiGatewayUrl => ConfigurationManager.AppSettings["apiGatewayUrl"];
 
 		protected ISessionStorage _sessionStorage = null;
 

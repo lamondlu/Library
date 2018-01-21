@@ -16,5 +16,10 @@
     <ProjectReference Include="..\Library.Infrastructure.Operation.Consul\Library.Infrastructure.Operation.Consul.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.Operation.Core\Library.Infrastructure.Operation.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

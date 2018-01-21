@@ -16,7 +16,7 @@ namespace Library.UI.Controllers
 		[HttpGet]
 		public ActionResult List()
 		{
-			var data = ApiRequest.Get<List<BookViewModel>>($"{_inventoryApiBaseUrl}/api/Books");
+			var data = ApiRequest.Get<List<BookViewModel>>($"{_apiGatewayUrl}/api/books");
 			return View(data);
 		}
 
@@ -29,7 +29,7 @@ namespace Library.UI.Controllers
 		[HttpGet]
 		public ActionResult Edit(Guid id)
 		{
-			var data = ApiRequest.Get<EditBookDTO>($"{_inventoryApiBaseUrl}/api/Books/{id}");
+			var data = ApiRequest.Get<EditBookDTO>($"{_apiGatewayUrl}/api/books/{id}");
 
 			return View(data);
 		}
@@ -37,7 +37,7 @@ namespace Library.UI.Controllers
 		[HttpPost]
 		public ActionResult Edit(Guid id, EditBookDTO dto)
 		{
-			var commandId = ApiRequest.Put<Guid>($"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}", dto);
+			var commandId = ApiRequest.Put<Guid>($"{_apiGatewayUrl}/api/books/{dto.BookId}", dto);
 
 			if (commandId != Guid.Empty)
 			{
@@ -52,7 +52,7 @@ namespace Library.UI.Controllers
 		[HttpPost]
 		public ActionResult Add(AddBookDTO dto)
 		{
-			var commandUnqiueId = ApiRequest.Post<Guid>($"{_inventoryApiBaseUrl}/api/Books", dto);
+			var commandUnqiueId = ApiRequest.Post<Guid>($"{_apiGatewayUrl}/api/books", dto);
 
 			return Json(new { commandUnqiueId = commandUnqiueId });
 		}
@@ -60,7 +60,7 @@ namespace Library.UI.Controllers
 		[HttpGet]
 		public ActionResult _AjaxGetAvailableBooks()
 		{
-			var data = ApiRequest.Get<List<AvailableBookModel>>($"{_inventoryApiBaseUrl}/api/available_books");
+			var data = ApiRequest.Get<List<AvailableBookModel>>($"{_apiGatewayUrl}/api/available_books");
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
 	}

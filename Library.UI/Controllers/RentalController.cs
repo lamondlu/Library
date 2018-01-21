@@ -15,20 +15,20 @@ namespace Library.UI.Controllers
 
 		public ActionResult UnreturnedBooks()
 		{
-			var data = ApiRequest.Get<List<UnreturnedBookViewModel>>($"{_rentalApiBaseUrl}/api/unreturned_books");
+			var data = ApiRequest.Get<List<UnreturnedBookViewModel>>($"{_apiGatewayUrl}/api/unreturned_books");
 			return View(data);
 		}
 
 		[HttpPost]
 		public ActionResult _AjaxRentBook(RentBookDTO dto)
 		{
-			var bookInfo = ApiRequest.Get<EditBookDTO>($"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}");
+			var bookInfo = ApiRequest.Get<EditBookDTO>($"{_apiGatewayUrl}/api/books/{dto.BookId}");
 
 			var bookInventoryId = bookInfo.BookInventories.Where(p => p.Status == 1).FirstOrDefault()?.BookInventoryId;
 
 			if (bookInventoryId.HasValue)
 			{
-				var commandId = ApiRequest.Post<Guid>($"{_rentalApiBaseUrl}/api/customers/{dto.CustomerId}/books", new
+				var commandId = ApiRequest.Post<Guid>($"{_apiGatewayUrl}/api/customers/{dto.CustomerId}/books", new
 				{
 					BookId = bookInventoryId,
 					BookName = bookInfo.BookName,
@@ -53,7 +53,7 @@ namespace Library.UI.Controllers
 		[HttpPost]
 		public ActionResult _AjaxReturnBook(Guid customerId, Guid bookId)
 		{
-			var commandId = ApiRequest.Delete<Guid>($"{_rentalApiBaseUrl}/api/customers/{customerId}/books/{bookId}");
+			var commandId = ApiRequest.Delete<Guid>($"{_apiGatewayUrl}/api/customers/{customerId}/books/{bookId}");
 
 			return Json(new { result = true, commandId = commandId });
 		}

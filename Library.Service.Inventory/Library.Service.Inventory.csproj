@@ -18,4 +18,9 @@
     <ProjectReference Include="..\Library.Infrastructure.Messaging.SignalR\Library.Infrastructure.Messaging.SignalR.csproj" />
     <ProjectReference Include="..\Library.Infrastructure.DataPersistence.Inventory.SQLServer\Library.Infrastructure.DataPersistence.Inventory.SQLServer.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

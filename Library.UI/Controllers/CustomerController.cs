@@ -14,7 +14,7 @@ namespace Library.UI.Controllers
 		// GET: Customer
 		public ActionResult _AjaxGetAllCustomers()
 		{
-			var data = ApiRequest.Get<List<CustomerViewModel>>($"{_identityApiBaseUrl}/api/customers");
+			var data = ApiRequest.Get<List<CustomerViewModel>>($"{_apiGatewayUrl}/api/customers");
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
 	}

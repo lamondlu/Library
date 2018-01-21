@@ -29,7 +29,7 @@ namespace Library.UI.Controllers
 
 			var data = new NameValueCollection();
 			data.Add("BookRepositoryIds", string.Join(",", newBookInventories.Select(p => p.ToString())));
-			var commandKey = ApiRequest.Post<Guid>($"{_inventoryApiBaseUrl}/api/Books/{dto.BookId}/Inventories", new ImportBookInventoryDTO
+			var commandKey = ApiRequest.Post<Guid>($"{_apiGatewayUrl}/api/books/{dto.BookId}/inventories", new ImportBookInventoryDTO
 			{
 				BookInventoryIds = newBookInventories
 			});
@@ -40,14 +40,14 @@ namespace Library.UI.Controllers
 		[HttpGet]
 		public ActionResult Histories(Guid id)
 		{
-			var histories = ApiRequest.Get<List<BookInventoryHistoryViewModel>>($"{_inventoryApiBaseUrl}/api/inventories/{id}/histories");
+			var histories = ApiRequest.Get<List<BookInventoryHistoryViewModel>>($"{_apiGatewayUrl}/api/inventories/{id}/histories");
 			return View(histories);
 		}
 
 		[HttpPut]
 		public ActionResult InStore(InStoreBookInventoryDTO dto)
 		{
-			var commandKey = ApiRequest.Put<Guid>($"{_inventoryApiBaseUrl}/api/inventories/{dto.BookInventoryId}/status", new
+			var commandKey = ApiRequest.Put<Guid>($"{_apiGatewayUrl}/api/inventories/{dto.BookInventoryId}/status", new
 			{
 				Status = 1,
 				Notes = dto.Note,
@@ -60,7 +60,7 @@ namespace Library.UI.Controllers
 		[HttpPut]
 		public ActionResult OutStore(OutStoreBookInventoryDTO dto)
 		{
-			var commandKey = ApiRequest.Put<Guid>($"{_inventoryApiBaseUrl}/api/inventories/{dto.BookInventoryId}/status", new
+			var commandKey = ApiRequest.Put<Guid>($"{_apiGatewayUrl}/api/inventories/{dto.BookInventoryId}/status", new
 			{
 				Status = 2,
 				Notes = dto.Note,
