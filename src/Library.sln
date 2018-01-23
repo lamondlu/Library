@@ -70,21 +70,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44694BAD-8CFF-45C3-A2C9-244F5840F820}"
 	ProjectSection(SolutionItems) = preProject
-		dockerfile_handler = dockerfile_handler
-		dockerfile_identity = dockerfile_identity
-		dockerfile_inventory = dockerfile_inventory
-		dockerfile_rental = dockerfile_rental
-		nginx.conf.tpl = nginx.conf.tpl
-		README.md = README.md
+		..\dockerfile = ..\dockerfile
+		..\dockerfile_handler = ..\dockerfile_handler
+		..\dockerfile_identity = ..\dockerfile_identity
+		..\dockerfile_inventory = ..\dockerfile_inventory
+		..\dockerfile_rental = ..\dockerfile_rental
+		..\nginx.conf.tpl = ..\nginx.conf.tpl
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossServiceDataAccessor", "CrossServiceDataAccessor", "{E9EF50A3-7C65-4CDD-98D6-73312481B14D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.ApiGateway", "Library.ApiGateway\Library.ApiGateway.csproj", "{090E0A89-F338-4A77-A0BD-C2A01B926734}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure.CSDataAccessor.Rental", "Library.Infrastructure.CSDataAccessor.Rental\Library.Infrastructure.CSDataAccessor.Rental.csproj", "{EA0DFA8F-92E4-4EF3-90EF-0CD9569C5C2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure.CSDataAccessor.Rental", "Library.Infrastructure.CSDataAccessor.Rental\Library.Infrastructure.CSDataAccessor.Rental.csproj", "{EA0DFA8F-92E4-4EF3-90EF-0CD9569C5C2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure.CSDataAccessor.Core", "Library.Infrastructure.CSDataAccessor.Core\Library.Infrastructure.CSDataAccessor.Core.csproj", "{F0224554-CDA7-468F-A8BA-BDEA5376DB02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure.CSDataAccessor.Core", "Library.Infrastructure.CSDataAccessor.Core\Library.Infrastructure.CSDataAccessor.Core.csproj", "{F0224554-CDA7-468F-A8BA-BDEA5376DB02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

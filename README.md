@@ -2,10 +2,10 @@
 A microservice project using .NET Core 2.0, DDD, CQRS, Event Sourcing, Redis and RabbitMQ.
 
 ## Components
-![Components](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Architecture/20180108201702.png)
+![Components](https://github.com/lamondlu/BookLibrary/blob/master/docs/Architecture/20180108201702.png)
 
 ## System Architecture
-![System Architecture](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Architecture/20171107104353.png)
+![System Architecture](https://github.com/lamondlu/BookLibrary/blob/master/docs/Architecture/20171107104353.png)
 
 ## Prerequisites
 - Visual Studio 2017 (For development and debug propose)
@@ -17,12 +17,12 @@ A microservice project using .NET Core 2.0, DDD, CQRS, Event Sourcing, Redis and
 - MongoDB (For Event Store)
 
 ## EDA 
-![EDA](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Architecture/20171108152513.png)
+![EDA](https://github.com/lamondlu/BookLibrary/blob/master/docs/Architecture/20171108152513.png)
 
 ## Service Discovery 
 We will use the Nginx, Consul, Consul Template to create an service discovery and service registeration mechanism.
 
-![Service Discovery](https://github.com/lamondlu/BookLibrary/blob/master/Documents/Architecture/20180108211340.png)
+![Service Discovery](https://github.com/lamondlu/BookLibrary/blob/master/docs/Architecture/20180108211340.png)
 
 - The nginx will do the load balance work.
 - All the web or api instances will be registered in the consul server with the `SelfRegister` method.
