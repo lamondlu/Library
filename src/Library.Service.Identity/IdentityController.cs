@@ -23,7 +23,7 @@ namespace Library.Service.Identity
 
 		[Route("")]
 		[HttpPost]
-		public IdentityViewModel GetIdentity(IdentityDTO dto)
+		public IdentityViewModel GetIdentity([FromBody]IdentityDTO dto)
 		{
 			if (_passwordHasher == null)
 			{
