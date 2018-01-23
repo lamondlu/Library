@@ -7,7 +7,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/customers",
       "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "IdentityService",
@@ -16,7 +16,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/accounts/{id}",
       "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "IdentityService",
@@ -25,7 +25,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/customers/{customerId}",
       "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "IdentityService",
@@ -34,7 +34,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/identities",
       "UpstreamHttpMethod": [ "Post" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "InventoryService",
@@ -43,7 +43,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/books",
       "UpstreamHttpMethod": [ "Get", "Post" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "InventoryService",
@@ -52,7 +52,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/books/{id}",
       "UpstreamHttpMethod": [ "Get", "Put" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "InventoryService",
@@ -61,7 +61,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/available_books",
       "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "InventoryService",
@@ -70,7 +70,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/books/{bookId}/inventories",
       "UpstreamHttpMethod": [ "Post" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "InventoryService",
@@ -79,7 +79,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/inventories/{id}/histories",
       "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "InventoryService",
@@ -88,7 +88,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/inventories/{id}/status",
       "UpstreamHttpMethod": [ "Put" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "LogService",
@@ -97,7 +97,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/commandLogs",
       "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "LogService",
@@ -106,7 +106,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/commandLogs/{id}/eventLogs",
       "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "RentalService",
@@ -115,7 +115,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/unreturned_books",
       "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "RentalService",
@@ -124,7 +124,7 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/customers/{id}/books",
       "UpstreamHttpMethod": [ "Post" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     },
     {
       "ServiceName": "RentalService",
@@ -133,12 +133,13 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/customers/{customerId}/books/{bookId}",
       "UpstreamHttpMethod": [ "Delete" ],
-      "UseServiceDiscovery": false
+      "UseServiceDiscovery": true
     }
   ],
   "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
     "ServiceDiscoveryProvider": {
-      "Host": "http://localhost",
+      "Host": "http://127.0.0.1",
       "Port": 8500
     }
   }
