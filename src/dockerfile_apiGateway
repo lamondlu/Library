@@ -2,7 +2,7 @@ FROM microsoft/aspnetcore-build:2.0 AS build-env
 WORKDIR /app
 
 # 拷贝.csproj到工作目录/app，然后执行dotnet restore恢复所有安装的NuGet包。
-COPY Library.ApiGateway ./Library.Infrastructure.ApiGateway/
+COPY Library.ApiGateway ./Library.ApiGateway/
 
 
 WORKDIR /app/Library.ApiGateway
