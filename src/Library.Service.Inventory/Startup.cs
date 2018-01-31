@@ -30,7 +30,7 @@ namespace Library.Service.Inventory
 			var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
 			serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
 			{
-				Port = 5001,
+				//Port = 5001,
 				ServiceName = "InventoryService",
 				Tag = "Microservice API"
 			});

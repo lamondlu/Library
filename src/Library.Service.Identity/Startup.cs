@@ -28,7 +28,7 @@ namespace Library.Service.Identity
 			var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
 			serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
 			{
-				Port = 5000,
+				//Port = 5000,
 				ServiceName = "IdentityService",
 				Tag = "Microservice API"
 			});

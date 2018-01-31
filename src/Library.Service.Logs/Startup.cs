@@ -34,7 +34,7 @@ namespace Library.Service.Logs
 			var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
 			serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
 			{
-				Port = 5003,
+				//Port = 5003,
 				ServiceName = "LogService",
 				Tag = "Microservice API"
 			});
