@@ -19,6 +19,7 @@ namespace Library.ApiGateway
 
 			builder
 				.UseKestrel()
+				.UseUrls("http://*:4999")
 				.UseContentRoot(Directory.GetCurrentDirectory())
 				.ConfigureAppConfiguration((hostingContext, config) =>
 				{

@@ -41,7 +41,7 @@ namespace Library.Service.Identity
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 			app.UseStaticFiles();
-			app.UseMvc(r =>eMvc(r =>
+			app.UseMvc(r =>
 			{
 				r.MapRoute("default", "api/{controller}/{id?}");
 			});
