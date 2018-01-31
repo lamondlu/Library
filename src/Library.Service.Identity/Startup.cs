@@ -28,9 +28,10 @@ namespace Library.Service.Identity
 			var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
 			serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
 			{
-				//Port = 5000,
+				Port = 5000,
 				ServiceName = "IdentityService",
-				Tag = "Microservice API"
+				Tag = "Microservice API",
+				Address = "172.27.0.189"
 			});
 
 			Console.WriteLine("Register to consul successfully.");
@@ -40,7 +41,7 @@ namespace Library.Service.Identity
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 			app.UseStaticFiles();
-			app.UseMvc(r =>
+			app.UseMvc(r =>eMvc(r =>
 			{
 				r.MapRoute("default", "api/{controller}/{id?}");
 			});

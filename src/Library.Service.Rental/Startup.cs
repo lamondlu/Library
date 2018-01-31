@@ -41,9 +41,10 @@ namespace Library.Service.Rental
 			var serviceDiscovery = InjectContainer.GetInstance<IServiceDiscovery>();
 			serviceDiscovery.RegisterService(new Infrastructure.Operation.Core.Models.Service
 			{
-				//Port = 5002,
+				Port = 5002,
 				ServiceName = "RentalService",
-				Tag = "Microservice API"
+				Tag = "Microservice API",
+				Address = "172.27.0.189"
 			});
 
 			Console.WriteLine("Register to consul successfully.");

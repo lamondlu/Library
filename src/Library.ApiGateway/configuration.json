@@ -1,161 +1,160 @@
 ﻿{
-  "ReRoutes": [
-    {
-      "ServiceName": "IdentityService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/customers",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/customers",
-      "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "IdentityService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/accounts/{id}",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/accounts/{id}",
-      "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "IdentityService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/customers/{customerId}",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/customers/{customerId}",
-      "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "IdentityService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/identities",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/identities",
-      "UpstreamHttpMethod": [ "Post" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "InventoryService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/books",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/books",
-      "UpstreamHttpMethod": [ "Get", "Post" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "InventoryService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/books/{id}",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/books/{id}",
-      "UpstreamHttpMethod": [ "Get", "Put" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "InventoryService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/available_books",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/available_books",
-      "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "InventoryService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/books/{bookId}/inventories",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/books/{bookId}/inventories",
-      "UpstreamHttpMethod": [ "Post" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "InventoryService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/inventories/{id}/histories",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/inventories/{id}/histories",
-      "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "InventoryService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/inventories/{id}/status",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/inventories/{id}/status",
-      "UpstreamHttpMethod": [ "Put" ],
-      "UseServiceDiscovery": true
-    },
-    {
-      "ServiceName": "LogService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/commandLogs",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/commandLogs",
-      "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "LogService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/commandLogs/{id}/eventLogs",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/commandLogs/{id}/eventLogs",
-      "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "RentalService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/unreturned_books",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/unreturned_books",
-      "UpstreamHttpMethod": [ "Get" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "RentalService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/customers/{id}/books",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/customers/{id}/books",
-      "UpstreamHttpMethod": [ "Post" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
-    },
-    {
-      "ServiceName": "RentalService",
-      "LoadBalancer": "LeastConnection",
-      "DownstreamPathTemplate": "/api/customers/{customerId}/books/{bookId}",
-      "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/api/customers/{customerId}/books/{bookId}",
-      "UpstreamHttpMethod": [ "Delete" ],
-      "UseServiceDiscovery": true,
-      "RequestIdKey": "OcRequestId"
+    "ReRoutes": [{
+            "ServiceName": "IdentityService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/customers",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/customers",
+            "UpstreamHttpMethod": ["Get"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "IdentityService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/accounts/{id}",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/accounts/{id}",
+            "UpstreamHttpMethod": ["Get"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "IdentityService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/customers/{customerId}",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/customers/{customerId}",
+            "UpstreamHttpMethod": ["Get"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "IdentityService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/identities",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/identities",
+            "UpstreamHttpMethod": ["Post"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "InventoryService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/books",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/books",
+            "UpstreamHttpMethod": ["Get", "Post"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "InventoryService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/books/{id}",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/books/{id}",
+            "UpstreamHttpMethod": ["Get", "Put"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "InventoryService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/available_books",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/available_books",
+            "UpstreamHttpMethod": ["Get"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "InventoryService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/books/{bookId}/inventories",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/books/{bookId}/inventories",
+            "UpstreamHttpMethod": ["Post"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "InventoryService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/inventories/{id}/histories",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/inventories/{id}/histories",
+            "UpstreamHttpMethod": ["Get"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "InventoryService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/inventories/{id}/status",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/inventories/{id}/status",
+            "UpstreamHttpMethod": ["Put"],
+            "UseServiceDiscovery": true
+        },
+        {
+            "ServiceName": "LogService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/commandLogs",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/commandLogs",
+            "UpstreamHttpMethod": ["Get"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "LogService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/commandLogs/{id}/eventLogs",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/commandLogs/{id}/eventLogs",
+            "UpstreamHttpMethod": ["Get"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "RentalService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/unreturned_books",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/unreturned_books",
+            "UpstreamHttpMethod": ["Get"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "RentalService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/customers/{id}/books",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/customers/{id}/books",
+            "UpstreamHttpMethod": ["Post"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        },
+        {
+            "ServiceName": "RentalService",
+            "LoadBalancer": "LeastConnection",
+            "DownstreamPathTemplate": "/api/customers/{customerId}/books/{bookId}",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/api/customers/{customerId}/books/{bookId}",
+            "UpstreamHttpMethod": ["Delete"],
+            "UseServiceDiscovery": true,
+            "RequestIdKey": "OcRequestId"
+        }
+    ],
+    "GlobalConfiguration": {
+        "RequestIdKey": "OcRequestId",
+        "ServiceDiscoveryProvider": {
+            "Provider": "Consul",
+            "Host": "172.27.0.189",
+            "Port": 8500
+        }
     }
-  ],
-  "GlobalConfiguration": {
-    "RequestIdKey": "OcRequestId",
-    "ServiceDiscoveryProvider": {
-      "Provider": "Consul",
-      "Host": "localhost",
-      "Port": 8500
-    }
-  }
 }

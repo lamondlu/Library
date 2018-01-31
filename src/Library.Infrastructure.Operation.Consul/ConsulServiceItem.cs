@@ -16,6 +16,8 @@ namespace Library.Infrastructure.Operation.Consul
 
 		public int Port { get; set; }
 
+		public string Address{get;set;}
+
 		public bool EnableTagOverride { get; set; }
 
 		public static implicit operator ConsulServiceItem(Service service)
@@ -35,6 +37,7 @@ namespace Library.Infrastructure.Operation.Consul
 
 			item.Port = service.Port;
 			item.EnableTagOverride = false;
+			item.Address = service.Address;
 
 			return item;
 		}
