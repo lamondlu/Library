@@ -18,9 +18,9 @@ namespace Library.Service.Rental
 
 		private IRentalReportDataAccessor _reportDatabase = null;
 
-		public RentalRecordsController(ICommandPublisher commandPubliser)
+		public RentalRecordsController()
 		{
-			_commandPublisher = commandPubliser;
+			_commandPublisher = InjectContainer.GetInstance<ICommandPublisher>();
 			_reportDatabase = InjectContainer.GetInstance<IRentalReportDataAccessor>();
 		}
 
