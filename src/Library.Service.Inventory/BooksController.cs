@@ -36,7 +36,7 @@ namespace Library.Service.Inventory
 		}
 
 		[HttpPut("{id}")]
-		public Guid UpdateBook(Guid id, DTOs.BookDTO dto)
+		public Guid UpdateBook(Guid id, [FromBody]DTOs.BookDTO dto)
 		{
 			var command = new UpdateBookCommand
 			{
@@ -52,7 +52,7 @@ namespace Library.Service.Inventory
 		}
 
 		[HttpPost("")]
-		public Guid AddBook(BookDTO dto)
+		public Guid AddBook([FromBody]BookDTO dto)
 		{
 			var command = new AddBookCommand
 			{
@@ -94,7 +94,7 @@ namespace Library.Service.Inventory
 		}
 
 		[HttpPut("{bookId}/inventories/{InventoryId}/status")]
-		public void ChangeBookInventoryStatus(Guid bookId, Guid InventoryId, ChangeBookStatusDTO dto)
+		public void ChangeBookInventoryStatus(Guid bookId, Guid InventoryId, [FromBody]ChangeBookStatusDTO dto)
 		{
 			if (dto.Status == BookInventoryStatus.InStore)
 			{
