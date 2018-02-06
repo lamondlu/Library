@@ -45,7 +45,6 @@ namespace Library.UI
 			{
 				Name = "Library Web",
 				Tags = new string[] { "Web" },
-				Port = 81,
 				EnableTagOverride = false
 			}), Encoding.UTF8, "application/json");
 			HttpResponseMessage response = _httpClient.PutAsync(registerURL, httpContent).Result;

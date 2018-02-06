@@ -17,7 +17,7 @@ namespace Library.Infrastructure.CSDataAccessor.Rental
 
 		public CustomerDetailsViewModel GetCustomerDetails(Guid customerId)
 		{
-			return ApiRequest.Get<CustomerDetailsViewModel>($"{_url}/customers/{customerId}");
+			return ApiRequest.Get<CustomerDetailsViewModel>($"{_url}/api/customers/{customerId}");
 		}
 	}
 }

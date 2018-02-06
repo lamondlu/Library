@@ -7,7 +7,7 @@ using Library.Service.Rental.Domain.DataAccessors;
 using Library.Service.Rental.Domain.Events;
 using System;
 
-namespace Library.Service.Rental.Domain
+namespace Library.Service.Rental.Domain.CommandHandlers
 {
 	public class RentBookCommandHandler : BaseRentalCommandHandler<RentBookCommand>
 	{
