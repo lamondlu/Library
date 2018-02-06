@@ -14,6 +14,7 @@ COPY Library.Infrastructure.Messaging.SignalR ./Library.Infrastructure.Messaging
 COPY Library.Infrastructure.Messaging.RabbitMQ ./Library.Infrastructure.Messaging.RabbitMQ/
 COPY Library.Infrastructure.DataPersistence.Inventory.SQLServer ./Library.Infrastructure.DataPersistence.Inventory.SQLServer/
 COPY Library.Infrastructure.DataPersistence.Rental.SQLServer ./Library.Infrastructure.DataPersistence.Rental.SQLServer/
+COPY Library.Infrastructure.DataPersistence.Identity.SQLServer ./Library.Infrastructure.DataPersistence.Identity.SQLServer/
 COPY Library.Infrastructure.EventStorage.MongoDB ./Library.Infrastructure.EventStorage.MongoDB/
 COPY Library.Infrastructure.EventStorage.SQLServer ./Library.Infrastructure.EventStorage.SQLServer/
 COPY Library.Infrastructure.Logger.SQLServer ./Library.Infrastructure.Logger.SQLServer/
