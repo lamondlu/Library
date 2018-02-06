@@ -5,7 +5,7 @@
             "DownstreamPathTemplate": "/api/customers",
             "DownstreamScheme": "http",
             "UpstreamPathTemplate": "/api/customers",
-            "UpstreamHttpMethod": ["Get"],
+            "UpstreamHttpMethod": ["Get", "Post"],
             "UseServiceDiscovery": true,
             "RequestIdKey": "OcRequestId"
         },
