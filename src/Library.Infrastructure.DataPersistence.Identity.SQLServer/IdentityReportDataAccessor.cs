@@ -98,5 +98,10 @@ namespace Library.Infrastructure.DataPersistence.Identity.SQLServer
 
 			return null;
 		}
-	}
+
+        public void CreateUser(string userName, string password, string firstName, string lastName, string middleName)
+        {
+
+        }
+    }
 }

@@ -13,5 +13,7 @@ namespace Library.Service.Identity.Domain.DataAccessors
 		CustomerListViewModel GetCustomerSingleListViewModel(Guid personId);
 
 		IdentityDetailsViewModel GetAccountDetails(Guid accountId);
+
+        void CreateUser(string userName, string password, string firstName, string lastName, string middleName);
 	}
 }
