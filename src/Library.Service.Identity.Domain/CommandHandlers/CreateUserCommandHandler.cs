@@ -10,17 +10,21 @@ using System.Text;
 
 namespace Library.Service.Identity.Domain.CommandHandlers
 {
-    public class CreateUserCommandHandler : BaseIdentityCommandHandler<CreateUserCommand>
-    {
-        public CreateUserCommandHandler(IDomainRepository domainRepository, IIdentityReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger) : base(domainRepository, dataAccesor, tracker, logger)
-        {
-        }
+	public class CreateUserCommandHandler : BaseIdentityCommandHandler<CreateUserCommand>
+	{
+		private IPasswordHasher _passwordHasher = null;
 
-        public override void ExecuteCore(CreateUserCommand command)
-        {
-            var user = new User(new Library.Domain.Core.PersonName(command.FirstName, command.MiddleName, command.LastName), new UserPrincipal(UserRole.User, command.UserName, command.Password));
+		public CreateUserCommandHandler(IDomainRepository domainRepository, IIdentityReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger, IPasswordHasher passwordHasher) : base(domainRepository, dataAccesor, tracker, logger)
+		{
+			_passwordHasher = passwordHasher;
 
-            _domainRepository.Save(user, -1, command.CommandUniqueId);
-        }
-    }
+		}
+
+		public override void ExecuteCore(CreateUserCommand command)
+		{
+			var user = new User(new Library.Domain.Core.PersonName(command.FirstName, command.MiddleName, command.LastName), new UserPrincipal(UserRole.User, command.UserName, _passwordHasher.HashPassword(command.Password)));
+
+			_domainRepository.Save(user, -1, command.CommandUniqueId);
+		}
+	}
 }

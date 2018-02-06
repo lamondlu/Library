@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Library.Infrastructure.DataPersistence.Identity.SQLServer
 {
@@ -99,9 +100,37 @@ namespace Library.Infrastructure.DataPersistence.Identity.SQLServer
 			return null;
 		}
 
-        public void CreateUser(string userName, string password, string firstName, string lastName, string middleName)
-        {
+		public void CreateUser(Guid personId, string userName, string password, string firstName, string lastName, string middleName)
+		{
+			_commands.Add("INSERT INTO dbo.[User](PersonId, Role, UserName, Password) VALUES(@personId, @role, @userName, @password)", new List<SqlParameter>
+			{
+				new SqlParameter{ ParameterName = "@personId", SqlDbType = SqlDbType.UniqueIdentifier, Value = personId },
+				 new SqlParameter{ ParameterName = "@role", SqlDbType = SqlDbType.NVarChar, Value = "Customer" },
+				 new SqlParameter{ ParameterName = "@userName", SqlDbType = SqlDbType.NVarChar, Value = userName },
+				 new SqlParameter{ ParameterName = "@password", SqlDbType = SqlDbType.NVarChar, Value = password}
+			});
 
-        }
-    }
+			_commands.Add("INSERT INTO dbo.[Person](PersonId, FirstName, MiddleName, LastName) VALUES(@personId, @firstName, @middleName, @lastName)", new List<SqlParameter> {
+				new SqlParameter{ ParameterName = "@personId", SqlDbType = SqlDbType.UniqueIdentifier, Value = personId },
+				 new SqlParameter{ ParameterName = "@firstName", SqlDbType = SqlDbType.NVarChar, Value =firstName },
+				 new SqlParameter{ ParameterName = "@middleName", SqlDbType = SqlDbType.NVarChar, Value = middleName },
+				 new SqlParameter{ ParameterName = "@lastName", SqlDbType = SqlDbType.NVarChar, Value = lastName}
+			});
+		}
+
+		public void Commit()
+		{
+			var dbHelper = new DbHelper(_writeDBConnectionStringProvider.ConnectionString);
+			dbHelper.ExecuteNoQuery(_commands);
+			_commands.Clear();
+		}
+
+		public Task CommitAsync()
+		{
+			return Task.Factory.StartNew(() =>
+			{
+				Commit();
+			});
+		}
+	}
 }

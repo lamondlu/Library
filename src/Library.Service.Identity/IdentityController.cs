@@ -1,5 +1,7 @@
-﻿using Library.Infrastructure.InjectionFramework;
+﻿using Library.Domain.Core.Messaging;
+using Library.Infrastructure.InjectionFramework;
 using Library.Service.Identity.Domain;
+using Library.Service.Identity.Domain.Commands;
 using Library.Service.Identity.Domain.DataAccessors;
 using Library.Service.Identity.Domain.ViewModels;
 using Library.Service.Identity.DTOs;
@@ -14,11 +16,13 @@ namespace Library.Service.Identity
 	{
 		private IIdentityReportDataAccessor _dataAccessor = null;
 		private IPasswordHasher _passwordHasher = null;
+		private ICommandPublisher _commandPublisher = null;
 
 		public IdentityController()
 		{
 			_dataAccessor = InjectContainer.GetInstance<IIdentityReportDataAccessor>();
 			_passwordHasher = InjectContainer.GetInstance<IPasswordHasher>();
+			_commandPublisher = InjectContainer.GetInstance<ICommandPublisher>();
 		}
 
 		[Route("")]
@@ -30,7 +34,7 @@ namespace Library.Service.Identity
 				throw new Exception("The password hasher is not initialized.");
 			}
 
-			return _dataAccessor.GetIdentity(dto.UserName, dto.Password);
+			return _dataAccessor.GetIdentity(dto.UserName, _passwordHasher.HashPassword(dto.Password));
 		}
 
 		[HttpGet("~/api/customers")]
@@ -49,6 +53,22 @@ namespace Library.Service.Identity
 		public IdentityDetailsViewModel GetAccount(Guid accountId)
 		{
 			return _dataAccessor.GetAccountDetails(accountId);
+		}
+
+		[HttpPost("~/api/customers")]
+		public Guid AddCustomer([FromBody]CustomerDTO dto)
+		{
+			var command = new CreateUserCommand
+			{
+				FirstName = dto.FirstName,
+				LastName = dto.LastName,
+				MiddleName = dto.MiddleName,
+				Password = dto.Password,
+				UserName = dto.UserName
+			};
+
+			_commandPublisher.Publish(command);
+			return command.CommandUniqueId;
 		}
 	}
 }
