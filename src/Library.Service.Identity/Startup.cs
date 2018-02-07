@@ -1,5 +1,7 @@
+using Library.Domain.Core.Messaging;
 using Library.Infrastructure.DataPersistence.Identity.SQLServer;
 using Library.Infrastructure.InjectionFramework;
+using Library.Infrastructure.Messaging.RabbitMQ;
 using Library.Infrastructure.Operation.Consul;
 using Library.Infrastructure.Operation.Core;
 using Library.Service.Identity.Domain;
@@ -56,6 +58,7 @@ namespace Library.Service.Identity
 
 			InjectContainer.RegisterType<IConsulAPIUrlProvider, AppsettingConsulAPIUrlProvider>();
 			InjectContainer.RegisterType<IServiceDiscovery, ConsulServiceDiscovery>();
+            InjectContainer.RegisterType<ICommandPublisher, RabbitMQCommandPublisher>();
 		}
 	}
 }

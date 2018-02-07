@@ -44,9 +44,9 @@
                 <ul class="nav navbar-nav">
                     @if (ViewBag.CurrentUser!=null)
                     {
-                    <li>@Html.ActionLink("Book", "List", "Book")</li>
+                    <li>@Html.ActionLink("Books", "List", "Book")</li>
                     <li>@Html.ActionLink("Rental", "UnreturnedBooks", "Rental")</li>
-                    @*<li>@Html.ActionLink("User Management", "List", "User")</li>*@
+                    <li>@Html.ActionLink("Customers", "List", "Customer")</li>
                     <li>@Html.ActionLink("Command Logs", "List", "Logs")</li>
                     }
                 </ul>
