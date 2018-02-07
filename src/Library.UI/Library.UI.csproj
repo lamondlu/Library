@@ -213,7 +213,6 @@
     <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\RentalController.cs" />
     <Compile Include="DTOs\AddBookDTO.cs" />
-    <Compile Include="DTOs\AddCustomerDTO.cs" />
     <Compile Include="DTOs\BulkImportDTO.cs" />
     <Compile Include="DTOs\EditBookDTO.cs" />
     <Compile Include="DTOs\IdentityDetailsDTO.cs" />
@@ -318,8 +317,6 @@
     <Content Include="Views\BookInventory\Histories.cshtml" />
     <Content Include="Views\Logs\List.cshtml" />
     <Content Include="Views\Shared\_EventLogs.cshtml" />
-    <Content Include="Views\Customer\List.cshtml" />
-    <Content Include="Views\Customer\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
