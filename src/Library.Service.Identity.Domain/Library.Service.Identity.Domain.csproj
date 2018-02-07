@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <None Include="Library.Service.Identity.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Library.Domain.Core\Library.Domain.Core.csproj" />
   </ItemGroup>
 

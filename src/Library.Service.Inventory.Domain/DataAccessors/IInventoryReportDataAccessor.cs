@@ -6,38 +6,38 @@ using System.Threading.Tasks;
 
 namespace Library.Service.Inventory.Domain.DataAccessors
 {
-	public interface IInventoryReportDataAccessor
-	{
-		List<AvailableBookLookupModel> GetAvailableBooks();
+    public interface IInventoryReportDataAccessor
+    {
+        List<AvailableBookLookupModel> GetAvailableBooks();
 
-		void AddBook(AddBookDTO dto);
+        void AddBook(AddBookDTO dto);
 
-		List<BookViewModel> GetBooks();
+        List<BookViewModel> GetBooks();
 
-		BookDetailedModel GetBookById(Guid bookId);
+        BookDetailedModel GetBookById(Guid bookId);
 
-		bool ExistISBN(string isbn, Guid? bookId = null);
+        bool ExistISBN(string isbn, Guid? bookId = null);
 
-		void UpdateBookName(Guid bookId, string bookName);
+        void UpdateBookName(Guid bookId, string bookName);
 
-		void UpdateBookDescription(Guid bookId, string description);
+        void UpdateBookDescription(Guid bookId, string description);
 
-		void UpdateBookISBN(Guid bookId, string isbn);
+        void UpdateBookISBN(Guid bookId, string isbn);
 
-		void UpdateBookIssuedDate(Guid bookId, DateTime issuedDate);
+        void UpdateBookIssuedDate(Guid bookId, DateTime issuedDate);
 
-		void UpdateBookInventoryStatus(Guid bookInventoryId, BookInventoryStatus status, string notes, DateTime occurredDate);
+        void UpdateBookInventoryStatus(Guid bookInventoryId, BookInventoryStatus status, string notes, DateTime occurredDate);
 
-		void AddBookInventory(Guid bookId, Guid bookInventoryId, BookInventoryStatus status, string notes);
+        void AddBookInventory(Guid bookId, Guid bookInventoryId, BookInventoryStatus status, string notes);
 
-		void RemoveBookInventory(Guid bookInventoryId);
+        void RemoveBookInventory(Guid bookInventoryId);
 
-		List<BookInventoryHistoryViewModel> GetBookInventoryHistories(Guid bookInventoryId);
+        List<BookInventoryHistoryViewModel> GetBookInventoryHistories(Guid bookInventoryId);
 
-		void DeleteBook(Guid bookId);
+        void DeleteBook(Guid bookId);
 
-		void Commit();
+        void Commit();
 
-		Task CommitAsync();
-	}
+        Task CommitAsync();
+    }
 }

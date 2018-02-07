@@ -20,13 +20,6 @@ namespace Library.Service.Rental.Domain.EventHandlers
                 _reportDataAccessor.RentBook(evt.BookInventoryId);
                 _reportDataAccessor.Commit();
 
-                _eventPublisher.Publish(new RentBookRequestSucceedEvent
-                {
-					BookInventoryId = evt.BookInventoryId,
-					CustomerId = evt.CustomerId,
-					AggregateId = evt.AggregateId
-                });
-
                 evt.Result(BookRentedEvent.Code_BOOK_RENTED);
             }
             catch (Exception ex)

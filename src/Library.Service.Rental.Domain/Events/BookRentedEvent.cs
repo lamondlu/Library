@@ -17,7 +17,5 @@ namespace Library.Service.Rental.Domain.Events
         }
 
         public Guid BookInventoryId { get; set; }
-
-        public Guid CustomerId { get; set; }
     }
 }

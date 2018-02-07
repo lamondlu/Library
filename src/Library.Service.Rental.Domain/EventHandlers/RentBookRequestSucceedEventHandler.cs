@@ -7,20 +7,21 @@ using System;
 
 namespace Library.Service.Rental.Domain.EventHandlers
 {
-    public class ReturnBookRequestSucceedEventHandler : BaseRentalEventHandler<ReturnBookRequestSucceedEvent>
+    public class RentBookRequestSucceedEventHandler : BaseRentalEventHandler<RentBookRequestSucceedEvent>
     {
-        public ReturnBookRequestSucceedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
+        public RentBookRequestSucceedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
         {
         }
 
-        public override void HandleCore(ReturnBookRequestSucceedEvent evt)
+        public override void HandleCore(RentBookRequestSucceedEvent evt)
         {
             try
             {
                 var customer = _domainRepository.GetById<Customer>(evt.CustomerId);
-                customer.ReturnBook(evt.BookInventoryId);
-
+                customer.RentBook(evt.BookInventoryId);
                 _domainRepository.Save(customer, customer.Version, evt.CommandUniqueId);
+
+                evt.Result(RentBookRequestSucceedEvent.Code_RENTBOOKREQUEST_SUCCEED);
             }
             catch (Exception ex)
             {

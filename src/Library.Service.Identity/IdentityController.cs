@@ -1,7 +1,6 @@
 ﻿using Library.Domain.Core.Messaging;
 using Library.Infrastructure.InjectionFramework;
 using Library.Service.Identity.Domain;
-using Library.Service.Identity.Domain.Commands;
 using Library.Service.Identity.Domain.DataAccessors;
 using Library.Service.Identity.Domain.ViewModels;
 using Library.Service.Identity.DTOs;
@@ -53,22 +52,6 @@ namespace Library.Service.Identity
 		public IdentityDetailsViewModel GetAccount(Guid accountId)
 		{
 			return _dataAccessor.GetAccountDetails(accountId);
-		}
-
-		[HttpPost("~/api/customers")]
-		public Guid AddCustomer([FromBody]CustomerDTO dto)
-		{
-			var command = new CreateUserCommand
-			{
-				FirstName = dto.FirstName,
-				LastName = dto.LastName,
-				MiddleName = dto.MiddleName,
-				Password = dto.Password,
-				UserName = dto.UserName
-			};
-
-			_commandPublisher.Publish(command);
-			return command.CommandUniqueId;
 		}
 	}
 }

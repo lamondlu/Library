@@ -20,19 +20,22 @@ namespace Library.Service.Inventory.Domain.EventHandlers
                 _reportDataAccessor.UpdateBookInventoryStatus(evt.AggregateId, BookInventoryStatus.OutStore, evt.Notes, evt.OccurredOn);
                 _reportDataAccessor.Commit();
 
-                _eventPublisher.Publish(new BookRentedEvent
+                var rentBookRequestSucceedEvent = new RentBookRequestSucceedEvent
                 {
                     CommandUniqueId = evt.CommandUniqueId,
-                    CustomerId = evt.CustomerId,
                     BookInventoryId = evt.AggregateId,
-					AggregateId = evt.AggregateId
-                });
+                    CustomerId = evt.CustomerId,
+                    AggregateId = evt.AggregateId
+                };
+
+                _eventPublisher.Publish(rentBookRequestSucceedEvent);
 
                 evt.Result(RentedBookOutStoredEvent.Code_RENTEDBOOK_OUTSTORED);
             }
             catch (Exception ex)
             {
                 evt.Result(RentedBookOutStoredEvent.Code_SERVER_ERROR, ex.ToString());
+
             }
         }
     }

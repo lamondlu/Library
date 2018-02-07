@@ -13,7 +13,6 @@ COPY Library.Infrastructure.Messaging.RabbitMQ ./Library.Infrastructure.Messagin
 COPY Library.Infrastructure.DataPersistence.Rental.SQLServer ./Library.Infrastructure.DataPersistence.Rental.SQLServer/
 COPY Library.Infrastructure.Operation.Consul ./Library.Infrastructure.Operation.Consul/
 COPY Library.Infrastructure.Operation.Core ./Library.Infrastructure.Operation.Core/
-COPY Library.Infrastructure.CSDataAccessor.Core ./Library.Infrastructure.CSDataAccessor.Core/
 
 
 WORKDIR /app/Library.Service.Rental

@@ -20,8 +20,6 @@ COPY Library.Infrastructure.EventStorage.SQLServer ./Library.Infrastructure.Even
 COPY Library.Infrastructure.Logger.SQLServer ./Library.Infrastructure.Logger.SQLServer/
 COPY Library.Infrastructure.Operation.Consul ./Library.Infrastructure.Operation.Consul/
 COPY Library.Infrastructure.Operation.Core ./Library.Infrastructure.Operation.Core/
-COPY Library.Infrastructure.CSDataAccessor.Core ./Library.Infrastructure.CSDataAccessor.Core/
-COPY Library.Infrastructure.CSDataAccessor.Rental ./Library.Infrastructure.CSDataAccessor.Rental/
 
 WORKDIR /app/Library.Service.Handler
 RUN dotnet restore

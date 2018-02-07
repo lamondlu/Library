@@ -2,11 +2,11 @@ using Library.Domain.Core.DataAccessor;
 
 namespace Library.Service.Inventory.Domain.DataAccessors
 {
-	public interface IInventoryReadDBConnectionStringProvider : IReadConnectionStringProvider
-	{
-	}
+    public interface IInventoryReadDBConnectionStringProvider : IReadConnectionStringProvider
+    {
+    }
 
-	public interface IInventoryWriteDBConnectionStringProvider : IWriteConnectionStringProvider
-	{
-	}
+    public interface IInventoryWriteDBConnectionStringProvider : IWriteConnectionStringProvider
+    {
+    }
 }

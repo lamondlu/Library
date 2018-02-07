@@ -52,7 +52,6 @@ namespace Library.Service.Identity
 		private void InjectService()
         {
             InjectContainer.RegisterType<IRabbitMQUrlProvider, AppsettingRabbitMQUrlProvider>();
-            InjectContainer.RegisterType<IPasswordHasher, PlainTextPasswordHasher>();
 			InjectContainer.RegisterType<IIdentityReadDBConnectionStringProvider, AppsettingRepositoryReadDBConnectionStringProvider>();
 			InjectContainer.RegisterType<IIdentityWriteDBConnectionStringProvider, AppsettingRepositoryWriteDBConnectionStringProvider>();
 			InjectContainer.RegisterType<IIdentityReportDataAccessor, IdentityReportDataAccessor>();

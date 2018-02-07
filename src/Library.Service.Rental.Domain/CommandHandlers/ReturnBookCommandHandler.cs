@@ -9,33 +9,33 @@ using System;
 
 namespace Library.Service.Rental.Domain.CommandHandlers
 {
-	public class ReturnBookCommandHandler : BaseRentalCommandHandler<ReturnBookCommand>
-	{
-		public ReturnBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger, IEventPublisher eventPublisher) : base(domainRepository, dataAccesor, tracker, logger, eventPublisher)
-		{
-		}
+    public class ReturnBookCommandHandler : BaseRentalCommandHandler<ReturnBookCommand>
+    {
+        public ReturnBookCommandHandler(IDomainRepository domainRepository, IRentalReportDataAccessor dataAccesor, ICommandTracker tracker, ILogger logger, IEventPublisher eventPublisher) : base(domainRepository, dataAccesor, tracker, logger, eventPublisher)
+        {
+        }
 
-		public override void ExecuteCore(ReturnBookCommand command)
-		{
-			try
-			{
-				Customer customer = _domainRepository.GetById<Customer>(command.CustomerId);
+        public override void ExecuteCore(ReturnBookCommand command)
+        {
+            try
+            {
+                Customer customer = _domainRepository.GetById<Customer>(command.CustomerId);
 
-				_eventPublisher.Publish(new ReturnBookRequestCreatedEvent
-				{
-					BookInventoryId = command.BookId,
-					ReturnDate = DateTime.Now,
-					Name = customer.Name,
-					CommandUniqueId = command.CommandUniqueId,
-					AggregateId = command.CustomerId
-				});
+                _eventPublisher.Publish(new ReturnBookRequestCreatedEvent
+                {
+                    BookInventoryId = command.BookId,
+                    ReturnDate = DateTime.Now,
+                    Name = customer.Name,
+                    CommandUniqueId = command.CommandUniqueId,
+                    AggregateId = command.CustomerId
+                });
 
-				command.Result(ReturnBookCommand.Code_BOOK_RETURNED);
-			}
-			catch (Exception ex)
-			{
-				command.Result(CommonCommand.Code_SERVER_ERROR, ex.ToString());
-			}
-		}
-	}
+                command.Result(ReturnBookCommand.Code_BOOK_RETURNED);
+            }
+            catch (Exception ex)
+            {
+                command.Result(CommonCommand.Code_SERVER_ERROR, ex.ToString());
+            }
+        }
+    }
 }
