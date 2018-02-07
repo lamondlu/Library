@@ -7,25 +7,32 @@ using System;
 
 namespace Library.Service.Rental.Domain.EventHandlers
 {
-	public class BookRentedEventHandler : BaseRentalEventHandler<BookRentedEvent>
-	{
-		public BookRentedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
-		{
-		}
+    public class BookRentedEventHandler : BaseRentalEventHandler<BookRentedEvent>
+    {
+        public BookRentedEventHandler(IRentalReportDataAccessor reportDataAccessor, ICommandTracker commandTracker, ILogger logger, IDomainRepository domainRepository, IEventPublisher eventPublisher) : base(reportDataAccessor, commandTracker, logger, domainRepository, eventPublisher)
+        {
+        }
 
-		public override void HandleCore(BookRentedEvent evt)
-		{
-			try
-			{
-				_reportDataAccessor.RentBook(evt.BookInventoryId);
-				_reportDataAccessor.Commit();
+        public override void HandleCore(BookRentedEvent evt)
+        {
+            try
+            {
+                _reportDataAccessor.RentBook(evt.BookInventoryId);
+                _reportDataAccessor.Commit();
 
-				evt.Result(BookRentedEvent.Code_BOOK_RENTED);
-			}
-			catch (Exception ex)
-			{
-				evt.Result(DomainEvent.Code_SERVER_ERROR, ex.ToString());
-			}
-		}
-	}
+                _eventPublisher.Publish(new RentBookRequestSucceedEvent
+                {
+					BookInventoryId = evt.BookInventoryId,
+					CustomerId = evt.CustomerId,
+					AggregateId = evt.AggregateId
+                });
+
+                evt.Result(BookRentedEvent.Code_BOOK_RENTED);
+            }
+            catch (Exception ex)
+            {
+                evt.Result(DomainEvent.Code_SERVER_ERROR, ex.ToString());
+            }
+        }
+    }
 }
