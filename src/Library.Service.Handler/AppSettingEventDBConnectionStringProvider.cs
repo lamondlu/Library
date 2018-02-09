@@ -14,7 +14,7 @@ namespace Library.Service.Handler
 			.SetBasePath(Directory.GetCurrentDirectory())
 			.AddJsonFile("appsettings.json");
 
-			_configuration = builder.Build();
+			_configuration = builder.Build(); 
 		}
 
 		public string ConnectionString
