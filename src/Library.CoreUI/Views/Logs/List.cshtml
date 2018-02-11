@@ -1,0 +1,118 @@
+﻿@model List<BookingLibrary.CoreUI.Models.LogItemViewModel>
+@using BookingLibrary.CoreUI.Utilities
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Logs</h2>
+
+<style>
+    pre {
+        outline: 1px solid #ccc;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .string {
+        color: green;
+    }
+
+    .number {
+        color: darkorange;
+    }
+
+    .boolean {
+        color: blue;
+    }
+
+    .null {
+        color: magenta;
+    }
+
+    .key {
+        color: red;
+    }
+</style>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Date Occurred</th>
+            <th>Command Name</th>
+            <th>Log Type</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            var index = 1;
+            foreach (var item in Model.OrderByDescending(p => p.CreatedOn))
+            {
+                <tr class="@(item.LogType == BookingLibrary.CoreUI.Models.LogType.Info?"info":(item.LogType == BookingLibrary.CoreUI.Models.LogType.Error?"danger": "warning"))">
+                    <td>@item.CreatedOn.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>@item.CommandName</td>
+                    <td>@item.LogType.ToString()</td>
+                    <td><button type="button" class="btn btn-primary" onclick="viewDetails('@item.CommandUniqueId')">View Details</button></td>
+                </tr>
+                <tr command-unique-id="@item.CommandUniqueId" style="display:none">
+                    <td colspan="5">
+                        <div style="padding:10px">
+                            <div><h3>Data</h3><pre class="json">@item.Data.ConvertJsonString()</pre></div>
+                            <div><h3>Message</h3><div>@item.Message</div></div>
+                            <div>
+                                @{ Html.RenderAction("_AjaxListItem", new { commandUniqueId = item.CommandUniqueId });}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                                            index++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="5">
+                                                No Record.
+                                            </td>
+                                        </tr>
+                                    }
+    </tbody>
+</table>
+
+@section scripts{
+    <script type="text/javascript">
+        function viewDetails(id) {
+            $('[command-unique-id="' + id + '"]').toggle(400);
+        }
+
+        $(document).ready(function () {
+            $('.json').each(function () {
+                $(this).html(syntaxHighlight($(this).text()));
+            });
+        });
+
+        function syntaxHighlight(json) {
+            if (typeof json != 'string') {
+                json = JSON.stringify(json, undefined, 2);
+            }
+
+            json = json.replace(/&/g, '&').replace(/</g, '<').replace( />/g, '>');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
+    </script>
+}

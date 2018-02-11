@@ -1,0 +1,183 @@
+﻿@model List<Library.CoreUI.UnreturnedBookViewModel>
+@{
+    ViewBag.Title = "UnreturnedBooks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Unreturned Books</h2>
+<div style="margin-bottom:10px">
+    <button class="btn btn-success" type="button" onclick="openRent()">+ Rent</button>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Book Inventory Id</th>
+            <th>Book Name</th>
+            <th>ISBN</th>
+            <th>Rent Date</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            var index = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName @item.MiddleName @item.LastName</td>
+                    <td>@item.BookId</td>
+                    <td>@item.BookName</td>
+                    <td>@item.ISBN</td>
+                    <td>@item.RentDate.ToString("yyyy-MM-dd")</td>
+                    <td><button type="button" class="btn btn-primary" onclick="returnBook('@item.CustomerId','@item.BookId')">Return Book</button></td>
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">
+                    No Record.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="rentBookModal" tabindex="-1" role="dialog" aria-labelledby="rentBook" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="rentBook">Rent Book</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="customerId">Customer</label>
+                        <select class="form-control" id="customerId">
+                            <option value="">-SELECT-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookId">Book</label>
+                        <select class="form-control" id="bookId">
+                            <option value="">-SELECT-</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="rentBook()">Rent</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var currentCommandUnqiueId = '';
+        var commandType = '';
+
+        function resetCommand() {
+            currentCommandUnqiueId = '';
+            commandType = '';
+        }
+
+        $(function () {
+            $.connection.hub.url = "@(ConfigurationManager.GetValue("signalRUrl"))/signalr";
+            $.connection.hub.logging = true;
+            var command = $.connection.commandHub;
+
+            command.client.success = function (commandUniqueId) {
+
+                hideMask();
+                if (commandUniqueId == currentCommandUnqiueId && commandType == 'Rent Book') {
+                    alert('Rent successfully.');
+                    command.server.removeCommand(currentCommandUnqiueId);
+                    window.location.reload();
+                }
+                else if (commandUniqueId == currentCommandUnqiueId && commandType == 'Return Book') {
+                    alert('Return successfully.');
+                    command.server.removeCommand(currentCommandUnqiueId);
+                    window.location.reload();
+                }
+            };
+
+            command.client.failure = function (commandUniqueId, errorCode, errorMessage) {
+                if (commandUniqueId == currentCommandUnqiueId && commandType == 'Rent Book') {
+                    alert(errorMessage);
+                    resetCommand();
+                }
+            };
+
+            $.connection.hub.start().done(function () {
+                console.log("Connected.");
+            });
+        });
+
+        function returnBook(customerId, bookId) {
+            $.ajax({
+                url: '/Rental/_AjaxReturnBook?customerId=' + customerId + "&bookId=" + bookId,
+                type: 'POST',
+                success: function (data) {
+                    if (data.result) {
+                        currentCommandUnqiueId = data.commandId;
+                        commandType = "Return Book";
+                    }
+                    else {
+                        alert(data.errorMessage);
+                    }
+                }
+            });
+        }
+
+        function rentBook() {
+            $.ajax({
+                url: '/Rental/_AjaxRentBook',
+                data: { bookId: $('#bookId').val(), customerId: $('#customerId').val() },
+                type: 'POST',
+                success: function (data) {
+                    if (data.result) {
+                        currentCommandUnqiueId = data.commandId;
+                        commandType = "Rent Book";
+                    }
+                    else {
+                        alert(data.errorMessage);
+                    }
+                }
+            });
+        }
+
+        function openRent() {
+            $.ajax({
+                url: '/Customer/_AjaxGetAllCustomers',
+                success: function (data) {
+                    $('#customerId option[value!=""]').remove();
+
+                    for (var i = 0; i < data.length; i++) {
+                        $('#customerId').append("<option value='" + data[i].CustomerId + "'>" + data[i].CombinedName + "</option>");
+                    }
+                }
+            });
+
+            $.ajax({
+                url: '/Book/_AjaxGetAvailableBooks',
+                success: function (data) {
+                    $('#bookId option[value!=""]').remove();
+
+                    for (var i = 0; i < data.length; i++) {
+                        $('#bookId').append("<option value='" + data[i].BookId + "'>" + data[i].Name + "</option>");
+                    }
+                }
+            });
+
+            $('#rentBookModal').modal('show');
+        }
+    </script>
+}

@@ -1,0 +1,36 @@
+﻿@model List<Library.CoreUI.ViewModels.BookInventoryHistoryViewModel>
+@{
+    ViewBag.Title = "Histories";
+}
+
+<h2>Histories</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Created On</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CreatedOn.ToString("yyyy-MM-dd")</td>
+                    <td>@item.Notes</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2">
+                    No Record.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

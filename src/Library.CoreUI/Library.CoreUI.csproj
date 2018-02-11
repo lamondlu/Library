@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="ServiceStack.Redis" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,102 @@
+﻿@model Library.CoreUI.DTOs.AddBookDTO
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Book</h2>
+
+<section>
+    @using (Html.BeginForm("Add", "Book", null, FormMethod.Post, false, new { @class = "form-horizontal" }))
+    {
+        <div class="form-group">
+            <label for="tenantName" class="col-md-2 control-label">Book Name</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(p => p.BookName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-md-2 control-label">ISBN</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(p => p.ISBN, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-md-2 control-label">Date Issued</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(p => p.IssueDate, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-md-2 control-label">Description</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(p => p.Description, new { @style = "max-width: 100%", @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="button" class="btn btn-default" value="Save" id="btnSave" />
+            <input type="button" class="btn btn-default" value="Return" onclick="window.location='@Url.Action("List", "Book")'" />
+        </div>
+
+    }
+</section>
+
+@section header{
+
+}
+
+@section scripts{
+    <script type="text/javascript">
+        var currentCommandUnqiueId = null;
+
+        $(function () {
+            $.connection.hub.url = "@(ConfigurationManager.GetValue("signalRUrl"))/signalr";
+            $.connection.hub.logging = true;
+            var command = $.connection.commandHub;
+
+            command.client.success = function (commandUniqueId) {
+
+                if (commandUniqueId == currentCommandUnqiueId) {
+                    hideMask();
+                    alert('Create successfully.');
+                    command.server.removeCommand(currentCommandUnqiueId);
+                    window.location = '@Url.Action("List", "Book")';
+                }
+            };
+
+            command.client.failure = function (commandUniqueId, errorCode, errorMessage) {
+                if (commandUniqueId == currentCommandUnqiueId) {
+                    alert(errorMessage);
+                    hideMask();
+                }
+            };
+
+            $.connection.hub.start().done(function () {
+                console.log("Connected.");
+            });
+
+            $("#IssueDate").datepicker({ dateFormat: "yy-mm-dd" });
+
+            $('#btnSave').click(function () {
+                showMask();
+
+                $.ajax({
+                    url: '',
+                    data: { BookName: $('#BookName').val(), ISBN: $('#ISBN').val(), IssueDate: $('#IssueDate').val(), Description: $('#Description').val() },
+                    type: 'POST',
+                    success: function (data) {
+
+                        if (data && data.commandUnqiueId) {
+                           currentCommandUnqiueId = data.commandUnqiueId;
+                        }
+
+                        //hideMask();
+                    },
+                    error: function () {
+                        hideMask();
+                    }
+                });
+            });
+        });
+    </script>
+}

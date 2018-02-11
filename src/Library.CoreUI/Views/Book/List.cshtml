@@ -1,0 +1,94 @@
+﻿@model List<Library.CoreUI.BookViewModel>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Book Repository</h2>
+<div style="margin-bottom:10px">
+    <button class="btn btn-success" type="button" onclick="window.location = '@Url.Action("Add","Book")';">+ Add</button>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Book Name</th>
+            <th>ISBN</th>
+            <th>Issued Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            var index = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@index</td>
+                    <td>@item.BookName</td>
+                    <td>@item.ISBN</td>
+                    <td>@item.DateIssued.ToString("yyyy-MM-dd")</td>
+                    <td><button type="button" class="btn btn-primary" onclick="window.location='@Url.Action("Edit","Book", new { id=item.BookId})'">Edit</button>&nbsp;@*<button type="button" class="btn btn-danger">Delete</button>&nbsp;*@<button type="button" class="btn btn-primary" onclick="bulkImported('@item.BookId')">Bulk Imported</button></td>
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">
+                    No Record.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script type="text/javascript">
+        var currentCommandUnqiueId = null;
+
+        $(function () {
+            $.connection.hub.url = "@(ConfigurationManager.GetValue("signalRUrl"))/signalr";
+            $.connection.hub.logging = true;
+            var command = $.connection.commandHub;
+
+            command.client.success = function (commandUniqueId) {
+
+                if (commandUniqueId == currentCommandUnqiueId) {
+                    hideMask();
+                    alert('Bulk imported successfully.');
+
+                    command.server.removeCommand(currentCommandUnqiueId);
+                    currentCommandUnqiueId = null;
+                }
+            };
+
+            command.client.failure = function (commandUniqueId) {
+                if (commandUniqueId == currentCommandUnqiueId) {
+                    alert('Bulk imported failure.');
+                }
+            };
+
+            $.connection.hub.start().done(function () {
+                console.log("Connected.");
+            });
+        });
+
+        function bulkImported(bookId) {
+            showMask();
+
+            $.ajax({
+                url: '@Url.Action("_AjaxBulkImported", "BookInventory")',
+                data: {bookId:bookId, number:10},
+                type: 'POST',
+                success: function (data) {
+                    currentCommandUnqiueId = data;
+                }
+            });
+        }
+    </script>
+
+}

@@ -1,0 +1,229 @@
+﻿@model Library.CoreUI.DTOs.EditBookDTO
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Book</h2>
+
+<section>
+    @using (Html.BeginForm("Edit", "Book", null, FormMethod.Post, false, new { @class = "form-horizontal" }))
+    {
+        <fieldset>
+            <legend>Book Information</legend>
+            @Html.HiddenFor(p => p.BookId)
+            <div class="form-group">
+                <label for="tenantName" class="col-md-2 control-label">Book Name</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(p => p.BookName, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-md-2 control-label">ISBN</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(p => p.ISBN, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-md-2 control-label">Date Issued</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(p => p.DateIssued, "{0:yyyy-MM-dd}", new { @class = "form-control", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-md-2 control-label">Description</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(p => p.Description, new { @style = "max-width: 100%", @class = "form-control" })
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Book Inventories</legend>
+            <div style="margin-bottom:10px">
+                <button class="btn btn-success" type="button">+ Add</button>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Unique Id</th>
+                        <th>Status</th>
+                        <th>Last Note</th>
+                        <th>Opeation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.BookInventories.Count > 0)
+                    {
+                        foreach (var item in Model.BookInventories)
+                        {
+                            <tr>
+                                <td>@item.BookInventoryId</td>
+                                <td>@(item.Status == 1 ? "IN" : "OUT")</td>
+                                <td>@item.LastNote</td>
+                                <td>
+                                    @if (item.Status == 1)
+                                    {
+                                        <input type="button" class="btn btn-success outStoreOperation" data-id="@item.BookInventoryId" value="OUT" /><text>&nbsp;</text>
+                                    }
+                                    else
+                                    {
+                                        <input type="button" class="btn btn-success inStoreOperation" data-id="@item.BookInventoryId" value="IN" /><text>&nbsp;</text>
+                                    }
+                                    <input type="button" class="btn btn-success" value="View Histories" onclick="window.location='@Url.Action("Histories", "BookInventory", new { id = item.BookInventoryId })'" />
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">
+                                No record.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </fieldset>
+        <div class="form-group">
+            @*<input type="submit" class="btn btn-default" value="Save" />*@
+            <input type="button" class="btn btn-default" value="Return" onclick="window.location='@Url.Action("List", "Book")'" />
+        </div>
+    }
+</section>
+
+<div class="modal fade" id="inStoreInventoryModal" tabindex="-1" role="dialog" aria-labelledby="inStoreInventory" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="inStoreInventory">Book Inventory IN</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="bookInventoryInDate">Date</label>
+                        <input name="bookInventoryInDate" class="form-control" id="bookInventoryInDate" type="date" />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookInventoryInNote">Note</label>
+                        <textarea id="bookInventoryInNote" class="form-control" style="width:100% !important;max-width:100%" name="bookInventoryInNote"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="inStore()">IN</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<div class="modal fade" id="outStoreInventoryModal" tabindex="-1" role="dialog" aria-labelledby="outStoreInventory" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="outStoreInventory">Book Inventory OUT</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="bookInventoryOutDate">Date</label>
+                        <input name="bookInventoryOutDate" class="form-control" id="bookInventoryOutDate" type="date" />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookInventoryOutNote">Note</label>
+                        <textarea id="bookInventoryOutNote" class="form-control" style="width:100% !important;max-width:100%" name="bookInventoryOutNote"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="inStore()">Out</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var bookId = '@Model.BookId';
+        var bookInventoryId = null;
+        var commandType = '';
+        var currentCommandUnqiueId = null;
+
+        function inStore() {
+            $.ajax({
+                url: '@Url.Action("InStore", "BookInventory")',
+                type: 'put',
+                data: { bookId = bookId, bookInventoryId = bookInventoryId, notes = $('#bookInventoryInNote').val(), occurredDate = $('#bookInventoryInDate').val() },
+                success: function (data) {
+                    commandType = 'inStoreBook';
+                    currentCommandUnqiueId = data;
+                }
+            });
+        }
+
+        function outStore() {
+            $.ajax({
+                url: '@Url.Action("InStore", "BookInventory")',
+                type: 'put',
+                data: { bookId = bookId, bookInventoryId = bookInventoryId, notes = $('#bookInventoryOutNote').val(), occurredDate = $('#bookInventoryInDate').val() },
+                success: function (data) {
+                    commandType = 'outStoreBook';
+                    currentCommandUnqiueId = data;
+                }
+            });
+        }
+
+        $(function () {
+
+             $.connection.hub.url = "@(ConfigurationManager.GetValue("signalRUrl"))/signalr";
+            $.connection.hub.logging = true;
+            var command = $.connection.commandHub;
+
+            command.client.success = function (commandUniqueId) {
+
+                hideMask();
+                if (commandUniqueId == currentCommandUnqiueId && commandType == 'inStoreBook') {
+                    alert('IN successfully.');
+                    command.server.removeCommand(currentCommandUnqiueId);
+                    window.location.reload();
+                }
+                else if (commandUniqueId == currentCommandUnqiueId && commandType == 'outStoreBook') {
+                    alert('OUT successfully.');
+                    command.server.removeCommand(currentCommandUnqiueId);
+                    window.location.reload();
+                }
+            };
+
+            command.client.failure = function (commandUniqueId, errorCode, errorMessage) {
+                if (commandUniqueId == currentCommandUnqiueId && commandType == 'inStoreBook') {
+                    alert(errorMessage);
+                    resetCommand();
+                }
+                else ifif(commandUniqueId == currentCommandUnqiueId && commandType == 'outStoreBook') {
+                    alert(errorMessage);
+                    resetCommand();
+                }
+            };
+
+            $.connection.hub.start().done(function () {
+                console.log("Connected.");
+            });
+
+            $("#DateIssued").datepicker({ dateFormat: "yy-mm-dd" });
+
+            $(".outStoreOperation").click(function () {
+                bookInventoryId = $(this).attr('data-id');
+                $('#outStoreInventoryModal').modal('show');
+            });
+
+            $(".inStoreOperation").click(function () {
+                bookInventoryId = $(this).attr('data-id');
+                $('#inStoreInventoryModal').modal('show');
+            });
+        });
+    </script>
+}
