@@ -161,7 +161,7 @@
                     $('#customerId option[value!=""]').remove();
 
                     for (var i = 0; i < data.length; i++) {
-                        $('#customerId').append("<option value='" + data[i].CustomerId + "'>" + data[i].CombinedName + "</option>");
+                        $('#customerId').append("<option value='" + data[i].customerId + "'>" + data[i].combinedName + "</option>");
                     }
                 }
             });
@@ -172,7 +172,7 @@
                     $('#bookId option[value!=""]').remove();
 
                     for (var i = 0; i < data.length; i++) {
-                        $('#bookId').append("<option value='" + data[i].BookId + "'>" + data[i].Name + "</option>");
+                        $('#bookId').append("<option value='" + data[i].bookId + "'>" + data[i].name + "</option>");
                     }
                 }
             });
