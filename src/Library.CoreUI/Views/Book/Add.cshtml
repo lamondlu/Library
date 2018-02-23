@@ -50,7 +50,7 @@
         var currentCommandUnqiueId = null;
 
         $(function () {
-            $.connection.hub.url = "@(ConfigurationManager.GetValue("signalRUrl"))/signalr";
+            $.connection.hub.url = "@(ViewBag.SignalRUrl)/signalr";
             $.connection.hub.logging = true;
             var command = $.connection.commandHub;
 

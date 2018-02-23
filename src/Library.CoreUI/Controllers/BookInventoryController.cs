@@ -7,13 +7,15 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Library.CoreUI.Models;
+using Microsoft.Extensions.Options;
 
 namespace Library.CoreUI.Controllers
 {
 	public class BookInventoryController : BaseController
 	{
-		public BookInventoryController()
-		{
+		public BookInventoryController(IOptions<ConfigurationModel> configAccessor) : base(configAccessor)
+        {
 		}
 
 		[HttpPost]

@@ -4,13 +4,15 @@ using Library.CoreUI.Utilities;
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Library.CoreUI.Models;
 
 namespace Library.CoreUI.Controllers
 {
 	public class CustomerController : BaseController
 	{
-		public CustomerController()
-		{
+		public CustomerController(IOptions<ConfigurationModel> configAccessor) : base(configAccessor)
+        {
 		}
 
 		[HttpGet]
