@@ -1,5 +1,5 @@
 #  Library
-A microservice project using .NET Core 2.0, DDD, CQRS, Event Sourcing, Redis and RabbitMQ.
+A microservice project using .NET Core 2.2, DDD, CQRS, Event Sourcing, Redis and RabbitMQ.
 
 ## Components
 ![Components](https://github.com/lamondlu/BookLibrary/blob/master/docs/Architecture/20180108201702.png)

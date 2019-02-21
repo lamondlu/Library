@@ -8,59 +8,59 @@ using System.Reflection;
 
 namespace Library.Service.Handler
 {
-	public class HandlerRegister
-	{
-		public HandlerRegister()
-		{
-		}
+    public class HandlerRegister
+    {
+        public HandlerRegister()
+        {
+        }
 
-		public void RegisterAndStart(string libraryName)
-		{
-			var connectionString = InjectContainer.GetInstance<IEventDBConnectionStringProvider>().ConnectionString;
+        public void RegisterAndStart(string libraryName)
+        {
+            var connectionString = InjectContainer.GetInstance<IEventDBConnectionStringProvider>().ConnectionString;
 
-			Console.WriteLine($"Handler starting...");
-			Console.WriteLine($"Event DB Connection String: {connectionString}");
+            Console.WriteLine($"Handler starting...");
+            Console.WriteLine($"Event DB Connection String: {connectionString}");
 
-			RegisterAndStartCommandHandlers(libraryName);
-			RegisterAndStartEventHandlers(libraryName);
+            RegisterAndStartCommandHandlers(libraryName);
+            RegisterAndStartEventHandlers(libraryName);
 
-			Console.WriteLine($"Handler started.");
-		}
+            Console.WriteLine($"Handler started.");
+        }
 
-		public void RegisterAndStartCommandHandlers(string libraryName)
-		{
-			var assembly = Assembly.Load(libraryName);
+        public void RegisterAndStartCommandHandlers(string libraryName)
+        {
+            var assembly = Assembly.Load(libraryName);
 
-			var allCommands = assembly.GetExportedTypes().Where(p => p.GetInterface("ICommand") != null);
-			foreach (var command in allCommands)
-			{
-				var register = new RabbitMQCommandSubscriber(InjectContainer.GetInstance<IRabbitMQUrlProvider>());
-				var registerMethod = register.GetType().GetMethod("Subscribe");
+            var allCommands = assembly.GetExportedTypes().Where(p => p.GetInterface("ICommand") != null);
+            foreach (var command in allCommands)
+            {
+                var register = new RabbitMQCommandSubscriber(InjectContainer.GetInstance<IRabbitMQUrlProvider>());
+                var registerMethod = register.GetType().GetMethod("Subscribe");
 
-				var cmd = Activator.CreateInstance(command);
-				Console.WriteLine($"Found command {command.FullName}.");
-				registerMethod.MakeGenericMethod(command).Invoke(register, new object[1] { cmd });
-			}
-		}
+                var cmd = Activator.CreateInstance(command);
+                Console.WriteLine($"Found command {command.FullName}.");
+                registerMethod.MakeGenericMethod(command).Invoke(register, new object[1] { cmd });
+            }
+        }
 
-		public void RegisterAndStartEventHandlers(string libraryName)
-		{
-			var assembly = Assembly.Load(libraryName);
+        public void RegisterAndStartEventHandlers(string libraryName)
+        {
+            var assembly = Assembly.Load(libraryName);
 
-			var allEvents = assembly.GetExportedTypes().Where(p => p.GetInterface("IDomainEvent") != null);
-			foreach (var @event in allEvents)
-			{
-				var register = new RabbitMQEventSubscriber(InjectContainer.GetInstance<IRabbitMQUrlProvider>(), InjectContainer.GetInstance<ICommandTracker>());
+            var allEvents = assembly.GetExportedTypes().Where(p => p.GetInterface("IDomainEvent") != null);
+            foreach (var @event in allEvents)
+            {
+                var register = new RabbitMQEventSubscriber(InjectContainer.GetInstance<IRabbitMQUrlProvider>(), InjectContainer.GetInstance<ICommandTracker>());
 
-				if (register != null)
-				{
-					var registerMethod = register.GetType().GetMethod("Subscribe");
+                if (register != null)
+                {
+                    var registerMethod = register.GetType().GetMethod("Subscribe");
 
-					var cmd = Activator.CreateInstance(@event);
-					Console.WriteLine($"Found event {@event.FullName}.");
-					registerMethod.MakeGenericMethod(@event).Invoke(register, new object[1] { cmd });
-				}
-			}
-		}
-	}
+                    var cmd = Activator.CreateInstance(@event);
+                    Console.WriteLine($"Found event {@event.FullName}.");
+                    registerMethod.MakeGenericMethod(@event).Invoke(register, new object[1] { cmd });
+                }
+            }
+        }
+    }
 }
