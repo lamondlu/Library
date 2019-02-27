@@ -1,0 +1,11 @@
+version: '2.2'
+services: 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: my_container
+    restart: always
+    ports: 
+      - '15672:15672'
+  consul:
+    image: consul
+    container_name: my_consul
