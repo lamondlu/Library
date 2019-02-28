@@ -9,3 +9,9 @@ services:
   consul:
     image: consul
     container_name: my_consul
+  nginx:
+    image: nginx
+    container_name: my_nginx
+  consul_template:
+    image: hashicorp/consul-template
+    container_name: my_consul_template

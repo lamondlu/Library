@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore-build:2.0 AS build-env
+FROM microsoft/dotnet:2.2-sdk AS build-env
 WORKDIR /app
 
 # 拷贝.csproj到工作目录/app，然后执行dotnet restore恢复所有安装的NuGet包。
@@ -22,7 +22,7 @@ WORKDIR /app/Library.Service.Identity
 RUN dotnet publish -c Release -o out
 
 # 编译Docker镜像
-FROM microsoft/aspnetcore:2.0
+FROM microsoft/dotnet:2.2-aspnetcore-runtime
 WORKDIR /app/Library.Service.Identity
 COPY --from=build-env /app/Library.Service.Identity/out .
 ENTRYPOINT ["dotnet", "Library.Service.Identity.dll"]
